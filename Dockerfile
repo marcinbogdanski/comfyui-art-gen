@@ -33,7 +33,20 @@ WORKDIR ${COMFYUI_PATH}
 
 RUN python -m pip install --upgrade pip setuptools wheel \
     && python -m pip install -r requirements.txt \
-    && python -m pip install -r manager_requirements.txt
+    && python -m pip install -r manager_requirements.txt \
+    && python -m pip install \
+        "gguf>=0.13.0" \
+        "clip_interrogator>=0.6.0" \
+        accelerate \
+        diffusers \
+        lark \
+        matplotlib \
+        onnxruntime \
+        opencv-python-headless \
+        peft \
+        protobuf \
+        sentencepiece \
+        spandrel
 
 USER comfy
 
