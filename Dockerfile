@@ -38,15 +38,22 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         "gguf>=0.13.0" \
         "clip_interrogator>=0.6.0" \
         accelerate \
+        cachetools \
         diffusers \
+        dill \
         lark \
         matplotlib \
         onnxruntime \
         opencv-python-headless \
         peft \
+        piexif \
         protobuf \
+        "sam-2 @ git+https://github.com/facebookresearch/sam2" \
+        scikit-image \
         sentencepiece \
-        spandrel
+        segment-anything \
+        spandrel \
+        webcolors
 
 USER comfy
 
