@@ -105,6 +105,12 @@ The tested workflow is saved at:
 /mnt/data/comfyui/user/default/workflows/BigLove_Klein2_Civitai.json
 ```
 
+Original Civitai image/workflow source:
+
+```text
+https://civitai.red/images/125229083
+```
+
 The original Civitai `workflow.json` was malformed for strict JSON parsers because it contained the same workflow object twice concatenated back-to-back. The fixed copy keeps one object and is pretty-printed.
 
 Current important workflow selections:
