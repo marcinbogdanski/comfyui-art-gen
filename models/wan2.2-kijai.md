@@ -75,6 +75,27 @@ compiler. The no-compile API prompt completed successfully.
 The no-compile copies also set `VHS_VideoCombine.save_output=true` so future
 videos are saved to `/mnt/data/comfyui/output` instead of only container temp.
 
+## Pose LoRA Wiring
+
+Wan LoRAs go under:
+
+```text
+/mnt/data/comfyui/models/loras/WanVideo
+```
+
+For the A14B I2V HIGH/LOW workflow, apply a pose LoRA on both branches. Add a
+`WanVideoLoraSelect` node to each branch, chain it through `prev_lora`, and feed
+the final LoRA output into the existing `WanVideoSetLoRAs`.
+
+The working setup was:
+
+```text
+pose LoRA -> Lightx2v LoRA -> WanVideoSetLoRAs
+```
+
+Repeat that once for the HIGH model branch and once for the LOW model branch.
+No different model quantization was needed.
+
 ## Required Model Files
 
 For the basic Kijai Wan 2.2 A14B I2V workflow:
