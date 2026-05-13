@@ -16,3 +16,20 @@ Image setup:
 
 - Base image is the official PyTorch CUDA runtime image.
 - Switch from `runtime` to `devel` only if custom nodes need native/CUDA compilation.
+
+## Memory files
+
+- If present, read recent `memory/YYYY-MM-DD.md` entries for session continuity.
+- Use the human/logical day, not strict midnight, when naming entries; if work happens after midnight but before Marcin sleeps, use the previous calendar date.
+- Write significant progress to `memory/YYYY-MM-DD.md` when useful; multiple entries per day are fine.
+- Prefer appending new sections to the end of an existing memory file, unless cleanup or structure clearly requires insertion elsewhere.
+- Use memory files for worklog notes, setup lessons, repo/process decisions, and next-session handover.
+
+## Tools
+
+### GitHub CLI
+
+- The `gh` CLI is available and pre-authenticated for agent access.
+- GitHub permissions are scoped to selected repositories.
+- Do not force-push or delete the main branch.
+
