@@ -6,6 +6,8 @@ DATA_DIR="${COMFYUI_DATA_DIR:-/mnt/data/comfyui}"
 GPU_DEVICE="${COMFYUI_GPU_DEVICE:-0}"
 HOST_PORT="${COMFYUI_HOST_PORT:-8188}"
 CONTAINER_PORT="${COMFYUI_CONTAINER_PORT:-8188}"
+DETACH="${COMFYUI_DETACH:-0}"
+CONTAINER_NAME="${COMFYUI_CONTAINER_NAME:-comfyui}"
 COMFYUI_ARGS=(
   --listen 0.0.0.0
   --port "${CONTAINER_PORT}"
@@ -22,7 +24,15 @@ for dir in models input output custom_nodes user; do
   fi
 done
 
-exec docker run --rm -it \
+DOCKER_ARGS=(--rm)
+
+if [[ "${DETACH}" == "1" ]]; then
+  DOCKER_ARGS+=(-d --name "${CONTAINER_NAME}")
+else
+  DOCKER_ARGS+=(-it)
+fi
+
+exec docker run "${DOCKER_ARGS[@]}" \
   --gpus "device=${GPU_DEVICE}" \
   -p "${HOST_PORT}:${CONTAINER_PORT}" \
   -v "${DATA_DIR}/models:/opt/ComfyUI/models" \

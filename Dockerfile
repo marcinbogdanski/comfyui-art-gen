@@ -35,24 +35,37 @@ RUN python -m pip install --upgrade pip setuptools wheel \
     && python -m pip install -r requirements.txt \
     && python -m pip install -r manager_requirements.txt \
     && python -m pip install \
-        "gguf>=0.13.0" \
+        "gguf>=0.17.1" \
         "clip_interrogator>=0.6.0" \
-        accelerate \
+        "accelerate>=1.2.1" \
         cachetools \
-        diffusers \
+        "color-matcher" \
+        "colour-science" \
+        "diffusers>=0.33.0" \
         dill \
+        einops \
+        ftfy \
+        "imageio-ffmpeg" \
         lark \
         matplotlib \
+        mss \
+        numba \
         onnxruntime \
         opencv-python-headless \
-        peft \
+        "peft>=0.17.0" \
         piexif \
+        pixeloe \
+        "pillow>=10.3.0" \
         protobuf \
+        pyloudnorm \
+        rembg \
         "sam-2 @ git+https://github.com/facebookresearch/sam2" \
         scikit-image \
-        sentencepiece \
+        scipy \
+        "sentencepiece>=0.2.0" \
         segment-anything \
         spandrel \
+        transparent-background \
         webcolors
 
 USER comfy
