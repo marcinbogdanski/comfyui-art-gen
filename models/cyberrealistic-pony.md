@@ -14,10 +14,16 @@ Download the FP16/pruned checkpoint:
 ```bash
 mkdir -p /mnt/data/comfyui/models/checkpoints
 
-wget -c \
-  -O /mnt/data/comfyui/models/checkpoints/cyberrealisticPony_v180Coreshift.safetensors \
+source ~/.bashrc
+
+curl -L \
+  -H "Authorization: Bearer ${CIVITAI_API_KEY}" \
+  -o /mnt/data/comfyui/models/checkpoints/cyberrealisticPony_v180Coreshift.safetensors \
   'https://civitai.com/api/download/models/2884631?type=Model&format=SafeTensor&size=pruned&fp=fp16'
 ```
+
+This Civitai download currently requires an API key. Keep it in
+`CIVITAI_API_KEY`; unauthenticated requests redirect to login HTML.
 
 Download the upscaler required by the example image workflow:
 
