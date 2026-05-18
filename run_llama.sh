@@ -11,6 +11,8 @@ MODEL="${LLAMA_MODEL:-HauhauCS/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive:Q4
 CTX_SIZE="${LLAMA_CTX_SIZE:-16384}"
 GPU_LAYERS="${LLAMA_GPU_LAYERS:-99}"
 
+# The default Hugging Face repo also provides a matching mmproj GGUF in the
+# llama.cpp cache, so the server web UI can accept image uploads as a VLM.
 LLAMA_ARGS=(
   -hf "${MODEL}"
   --host 0.0.0.0
