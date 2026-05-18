@@ -45,6 +45,12 @@ wget -c \
 
 Use the official `flux2_example.png` workflow image directly, or extract/load the embedded GUI workflow as JSON.
 
+Repo copy:
+
+```text
+workflows/flux2/flux2_example.json
+```
+
 Current important workflow selections:
 
 ```text
