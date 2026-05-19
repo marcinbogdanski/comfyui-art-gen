@@ -19,11 +19,17 @@ Image setup:
 
 ## Memory files
 
-- If present, read recent `memory/YYYY-MM-DD.md` entries for session continuity.
+This is your memory system. By agents for agents. Use to maintain continuity. Major items only.
+
+- If present, read `MEMORY.md` and recent `memory/YYYY-MM-DD.md` entries for session continuity.
+- `MEMORY.md`, if present, is for durable cross-session context that does not belong in a more specific repo doc.
+- `memory/YYYY-MM-DD.md` is a compact executive progress journal: major work only, what changed, what worked or failed, important decisions, and likely next steps.
 - Use the human/logical day, not strict midnight, when naming entries; if work happens after midnight but before Marcin sleeps, use the previous calendar date.
-- Write significant progress to `memory/YYYY-MM-DD.md` when useful; multiple entries per day are fine.
-- Prefer appending new sections to the end of an existing memory file, unless cleanup or structure clearly requires insertion elsewhere.
-- Use memory files for worklog notes, setup lessons, repo/process decisions, and next-session handover.
+- Keep dated memory entries very compact: they should read like an executive summary for major and relevant work items, not a detailed work log.
+- Record only material context that helps future agents regain continuity: what was tried, what worked or failed, important decisions, and likely next steps.
+- Do not duplicate details that are already captured in committed docs, scripts, workflows, or git history; reference the relevant repo file instead.
+- Put durable process lessons or stable operating rules in the repo proper, such as `AGENTS.md`, `MEMORY.md`, model docs, or scripts.
+- Prefer appending sections to the end of the current memory file, unless cleanup or structure clearly requires insertion elsewhere.
 
 ## Tools
 
@@ -32,4 +38,3 @@ Image setup:
 - The `gh` CLI is available and pre-authenticated for agent access.
 - GitHub permissions are scoped to selected repositories.
 - Do not force-push or delete the main branch.
-
