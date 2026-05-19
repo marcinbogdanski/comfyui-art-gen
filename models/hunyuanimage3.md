@@ -49,6 +49,8 @@ workflows/hunyuanimage3/hunyuanimage3_base_nf4.json
 workflows/hunyuanimage3/hunyuanimage3_base_nf4.api.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.api.json
+workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.json
+workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.api.json
 ```
 
 Important settings:
@@ -56,6 +58,7 @@ Important settings:
 ```text
 Base NF4:              post_action=keep_loaded
 Instruct-Distil NF4:   vae_tiling=on, vae_offload=on
+Multi-fusion NF4:      blocks_to_swap=20, image 1 = source face/identity, image 2 = target pose/scene
 ```
 
 `post_action=full_unload` made second base runs fail because ComfyUI reused the

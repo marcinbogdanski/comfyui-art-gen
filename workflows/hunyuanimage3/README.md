@@ -19,5 +19,9 @@ Operational notes:
   fail because ComfyUI reuses a cached loader output after the model was cleared.
 - Instruct-Distil NF4 needs `vae_tiling=on` and `vae_offload=on`; `auto` can
   return a 64x64 black fallback image after VAE decode OOM.
+- Instruct-Distil multi-fusion uses image 1 as the source face/identity and
+  image 2 as the target pose/scene. It uses loader `blocks_to_swap=20` to leave
+  enough VRAM for decode. Replace the two `LoadImage` inputs in the GUI before
+  running.
 - If Hunyuan errors appear after testing other large models, restart ComfyUI.
   The process can retain tens of GB of VRAM even when idle.

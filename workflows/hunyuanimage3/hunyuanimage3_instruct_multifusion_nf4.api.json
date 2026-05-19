@@ -1,0 +1,67 @@
+{
+  "1": {
+    "class_type": "HunyuanInstructLoader",
+    "inputs": {
+      "model_name": "HunyuanImage-3.0-Instruct-Distil-NF4-v2",
+      "force_reload": false,
+      "attention_impl": "sdpa",
+      "moe_impl": "eager",
+      "vram_reserve_gb": 30.0,
+      "blocks_to_swap": 20,
+      "moe_drop_tokens": true,
+      "vae_dtype": "bfloat16"
+    },
+    "_meta": {
+      "title": "Hunyuan Instruct Loader"
+    }
+  },
+  "2": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "example.png"
+    },
+    "_meta": {
+      "title": "Load Image 1 - source face / identity"
+    }
+  },
+  "3": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "BigLoveKlein1_00010_.png"
+    },
+    "_meta": {
+      "title": "Load Image 2 - target pose / scene"
+    }
+  },
+  "4": {
+    "class_type": "HunyuanInstructMultiFusion",
+    "inputs": {
+      "model": ["1", 0],
+      "image_1": ["2", 0],
+      "instruction": "Use the face and identity from image 1. Apply it naturally to the person in image 2 while preserving the pose, clothing, lighting, camera angle, and background from image 2. Make the result look like a realistic photograph, not a collage.",
+      "seed": 26051921,
+      "image_2": ["3", 0],
+      "bot_task": "image",
+      "system_prompt": "dynamic",
+      "resolution": "1024x1024 (1:1 Square)",
+      "steps": -1,
+      "guidance_scale": -1.0,
+      "flow_shift": 2.2,
+      "max_new_tokens": 2048,
+      "verbose": 0
+    },
+    "_meta": {
+      "title": "Hunyuan Instruct Multi-Image Fusion"
+    }
+  },
+  "5": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["4", 0],
+      "filename_prefix": "hunyuanimage3/instruct_multifusion_nf4"
+    },
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}
