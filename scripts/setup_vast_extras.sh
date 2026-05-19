@@ -29,6 +29,12 @@ if [[ -f "${CUSTOM_NODES_DIR}/Comfy_HunyuanImage3/requirements.txt" ]]; then
   python -m pip install -r "${CUSTOM_NODES_DIR}/Comfy_HunyuanImage3/requirements.txt"
 fi
 
+# Tested HunyuanImage runtime. Avoid pulling a replacement Torch wheel here.
+python -m pip install --no-deps \
+  "transformers==4.57.1" \
+  "huggingface-hub==0.36.0" \
+  "bitsandbytes==0.48.2"
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ -x "${SCRIPT_DIR}/sync_vast_workflows.sh" ]]; then
   "${SCRIPT_DIR}/sync_vast_workflows.sh"
