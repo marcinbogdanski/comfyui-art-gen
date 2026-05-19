@@ -22,13 +22,14 @@ Image setup:
 This is your memory system. By agents for agents. Use to maintain continuity. Major items only.
 
 - If present, read `MEMORY.md` and recent `memory/YYYY-MM-DD.md` entries for session continuity.
-- `MEMORY.md`, if present, is for durable cross-session context that does not belong in a more specific repo doc.
+- `MEMORY.md`, if present, is for durable cross-session context and repo-level decisions that do not belong in a more specific repo doc. It is not the authoritative store for domain facts the repo already tracks elsewhere.
 - `memory/YYYY-MM-DD.md` is a compact executive progress journal: major work only, what changed, what worked or failed, important decisions, and likely next steps.
 - Use the human/logical day, not strict midnight, when naming entries; if work happens after midnight but before Marcin sleeps, use the previous calendar date.
+- Cadence is event-driven, not daily. No entry is required on quiet days, and multiple entries in one day are fine when separate work warrants it.
 - Keep dated memory entries very compact: they should read like an executive summary for major and relevant work items, not a detailed work log.
 - Record only material context that helps future agents regain continuity: what was tried, what worked or failed, important decisions, and likely next steps.
 - Do not duplicate details that are already captured in committed docs, scripts, workflows, or git history; reference the relevant repo file instead.
-- Put durable process lessons or stable operating rules in the repo proper, such as `AGENTS.md`, `MEMORY.md`, model docs, or scripts.
+- Put durable process lessons or stable operating rules in the repo proper, such as `AGENTS.md`, `MEMORY.md`, model docs, or scripts — not in dated entries.
 - Prefer appending sections to the end of the current memory file, unless cleanup or structure clearly requires insertion elsewhere.
 
 ## Tools
