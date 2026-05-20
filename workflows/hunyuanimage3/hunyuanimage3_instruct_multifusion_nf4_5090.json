@@ -213,7 +213,7 @@
       ],
       "size": [
         520,
-        640
+        760
       ],
       "flags": {},
       "order": 3,
@@ -328,6 +328,30 @@
             "name": "verbose"
           },
           "link": null
+        },
+        {
+          "name": "cond_vae_base_size",
+          "type": "INT",
+          "widget": {
+            "name": "cond_vae_base_size"
+          },
+          "link": null
+        },
+        {
+          "name": "vae_tiling",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_tiling"
+          },
+          "link": null
+        },
+        {
+          "name": "vae_offload",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_offload"
+          },
+          "link": null
         }
       ],
       "outputs": [
@@ -357,7 +381,8 @@
       },
       "widgets_values": [
         "Use the face and identity from image 1. Apply it naturally to the person in image 2 while preserving the pose, clothing, lighting, camera angle, and background from image 2. Make the result look like a realistic photograph, not a collage.",
-        26051921,
+        0,
+        "fixed",
         "image",
         "dynamic",
         "1024x1024 (1:1 Square)",
@@ -365,7 +390,10 @@
         -1.0,
         2.2,
         2048,
-        0
+        0,
+        768,
+        "on",
+        "auto"
       ]
     },
     {

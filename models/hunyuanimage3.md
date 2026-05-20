@@ -131,12 +131,23 @@ Results with two reference images, Instruct-Distil NF4, `blocks_to_swap=31`,
 | 768 without expandable segments | OOM in second ref VAE encode | 25.0 GiB sampled before failure | 8.3 s | 3.9 GiB |
 | 832 + expandable segments | Failed tokenizer path | 7.8 GiB sampled before failure | 7.9 s | 3.8 GiB |
 
-Interpretation: 5090 support is not settings-only with the current
+Interpretation: 5090 support is not settings-only with the upstream
 `Comfy_HunyuanImage3` node. The `5090` workflow solves weight residency, but the reference
-VAE encode still needs a code change or new node option. `cond_vae_base=768` is
-the best 5090 result from this pass; it should preserve more reference detail
-than 512, but it does change information flow because fewer conditional VAE
-tokens are given to the network.
+VAE encode still needs the local node patch. The patch exposes
+`cond_vae_base_size`, `vae_tiling`, and `vae_offload` on the multi-fusion node.
+`cond_vae_base_size=768` is the best 5090 result from this pass; it should
+preserve more reference detail than 512, but it does change information flow
+because fewer conditional VAE tokens are given to the network.
+
+Node patch behavior:
+
+- `cond_vae_base_size`: reference/conditional VAE preprocessing base size;
+  default `1024` matches the native conditioning path; `0` disables the wrapper.
+- `vae_tiling`: VAE decode tiling mode, `auto` / `on` / `off`.
+- `vae_offload`: VAE decode offload mode, `auto` / `on` / `off`.
+- Multi-fusion applies the memory-efficient MoE forward patch before generation.
+- If `cond_vae_base_size > 0`, reference images use that VAE base size instead
+  of the native VAE resolution group.
 
 The low-VRAM node patch is captured in:
 
@@ -146,13 +157,18 @@ scripts/patch_hunyuanimage3_lowvram.sh
 
 It has also been validated on replacement Vast RTX 5090 instance `37152517`
 with driver `595.45.04`, PyTorch `2.9.1+cu130`, the same two-reference
-`5090` workflow, and launch env:
+workflow, and low-VRAM node inputs:
 
-```bash
-PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-HUNYUAN_COND_VAE_BASE_SIZE=768
-HUNYUAN_VAE_TILING=on
+```text
+cond_vae_base_size=768
+vae_tiling=on
+vae_offload=auto
 ```
+
+Launch still uses `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`.
+
+The current `5090` workflow defaults are `cond_vae_base_size=768`,
+`vae_tiling=on`, `vae_offload=auto`, and seed `0`.
 
 That run produced a real 1024x1024 PNG, not the 64x64 fallback, with sampled
 peak VRAM `29308 MiB` and submit-to-success time `125.8 s`.

@@ -45,7 +45,7 @@
         0
       ],
       "instruction": "Use the face and identity from image 1. Apply it naturally to the person in image 2 while preserving the pose, clothing, lighting, camera angle, and background from image 2. Make the result look like a realistic photograph, not a collage.",
-      "seed": 26051921,
+      "seed": 0,
       "image_2": [
         "3",
         0
@@ -57,7 +57,10 @@
       "guidance_scale": -1.0,
       "flow_shift": 2.2,
       "max_new_tokens": 2048,
-      "verbose": 0
+      "verbose": 0,
+      "cond_vae_base_size": 768,
+      "vae_tiling": "on",
+      "vae_offload": "auto"
     },
     "_meta": {
       "title": "Hunyuan Instruct Multi-Image Fusion"

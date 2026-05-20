@@ -1,14 +1,46 @@
 diff --git a/hunyuan_instruct_nodes.py b/hunyuan_instruct_nodes.py
-index 065551e..bf759c6 100644
+index 065551e..fd6feb6 100644
 --- a/hunyuan_instruct_nodes.py
 +++ b/hunyuan_instruct_nodes.py
-@@ -3300,6 +3300,52 @@ class HunyuanInstructMultiFusion:
+@@ -3187,6 +3187,21 @@ class HunyuanInstructMultiFusion:
+                     "max": 2,
+                     "tooltip": "Verbosity level. 0=silent (recommended), 1=info (shows full system prompt), 2=debug"
+                 }),
++                "cond_vae_base_size": ("INT", {
++                    "default": 1024,
++                    "min": 0,
++                    "max": 1024,
++                    "step": 64,
++                    "tooltip": "Reference/conditional VAE preprocessing base size. 1024 matches the upstream native conditioning path; lower values reduce peak VRAM but change conditioning detail."
++                }),
++                "vae_tiling": (["auto", "on", "off"], {
++                    "default": "auto",
++                    "tooltip": "VAE decode tiling mode for multi-image fusion. 'on' reduces final decode VRAM."
++                }),
++                "vae_offload": (["auto", "on", "off"], {
++                    "default": "auto",
++                    "tooltip": "VAE decode offload mode for multi-image fusion."
++                }),
+             }
+         }
+     
+@@ -3208,6 +3223,9 @@ class HunyuanInstructMultiFusion:
+         flow_shift: float = 2.8,
+         max_new_tokens: int = 2048,
+         verbose: int = 0,
++        cond_vae_base_size: int = 1024,
++        vae_tiling: str = "auto",
++        vae_offload: str = "auto",
+     ) -> Tuple[torch.Tensor, str, str]:
+         """Fuse multiple images based on instruction."""
+         
+@@ -3300,7 +3318,51 @@ class HunyuanInstructMultiFusion:
                      strip_accelerate_hooks_from_vae(model)
                  except Exception:
                      pass
+-            
 +
 +            # Low-VRAM controls for 24-32GB GPUs (repo patch marker).
-+            # These are opt-in via env vars so default upstream behavior remains unchanged.
 +            try:
 +                from .hunyuan_shared import patch_moe_efficient_forward
 +            except ImportError:
@@ -16,10 +48,9 @@ index 065551e..bf759c6 100644
 +            logger.info("Applying memory-efficient MoE dispatch patch for multi-image fusion...")
 +            patch_moe_efficient_forward(model)
 +
-+            model._vae_tiling_mode = os.environ.get("HUNYUAN_VAE_TILING", "auto")
-+            model._vae_offload_mode = os.environ.get("HUNYUAN_VAE_OFFLOAD", "auto")
++            model._vae_tiling_mode = vae_tiling
++            model._vae_offload_mode = vae_offload
 +
-+            cond_vae_base_size = int(os.environ.get("HUNYUAN_COND_VAE_BASE_SIZE", "0") or "0")
 +            if cond_vae_base_size > 0:
 +                ip = model.image_processor
 +                if not hasattr(ip, "_lowvram_cond_vae_orig_get_image_with_size"):
@@ -52,10 +83,11 @@ index 065551e..bf759c6 100644
 +
 +                ip.get_image_with_size = _lowvram_cond_get_image_with_size
 +                logger.info(f"Low-VRAM conditional VAE base size enabled: {cond_vae_base_size}")
-             
++
              logger.info(f"Starting multi-image fusion with bot_task='{bot_task}' "
                          f"(this may take several minutes for recaption modes)...")
-@@ -3355,6 +3401,8 @@ class HunyuanInstructMultiFusion:
+             
+@@ -3355,6 +3417,8 @@ class HunyuanInstructMultiFusion:
              
          except torch.cuda.OutOfMemoryError as e:
              logger.error(f"CUDA Out of Memory during multi-image fusion: {e}")
