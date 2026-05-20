@@ -3,6 +3,7 @@ FROM pytorch/pytorch:2.9.1-cuda13.0-cudnn9-runtime
 ARG COMFYUI_REF=v0.20.1
 ARG USER_ID=1000
 ARG GROUP_ID=1000
+ARG LLAMA_CPP_PYTHON_WHEEL=https://github.com/JamePeng/llama-cpp-python/releases/download/v0.3.39-cu131-linux-20260519/llama_cpp_python-0.3.39%2Bcu131-cp311-cp311-linux_x86_64.whl
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
@@ -66,7 +67,18 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         segment-anything \
         spandrel \
         transparent-background \
-        webcolors
+        webcolors \
+    && python -m pip install --no-deps \
+        "transformers==4.57.1" \
+        "huggingface-hub==0.36.0" \
+        "bitsandbytes==0.48.2" \
+    && python -m pip install --no-cache-dir --force-reinstall --no-deps \
+        "${LLAMA_CPP_PYTHON_WHEEL}" \
+    && python -m pip install --no-cache-dir \
+        diskcache \
+        hf_xet \
+        jinja2 \
+        typing-extensions
 
 USER comfy
 

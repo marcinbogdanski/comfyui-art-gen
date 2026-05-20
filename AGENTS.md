@@ -9,7 +9,8 @@ Operational preferences:
 - Persistent ComfyUI data lives under `/mnt/data/comfyui`.
 - Keep model files out of git; document model download commands instead.
 - Default access URL is `http://x399.lan:8188/`.
-- Start with one GPU per ComfyUI instance; default wrapper uses GPU 0.
+- Start with one GPU per ComfyUI instance; the local wrapper uses watercooled
+  GPU 1 for ComfyUI. The local llama.cpp wrapper uses watercooled GPU 3.
 - Do not expose ComfyUI directly to the public internet.
 
 Image setup:
