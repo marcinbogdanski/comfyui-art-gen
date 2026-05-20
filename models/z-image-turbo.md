@@ -49,6 +49,11 @@ Repo copy:
 workflows/z-image/image_z_image_turbo.json
 ```
 
+Optional LoRAs:
+
+- [Civit.Art V2T1](https://civitai.red/models/2502792/civitart?modelVersionId=2937757) - painterly style
+- [Civit.Art V1TI](https://civitai.red/models/2502792/civitart?modelVersionId=2813397) - illustration style
+
 Current important workflow selections:
 
 ```text
