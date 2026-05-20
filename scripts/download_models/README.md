@@ -9,6 +9,7 @@ Run one script at a time:
 ```bash
 scripts/download_models/z-image-turbo.sh
 scripts/download_models/hunyuanimage3.sh
+scripts/download_models/qwen3.5-35b-a3b.sh
 ```
 
 The Civitai scripts require a token:
