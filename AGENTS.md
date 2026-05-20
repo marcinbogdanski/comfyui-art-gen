@@ -30,6 +30,7 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - Keep dated memory entries very compact: they should read like an executive summary for major and relevant work items, not a detailed work log.
 - Record only material context that helps future agents regain continuity: what was tried, what worked or failed, important decisions, and likely next steps.
 - Do not duplicate details that are already captured in committed docs, scripts, workflows, or git history; reference the relevant repo file instead.
+- Do not restate technical findings, settings, file lists, commands, or implementation details that are already captured in committed repo files or git history.
 - Put durable process lessons or stable operating rules in the repo proper, such as `AGENTS.md`, `MEMORY.md`, model docs, or scripts — not in dated entries.
 - Prefer appending sections to the end of the current memory file, unless cleanup or structure clearly requires insertion elsewhere.
 

@@ -167,7 +167,8 @@ vae_offload=auto
 
 The repo ComfyUI startup scripts now default `PYTORCH_CUDA_ALLOC_CONF` to
 `expandable_segments:True`. Keep that allocator setting enabled for this 5090
-path unless explicitly testing allocator behavior.
+path unless explicitly testing allocator behavior. Pair it with
+`--disable-cuda-malloc` so ComfyUI uses PyTorch's allocator.
 
 The current `5090` workflow defaults are `cond_vae_base_size=768`,
 `vae_tiling=on`, `vae_offload=auto`, and seed `0`.

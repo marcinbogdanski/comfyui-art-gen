@@ -1,9 +1,5 @@
 # Durable Notes
 
-- Vast instance `37076366` (`comfy-hunyuan-test`) is stopped, not destroyed.
-  It had about `476 GB` of disk in use, including downloaded ComfyUI models under
-  `/workspace/ComfyUI/models`. Restart it with `vastai start instance 37076366`
-  before resuming Vast-side work.
 - For Vast instances, the account SSH key `marcin.bogdanski@gmail.com` is the
   user-facing key and should be attached to new instances so Marcin can tunnel
   from his machine normally. Do not give the user `codex-vast-*` key paths; those
