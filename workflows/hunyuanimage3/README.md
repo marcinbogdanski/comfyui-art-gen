@@ -34,6 +34,8 @@ Operational notes:
   diffusion. Run `scripts/patch_hunyuanimage3_lowvram.sh` after installing
   `Comfy_HunyuanImage3`. The `5090` workflow sets the added multi-fusion node
   inputs `cond_vae_base_size=768`, `vae_tiling=on`, and `vae_offload=auto`.
-  Start ComfyUI with `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`.
+  The repo startup scripts default `PYTORCH_CUDA_ALLOC_CONF` to
+  `expandable_segments:True`; keep that allocator setting enabled for the 5090
+  path.
 - If Hunyuan errors appear after testing other large models, restart ComfyUI.
   The process can retain tens of GB of VRAM even when idle.

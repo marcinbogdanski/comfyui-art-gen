@@ -27,3 +27,8 @@ Useful overrides:
 ```bash
 COMFYUI_GPU_DEVICE=1 COMFYUI_HOST_PORT=8189 ./run_comfyui.sh
 ```
+
+The wrapper defaults `PYTORCH_CUDA_ALLOC_CONF` to
+`expandable_segments:True` to reduce CUDA allocator fragmentation on large
+ComfyUI workflows. Set `PYTORCH_CUDA_ALLOC_CONF` explicitly before launching to
+override it for debugging.
