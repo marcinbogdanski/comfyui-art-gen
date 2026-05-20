@@ -26,6 +26,7 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - `memory/YYYY-MM-DD.md` is a compact executive progress journal: major work only, what changed, what worked or failed, important decisions, and likely next steps.
 - Use the human/logical day, not strict midnight, when naming entries; if work happens after midnight but before Marcin sleeps, use the previous calendar date.
 - Cadence is event-driven, not daily. No entry is required on quiet days, and multiple entries in one day are fine when separate work warrants it.
+- Write dated memory files only after a meaningful work task is completed (like merged PR) or when the user indicates end of day.
 - Keep dated memory entries very compact: they should read like an executive summary for major and relevant work items, not a detailed work log.
 - Record only material context that helps future agents regain continuity: what was tried, what worked or failed, important decisions, and likely next steps.
 - Do not duplicate details that are already captured in committed docs, scripts, workflows, or git history; reference the relevant repo file instead.
