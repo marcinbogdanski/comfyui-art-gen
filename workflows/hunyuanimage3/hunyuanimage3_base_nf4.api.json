@@ -1,0 +1,46 @@
+{
+  "1": {
+    "class_type": "HunyuanImage3NF4LoaderLowVRAMBudget",
+    "inputs": {
+      "model_name": "HunyuanImage-3-NF4-v2",
+      "force_reload": false,
+      "blocks_to_swap": 20,
+      "reserve_memory_gb": 6.0,
+      "gpu_memory_target_gb": 40.0
+    },
+    "_meta": {
+      "title": "Hunyuan 3 Loader (NF4 Low VRAM+)"
+    }
+  },
+  "2": {
+    "class_type": "HunyuanImage3GenerateLowVRAMBudget",
+    "inputs": {
+      "model": ["1", 0],
+      "prompt": "A cinematic 35mm photo of a red tram crossing a rain-slick European square at blue hour, warm cafe windows, reflections on cobblestones, natural people in motion, realistic lens detail",
+      "seed": 26051904,
+      "steps": 10,
+      "resolution": "1024x1024 - Square 1K (1.0MP)",
+      "guidance_scale": 5.0,
+      "offload_mode": "smart",
+      "post_action": "keep_loaded",
+      "enable_prompt_rewrite": false,
+      "rewrite_style": "none",
+      "api_url": "https://api.deepseek.com/v1/chat/completions",
+      "model_name": "deepseek-chat",
+      "gpu_budget_gb": -1.0
+    },
+    "_meta": {
+      "title": "Hunyuan 3 Generate (Low VRAM Budget)"
+    }
+  },
+  "3": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": ["2", 0],
+      "filename_prefix": "hunyuanimage3/base_nf4"
+    },
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

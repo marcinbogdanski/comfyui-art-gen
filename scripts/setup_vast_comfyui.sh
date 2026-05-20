@@ -116,6 +116,7 @@ mkdir -p \
 cat > "${WORKSPACE_DIR}/run_comfyui.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 cd "${COMFYUI_PATH:-/workspace/ComfyUI}"
 exec python main.py --listen 0.0.0.0 --port "${COMFYUI_PORT:-8188}" --enable-manager "$@"
 EOF
