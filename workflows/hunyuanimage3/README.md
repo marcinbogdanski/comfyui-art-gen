@@ -23,5 +23,17 @@ Operational notes:
   image 2 as the target pose/scene. It uses loader `blocks_to_swap=20` to leave
   enough VRAM for decode. Replace the two `LoadImage` inputs in the GUI before
   running.
+- The `5090` multi-fusion variant is an aggressive low-VRAM experiment for
+  the same two-reference Instruct-Distil NF4 use case. It keeps only one
+  transformer block resident on GPU and swaps the rest from CPU. Quality should
+  match the standard multi-fusion variant apart from normal execution-order floating point
+  noise, but it is slower.
+- On an RTX 5090, the `5090` workflow alone is not enough for two-reference
+  Instruct-Distil multi-fusion. The current custom node still VAE-encodes
+  reference images at native conditional `base_size=1024`, which OOMs before
+  diffusion. Run `scripts/patch_hunyuanimage3_lowvram.sh` after installing
+  `Comfy_HunyuanImage3`, then start ComfyUI with
+  `HUNYUAN_COND_VAE_BASE_SIZE=768`, `HUNYUAN_VAE_TILING=on`, and
+  `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`.
 - If Hunyuan errors appear after testing other large models, restart ComfyUI.
   The process can retain tens of GB of VRAM even when idle.

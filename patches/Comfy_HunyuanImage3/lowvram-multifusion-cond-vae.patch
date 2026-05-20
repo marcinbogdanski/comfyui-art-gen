@@ -1,0 +1,66 @@
+diff --git a/hunyuan_instruct_nodes.py b/hunyuan_instruct_nodes.py
+index 065551e..bf759c6 100644
+--- a/hunyuan_instruct_nodes.py
++++ b/hunyuan_instruct_nodes.py
+@@ -3300,6 +3300,52 @@ class HunyuanInstructMultiFusion:
+                     strip_accelerate_hooks_from_vae(model)
+                 except Exception:
+                     pass
++
++            # Low-VRAM controls for 24-32GB GPUs (repo patch marker).
++            # These are opt-in via env vars so default upstream behavior remains unchanged.
++            try:
++                from .hunyuan_shared import patch_moe_efficient_forward
++            except ImportError:
++                from hunyuan_shared import patch_moe_efficient_forward
++            logger.info("Applying memory-efficient MoE dispatch patch for multi-image fusion...")
++            patch_moe_efficient_forward(model)
++
++            model._vae_tiling_mode = os.environ.get("HUNYUAN_VAE_TILING", "auto")
++            model._vae_offload_mode = os.environ.get("HUNYUAN_VAE_OFFLOAD", "auto")
++
++            cond_vae_base_size = int(os.environ.get("HUNYUAN_COND_VAE_BASE_SIZE", "0") or "0")
++            if cond_vae_base_size > 0:
++                ip = model.image_processor
++                if not hasattr(ip, "_lowvram_cond_vae_orig_get_image_with_size"):
++                    ip._lowvram_cond_vae_orig_get_image_with_size = ip.get_image_with_size
++                orig_get_image_with_size = ip._lowvram_cond_vae_orig_get_image_with_size
++                group_cls = type(ip.vae_reso_group)
++                low_group = group_cls(
++                    base_size=cond_vae_base_size,
++                    step=max(1, cond_vae_base_size // 16),
++                    align=ip.vae_reso_group.align,
++                )
++
++                def _lowvram_cond_get_image_with_size(src, random_crop=False, return_type="vae"):
++                    if return_type and "vae" in return_type:
++                        old_group = ip.vae_reso_group
++                        ip.vae_reso_group = low_group
++                        try:
++                            return orig_get_image_with_size(
++                                src,
++                                random_crop=random_crop,
++                                return_type=return_type,
++                            )
++                        finally:
++                            ip.vae_reso_group = old_group
++                    return orig_get_image_with_size(
++                        src,
++                        random_crop=random_crop,
++                        return_type=return_type,
++                    )
++
++                ip.get_image_with_size = _lowvram_cond_get_image_with_size
++                logger.info(f"Low-VRAM conditional VAE base size enabled: {cond_vae_base_size}")
+             
+             logger.info(f"Starting multi-image fusion with bot_task='{bot_task}' "
+                         f"(this may take several minutes for recaption modes)...")
+@@ -3355,6 +3401,8 @@ class HunyuanInstructMultiFusion:
+             
+         except torch.cuda.OutOfMemoryError as e:
+             logger.error(f"CUDA Out of Memory during multi-image fusion: {e}")
++            import traceback
++            traceback.print_exc()
+             gc.collect()
+             try:
+                 if torch.cuda.is_available():
