@@ -3,7 +3,7 @@ set -euo pipefail
 
 mkdir -p /mnt/data/comfyui/{models,input,output,custom_nodes,user}
 
-exec docker run -d --rm \
+exec docker run -d \
   --name comfyui \
   --gpus device=1 \
   -p 8188:8188 \
