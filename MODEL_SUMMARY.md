@@ -59,7 +59,7 @@ Main models:
 
 **Pony / SDXL**
 Main models:
-- `checkpoints/ponyDiffusionV6XL_v6StartWithThisOne.safetensors` - 6.5 GB
+- `checkpoints/ponyDiffusionV6XL_v6StartWithThisOne.safetensors` - 6.5 GB - md, verified PNG workflow, repo workflow
 - `checkpoints/cyberrealisticPony_v180Coreshift.safetensors` - 6.5 GB - md, image w/o workflow, repo workflow
 - `checkpoints/cyberrealisticPony_v180Coreshift_fp32.safetensors` - 13 GB - same md
 
