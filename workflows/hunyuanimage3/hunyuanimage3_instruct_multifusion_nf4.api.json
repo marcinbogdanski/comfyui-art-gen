@@ -48,7 +48,10 @@
       "guidance_scale": -1.0,
       "flow_shift": 2.2,
       "max_new_tokens": 2048,
-      "verbose": 0
+      "verbose": 0,
+      "cond_vae_base_size": 1024,
+      "vae_tiling": "auto",
+      "vae_offload": "auto"
     },
     "_meta": {
       "title": "Hunyuan Instruct Multi-Image Fusion"

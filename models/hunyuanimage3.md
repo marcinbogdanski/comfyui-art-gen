@@ -51,8 +51,6 @@ workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.api.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.api.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4_5090.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4_5090.api.json
 ```
 
 Important settings:
@@ -61,7 +59,7 @@ Important settings:
 Base NF4:              post_action=keep_loaded
 Instruct-Distil NF4:   vae_tiling=on, vae_offload=on
 Multi-fusion NF4:      blocks_to_swap=20, image 1 = source face/identity, image 2 = target pose/scene
-Multi-fusion 5090:    RTX 5090 low-VRAM variant of the same two-reference use case, using blocks_to_swap=31
+Multi-fusion low VRAM: use the workflow note presets for 5090 / 3090 settings
 ```
 
 `post_action=full_unload` made second base runs fail because ComfyUI reused the
@@ -76,10 +74,10 @@ black fallback image after VAE decode OOM. Force both settings to `on`.
 Measured on Vast instance `37076366`, RTX PRO 6000 Blackwell 96 GB, clean
 ComfyUI process, two-reference Instruct-Distil NF4 multi-fusion at 1024x1024.
 
-| Workflow | blocks_to_swap | Comfy log allocation after load | Comfy log allocation before VAE decode | `nvidia-smi` peak | Post-run resident |
+| Settings | blocks_to_swap | Comfy log allocation after load | Comfy log allocation before VAE decode | `nvidia-smi` peak | Post-run resident |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `hunyuanimage3_instruct_multifusion_nf4` | 20 | 21.6 GB | 25.3 GB | 83.5 GiB | 22.5 GiB |
-| `hunyuanimage3_instruct_multifusion_nf4_5090` | 31 | 7.2 GB | 11.2 GB | 69.1 GiB | 8.2 GiB |
+| Default / RTX 6000 Pro Blackwell | 20 | 21.6 GB | 25.3 GB | 83.5 GiB | 22.5 GiB |
+| Low-VRAM block swap | 31 | 7.2 GB | 11.2 GB | 69.1 GiB | 8.2 GiB |
 
 The `nvidia-smi` peak is a conservative driver-level number with
 `cudaMallocAsync`; it appears to include CUDA allocator pool reservation and is
@@ -132,8 +130,8 @@ Results with two reference images, Instruct-Distil NF4, `blocks_to_swap=31`,
 | 832 + expandable segments | Failed tokenizer path | 7.8 GiB sampled before failure | 7.9 s | 3.8 GiB |
 
 Interpretation: 5090 support is not settings-only with the upstream
-`Comfy_HunyuanImage3` node. The `5090` workflow solves weight residency, but the reference
-VAE encode still needs the local node patch. The patch exposes
+`Comfy_HunyuanImage3` node. `blocks_to_swap=31` solves weight residency, but the
+reference VAE encode still needs the local node patch. The patch exposes
 `cond_vae_base_size`, `vae_tiling`, and `vae_offload` on the multi-fusion node.
 `cond_vae_base_size=768` is the best 5090 result from this pass; it should
 preserve more reference detail than 512, but it does change information flow
@@ -170,11 +168,57 @@ The repo ComfyUI startup scripts now default `PYTORCH_CUDA_ALLOC_CONF` to
 path unless explicitly testing allocator behavior. Pair it with
 `--disable-cuda-malloc` so ComfyUI uses PyTorch's allocator.
 
-The current `5090` workflow defaults are `cond_vae_base_size=768`,
-`vae_tiling=on`, `vae_offload=auto`, and seed `0`.
+The tested 5090 low-VRAM preset is `cond_vae_base_size=768`, `vae_tiling=on`,
+`vae_offload=auto`, and `blocks_to_swap=31`.
 
-That run produced a real 1024x1024 PNG, not the 64x64 fallback, with sampled
+That preset produced a real 1024x1024 PNG, not the 64x64 fallback, with sampled
 peak VRAM `29308 MiB` and submit-to-success time `125.8 s`.
+
+### RTX 3090 Findings
+
+Measured locally on `x399`, GPU 1, RTX 3090 24 GB, driver `580.126.09`,
+Docker image `local/comfyui:cu130`, PyTorch `2.9.1+cu130`, ComfyUI `v0.20.1`,
+with `--disable-cuda-malloc` and `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`.
+
+The local Hunyuan custom node was installed under
+`/mnt/data/comfyui/custom_nodes/Comfy_HunyuanImage3` at the pinned
+`bf738dba3f542e6744c49bc29c29a20dd14d079d` ref and patched with:
+
+```bash
+COMFYUI_PATH=/mnt/data/comfyui scripts/patch_hunyuanimage3_lowvram.sh
+```
+
+Instruct-Distil NF4 multi-fusion works on the 3090 with:
+
+```text
+blocks_to_swap=31
+cond_vae_base_size=512
+vae_tiling=on
+vae_offload=auto
+```
+
+Run results, `bot_task=image`, output `1024x1024`, 8
+Distil steps:
+
+| References | Conditional VAE base | Result | Sampled `nvidia-smi` peak | Submit-to-history time | Notes |
+| ---: | ---: | --- | ---: | ---: | --- |
+| 1 | 768 | Failed; 64x64 fallback | 9794 MiB | 19.2 s | OOM during conditional VAE encode, tried to allocate 14.65 GiB with 13.19 GiB free. |
+| 1 | 640 | Failed; 64x64 fallback | 7696 MiB | 10.8 s | Tokenizer/template path failed with `'NoneType' object cannot be interpreted as an integer`. |
+| 1 | 512 | Success; real 1024x1024 PNG | 16874 MiB | 272.8 s | Completed all 8 diffusion steps and tiled VAE decode. |
+| 2 | 512 | Success; real 1024x1024 PNG | 16874 MiB | 241.0 s | Completed after reboot to driver `580.159.03`; all 8 diffusion steps and tiled VAE decode succeeded. |
+
+Successful outputs:
+
+```text
+/mnt/data/comfyui/output/hunyuanimage3/instruct_single_reference_nf4_3090_cond512_00001_.png
+/mnt/data/comfyui/output/hunyuanimage3/instruct_multifusion_nf4_3090_tworef_cond512_00001_.png
+```
+
+This establishes that local CUDA compatibility is good enough for the patched
+single- and two-reference 3090 path at `cond_vae_base_size=512`. The next
+quality frontier is testing whether a higher valid base such as `576` can
+improve reference detail without triggering the tokenizer failure or
+conditional VAE OOM.
 
 ## Operational Notes
 
