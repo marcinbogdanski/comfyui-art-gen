@@ -44,6 +44,28 @@ wget -c \
 
 For this host's 24 GB RTX 3090, the pruned BF16 file is the preferred starting point.
 
+Optional Flux.2 Klein LoRAs downloaded locally:
+
+```text
+/mnt/data/comfyui/models/loras/FLUX2_KLEIN_UNLOCKED_V1.safetensors
+/mnt/data/comfyui/models/loras/klein_snofs_v1_4.safetensors
+```
+
+Sources:
+
+```text
+https://civitai.red/models/2063193/nsfw-unlocked-lora-flux-zimage
+https://civitai.com/api/download/models/2788349
+
+https://civitai.red/models/1972981/sex-nudes-other-fun-stuff-snofs
+https://civitai.com/api/download/models/2960556
+```
+
+Both target Flux.2 Klein 9B and can be inserted with `LoraLoaderModelOnly`
+between `UNETLoader` and the sampler/guider model input. Start with modest
+strength and test one LoRA at a time because multi-reference workflows already
+have competing conditioning.
+
 ## Custom Nodes
 
 The tested Civitai workflow uses:

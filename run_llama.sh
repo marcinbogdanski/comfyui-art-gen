@@ -3,7 +3,7 @@ set -euo pipefail
 
 mkdir -p /mnt/data/llm/cache
 
-exec docker run -d --rm \
+exec docker run -d \
   --name llama \
   --gpus device=3 \
   -p 8081:8080 \
