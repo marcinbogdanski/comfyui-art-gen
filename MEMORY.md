@@ -15,3 +15,9 @@
   low-contact activities but explicit multi-body contact, bondage, and unusual
   poses often produce anatomy failures. Prefer HunyuanImage or a structural
   ControlNet-style stage for harder pose/contact transfer.
+- Preserve the file-placement split during model documentation: repo
+  `workflows/` holds tested workflows that work locally;
+  `/mnt/data/comfyui/user/default/workflows/` is live ComfyUI operational state;
+  `/mnt/data/comfyui/models/...` holds weights plus sidecar `.md` and original
+  source/verification artifacts only. Do not put repo `.work.json` convention
+  files in model sidecar folders.
