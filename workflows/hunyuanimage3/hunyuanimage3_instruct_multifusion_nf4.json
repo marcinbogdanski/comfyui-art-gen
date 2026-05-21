@@ -1,37 +1,123 @@
 {
   "id": "4e914fbb-0cf7-4f72-bd04-e685ddcf6f15",
   "revision": 0,
-  "last_node_id": 5,
+  "last_node_id": 6,
   "last_link_id": 4,
   "nodes": [
     {
       "id": 1,
       "type": "HunyuanInstructLoader",
-      "pos": [0, 0],
-      "size": [420, 300],
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        420,
+        300
+      ],
       "flags": {},
       "order": 0,
       "mode": 0,
       "inputs": [
-        {"name": "model_name", "type": "COMBO", "widget": {"name": "model_name"}, "link": null},
-        {"name": "force_reload", "type": "BOOLEAN", "widget": {"name": "force_reload"}, "link": null},
-        {"name": "attention_impl", "type": "COMBO", "widget": {"name": "attention_impl"}, "link": null},
-        {"name": "moe_impl", "type": "COMBO", "widget": {"name": "moe_impl"}, "link": null},
-        {"name": "vram_reserve_gb", "type": "FLOAT", "widget": {"name": "vram_reserve_gb"}, "link": null},
-        {"name": "blocks_to_swap", "type": "INT", "widget": {"name": "blocks_to_swap"}, "link": null},
-        {"name": "moe_drop_tokens", "type": "BOOLEAN", "widget": {"name": "moe_drop_tokens"}, "link": null},
-        {"name": "vae_dtype", "type": "COMBO", "widget": {"name": "vae_dtype"}, "link": null}
+        {
+          "localized_name": "model_name",
+          "name": "model_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "model_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "force_reload",
+          "name": "force_reload",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_reload"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "attention_impl",
+          "name": "attention_impl",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "attention_impl"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "moe_impl",
+          "name": "moe_impl",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "moe_impl"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "vram_reserve_gb",
+          "name": "vram_reserve_gb",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "vram_reserve_gb"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "blocks_to_swap",
+          "name": "blocks_to_swap",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "blocks_to_swap"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "moe_drop_tokens",
+          "name": "moe_drop_tokens",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "moe_drop_tokens"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "vae_dtype",
+          "name": "vae_dtype",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_dtype"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "model", "type": "HUNYUAN_INSTRUCT_MODEL", "slot_index": 0, "links": [1]}
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "HUNYUAN_INSTRUCT_MODEL",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
       ],
-      "properties": {"Node name for S&R": "HunyuanInstructLoader"},
+      "properties": {
+        "Node name for S&R": "HunyuanInstructLoader"
+      },
       "widgets_values": [
         "HunyuanImage-3.0-Instruct-Distil-NF4-v2",
         false,
         "sdpa",
         "eager",
-        30.0,
+        30,
         20,
         true,
         "bfloat16"
@@ -40,73 +126,337 @@
     {
       "id": 2,
       "type": "LoadImage",
-      "pos": [0, 360],
-      "size": [320, 320],
+      "pos": [
+        0,
+        360
+      ],
+      "size": [
+        320,
+        320
+      ],
       "flags": {},
       "order": 1,
       "mode": 0,
       "inputs": [
-        {"name": "image", "type": "COMBO", "widget": {"name": "image"}, "link": null}
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "choose file to upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "IMAGE", "type": "IMAGE", "slot_index": 0, "links": [2]},
-        {"name": "MASK", "type": "MASK", "slot_index": 1, "links": []}
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
       ],
       "title": "Load Image 1 - source face / identity",
-      "properties": {"Node name for S&R": "LoadImage"},
-      "widgets_values": ["example.png"]
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ]
     },
     {
       "id": 3,
       "type": "LoadImage",
-      "pos": [360, 360],
-      "size": [320, 320],
+      "pos": [
+        360,
+        360
+      ],
+      "size": [
+        320,
+        320
+      ],
       "flags": {},
       "order": 2,
       "mode": 0,
       "inputs": [
-        {"name": "image", "type": "COMBO", "widget": {"name": "image"}, "link": null}
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "choose file to upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "IMAGE", "type": "IMAGE", "slot_index": 0, "links": [3]},
-        {"name": "MASK", "type": "MASK", "slot_index": 1, "links": []}
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            3
+          ]
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
       ],
       "title": "Load Image 2 - target pose / scene",
-      "properties": {"Node name for S&R": "LoadImage"},
-      "widgets_values": ["BigLoveKlein1_00010_.png"]
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "BigLoveKlein1_00010_.png",
+        "image"
+      ]
     },
     {
       "id": 4,
       "type": "HunyuanInstructMultiFusion",
-      "pos": [760, 0],
-      "size": [520, 640],
+      "pos": [
+        760,
+        0
+      ],
+      "size": [
+        520,
+        640
+      ],
       "flags": {},
-      "order": 3,
+      "order": 4,
       "mode": 0,
       "inputs": [
-        {"name": "model", "type": "HUNYUAN_INSTRUCT_MODEL", "link": 1},
-        {"name": "image_1", "type": "IMAGE", "link": 2},
-        {"name": "instruction", "type": "STRING", "widget": {"name": "instruction"}, "link": null},
-        {"name": "seed", "type": "INT", "widget": {"name": "seed"}, "link": null},
-        {"name": "image_2", "type": "IMAGE", "link": 3},
-        {"name": "image_3", "type": "IMAGE", "link": null},
-        {"name": "image_4", "type": "IMAGE", "link": null},
-        {"name": "image_5", "type": "IMAGE", "link": null},
-        {"name": "bot_task", "type": "COMBO", "widget": {"name": "bot_task"}, "link": null},
-        {"name": "system_prompt", "type": "COMBO", "widget": {"name": "system_prompt"}, "link": null},
-        {"name": "resolution", "type": "COMBO", "widget": {"name": "resolution"}, "link": null},
-        {"name": "steps", "type": "INT", "widget": {"name": "steps"}, "link": null},
-        {"name": "guidance_scale", "type": "FLOAT", "widget": {"name": "guidance_scale"}, "link": null},
-        {"name": "flow_shift", "type": "FLOAT", "widget": {"name": "flow_shift"}, "link": null},
-        {"name": "max_new_tokens", "type": "INT", "widget": {"name": "max_new_tokens"}, "link": null},
-        {"name": "verbose", "type": "INT", "widget": {"name": "verbose"}, "link": null}
+        {
+          "localized_name": "model",
+          "name": "model",
+          "type": "HUNYUAN_INSTRUCT_MODEL",
+          "link": 1
+        },
+        {
+          "localized_name": "image_1",
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "localized_name": "image_2",
+          "name": "image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 3
+        },
+        {
+          "localized_name": "image_3",
+          "name": "image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_4",
+          "name": "image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "image_5",
+          "name": "image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "instruction",
+          "name": "instruction",
+          "type": "STRING",
+          "widget": {
+            "name": "instruction"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "bot_task",
+          "name": "bot_task",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "bot_task"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "system_prompt",
+          "name": "system_prompt",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "system_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "guidance_scale",
+          "name": "guidance_scale",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "guidance_scale"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "flow_shift",
+          "name": "flow_shift",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "flow_shift"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "max_new_tokens",
+          "name": "max_new_tokens",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "max_new_tokens"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "verbose",
+          "name": "verbose",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "verbose"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cond_vae_base_size",
+          "name": "cond_vae_base_size",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "cond_vae_base_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "vae_tiling",
+          "name": "vae_tiling",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_tiling"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "vae_offload",
+          "name": "vae_offload",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_offload"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "image", "type": "IMAGE", "slot_index": 0, "links": [4]},
-        {"name": "cot_reasoning", "type": "STRING", "slot_index": 1, "links": []},
-        {"name": "status", "type": "STRING", "slot_index": 2, "links": []}
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        },
+        {
+          "localized_name": "cot_reasoning",
+          "name": "cot_reasoning",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": []
+        },
+        {
+          "localized_name": "status",
+          "name": "status",
+          "type": "STRING",
+          "slot_index": 2,
+          "links": []
+        }
       ],
-      "properties": {"Node name for S&R": "HunyuanInstructMultiFusion"},
+      "properties": {
+        "Node name for S&R": "HunyuanInstructMultiFusion"
+      },
       "widgets_values": [
         "Use the face and identity from image 1. Apply it naturally to the person in image 2 while preserving the pose, clothing, lighting, camera angle, and background from image 2. Make the result look like a realistic photograph, not a collage.",
         26051921,
@@ -114,37 +464,123 @@
         "dynamic",
         "1024x1024 (1:1 Square)",
         -1,
-        -1.0,
+        -1,
         2.2,
         2048,
-        0
+        0,
+        0,
+        1024,
+        "auto",
+        "auto"
       ]
     },
     {
       "id": 5,
       "type": "SaveImage",
-      "pos": [1360, 0],
-      "size": [320, 100],
+      "pos": [
+        1360,
+        0
+      ],
+      "size": [
+        320,
+        100
+      ],
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
-        {"name": "images", "type": "IMAGE", "link": 4},
-        {"name": "filename_prefix", "type": "STRING", "widget": {"name": "filename_prefix"}, "link": null}
+        {
+          "localized_name": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
       ],
       "outputs": [],
-      "properties": {"Node name for S&R": "SaveImage"},
-      "widgets_values": ["hunyuanimage3/instruct_multifusion_nf4"]
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "hunyuanimage3/instruct_multifusion_nf4"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Note",
+      "pos": [
+        763.7520662500001,
+        722.2289403125002
+      ],
+      "size": [
+        460.396484375,
+        271.8058593750002
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "RTX 6000 Pro Blackwell (tested with two ref images):\n- defaults, blocks_to_swap=20, cond_vae_base_size=1024, vae_tiling=auto\n\nRTX 5090 (tested with two ref images):\n- blocks_to_swap=31, cond_vae_base_size=768, vae_tiling=on\n\nRTX 3090 (tested with two ref images):\n- blocks_to_swap=31, cond_vae_base_size=512, vae_tiling=on"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
-    [1, 1, 0, 4, 0, "HUNYUAN_INSTRUCT_MODEL"],
-    [2, 2, 0, 4, 1, "IMAGE"],
-    [3, 3, 0, 4, 4, "IMAGE"],
-    [4, 4, 0, 5, 0, "IMAGE"]
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "HUNYUAN_INSTRUCT_MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      4,
+      1,
+      "IMAGE"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      2,
+      "IMAGE"
+    ],
+    [
+      4,
+      4,
+      0,
+      5,
+      0,
+      "IMAGE"
+    ]
   ],
   "groups": [],
   "config": {},
-  "extra": {"ds": {"scale": 1.0, "offset": [0, 0]}},
+  "extra": {
+    "ds": {
+      "scale": 0.620921323059155,
+      "offset": [
+        1294.6810275000003,
+        617.0611100000003
+      ]
+    }
+  },
   "version": 0.4
 }

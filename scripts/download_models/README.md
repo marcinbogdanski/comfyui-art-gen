@@ -1,8 +1,12 @@
 # Model Download Scripts
 
 These scripts are intentionally simple command references for the model files
-used by the checked-in workflows. They assume ComfyUI lives at
-`/workspace/ComfyUI` on the Vast instance.
+used by the checked-in workflows. They default to a Vast-style ComfyUI path at
+`/workspace/ComfyUI`. Override `COMFYUI_MODELS_DIR` for local x399 downloads:
+
+```bash
+COMFYUI_MODELS_DIR=/mnt/data/comfyui/models scripts/download_models/z-image-turbo.sh
+```
 
 Run one script at a time:
 

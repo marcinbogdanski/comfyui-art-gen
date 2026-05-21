@@ -23,19 +23,25 @@ Operational notes:
   image 2 as the target pose/scene. It uses loader `blocks_to_swap=20` to leave
   enough VRAM for decode. Replace the two `LoadImage` inputs in the GUI before
   running.
-- The `5090` multi-fusion variant is an aggressive low-VRAM experiment for
-  the same two-reference Instruct-Distil NF4 use case. It keeps only one
-  transformer block resident on GPU and swaps the rest from CPU. Quality should
-  match the standard multi-fusion variant apart from normal execution-order floating point
-  noise, but it is slower.
-- On an RTX 5090, the `5090` workflow alone is not enough for two-reference
-  Instruct-Distil multi-fusion. The current custom node still VAE-encodes
-  reference images at native conditional `base_size=1024`, which OOMs before
-  diffusion. Run `scripts/patch_hunyuanimage3_lowvram.sh` after installing
-  `Comfy_HunyuanImage3`. The `5090` workflow sets the added multi-fusion node
-  inputs `cond_vae_base_size=768`, `vae_tiling=on`, and `vae_offload=auto`.
+- The multi-fusion workflow includes a note with tested hardware presets for
+  RTX 6000 Pro Blackwell, RTX 5090, and RTX 3090. The low-VRAM presets keep
+  only one transformer block resident on GPU with `blocks_to_swap=31` and swap
+  the rest from CPU. Quality should match apart from normal execution-order
+  floating point noise, but it is slower.
+- On an RTX 5090 or RTX 3090, settings alone are not enough for two-reference
+  Instruct-Distil multi-fusion with the upstream node. The current custom node
+  still VAE-encodes reference images at native conditional `base_size=1024`,
+  which OOMs before diffusion. Run `scripts/patch_hunyuanimage3_lowvram.sh`
+  after installing `Comfy_HunyuanImage3`; the patched workflow node exposes
+  `cond_vae_base_size`, `vae_tiling`, and `vae_offload`.
   The repo startup scripts default `PYTORCH_CUDA_ALLOC_CONF` to
-  `expandable_segments:True`; keep that allocator setting enabled for the 5090
-  path.
+  `expandable_segments:True`; keep that allocator setting enabled for the
+  low-VRAM path.
+- On the local RTX 3090 24 GB, set `cond_vae_base_size=512`,
+  `vae_tiling=on`, `vae_offload=auto`, and `blocks_to_swap=31`. Single- and
+  two-reference Instruct-Distil multi-fusion succeed with those settings.
+  `cond_vae_base_size=768` OOMed in conditional VAE encode, and `640` hit a
+  tokenizer/template failure. See `models/hunyuanimage3.md` for the measured
+  run details.
 - If Hunyuan errors appear after testing other large models, restart ComfyUI.
   The process can retain tens of GB of VRAM even when idle.
