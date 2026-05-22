@@ -50,7 +50,6 @@ Workflow:
 
 ```text
 workflows/fluxed-up/Fluxed_Up_Civitai_128636099.json
-workflows/fluxed-up/Fluxed_Up_Civitai_128636099.api.json
 ```
 
 The Civitai reference image contains an embedded ComfyUI workflow, but that

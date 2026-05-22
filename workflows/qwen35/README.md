@@ -1,7 +1,8 @@
 # Qwen3.5 VLM Examples
 
 These workflows target `Deaquay/ComfyUI-Qwen3.5-Uncensored-GGUF` and the
-Qwen3.5 35B A3B GGUF model documented in `models/qwen3.5-35b-a3b.md`.
+Qwen3.5 35B A3B GGUF model documented in the model archive sidecar:
+`/mnt/data/comfyui/models/LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive.md`.
 
 The workflow loads an image, sends it through
 `Qwen3.5-Uncensored Advanced (GGUF)`, previews the returned description with

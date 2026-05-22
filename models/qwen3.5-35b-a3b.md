@@ -53,7 +53,6 @@ Repo copies:
 
 ```text
 workflows/qwen35/qwen3.5_35b_vlm_describe.json
-workflows/qwen35/qwen3.5_35b_vlm_describe.api.json
 ```
 
 Use the `Qwen3.5-Uncensored Advanced (GGUF)` node. Set

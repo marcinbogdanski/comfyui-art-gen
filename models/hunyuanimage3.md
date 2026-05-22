@@ -46,11 +46,8 @@ Repo copies:
 
 ```text
 workflows/hunyuanimage3/hunyuanimage3_base_nf4.json
-workflows/hunyuanimage3/hunyuanimage3_base_nf4.api.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.api.json
 workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.api.json
 ```
 
 Important settings:
