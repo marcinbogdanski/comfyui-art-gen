@@ -132,9 +132,21 @@ into the `.md` sidecar and save raw source description HTML as `.html`.
 
 Every external single-file model/LoRA source set must have a Markdown sidecar.
 
+The `.md` file must start with YAML front matter containing a non-empty
+`source` field. The `source` value should be the main source URL, usually the
+Civitai model page.
+
+Example:
+
+```md
+---
+source: https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631
+---
+```
+
 The `.md` file should include:
 
-- source URL or URLs
+- source URL or URLs, matching or expanding on the front matter `source`
 - what weight file the sidecar describes
 - what source/reference artifacts are present next to the weight file
 - whether a source workflow was found
@@ -171,6 +183,10 @@ sidecar and briefly state the relationship.
 Example:
 
 ```md
+---
+source: https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631
+---
+
 See `cyberrealisticPony_v180Coreshift.md`; this is the fp32 variant of the same model.
 ```
 

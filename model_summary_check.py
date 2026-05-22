@@ -28,6 +28,18 @@ def check_image(path):
 
     return problems
 
+
+def check_md(path):
+    text = path.read_text().strip()
+    if not text.startswith("---\n"):
+        return text, ["missing source front matter"]
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return text, ["missing source front matter"]
+    _, front_matter, body = parts
+    source = [line for line in front_matter.splitlines() if line.strip().startswith("source: ")]
+    return body.strip(), [] if source and source[0].split(":", 1)[1].strip() else ["missing source front matter"]
+
 files = [
     path
     for path in sorted(root.rglob("*"))
@@ -54,7 +66,9 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
 
     is_redirect = False
     if md in sidecars:
-        text = md.read_text().strip()
+        text, md_problems = check_md(md)
+        for problem in md_problems:
+            problems.append((md, problem))
         is_redirect = text.lower().startswith("see ")
         if is_redirect:
             target = text.split("`", 2)[1] if "`" in text else ""
