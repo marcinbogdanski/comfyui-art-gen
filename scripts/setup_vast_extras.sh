@@ -57,18 +57,6 @@ python -m pip install --no-cache-dir \
   jinja2 \
   typing-extensions
 
-QWEN35_MODEL_DIR="${COMFYUI_PATH}/models/LLM/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive"
-QWEN35_GGUF_DIR="${COMFYUI_PATH}/models/LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive"
-if [[ -d "${QWEN35_MODEL_DIR}" ]]; then
-  mkdir -p "${QWEN35_GGUF_DIR}"
-  ln -sf \
-    "${QWEN35_MODEL_DIR}/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf" \
-    "${QWEN35_GGUF_DIR}/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf"
-  ln -sf \
-    "${QWEN35_MODEL_DIR}/mmproj-Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-f16.gguf" \
-    "${QWEN35_GGUF_DIR}/mmproj-Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-f16.gguf"
-fi
-
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 if [[ -x "${SCRIPT_DIR}/sync_vast_workflows.sh" ]]; then
   "${SCRIPT_DIR}/sync_vast_workflows.sh"

@@ -63,4 +63,4 @@ Main models:
 
 **Qwen3.5 LLM**
 Main models:
-- `LLM/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf` - 20 GB - md, our workflow
+- `LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf` - 20 GB - md, our workflow
