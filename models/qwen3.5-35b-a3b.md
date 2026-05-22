@@ -53,12 +53,15 @@ Repo copies:
 
 ```text
 workflows/qwen35/qwen3.5_35b_vlm_describe.json
-workflows/qwen35/qwen3.5_35b_vlm_describe.api.json
 ```
 
-Use the `Qwen3.5-Uncensored Advanced (GGUF)` node. Set
-`keep_model_loaded=false` when using it as an occasional image description or
-tagging step so ComfyUI unloads the GGUF model after the run.
+This workflow loads an image, sends it through the
+`Qwen3.5-Uncensored Advanced (GGUF)` node, previews the returned description,
+and saves the same description as a text file with the `qwen35_description`
+prefix.
+
+Set `keep_model_loaded=false` when using it as an occasional image description
+or tagging step so ComfyUI unloads the GGUF model after the run.
 
 ## Smoke Test
 

@@ -4,8 +4,7 @@ These workflows target the `EricRollei/Comfy_HunyuanImage3` custom nodes and
 the pre-quantized NF4 checkpoints downloaded by
 `scripts/download_models/hunyuanimage3.sh`.
 
-The no-suffix `.json` files are GUI-loadable workflow examples. Matching
-`.api.json` files are executable prompt graphs for `POST /prompt`.
+The no-suffix `.json` files are GUI-loadable workflow examples.
 
 Tested on the Vast RTX PRO 6000 Blackwell instance with:
 

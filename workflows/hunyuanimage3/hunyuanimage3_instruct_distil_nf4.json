@@ -7,25 +7,96 @@
     {
       "id": 1,
       "type": "HunyuanInstructLoader",
-      "pos": [0, 0],
-      "size": [420, 300],
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        420,
+        300
+      ],
       "flags": {},
       "order": 0,
       "mode": 0,
       "inputs": [
-        {"name": "model_name", "type": "COMBO", "widget": {"name": "model_name"}, "link": null},
-        {"name": "force_reload", "type": "BOOLEAN", "widget": {"name": "force_reload"}, "link": null},
-        {"name": "attention_impl", "type": "COMBO", "widget": {"name": "attention_impl"}, "link": null},
-        {"name": "moe_impl", "type": "COMBO", "widget": {"name": "moe_impl"}, "link": null},
-        {"name": "vram_reserve_gb", "type": "FLOAT", "widget": {"name": "vram_reserve_gb"}, "link": null},
-        {"name": "blocks_to_swap", "type": "INT", "widget": {"name": "blocks_to_swap"}, "link": null},
-        {"name": "moe_drop_tokens", "type": "BOOLEAN", "widget": {"name": "moe_drop_tokens"}, "link": null},
-        {"name": "vae_dtype", "type": "COMBO", "widget": {"name": "vae_dtype"}, "link": null}
+        {
+          "name": "model_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "model_name"
+          },
+          "link": null
+        },
+        {
+          "name": "force_reload",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_reload"
+          },
+          "link": null
+        },
+        {
+          "name": "attention_impl",
+          "type": "COMBO",
+          "widget": {
+            "name": "attention_impl"
+          },
+          "link": null
+        },
+        {
+          "name": "moe_impl",
+          "type": "COMBO",
+          "widget": {
+            "name": "moe_impl"
+          },
+          "link": null
+        },
+        {
+          "name": "vram_reserve_gb",
+          "type": "FLOAT",
+          "widget": {
+            "name": "vram_reserve_gb"
+          },
+          "link": null
+        },
+        {
+          "name": "blocks_to_swap",
+          "type": "INT",
+          "widget": {
+            "name": "blocks_to_swap"
+          },
+          "link": null
+        },
+        {
+          "name": "moe_drop_tokens",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "moe_drop_tokens"
+          },
+          "link": null
+        },
+        {
+          "name": "vae_dtype",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_dtype"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "model", "type": "HUNYUAN_INSTRUCT_MODEL", "slot_index": 0, "links": [1]}
+        {
+          "name": "model",
+          "type": "HUNYUAN_INSTRUCT_MODEL",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
       ],
-      "properties": {"Node name for S&R": "HunyuanInstructLoader"},
+      "properties": {
+        "Node name for S&R": "HunyuanInstructLoader"
+      },
       "widgets_values": [
         "HunyuanImage-3.0-Instruct-Distil-NF4-v2",
         false,
@@ -40,32 +111,145 @@
     {
       "id": 2,
       "type": "HunyuanInstructGenerate",
-      "pos": [500, 0],
-      "size": [460, 520],
+      "pos": [
+        500,
+        0
+      ],
+      "size": [
+        460,
+        520
+      ],
       "flags": {},
       "order": 1,
       "mode": 0,
       "inputs": [
-        {"name": "model", "type": "HUNYUAN_INSTRUCT_MODEL", "link": 1},
-        {"name": "prompt", "type": "STRING", "widget": {"name": "prompt"}, "link": null},
-        {"name": "bot_task", "type": "COMBO", "widget": {"name": "bot_task"}, "link": null},
-        {"name": "system_prompt", "type": "COMBO", "widget": {"name": "system_prompt"}, "link": null},
-        {"name": "resolution", "type": "COMBO", "widget": {"name": "resolution"}, "link": null},
-        {"name": "seed", "type": "INT", "widget": {"name": "seed"}, "link": null},
-        {"name": "steps", "type": "INT", "widget": {"name": "steps"}, "link": null},
-        {"name": "guidance_scale", "type": "FLOAT", "widget": {"name": "guidance_scale"}, "link": null},
-        {"name": "flow_shift", "type": "FLOAT", "widget": {"name": "flow_shift"}, "link": null},
-        {"name": "max_new_tokens", "type": "INT", "widget": {"name": "max_new_tokens"}, "link": null},
-        {"name": "verbose", "type": "INT", "widget": {"name": "verbose"}, "link": null},
-        {"name": "vae_tiling", "type": "COMBO", "widget": {"name": "vae_tiling"}, "link": null},
-        {"name": "vae_offload", "type": "COMBO", "widget": {"name": "vae_offload"}, "link": null}
+        {
+          "name": "model",
+          "type": "HUNYUAN_INSTRUCT_MODEL",
+          "link": 1
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "name": "bot_task",
+          "type": "COMBO",
+          "widget": {
+            "name": "bot_task"
+          },
+          "link": null
+        },
+        {
+          "name": "system_prompt",
+          "type": "COMBO",
+          "widget": {
+            "name": "system_prompt"
+          },
+          "link": null
+        },
+        {
+          "name": "resolution",
+          "type": "COMBO",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": null
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "guidance_scale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "guidance_scale"
+          },
+          "link": null
+        },
+        {
+          "name": "flow_shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "flow_shift"
+          },
+          "link": null
+        },
+        {
+          "name": "max_new_tokens",
+          "type": "INT",
+          "widget": {
+            "name": "max_new_tokens"
+          },
+          "link": null
+        },
+        {
+          "name": "verbose",
+          "type": "INT",
+          "widget": {
+            "name": "verbose"
+          },
+          "link": null
+        },
+        {
+          "name": "vae_tiling",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_tiling"
+          },
+          "link": null
+        },
+        {
+          "name": "vae_offload",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_offload"
+          },
+          "link": null
+        }
       ],
       "outputs": [
-        {"name": "image", "type": "IMAGE", "slot_index": 0, "links": [2]},
-        {"name": "cot_reasoning", "type": "STRING", "slot_index": 1, "links": []},
-        {"name": "status", "type": "STRING", "slot_index": 2, "links": []}
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "cot_reasoning",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": []
+        },
+        {
+          "name": "status",
+          "type": "STRING",
+          "slot_index": 2,
+          "links": []
+        }
       ],
-      "properties": {"Node name for S&R": "HunyuanInstructGenerate"},
+      "properties": {
+        "Node name for S&R": "HunyuanInstructGenerate"
+      },
       "widgets_values": [
         "A realistic editorial photo of a ceramic coffee cup on a small marble table, morning light through a cafe window, soft shadows, shallow depth of field, detailed reflections",
         "image",
@@ -84,26 +268,69 @@
     {
       "id": 3,
       "type": "SaveImage",
-      "pos": [1040, 0],
-      "size": [320, 100],
+      "pos": [
+        1040,
+        0
+      ],
+      "size": [
+        320,
+        100
+      ],
       "flags": {},
       "order": 2,
       "mode": 0,
       "inputs": [
-        {"name": "images", "type": "IMAGE", "link": 2},
-        {"name": "filename_prefix", "type": "STRING", "widget": {"name": "filename_prefix"}, "link": null}
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
       ],
       "outputs": [],
-      "properties": {"Node name for S&R": "SaveImage"},
-      "widgets_values": ["hunyuanimage3/instruct_distil_nf4"]
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "hunyuanimage3/instruct_distil_nf4"
+      ]
     }
   ],
   "links": [
-    [1, 1, 0, 2, 0, "HUNYUAN_INSTRUCT_MODEL"],
-    [2, 2, 0, 3, 0, "IMAGE"]
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "HUNYUAN_INSTRUCT_MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ]
   ],
   "groups": [],
   "config": {},
-  "extra": {"ds": {"scale": 1.0, "offset": [0, 0]}},
+  "extra": {
+    "ds": {
+      "scale": 1.0,
+      "offset": [
+        0,
+        0
+      ]
+    }
+  },
   "version": 0.4
 }
