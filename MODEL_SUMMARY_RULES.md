@@ -78,6 +78,35 @@ No other companion/reference file types should be created in external model
 folders for single-file model/LoRA source sets unless the user explicitly asks
 for that specific file.
 
+## Companion File Naming
+
+Companion/reference files for a single-file model or LoRA must use the exact
+weight-file stem plus the companion extension.
+
+For a weight file named:
+
+```text
+cyberrealisticPony_v180Coreshift.safetensors
+```
+
+valid same-stem companion names are:
+
+- `cyberrealisticPony_v180Coreshift.md`
+- `cyberrealisticPony_v180Coreshift.html`
+- `cyberrealisticPony_v180Coreshift.png`
+- `cyberrealisticPony_v180Coreshift.jpeg`
+- `cyberrealisticPony_v180Coreshift.jpg`
+- `cyberrealisticPony_v180Coreshift.json`
+- `cyberrealisticPony_v180Coreshift.txt`
+
+Do not add descriptive suffixes between the model stem and extension.
+
+Invalid examples:
+
+- `cyberrealisticPony_v180Coreshift_reference.jpeg`
+- `cyberrealisticPony_v180Coreshift_reference.parameters.txt`
+- `cyberrealisticPony_v180Coreshift.workflow.json`
+
 ## Forbidden Files
 
 Never save raw Civitai API dump JSON in an external model folder.
@@ -126,6 +155,32 @@ If `.html` is saved, avoid duplicating long overlapping tutorial or description
 content in the `.md`. In that case, the `.md` should summarize/index the source,
 point to the raw `.html` for full details, and keep only the most useful
 non-overlapping local notes.
+
+## Derivative Weight Markdown
+
+Clear derivative weight files still require their own same-stem `.md` sidecar.
+
+Examples of derivative weight files include an fp32/fp16/fp8 variant, pruned
+variant, quantized variant, or other obvious derivative of another weight file
+already documented in the same external model folder.
+
+Do not create derivative redirect sidecars by guessing. Only create them when
+the user explicitly confirms that a file is a derivative and that a redirect
+sidecar is acceptable.
+
+A derivative redirect sidecar may be short. It should point to the primary
+sidecar and briefly state the relationship.
+
+Example:
+
+```md
+See `cyberrealisticPony_v180Coreshift.md`; this is the fp32 variant of the same model.
+```
+
+When a derivative weight file has this kind of explicit redirect `.md`, it does
+not need its own source/reference image, workflow `.json`, metadata `.txt`, or
+raw `.html`. The primary sidecar and its source/reference artifacts cover the
+shared upstream context.
 
 ## Raw HTML
 
@@ -178,9 +233,10 @@ This rule applies even if the upstream file or an earlier local copy used a
 When source generation metadata is saved because no workflow was found, save it
 as a plain `.txt` file.
 
-Do not use `.parameters.txt` or other more specific suffixes for future files.
+Do not use `.parameters.txt` or other more specific suffixes.
 
-Existing older files may not all follow this rule, but new work should.
+Existing older files may not all follow this rule yet. When encountered, they
+should be renamed to the exact same-stem `.txt` form if they are kept.
 
 ## Source Images
 
