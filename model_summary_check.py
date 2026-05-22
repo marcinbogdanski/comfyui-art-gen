@@ -32,18 +32,20 @@ def check_image(path):
 def check_md(path):
     text = path.read_text().strip()
     if not text.startswith("---\n"):
-        return text, ["missing source front matter"]
+        return "", text, ["missing source front matter"]
     parts = text.split("---", 2)
     if len(parts) < 3:
-        return text, ["missing source front matter"]
+        return "", text, ["missing source front matter"]
     _, front_matter, body = parts
     source = [line for line in front_matter.splitlines() if line.strip().startswith("source: ")]
-    return body.strip(), [] if source and source[0].split(":", 1)[1].strip() else ["missing source front matter"]
+    source = source[0].split(":", 1)[1].strip() if source else ""
+    return source, body.strip(), [] if source else ["missing source front matter"]
 
 files = [
     path
     for path in sorted(root.rglob("*"))
     if path.is_file() and not any("Hunyuan" in part for part in path.parts)
+    and not any(part.startswith(".") for part in path.relative_to(root).parts)
 ]
 recognized = set()
 problems = []
@@ -66,11 +68,14 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
 
     is_redirect = False
     if md in sidecars:
-        text, md_problems = check_md(md)
+        source, text, md_problems = check_md(md)
         for problem in md_problems:
             problems.append((md, problem))
-        is_redirect = text.lower().startswith("see ")
-        if is_redirect:
+        is_redirect = source.endswith(".md") or text.lower().startswith("see ")
+        if source.endswith(".md"):
+            if not (md.parent / source).exists():
+                problems.append((weight, "redirect target missing"))
+        elif is_redirect:
             target = text.split("`", 2)[1] if "`" in text else ""
             if not target or not (md.parent / target).exists():
                 problems.append((weight, "redirect target missing"))

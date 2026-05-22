@@ -133,8 +133,10 @@ into the `.md` sidecar and save raw source description HTML as `.html`.
 Every external single-file model/LoRA source set must have a Markdown sidecar.
 
 The `.md` file must start with YAML front matter containing a non-empty
-`source` field. The `source` value should be the main source URL, usually the
-Civitai model page.
+`source` field. For primary sidecars, the `source` value should be the main
+source URL, usually the Civitai model page. For explicitly approved derivative
+sidecars, the `source` value should be the filename of the primary same-folder
+`.md` sidecar.
 
 Example:
 
@@ -178,22 +180,20 @@ the user explicitly confirms that a file is a derivative and that a redirect
 sidecar is acceptable.
 
 A derivative redirect sidecar may be short. It should point to the primary
-sidecar and briefly state the relationship.
+sidecar through front matter only.
 
 Example:
 
 ```md
 ---
-source: https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631
+source: cyberrealisticPony_v180Coreshift.md
 ---
-
-See `cyberrealisticPony_v180Coreshift.md`; this is the fp32 variant of the same model.
 ```
 
-When a derivative weight file has this kind of explicit redirect `.md`, it does
-not need its own source/reference image, workflow `.json`, metadata `.txt`, or
-raw `.html`. The primary sidecar and its source/reference artifacts cover the
-shared upstream context.
+When a derivative weight file has this kind of explicit front-matter redirect
+`.md`, it does not need its own source/reference image, workflow `.json`,
+metadata `.txt`, or raw `.html`. The primary sidecar and its source/reference
+artifacts cover the shared upstream context.
 
 ## Raw HTML
 
