@@ -42,10 +42,8 @@ wget -c \
   'https://huggingface.co/Comfy-Org/stable-diffusion-3.5-fp8/resolve/main/text_encoders/clip_g.safetensors'
 
 wget -c \
-  -O /mnt/data/comfyui/models/vae/ae.safetensors \
+  -O /mnt/data/comfyui/models/vae/Flux/flux_vae.safetensors \
   'https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors'
-
-ln -sf ae.safetensors /mnt/data/comfyui/models/vae/flux_vae.safetensors
 ```
 
 Workflow:
@@ -65,7 +63,7 @@ Tested settings:
 ```text
 Checkpoint:       fluxedUpFluxNSFW_100BF16.safetensors
 Text encoders:    t5xxl_fp16.safetensors, clip_l.safetensors, clip_g.safetensors
-VAE:              flux_vae.safetensors
+VAE:              Flux/flux_vae.safetensors
 Size:             864 x 1536
 Sampler:          dpmpp_sde
 Scheduler:        beta

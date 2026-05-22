@@ -23,7 +23,6 @@ wget -c -O "${MODELS_DIR}/clip/clip_g.safetensors" \
 
 wget -c -O "${MODELS_DIR}/vae/Flux/flux_vae.safetensors" \
   "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
-ln -sf Flux/flux_vae.safetensors "${MODELS_DIR}/vae/flux_vae.safetensors"
 
 wget -c -O "${MODELS_DIR}/upscale_models/ESRGAN/4x-UltraSharp.pth" \
   "https://huggingface.co/JCTN/ESRGAN/resolve/main/4x-UltraSharp.pth?download=true"
