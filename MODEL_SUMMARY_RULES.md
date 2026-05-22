@@ -158,6 +158,14 @@ The JSON object must contain:
 - `workflows`: non-empty array of exact same-folder filenames, or
   `["not_available"]` when no source workflow/reference artifact is available
 
+The JSON object may also contain:
+
+- `applies_to`: array of paths relative to `/mnt/data/comfyui/models` for
+  canonical local model files or model-family files this LoRA is intended to be
+  used with
+- `references`: array of exact same-folder `.png`, `.jpeg`, or `.jpg` filenames
+  that visually illustrate a LoRA or model but are not source workflow artifacts
+
 The `source` value must be a URL. Do not point `source` at another local `.md`.
 
 Example:
@@ -172,7 +180,9 @@ Example:
   ],
   "workflows": [
     "cyberrealisticPony_v180Coreshift.png"
-  ]
+  ],
+  "applies_to": [],
+  "references": []
 }
 ```
 ````
@@ -181,6 +191,7 @@ The `.md` file should include:
 
 - source URL or URLs, matching or expanding on the JSON `source`
 - what model files the sidecar describes
+- for LoRAs, what the LoRA is for and which base model family it applies to
 - what source/reference artifacts are present next to the `.md` record
 - whether a source workflow was found
 - if a workflow was not found, a clear note saying that no workflow was found
@@ -218,6 +229,31 @@ keeping those support folders out of dangling-file checks.
 
 Do not use `not_available` in `model_files`. If a source context is documented,
 it must list at least one real model file.
+
+## LoRA Applicability
+
+For LoRA records, `model_files` lists the LoRA file itself.
+
+Use `applies_to` to identify the base model or model-family files the LoRA is
+intended for. Entries must be paths relative to `/mnt/data/comfyui/models`.
+Prefer the most specific canonical local model file that defines the family or
+stage, for example a Wan 2.2 HIGH branch file for a Wan high-noise LoRA.
+
+The readable `.md` body must describe what the LoRA is for, including trigger
+words, concept/style/subject, recommended strength, base model family, and other
+source guidance when known.
+
+## Visual References
+
+Use `references` for same-folder `.png`, `.jpeg`, or `.jpg` images kept only to
+show what a LoRA or model looks like.
+
+Reference images are different from `workflows` entries. A `references` image
+does not need embedded ComfyUI workflow metadata or A1111 generation parameters.
+If an image is being kept as a source workflow artifact or source generation
+metadata artifact, list it in `workflows` instead.
+
+Use an empty `references` array when a LoRA has no saved reference image.
 
 ## Raw HTML
 

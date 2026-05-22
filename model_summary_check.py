@@ -61,6 +61,16 @@ def check_md(path):
         problems.append("missing workflows")
     elif not all(isinstance(workflow, str) and workflow for workflow in data["workflows"]):
         problems.append("workflows must be filename strings")
+    if "applies_to" in data:
+        if not isinstance(data["applies_to"], list):
+            problems.append("applies_to must be a path string array")
+        elif not all(isinstance(model_file, str) and model_file for model_file in data["applies_to"]):
+            problems.append("applies_to must be path strings")
+    if "references" in data:
+        if not isinstance(data["references"], list):
+            problems.append("references must be a filename string array")
+        elif not all(isinstance(reference, str) and reference for reference in data["references"]):
+            problems.append("references must be filename strings")
 
     return data, problems
 
@@ -112,6 +122,40 @@ for md in [path for path in files if path.suffix.lower() == ".md"]:
             problems.append((md, f"missing model_file {model_file}"))
             continue
         recognized.add(path)
+
+    for model_file in data.get("applies_to", []):
+        if not under_root(model_file):
+            problems.append((md, "applies_to must be relative to models root"))
+            continue
+
+        path = models_root / model_file
+        if not path.exists():
+            problems.append((md, f"missing applies_to {model_file}"))
+            continue
+        recognized.add(path)
+
+    for reference in data.get("references", []):
+        if not same_folder(md, reference):
+            problems.append((md, "reference must be a same-folder filename"))
+            continue
+
+        path = md.parent / reference
+        if not path.exists():
+            problems.append((md, f"missing reference {reference}"))
+            continue
+        recognized.add(path)
+
+        if path.suffix.lower() not in image_exts:
+            problems.append((path, "reference must be .png/.jpeg/.jpg"))
+        else:
+            data_bytes = path.read_bytes()
+            ext = path.suffix.lower()
+            is_png = data_bytes.startswith(b"\x89PNG\r\n\x1a\n")
+            is_jpg = data_bytes.startswith(b"\xff\xd8\xff")
+            if ext == ".png" and not is_png:
+                problems.append((path, "reference extension is not png"))
+            if ext in {".jpg", ".jpeg"} and not is_jpg:
+                problems.append((path, "reference extension is not jpg/jpeg"))
 
     for workflow in data["workflows"]:
         if workflow == "not_available":
