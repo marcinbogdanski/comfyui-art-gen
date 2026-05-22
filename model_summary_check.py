@@ -6,6 +6,27 @@ root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/mnt/data/comfyui/model
 weight_exts = {".safetensor", ".safetensors", ".pth", ".gguf"}
 sidecar_exts = {".md", ".html", ".png", ".jpeg", ".jpg", ".json", ".txt"}
 source_exts = {".png", ".jpeg", ".jpg", ".json", ".txt"}
+image_exts = {".png", ".jpeg", ".jpg"}
+
+
+def check_image(path):
+    data = path.read_bytes()
+    ext = path.suffix.lower()
+    kind = ".png" if data.startswith(b"\x89PNG\r\n\x1a\n") else ".jpg" if data.startswith(b"\xff\xd8\xff") else ""
+    text = data.decode("latin1", "ignore")
+    problems = []
+
+    if ext == ".png" and kind != ".png":
+        problems.append("image extension is not png")
+    if ext in {".jpg", ".jpeg"} and kind != ".jpg":
+        problems.append("image extension is not jpg/jpeg")
+
+    has_comfy = "workflow\x00" in text or ('"last_node_id"' in text and '"nodes"' in text)
+    has_a1111 = "Steps:" in text and "Sampler:" in text and "Seed:" in text
+    if not has_comfy and not has_a1111:
+        problems.append("image missing ComfyUI workflow or A1111 parameters")
+
+    return problems
 
 files = [
     path
@@ -41,6 +62,10 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
 
     if not is_redirect and not any(path.suffix.lower() in source_exts for path in sidecars):
         problems.append((weight, "missing source/reference .png/.jpeg/.jpg/.json/.txt"))
+
+    for image in [path for path in sidecars if path.suffix.lower() in image_exts]:
+        for problem in check_image(image):
+            problems.append((image, problem))
 
 if problems:
     print("Rule check failures:")
