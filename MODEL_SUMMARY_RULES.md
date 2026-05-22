@@ -137,21 +137,28 @@ into the `.md` sidecar and save raw source description HTML as `.html`.
 
 ## Mandatory Markdown
 
-Every external single-file model/LoRA source set must have a Markdown sidecar.
+Every external model/workflow source record must have a Markdown sidecar. A
+record describes a source page plus the workflow/reference artifacts and model
+files needed to run that source context.
+
+The `.md` is no longer strictly a one-weight sidecar. It may list multiple
+weights or supporting model files when the canonical workflow needs them, such
+as paired diffusion model branches, LoRAs, VAEs, CLIP/text encoders, or obvious
+weight variants.
 
 The `.md` file must start with a fenced `json model_summary` block. Do not use
 YAML front matter.
 
 The JSON object must contain:
 
-- `source`: non-empty source URL or, for an explicitly approved derivative
-  sidecar, the filename of the primary same-folder `.md` sidecar
+- `source`: non-empty source URL
+- `html`: exact same-folder raw source description/tutorial HTML filename
+- `model_files`: non-empty array of paths relative to `/mnt/data/comfyui/models`
+  for all model files needed by the canonical workflow or source context
 - `workflows`: non-empty array of exact same-folder filenames, or
   `["not_available"]` when no source workflow/reference artifact is available
 
-Primary sidecars must also contain:
-
-- `html`: exact same-folder raw source description/tutorial HTML filename
+The `source` value must be a URL. Do not point `source` at another local `.md`.
 
 Example:
 
@@ -160,6 +167,9 @@ Example:
 {
   "source": "https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631",
   "html": "cyberrealisticPony_v180Coreshift.html",
+  "model_files": [
+    "checkpoints/cyberrealisticPony_v180Coreshift.safetensors"
+  ],
   "workflows": [
     "cyberrealisticPony_v180Coreshift.png"
   ]
@@ -170,8 +180,8 @@ Example:
 The `.md` file should include:
 
 - source URL or URLs, matching or expanding on the JSON `source`
-- what weight file the sidecar describes
-- what source/reference artifacts are present next to the weight file
+- what model files the sidecar describes
+- what source/reference artifacts are present next to the `.md` record
 - whether a source workflow was found
 - if a workflow was not found, a clear note saying that no workflow was found
   and what source/reference artifact was kept instead
@@ -188,43 +198,31 @@ long overlapping tutorial or description content in the `.md`. The `.md` should
 summarize/index the source, point to the raw `.html` for full details, and keep
 only the most useful non-overlapping local notes.
 
-## Derivative Weight Markdown
+## Model Files
 
-Clear derivative weight files still require their own same-stem `.md` sidecar.
+The `model_files` array lists the model files used by the canonical workflow or
+source context.
 
-Examples of derivative weight files include an fp32/fp16/fp8 variant, pruned
-variant, quantized variant, or other obvious derivative of another weight file
-already documented in the same external model folder.
+Entries must be paths relative to `/mnt/data/comfyui/models`, for example:
 
-Do not create derivative redirect sidecars by guessing. Only create them when
-the user explicitly confirms that a file is a derivative and that a redirect
-sidecar is acceptable.
+- `checkpoints/example.safetensors`
+- `diffusion_models/WanVideo/2_2/example.safetensors`
+- `loras/example.safetensors`
+- `vae/example.safetensors`
+- `text_encoders/example.safetensors`
 
-A derivative redirect sidecar may be short. It should point to the primary
-sidecar through the JSON block only.
+The checker verifies that every listed file exists, but it does not require
+those files to live in non-ignored folders. This allows records to document
+which CLIP, VAE, text encoder, or upscale model a workflow needs while still
+keeping those support folders out of dangling-file checks.
 
-Example:
-
-````md
-```json model_summary
-{
-  "source": "cyberrealisticPony_v180Coreshift.md",
-  "workflows": [
-    "not_available"
-  ]
-}
-```
-````
-
-When a derivative weight file has this kind of explicit JSON redirect
-`.md`, it does not need its own source/reference image, workflow `.json`,
-metadata `.txt`, or raw `.html`. The primary sidecar and its source/reference
-artifacts cover the shared upstream context.
+Do not use `not_available` in `model_files`. If a source context is documented,
+it must list at least one real model file.
 
 ## Raw HTML
 
-Every external single-file model/LoRA source set must have a same-stem `.html`
-file unless it is an explicitly approved derivative redirect sidecar.
+Every external model/workflow source record must have a same-folder `.html`
+file.
 
 The `.html` should be raw source/API description HTML. Do not clean, rewrite,
 restyle, or otherwise modify it unless the user explicitly asks.

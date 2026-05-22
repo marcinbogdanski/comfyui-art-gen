@@ -3,8 +3,8 @@ import json
 from pathlib import Path
 import sys
 
-root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/mnt/data/comfyui/models")
-weight_exts = {".safetensor", ".safetensors", ".pth", ".gguf"}
+models_root = Path("/mnt/data/comfyui/models")
+root = Path(sys.argv[1]) if len(sys.argv) > 1 else models_root
 source_exts = {".png", ".jpeg", ".jpg", ".json", ".txt"}
 image_exts = {".png", ".jpeg", ".jpg"}
 ignored_dirs = {"LLM", "clip", "controlnet", "text_encoders", "vae", "upscale_models"}
@@ -50,8 +50,14 @@ def check_md(path):
         return {}, ["model_summary json is not an object"]
     if not isinstance(data.get("source"), str) or not data["source"].strip():
         problems.append("missing source")
+    elif not data["source"].startswith(("http://", "https://")):
+        problems.append("source must be a URL")
     if "html" in data and not isinstance(data["html"], str):
         problems.append("html must be a filename string")
+    if not isinstance(data.get("model_files"), list) or not data["model_files"]:
+        problems.append("missing model_files")
+    elif not all(isinstance(model_file, str) and model_file for model_file in data["model_files"]):
+        problems.append("model_files must be path strings")
     if not isinstance(data.get("workflows"), list) or not data["workflows"]:
         problems.append("missing workflows")
     elif not all(isinstance(workflow, str) and workflow for workflow in data["workflows"]):
@@ -62,6 +68,11 @@ def check_md(path):
 
 def same_folder(path, filename):
     return not Path(filename).is_absolute() and Path(filename).name == filename
+
+
+def under_root(filename):
+    path = Path(filename)
+    return not path.is_absolute() and ".." not in path.parts
 
 files = [
     path
@@ -74,13 +85,7 @@ files = [
 recognized = set()
 problems = []
 
-for weight in [path for path in files if path.suffix.lower() in weight_exts]:
-    recognized.add(weight)
-    md = weight.with_suffix(".md")
-    if md not in files:
-        problems.append((weight, "missing .md"))
-        continue
-
+for md in [path for path in files if path.suffix.lower() == ".md"]:
     recognized.add(md)
     data, md_problems = check_md(md)
     for problem in md_problems:
@@ -88,23 +93,27 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
     if md_problems:
         continue
 
-    source = data["source"]
-    is_redirect = source.endswith(".md")
-
-    if source.endswith(".md"):
-        if not same_folder(md, source) or not (md.parent / source).exists():
-            problems.append((weight, "redirect target missing"))
-
     html = data.get("html", "")
-    if not is_redirect and not html:
-        problems.append((weight, "missing .html"))
+    if not html:
+        problems.append((md, "missing .html"))
     if html:
         if not same_folder(md, html):
             problems.append((md, "html must be a same-folder filename"))
         elif not (md.parent / html).exists():
-            problems.append((weight, "missing .html"))
+            problems.append((md, "missing .html"))
         else:
             recognized.add(md.parent / html)
+
+    for model_file in data["model_files"]:
+        if not under_root(model_file):
+            problems.append((md, "model_file must be relative to models root"))
+            continue
+
+        path = models_root / model_file
+        if not path.exists():
+            problems.append((md, f"missing model_file {model_file}"))
+            continue
+        recognized.add(path)
 
     for workflow in data["workflows"]:
         if workflow == "not_available":
@@ -115,7 +124,7 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
 
         path = md.parent / workflow
         if not path.exists():
-            problems.append((weight, f"missing workflow {workflow}"))
+            problems.append((md, f"missing workflow {workflow}"))
             continue
         recognized.add(path)
 
