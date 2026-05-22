@@ -21,8 +21,8 @@ Main models:
 - `diffusion_models/bigLove_klein2_fp8_pruned.safetensors` - 8.5 GB - not used
 
 LoRAs:
-- `loras/FLUX2_KLEIN_UNLOCKED_V1.safetensors` - 317 MB - image w/o workflow
-- `loras/klein_snofs_v1_4.safetensors` - 1.1 GB - ok
+- `loras/FLUX2_KLEIN_UNLOCKED_V1.safetensors` - 317 MB - md/html, reference image without workflow
+- `loras/klein_snofs_v1_4.safetensors` - 1.1 GB - md/html, workflow image
 
 **FLUX.2 Dev**
 Main models:
@@ -38,8 +38,8 @@ Main models:
 - `diffusion_models/z_image_turbo_bf16.safetensors` - 12 GB - json workflow
 
 LoRAs:
-- `loras/Civit_Art_V1T1_E11.safetensors` - 163 MB - workflow from image not tested
-- `loras/Shizuka_E10.safetensors` - 163 MB - workflow from image not tested
+- `loras/Civit_Art_V1T1_E11.safetensors` - 163 MB - md/html, workflow image
+- `loras/Shizuka_E10.safetensors` - 163 MB - md/html, workflow image
 
 **Wan 2.2 / WanVideo**
 Main models:
@@ -48,8 +48,8 @@ Main models:
 - `diffusion_models/WanVideo/2_2/wan2.2_ti2v_5B_fp16.safetensors` - 9.4 GB - workflow not tested
 
 LoRAs:
-- `loras/WanVideo/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors` - 704 MB - use HIGH workflow
-- `loras/Pronebone_high_noise.safetensors` - 293 MB - use HIGH workflow
+- `loras/WanVideo/Lightx2v/lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors` - 704 MB - documented in Wan workflow bundle
+- `loras/Pronebone_high_noise.safetensors` - 293 MB - md/html, high-noise LoRA applies to HIGH branch
 
 **HunyuanImage 3.0**
 Main models:
@@ -63,4 +63,4 @@ Main models:
 
 **Qwen3.5 LLM**
 Main models:
-- `LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf` - 20 GB - md, our workflow
+- `LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf` - 20 GB - md/html, repo workflow

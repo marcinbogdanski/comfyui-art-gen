@@ -61,6 +61,40 @@ by repo workflow rules, not by this external-folder policy.
 
 From the external folder perspective, this repo does not exist.
 
+## External Models Git Repo
+
+`/mnt/data/comfyui/models` may itself be a separate git repository for tracking
+model source/reference records.
+
+In that external models repo, actual weight files should normally be ignored
+with explicit `.gitignore` entries. This includes large `.safetensors`, `.gguf`,
+`.pth`, and similar files in folders such as:
+
+- `checkpoints/`
+- `diffusion_models/`
+- `loras/`
+- `LLM/GGUF/`
+- `clip/`
+- `text_encoders/`
+- `vae/`
+- `upscale_models/`
+- `controlnet/`
+
+The source/reference files should remain trackable unless there is a specific
+reason not to track them:
+
+- `.md`
+- `.html`
+- source/reference `.png`, `.jpeg`, or `.jpg`
+- raw source workflow `.json`
+- source metadata `.txt`
+
+When a support model file in `clip/`, `text_encoders/`, `vae/`, or another
+support folder is explicitly listed in a sidecar `model_files` array, that means
+the file is documented as a dependency. It is then appropriate to ignore the
+weight file in the external models repo while keeping the sidecar that explains
+why it exists.
+
 ## Allowed Files
 
 For a single-file model or LoRA source set, external model folders may contain
