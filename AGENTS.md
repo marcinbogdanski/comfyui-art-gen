@@ -13,7 +13,8 @@ Operational preferences:
   GPU 1 for ComfyUI. The local llama.cpp wrapper uses watercooled GPU 3.
 - Do not expose ComfyUI directly to the public internet.
 - Before creating, renaming, or cleaning sidecar/reference files under
-  `/mnt/data/comfyui/models`, read `MODEL_SUMMARY_RULES.md`. Those external
+  `/mnt/data/comfyui/models`, read
+  `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md`. Those external
   model-folder rules are separate from this repo's workflow rules.
 
 Image setup:
