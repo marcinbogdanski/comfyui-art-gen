@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+import json
 from pathlib import Path
 import sys
 
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/mnt/data/comfyui/models")
 weight_exts = {".safetensor", ".safetensors", ".pth", ".gguf"}
-sidecar_exts = {".md", ".html", ".png", ".jpeg", ".jpg", ".json", ".txt"}
 source_exts = {".png", ".jpeg", ".jpg", ".json", ".txt"}
 image_exts = {".png", ".jpeg", ".jpg"}
 ignored_dirs = {"LLM", "clip", "controlnet", "text_encoders", "vae", "upscale_models"}
@@ -32,15 +32,36 @@ def check_image(path):
 
 def check_md(path):
     text = path.read_text().strip()
-    if not text.startswith("---\n"):
-        return "", text, ["missing source front matter"]
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        return "", text, ["missing source front matter"]
-    _, front_matter, body = parts
-    source = [line for line in front_matter.splitlines() if line.strip().startswith("source: ")]
-    source = source[0].split(":", 1)[1].strip() if source else ""
-    return source, body.strip(), [] if source else ["missing source front matter"]
+    marker = "```json model_summary\n"
+    if not text.startswith(marker):
+        return {}, ["missing model_summary json block"]
+
+    end = text.find("\n```", len(marker))
+    if end == -1:
+        return {}, ["missing model_summary json block"]
+
+    problems = []
+    try:
+        data = json.loads(text[len(marker):end])
+    except json.JSONDecodeError as e:
+        return {}, [f"invalid model_summary json: {e.msg}"]
+
+    if not isinstance(data, dict):
+        return {}, ["model_summary json is not an object"]
+    if not isinstance(data.get("source"), str) or not data["source"].strip():
+        problems.append("missing source")
+    if "html" in data and not isinstance(data["html"], str):
+        problems.append("html must be a filename string")
+    if not isinstance(data.get("workflows"), list) or not data["workflows"]:
+        problems.append("missing workflows")
+    elif not all(isinstance(workflow, str) and workflow for workflow in data["workflows"]):
+        problems.append("workflows must be filename strings")
+
+    return data, problems
+
+
+def same_folder(path, filename):
+    return not Path(filename).is_absolute() and Path(filename).name == filename
 
 files = [
     path
@@ -55,42 +76,54 @@ problems = []
 
 for weight in [path for path in files if path.suffix.lower() in weight_exts]:
     recognized.add(weight)
-    sidecars = [
-        path
-        for path in files
-        if path.parent == weight.parent
-        and path.stem == weight.stem
-        and path.suffix.lower() in sidecar_exts
-    ]
-    recognized.update(sidecars)
-
     md = weight.with_suffix(".md")
-    html = weight.with_suffix(".html")
-    if md not in sidecars:
+    if md not in files:
         problems.append((weight, "missing .md"))
+        continue
 
-    is_redirect = False
-    if md in sidecars:
-        source, text, md_problems = check_md(md)
-        for problem in md_problems:
-            problems.append((md, problem))
-        is_redirect = source.endswith(".md") or text.lower().startswith("see ")
-        if source.endswith(".md"):
-            if not (md.parent / source).exists():
-                problems.append((weight, "redirect target missing"))
-        elif is_redirect:
-            target = text.split("`", 2)[1] if "`" in text else ""
-            if not target or not (md.parent / target).exists():
-                problems.append((weight, "redirect target missing"))
+    recognized.add(md)
+    data, md_problems = check_md(md)
+    for problem in md_problems:
+        problems.append((md, problem))
+    if md_problems:
+        continue
 
-    if not is_redirect and not any(path.suffix.lower() in source_exts for path in sidecars):
-        problems.append((weight, "missing source/reference .png/.jpeg/.jpg/.json/.txt"))
-    if not is_redirect and html not in sidecars:
+    source = data["source"]
+    is_redirect = source.endswith(".md")
+
+    if source.endswith(".md"):
+        if not same_folder(md, source) or not (md.parent / source).exists():
+            problems.append((weight, "redirect target missing"))
+
+    html = data.get("html", "")
+    if not is_redirect and not html:
         problems.append((weight, "missing .html"))
+    if html:
+        if not same_folder(md, html):
+            problems.append((md, "html must be a same-folder filename"))
+        elif not (md.parent / html).exists():
+            problems.append((weight, "missing .html"))
+        else:
+            recognized.add(md.parent / html)
 
-    for image in [path for path in sidecars if path.suffix.lower() in image_exts]:
-        for problem in check_image(image):
-            problems.append((image, problem))
+    for workflow in data["workflows"]:
+        if workflow == "not_available":
+            continue
+        if not same_folder(md, workflow):
+            problems.append((md, "workflow must be a same-folder filename"))
+            continue
+
+        path = md.parent / workflow
+        if not path.exists():
+            problems.append((weight, f"missing workflow {workflow}"))
+            continue
+        recognized.add(path)
+
+        if path.suffix.lower() not in source_exts:
+            problems.append((path, "workflow must be .png/.jpeg/.jpg/.json/.txt"))
+        if path.suffix.lower() in image_exts:
+            for problem in check_image(path):
+                problems.append((path, problem))
 
 if problems:
     print("Rule check failures:")

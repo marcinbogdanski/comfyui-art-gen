@@ -80,8 +80,13 @@ for that specific file.
 
 ## Companion File Naming
 
-Companion/reference files for a single-file model or LoRA must use the exact
-weight-file stem plus the companion extension.
+Companion/reference files for a single-file model or LoRA should use the exact
+weight-file stem plus the companion extension by default.
+
+When a model has multiple canonical source/reference artifacts, or when a
+workflow is shared by a paired model set, the `.md` JSON `workflows` array is
+the authority. In that case, use the exact filenames listed there and keep them
+in the same folder.
 
 For a weight file named:
 
@@ -99,7 +104,9 @@ valid same-stem companion names are:
 - `cyberrealisticPony_v180Coreshift.json`
 - `cyberrealisticPony_v180Coreshift.txt`
 
-Do not add descriptive suffixes between the model stem and extension.
+Do not add descriptive suffixes between the model stem and extension unless the
+file is explicitly listed in the `.md` JSON `workflows` array because it is a
+separate canonical artifact.
 
 Invalid examples:
 
@@ -132,23 +139,37 @@ into the `.md` sidecar and save raw source description HTML as `.html`.
 
 Every external single-file model/LoRA source set must have a Markdown sidecar.
 
-The `.md` file must start with YAML front matter containing a non-empty
-`source` field. For primary sidecars, the `source` value should be the main
-source URL, usually the Civitai model page. For explicitly approved derivative
-sidecars, the `source` value should be the filename of the primary same-folder
-`.md` sidecar.
+The `.md` file must start with a fenced `json model_summary` block. Do not use
+YAML front matter.
+
+The JSON object must contain:
+
+- `source`: non-empty source URL or, for an explicitly approved derivative
+  sidecar, the filename of the primary same-folder `.md` sidecar
+- `workflows`: non-empty array of exact same-folder filenames, or
+  `["not_available"]` when no source workflow/reference artifact is available
+
+Primary sidecars must also contain:
+
+- `html`: exact same-folder raw source description/tutorial HTML filename
 
 Example:
 
-```md
----
-source: https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631
----
+````md
+```json model_summary
+{
+  "source": "https://civitai.red/models/443821/cyberrealistic-pony?modelVersionId=2884631",
+  "html": "cyberrealisticPony_v180Coreshift.html",
+  "workflows": [
+    "cyberrealisticPony_v180Coreshift.png"
+  ]
+}
 ```
+````
 
 The `.md` file should include:
 
-- source URL or URLs, matching or expanding on the front matter `source`
+- source URL or URLs, matching or expanding on the JSON `source`
 - what weight file the sidecar describes
 - what source/reference artifacts are present next to the weight file
 - whether a source workflow was found
@@ -180,17 +201,22 @@ the user explicitly confirms that a file is a derivative and that a redirect
 sidecar is acceptable.
 
 A derivative redirect sidecar may be short. It should point to the primary
-sidecar through front matter only.
+sidecar through the JSON block only.
 
 Example:
 
-```md
----
-source: cyberrealisticPony_v180Coreshift.md
----
+````md
+```json model_summary
+{
+  "source": "cyberrealisticPony_v180Coreshift.md",
+  "workflows": [
+    "not_available"
+  ]
+}
 ```
+````
 
-When a derivative weight file has this kind of explicit front-matter redirect
+When a derivative weight file has this kind of explicit JSON redirect
 `.md`, it does not need its own source/reference image, workflow `.json`,
 metadata `.txt`, or raw `.html`. The primary sidecar and its source/reference
 artifacts cover the shared upstream context.
@@ -206,7 +232,8 @@ restyle, or otherwise modify it unless the user explicitly asks.
 The `.html` exists to preserve the raw source description or tutorial when that
 content is long enough that copying it into Markdown would be noisy or lossy.
 
-The `.md` should mention the `.html` file.
+The `.md` JSON block must list the `.html` file in `html`, and the readable
+Markdown should mention it.
 
 For Civitai sources, use the API only transiently to extract the raw
 description HTML. Do not save the API JSON in the external model folder.
@@ -226,6 +253,10 @@ LoRA, use this order of preference:
 
 The Markdown sidecar is always required regardless of which source workflow or
 metadata artifacts are available.
+
+Every preserved workflow/reference artifact must be listed explicitly in the
+`.md` JSON `workflows` array. The checker uses this array as the authority for
+which `.png`/`.jpeg`/`.jpg`/`.json`/`.txt` files belong to the model.
 
 If a source image does not contain embedded workflow metadata, it may still be
 kept when it is the best available source/reference image. The `.md` must note
