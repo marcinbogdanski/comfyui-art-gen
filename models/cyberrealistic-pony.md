@@ -37,7 +37,8 @@ wget -c \
 
 Workflow notes:
 
-- The workflow embedded in the Civitai image works after small fixes.
+- Dragging the Civitai image into ComfyUI imports its A1111-style `parameters`
+  metadata as a workflow. That imported workflow works after small fixes.
 - Change the `Load Checkpoint` node to `cyberrealisticPony_v180Coreshift.safetensors`.
 - Add the missing upscaler model `4x_NickelbackFS_72000_G.pth`.
 - Change the scheduler in both `KSampler` nodes to `karras`.

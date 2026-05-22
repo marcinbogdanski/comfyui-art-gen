@@ -5,6 +5,7 @@ MODELS_DIR="${COMFYUI_MODELS_DIR:-${COMFYUI_PATH:-/workspace/ComfyUI}/models}"
 
 mkdir -p "${MODELS_DIR}/checkpoints"
 mkdir -p "${MODELS_DIR}/clip"
+mkdir -p "${MODELS_DIR}/upscale_models/ESRGAN"
 mkdir -p "${MODELS_DIR}/vae/Flux"
 
 curl -fL -C - -H "Authorization: Bearer ${CIVITAI_API_KEY}" \
@@ -22,4 +23,6 @@ wget -c -O "${MODELS_DIR}/clip/clip_g.safetensors" \
 
 wget -c -O "${MODELS_DIR}/vae/Flux/flux_vae.safetensors" \
   "https://huggingface.co/Comfy-Org/Lumina_Image_2.0_Repackaged/resolve/main/split_files/vae/ae.safetensors"
-ln -sf Flux/flux_vae.safetensors "${MODELS_DIR}/vae/flux_vae.safetensors"
+
+wget -c -O "${MODELS_DIR}/upscale_models/ESRGAN/4x-UltraSharp.pth" \
+  "https://huggingface.co/JCTN/ESRGAN/resolve/main/4x-UltraSharp.pth?download=true"

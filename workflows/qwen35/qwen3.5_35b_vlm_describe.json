@@ -1,262 +1,9 @@
 {
   "id": "61184cd3-97d9-4972-8db8-775c7be9505d",
   "revision": 0,
-  "last_node_id": 4,
-  "last_link_id": 3,
+  "last_node_id": 5,
+  "last_link_id": 6,
   "nodes": [
-    {
-      "id": 1,
-      "type": "LoadImage",
-      "pos": [
-        -420,
-        -40
-      ],
-      "size": [
-        315,
-        314
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "COMBO",
-          "widget": {
-            "name": "image"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "slot_index": 0,
-          "links": [
-            1
-          ]
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "slot_index": 1,
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadImage",
-        "cnr_id": "comfy-core"
-      },
-      "widgets_values": [
-        "example.png"
-      ]
-    },
-    {
-      "id": 2,
-      "type": "AILab_QwenVL_GGUF_Advanced",
-      "pos": [
-        -40,
-        -40
-      ],
-      "size": [
-        430,
-        620
-      ],
-      "flags": {},
-      "order": 2,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "model_name"
-          },
-          "link": null
-        },
-        {
-          "name": "device",
-          "type": "COMBO",
-          "widget": {
-            "name": "device"
-          },
-          "link": null
-        },
-        {
-          "name": "preset_prompt",
-          "type": "COMBO",
-          "widget": {
-            "name": "preset_prompt"
-          },
-          "link": null
-        },
-        {
-          "name": "custom_prompt",
-          "type": "STRING",
-          "widget": {
-            "name": "custom_prompt"
-          },
-          "link": null
-        },
-        {
-          "name": "max_tokens",
-          "type": "INT",
-          "widget": {
-            "name": "max_tokens"
-          },
-          "link": null
-        },
-        {
-          "name": "temperature",
-          "type": "FLOAT",
-          "widget": {
-            "name": "temperature"
-          },
-          "link": null
-        },
-        {
-          "name": "top_p",
-          "type": "FLOAT",
-          "widget": {
-            "name": "top_p"
-          },
-          "link": null
-        },
-        {
-          "name": "repetition_penalty",
-          "type": "FLOAT",
-          "widget": {
-            "name": "repetition_penalty"
-          },
-          "link": null
-        },
-        {
-          "name": "frame_count",
-          "type": "INT",
-          "widget": {
-            "name": "frame_count"
-          },
-          "link": null
-        },
-        {
-          "name": "ctx",
-          "type": "INT",
-          "widget": {
-            "name": "ctx"
-          },
-          "link": null
-        },
-        {
-          "name": "n_batch",
-          "type": "INT",
-          "widget": {
-            "name": "n_batch"
-          },
-          "link": null
-        },
-        {
-          "name": "gpu_layers",
-          "type": "INT",
-          "widget": {
-            "name": "gpu_layers"
-          },
-          "link": null
-        },
-        {
-          "name": "image_max_tokens",
-          "type": "INT",
-          "widget": {
-            "name": "image_max_tokens"
-          },
-          "link": null
-        },
-        {
-          "name": "top_k",
-          "type": "INT",
-          "widget": {
-            "name": "top_k"
-          },
-          "link": null
-        },
-        {
-          "name": "pool_size",
-          "type": "INT",
-          "widget": {
-            "name": "pool_size"
-          },
-          "link": null
-        },
-        {
-          "name": "keep_model_loaded",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "keep_model_loaded"
-          },
-          "link": null
-        },
-        {
-          "name": "seed",
-          "type": "INT",
-          "widget": {
-            "name": "seed"
-          },
-          "link": null
-        },
-        {
-          "name": "keep_last_prompt",
-          "type": "BOOLEAN",
-          "widget": {
-            "name": "keep_last_prompt"
-          },
-          "link": null
-        },
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "link": 1
-        },
-        {
-          "name": "video",
-          "type": "IMAGE",
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "name": "RESPONSE",
-          "type": "STRING",
-          "slot_index": 0,
-          "links": [
-            2,
-            3
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "AILab_QwenVL_GGUF_Advanced"
-      },
-      "widgets_values": [
-        "[local] Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
-        "cuda:0",
-        "🖼️ Detailed Description",
-        "Describe the image as a reusable high-quality text-to-image prompt. Return only the final prompt text.",
-        512,
-        0.4,
-        0.9,
-        1.0,
-        1,
-        8192,
-        256,
-        -1,
-        1024,
-        20,
-        4194304,
-        false,
-        1,
-        false
-      ]
-    },
     {
       "id": 3,
       "type": "SaveStringKJ",
@@ -269,15 +16,17 @@
         110
       ],
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "string",
           "name": "string",
           "type": "STRING",
-          "link": 2
+          "link": 5
         },
         {
+          "localized_name": "filename_prefix",
           "name": "filename_prefix",
           "type": "STRING",
           "widget": {
@@ -286,6 +35,7 @@
           "link": null
         },
         {
+          "localized_name": "output_folder",
           "name": "output_folder",
           "type": "STRING",
           "widget": {
@@ -294,7 +44,9 @@
           "link": null
         },
         {
+          "localized_name": "file_extension",
           "name": "file_extension",
+          "shape": 7,
           "type": "STRING",
           "widget": {
             "name": "file_extension"
@@ -304,6 +56,7 @@
       ],
       "outputs": [
         {
+          "localized_name": "filename",
           "name": "filename",
           "type": "STRING",
           "slot_index": 0,
@@ -331,17 +84,19 @@
         240
       ],
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "source",
           "name": "source",
           "type": "*",
-          "link": 3
+          "link": 6
         }
       ],
       "outputs": [
         {
+          "localized_name": "STRING",
           "name": "STRING",
           "type": "STRING",
           "slot_index": 0,
@@ -352,29 +107,324 @@
         "Node name for S&R": "PreviewAny",
         "cnr_id": "comfy-core"
       },
-      "widgets_values": []
+      "widgets_values": [
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        -420,
+        -40
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "choose file to upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        },
+        {
+          "localized_name": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "450x_auto__so.webp",
+        "image"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "AILab_QwenVL_GGUF_Advanced",
+      "pos": [
+        -40,
+        -40
+      ],
+      "size": [
+        430,
+        620
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "localized_name": "video",
+          "name": "video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "localized_name": "model_name",
+          "name": "model_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "model_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "device",
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "preset_prompt",
+          "name": "preset_prompt",
+          "type": "COMBO",
+          "widget": {
+            "name": "preset_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "custom_prompt",
+          "name": "custom_prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "custom_prompt"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "max_tokens",
+          "name": "max_tokens",
+          "type": "INT",
+          "widget": {
+            "name": "max_tokens"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "temperature",
+          "name": "temperature",
+          "type": "FLOAT",
+          "widget": {
+            "name": "temperature"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "top_p",
+          "name": "top_p",
+          "type": "FLOAT",
+          "widget": {
+            "name": "top_p"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "repetition_penalty",
+          "name": "repetition_penalty",
+          "type": "FLOAT",
+          "widget": {
+            "name": "repetition_penalty"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "frame_count",
+          "name": "frame_count",
+          "type": "INT",
+          "widget": {
+            "name": "frame_count"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "ctx",
+          "name": "ctx",
+          "type": "INT",
+          "widget": {
+            "name": "ctx"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "n_batch",
+          "name": "n_batch",
+          "type": "INT",
+          "widget": {
+            "name": "n_batch"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "gpu_layers",
+          "name": "gpu_layers",
+          "type": "INT",
+          "widget": {
+            "name": "gpu_layers"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "image_max_tokens",
+          "name": "image_max_tokens",
+          "type": "INT",
+          "widget": {
+            "name": "image_max_tokens"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "top_k",
+          "name": "top_k",
+          "type": "INT",
+          "widget": {
+            "name": "top_k"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "pool_size",
+          "name": "pool_size",
+          "type": "INT",
+          "widget": {
+            "name": "pool_size"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "keep_model_loaded",
+          "name": "keep_model_loaded",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "keep_model_loaded"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "keep_last_prompt",
+          "name": "keep_last_prompt",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "keep_last_prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "RESPONSE",
+          "name": "RESPONSE",
+          "type": "STRING",
+          "links": [
+            5,
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AILab_QwenVL_GGUF_Advanced"
+      },
+      "widgets_values": [
+        "[local] Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+        "auto",
+        "🖼️ Detailed Description",
+        "",
+        8192,
+        0.6,
+        0.9,
+        1,
+        16,
+        32768,
+        512,
+        -1,
+        4096,
+        20,
+        4194304,
+        true,
+        1894514673,
+        "randomize",
+        false
+      ],
+      "color": "#474539",
+      "bgcolor": "#2c4045"
     }
   ],
   "links": [
     [
-      1,
+      4,
       1,
       0,
-      2,
-      18,
+      5,
+      0,
       "IMAGE"
     ],
     [
-      2,
-      2,
+      5,
+      5,
       0,
       3,
       0,
       "STRING"
     ],
     [
-      3,
-      2,
+      6,
+      5,
       0,
       4,
       0,
@@ -385,10 +435,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1,
+      "scale": 1.2100000000000006,
       "offset": [
-        520,
-        220
+        940.4995997968039,
+        328.81262859862704
       ]
     }
   },

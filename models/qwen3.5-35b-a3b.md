@@ -37,17 +37,11 @@ scripts/download_models/qwen3.5-35b-a3b.sh
 Model source files:
 
 ```text
-/workspace/ComfyUI/models/LLM/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
-/workspace/ComfyUI/models/LLM/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/mmproj-Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-f16.gguf
+/workspace/ComfyUI/models/LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
+/workspace/ComfyUI/models/LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive/mmproj-Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-f16.gguf
 ```
 
-The setup script symlinks them into:
-
-```text
-/workspace/ComfyUI/models/LLM/GGUF/Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive
-```
-
-That makes the node discover the model as:
+The node scans this `LLM/GGUF` location and discovers the model as:
 
 ```text
 [local] Qwen3.5-35B-A3B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf
