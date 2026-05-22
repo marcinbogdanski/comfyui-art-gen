@@ -2,18 +2,16 @@
 
 ## Introduction
 
-If model/LoRA page gets taken down we want enough to be able to load the model.
-This repo is "what works for us", files in external "comfyui" folder are 
-downloaded models/LoRAs but also our metadata.
+If a model/LoRA page gets taken down, we want enough source/reference context to
+understand and use the downloaded model.
 
-For each model/LoRA in "comfyui" external folder we try to have three pieces:
-- model/LoRA files, large binaries with actual weights
-- a Markdown file describing where the file came from and how to use it,
-  this is usually curated info from original source, like LoRA trigger words etc
-- workflow image, or just workflow - raw source reference workflow
+External ComfyUI model folders under `/mnt/data/comfyui/models` are
+source/reference archives for downloaded model and LoRA artifacts. Exact rules
+for those external folders are in `MODEL_SUMMARY_RULES.md`.
 
-In this repo we track:
-- our working workflow, where possible a minimally modified source workflow
+This repo separately tracks local runnable workflow references and supporting
+operational files. A repo workflow may overlap with an external source workflow,
+but it serves a separate purpose once tracked here.
 
 ## Downloaded Models
 
