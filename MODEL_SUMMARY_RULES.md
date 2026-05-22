@@ -69,7 +69,7 @@ only these kinds of companion/reference files:
 - the weight file, such as `.safetensors` or another actual model/LoRA weight
   file
 - a mandatory Markdown sidecar, `.md`
-- an optional raw source description page, `.html`
+- a mandatory raw source description page, `.html`
 - an optional source/reference image, `.png`, `.jpeg`, or `.jpg`
 - an optional raw upstream workflow, `.json`
 - an optional source metadata text file, `.txt`
@@ -126,7 +126,7 @@ source sets:
 
 If raw API JSON is needed while researching a source, use it transiently outside
 the external model folder, such as in `/tmp`, then copy only the useful facts
-into the `.md` sidecar and/or save raw source description HTML as `.html`.
+into the `.md` sidecar and save raw source description HTML as `.html`.
 
 ## Mandatory Markdown
 
@@ -148,13 +148,10 @@ The `.md` file should include:
 The `.md` should be curated, readable, and useful. It should not be a raw API
 dump.
 
-If no `.html` is saved, preserve as much useful information from the source page
-or API description as feasible in the `.md`.
-
-If `.html` is saved, avoid duplicating long overlapping tutorial or description
-content in the `.md`. In that case, the `.md` should summarize/index the source,
-point to the raw `.html` for full details, and keep only the most useful
-non-overlapping local notes.
+Because the raw source description is preserved in `.html`, avoid duplicating
+long overlapping tutorial or description content in the `.md`. The `.md` should
+summarize/index the source, point to the raw `.html` for full details, and keep
+only the most useful non-overlapping local notes.
 
 ## Derivative Weight Markdown
 
@@ -184,15 +181,19 @@ shared upstream context.
 
 ## Raw HTML
 
-The `.html` file is optional.
+Every external single-file model/LoRA source set must have a same-stem `.html`
+file unless it is an explicitly approved derivative redirect sidecar.
 
-When present, it should be raw source/API description HTML. Do not clean,
-rewrite, restyle, or otherwise modify it unless the user explicitly asks.
+The `.html` should be raw source/API description HTML. Do not clean, rewrite,
+restyle, or otherwise modify it unless the user explicitly asks.
 
 The `.html` exists to preserve the raw source description or tutorial when that
 content is long enough that copying it into Markdown would be noisy or lossy.
 
-The `.md` should mention the `.html` file when it exists.
+The `.md` should mention the `.html` file.
+
+For Civitai sources, use the API only transiently to extract the raw
+description HTML. Do not save the API JSON in the external model folder.
 
 ## Source Workflow Preference Order
 
@@ -290,7 +291,7 @@ model folder.
 For Civitai sources:
 
 - save useful human-facing source information in `.md`
-- optionally save raw source/API description HTML as `.html`
+- save raw source/API description HTML as `.html`
 - optionally save source/reference images as `.png`, `.jpeg`, or `.jpg`
 - optionally save raw upstream workflow JSON as `.json`
 - optionally save generation metadata as `.txt` when no workflow exists
@@ -353,7 +354,7 @@ For single-file models and LoRAs in `/mnt/data/comfyui/models`, keep only:
 
 - weights
 - mandatory `.md`
-- optional raw `.html`
+- mandatory raw `.html`
 - optional source/reference image
 - optional raw source workflow `.json`
 - optional source metadata `.txt`

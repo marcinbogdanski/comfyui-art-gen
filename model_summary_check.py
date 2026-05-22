@@ -48,6 +48,7 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
     recognized.update(sidecars)
 
     md = weight.with_suffix(".md")
+    html = weight.with_suffix(".html")
     if md not in sidecars:
         problems.append((weight, "missing .md"))
 
@@ -62,6 +63,8 @@ for weight in [path for path in files if path.suffix.lower() in weight_exts]:
 
     if not is_redirect and not any(path.suffix.lower() in source_exts for path in sidecars):
         problems.append((weight, "missing source/reference .png/.jpeg/.jpg/.json/.txt"))
+    if not is_redirect and html not in sidecars:
+        problems.append((weight, "missing .html"))
 
     for image in [path for path in sidecars if path.suffix.lower() in image_exts]:
         for problem in check_image(image):
