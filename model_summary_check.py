@@ -7,7 +7,6 @@ models_root = Path("/mnt/data/comfyui/models")
 root = Path(sys.argv[1]) if len(sys.argv) > 1 else models_root
 source_exts = {".png", ".jpeg", ".jpg", ".json", ".txt"}
 image_exts = {".png", ".jpeg", ".jpg"}
-ignored_dirs = {"LLM", "clip", "controlnet", "text_encoders", "vae", "upscale_models"}
 
 
 def check_image(path):
@@ -79,7 +78,6 @@ files = [
     for path in sorted(root.rglob("*"))
     if path.is_file() and not any("Hunyuan" in part for part in path.parts)
     and not any(part.startswith(".") for part in path.relative_to(root).parts)
-    and path.relative_to(root).parts[0] not in ignored_dirs
     and path.relative_to(root) != Path("README.md")
 ]
 recognized = set()
