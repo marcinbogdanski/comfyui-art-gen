@@ -216,7 +216,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "ComfyUI"
+        "ponyDiffusionV6XL_from_CyberRealistic"
       ]
     },
     {

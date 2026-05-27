@@ -299,7 +299,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "hunyuanimage3/instruct_distil_nf4"
+        "hunyuanimage3_instruct_distil_nf4"
       ]
     }
   ],
