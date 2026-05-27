@@ -144,7 +144,7 @@ VAELoader:        flux2-vae.safetensors
 Sampler:          euler
 CFG:              1
 Flux2Scheduler:   4 steps
-Save prefix:      BigLoveKlein1
+Save prefix:      BigLove_Klein2
 ```
 
 If ComfyUI still shows missing nodes after the custom nodes are installed and the backend log says they loaded, right-click the affected node and choose `Reload node`.
