@@ -2,7 +2,7 @@
   "id": "9ae6082b-c7f4-433c-9971-7a8f65a3ea65",
   "revision": 0,
   "last_node_id": 72,
-  "last_link_id": 87,
+  "last_link_id": 88,
   "nodes": [
     {
       "id": 62,
@@ -199,7 +199,7 @@
         96
       ],
       "flags": {},
-      "order": 9,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -280,7 +280,7 @@
           "name": "MODEL",
           "type": "MODEL",
           "links": [
-            86
+            88
           ]
         }
       ],
@@ -450,7 +450,7 @@
         660
       ],
       "flags": {},
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -483,7 +483,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        "z-image-turbo"
+        "z_image_turbo"
       ]
     },
     {
@@ -498,7 +498,7 @@
         341.328125
       ],
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -617,22 +617,22 @@
       "id": 69,
       "type": "ModelSamplingAuraFlow",
       "pos": [
-        63.918691692472976,
-        55.85582268314391
+        -481.54353266118966,
+        -118.8031281830329
       ],
       "size": [
         310,
         104
       ],
       "flags": {},
-      "order": 7,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
           "localized_name": "model",
           "name": "model",
           "type": "MODEL",
-          "link": 87
+          "link": 88
         },
         {
           "localized_name": "shift",
@@ -669,64 +669,6 @@
       },
       "widgets_values": [
         3
-      ]
-    },
-    {
-      "id": 72,
-      "type": "LoraLoaderModelOnly",
-      "pos": [
-        -397.57879394496393,
-        -131.0548933478057
-      ],
-      "size": [
-        270,
-        82
-      ],
-      "flags": {},
-      "order": 5,
-      "mode": 4,
-      "inputs": [
-        {
-          "localized_name": "model",
-          "name": "model",
-          "type": "MODEL",
-          "link": 86
-        },
-        {
-          "localized_name": "lora_name",
-          "name": "lora_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "lora_name"
-          },
-          "link": null
-        },
-        {
-          "localized_name": "strength_model",
-          "name": "strength_model",
-          "type": "FLOAT",
-          "widget": {
-            "name": "strength_model"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "MODEL",
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            87
-          ]
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoraLoaderModelOnly"
-      },
-      "widgets_values": [
-        "Civit_Art_V1T1_E11.safetensors",
-        1
       ]
     }
   ],
@@ -804,16 +746,8 @@
       "IMAGE"
     ],
     [
-      86,
+      88,
       66,
-      0,
-      72,
-      0,
-      "MODEL"
-    ],
-    [
-      87,
-      72,
       0,
       69,
       0,
@@ -864,10 +798,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.8144911377753221,
+      "scale": 0.8959402515528546,
       "offset": [
-        1431.141373155302,
-        328.5706354385636
+        1646.1188267671446,
+        722.8799161503783
       ]
     },
     "frontendVersion": "1.42.15",
