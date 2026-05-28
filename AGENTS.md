@@ -8,6 +8,11 @@ Operational preferences:
 - Do not install CUDA Toolkit, PyTorch, ComfyUI, or model dependencies on the host.
 - Persistent ComfyUI data lives under `/mnt/data/comfyui`.
 - Keep model files out of git; document model download commands instead.
+- When searching for models or LoRAs, choose sources in this order:
+  1. A link explicitly provided by the user.
+  2. The most official or most popular upstream source.
+  3. Other mirrors, forks, or reuploads only when the above are unavailable or
+     unsuitable, and document why.
 - Default access URL is `http://x399.lan:8188/`.
 - Start with one GPU per ComfyUI instance; the local wrapper uses watercooled
   GPU 1 for ComfyUI. The local llama.cpp wrapper uses watercooled GPU 3.
