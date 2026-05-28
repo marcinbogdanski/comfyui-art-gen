@@ -1,0 +1,7275 @@
+{
+  "id": "3815ec25-1cfa-4155-87d3-6c8221f268ca",
+  "revision": 0,
+  "last_node_id": 824,
+  "last_link_id": 3528,
+  "nodes": [
+    {
+      "id": 379,
+      "type": "Reroute (rgthree)",
+      "pos": [
+        -5877.685297912799,
+        -5454.393473636837
+      ],
+      "size": [
+        80,
+        30
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "link": 1202
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": " ",
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Batch",
+      "properties": {
+        "resizable": false,
+        "size": [
+          80,
+          30
+        ],
+        "showLabel": true,
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      }
+    },
+    {
+      "id": 370,
+      "type": "Load Image Based on Number",
+      "pos": [
+        -5906.702121400963,
+        -4583.005595768954
+      ],
+      "size": [
+        422.4645690917969,
+        179.1396942138672
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            1202
+          ]
+        },
+        {
+          "name": "filename",
+          "type": "STRING",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "mikey_nodes",
+        "ver": "a8c52735f51be160f115ee4b9ccd0ed758d3b520",
+        "Node name for S&R": "Load Image Based on Number",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "G:\\stable-diffusion-webui\\outputs\\txt2img-images\\Others to copy\\9\\",
+        7093,
+        "increment"
+      ]
+    },
+    {
+      "id": 378,
+      "type": "Reroute (rgthree)",
+      "pos": [
+        -5752.678706115924,
+        -5457.347453129025
+      ],
+      "size": [
+        80,
+        30
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "link": 1199
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": " ",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            2837
+          ]
+        }
+      ],
+      "title": "Single Image",
+      "properties": {
+        "resizable": false,
+        "size": [
+          80,
+          30
+        ],
+        "showLabel": true,
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 283,
+      "type": "Reroute (rgthree)",
+      "pos": [
+        -5865.174067444048,
+        -5575.040446293087
+      ],
+      "size": [
+        80,
+        30
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Original",
+      "properties": {
+        "resizable": false,
+        "size": [
+          80,
+          30
+        ],
+        "showLabel": true,
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      }
+    },
+    {
+      "id": 279,
+      "type": "Reroute (rgthree)",
+      "pos": [
+        -5739.949010590537,
+        -5552.045717772911
+      ],
+      "size": [
+        80,
+        30
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "link": 2837
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": " ",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            2897
+          ]
+        }
+      ],
+      "title": "Load",
+      "properties": {
+        "resizable": false,
+        "size": [
+          80,
+          30
+        ],
+        "showLabel": true,
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 278,
+      "type": "Reroute (rgthree)",
+      "pos": [
+        -5607.302677417923,
+        -5550.34029589336
+      ],
+      "size": [
+        80,
+        30
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": " ",
+          "name": "",
+          "type": "*",
+          "link": 2897
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "label": " ",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            628
+          ]
+        }
+      ],
+      "title": "Ultimate SD UP",
+      "properties": {
+        "resizable": false,
+        "size": [
+          80,
+          30
+        ],
+        "showLabel": true,
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 328,
+      "type": "Mute / Bypass Repeater (rgthree)",
+      "pos": [
+        -5278.363997188919,
+        -6025.854565730846
+      ],
+      "size": [
+        152.0078125,
+        26
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 4,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "color_off": "#a80",
+          "color_on": "#Fc0",
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": [
+            607
+          ]
+        }
+      ],
+      "title": ".",
+      "properties": {
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      }
+    },
+    {
+      "id": 269,
+      "type": "easy float",
+      "pos": [
+        -4935.759774444839,
+        -5683.8543428524745
+      ],
+      "size": [
+        210,
+        60
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "float",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": [
+            411,
+            634,
+            648
+          ]
+        }
+      ],
+      "title": "upscale by",
+      "properties": {
+        "Node name for S&R": "easy float",
+        "cnr_id": "comfyui-easy-use",
+        "ver": "0daf114fe8870aeacfea484aa59e7f9973b91cd5",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        1.5
+      ]
+    },
+    {
+      "id": 425,
+      "type": "Image Saver",
+      "pos": [
+        -3368.43526525862,
+        -6059.100052265528
+      ],
+      "size": [
+        528.0297241210938,
+        966
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2738
+        },
+        {
+          "name": "negative",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "negative"
+          },
+          "link": 2842
+        }
+      ],
+      "outputs": [
+        {
+          "name": "hashes",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "a1111_params",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-image-saver",
+        "ver": "f8520bcfe5339ba7b4bb64ba96f6ed03da87fb89",
+        "Node name for S&R": "Image Saver",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "modelname": true,
+            "width": true,
+            "height": true,
+            "positive": true,
+            "negative": true
+          },
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "%time_%basemodelname_%seed_blur_labled",
+        "Jib_Mix_Z-Image/%date/Upsacled",
+        "jpeg",
+        16,
+        1,
+        "",
+        "dpmpp_2m",
+        "beta",
+        "unknown",
+        "unknown",
+        0,
+        1025,
+        1025,
+        false,
+        95,
+        false,
+        0,
+        1,
+        0,
+        true,
+        true,
+        true,
+        "",
+        true,
+        true,
+        true,
+        ""
+      ]
+    },
+    {
+      "id": 311,
+      "type": "Image Saver",
+      "pos": [
+        -4321.852227262189,
+        -6046.918631659024
+      ],
+      "size": [
+        528.0297241210938,
+        966
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 637
+        },
+        {
+          "name": "negative",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "negative"
+          },
+          "link": 2841
+        }
+      ],
+      "outputs": [
+        {
+          "name": "hashes",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "a1111_params",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-image-saver",
+        "ver": "f8520bcfe5339ba7b4bb64ba96f6ed03da87fb89",
+        "Node name for S&R": "Image Saver",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "modelname": true,
+            "width": true,
+            "height": true,
+            "positive": true,
+            "negative": true
+          },
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "%time_%basemodelname_%seed_blur",
+        "Jib_Mix_Z-Image/%date/Upsacled",
+        "png",
+        16,
+        1,
+        "",
+        "dpmpp_2m",
+        "beta",
+        "unknown",
+        "unknown",
+        0,
+        1025,
+        1025,
+        false,
+        95,
+        false,
+        0,
+        1,
+        0,
+        true,
+        true,
+        true,
+        "",
+        true,
+        true,
+        true,
+        ""
+      ]
+    },
+    {
+      "id": 710,
+      "type": "PreviewImage",
+      "pos": [
+        -5277.228298418243,
+        -5448.984045778048
+      ],
+      "size": [
+        288.79999999999995,
+        246.00000000000023
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3315
+        }
+      ],
+      "outputs": [],
+      "title": "Preview Map",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.76",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.5.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 268,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        -4936.450025506536,
+        -5797.024098328132
+      ],
+      "size": [
+        210,
+        71.59420337984557
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            633
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.26",
+        "Node name for S&R": "UpscaleModelLoader",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "x1_ITF_SkinDiffDetail_Lite_v1.pth"
+      ]
+    },
+    {
+      "id": 743,
+      "type": "Label (rgthree)",
+      "pos": [
+        -5830.458633400091,
+        -6139.940388700478
+      ],
+      "size": [
+        213.5458984375,
+        34
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 5,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [],
+      "title": "Group Control",
+      "properties": {
+        "fontSize": 34,
+        "fontFamily": "Arial",
+        "fontColor": "",
+        "textAlign": "left",
+        "backgroundColor": "BLUE",
+        "padding": 0,
+        "borderRadius": 0,
+        "angle": 0,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 764,
+      "type": "Mute / Bypass Repeater (rgthree)",
+      "pos": [
+        -4466.989121969481,
+        -7297.533487774626
+      ],
+      "size": [
+        152.0078125,
+        26
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "color_off": "#a80",
+          "color_on": "#Fc0",
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": [
+            3416
+          ]
+        }
+      ],
+      "title": ".",
+      "properties": {
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 786,
+      "type": "ClownOptions_DetailBoost_Beta",
+      "pos": [
+        -3445.38990410281,
+        -6793.7116678466655
+      ],
+      "size": [
+        270,
+        218
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "weights",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "etas",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OPTIONS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "options",
+          "type": "OPTIONS",
+          "links": [
+            3464
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "RES4LYF",
+        "ver": "7750bf7800b6ad9d670308a09989fc0c04c40cec",
+        "Node name for S&R": "ClownOptions_DetailBoost_Beta",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "weight": true,
+            "method": true,
+            "mode": true,
+            "eta": true,
+            "start_step": true,
+            "end_step": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.22,
+        "model",
+        "lorentzian",
+        0.25,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 804,
+      "type": "KSamplerAdvanced",
+      "pos": [
+        -4491.460183307642,
+        -7123.715419013358
+      ],
+      "size": [
+        320.16978891071085,
+        695.5538612178772
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3453
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 3507
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 3455
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 3474
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": 3457
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            3448,
+            3479
+          ]
+        }
+      ],
+      "title": "KSampler (Advanced) - Z-image",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.77",
+        "Node name for S&R": "KSamplerAdvanced",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "widgets_values": [
+        "enable",
+        1120437463407777,
+        "increment",
+        20,
+        4,
+        "res_multistep",
+        "simple",
+        0,
+        25,
+        "disable"
+      ]
+    },
+    {
+      "id": 790,
+      "type": "Label (rgthree)",
+      "pos": [
+        -5915.427470741219,
+        -7466.039548476728
+      ],
+      "size": [
+        392.427734375,
+        34
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Jibs Qwen 2512 Workflow",
+      "properties": {
+        "fontSize": 34,
+        "fontFamily": "Arial",
+        "fontColor": "",
+        "textAlign": "left",
+        "backgroundColor": "BLUE",
+        "padding": 0,
+        "borderRadius": 0,
+        "angle": 0,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 787,
+      "type": "ClownOptions_SigmaScaling_Beta",
+      "pos": [
+        -3448.6208461874735,
+        -6522.792111829867
+      ],
+      "size": [
+        280.4302673339844,
+        292
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "s_noises",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "s_noises_substep",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OPTIONS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "options",
+          "type": "OPTIONS",
+          "links": [
+            3466
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "RES4LYF",
+        "ver": "7750bf7800b6ad9d670308a09989fc0c04c40cec",
+        "Node name for S&R": "ClownOptions_SigmaScaling_Beta",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "s_noise": true,
+            "s_noise_substep": true,
+            "noise_anchor_sde": true,
+            "lying": true,
+            "lying_inv": true,
+            "lying_start_step": true,
+            "lying_inv_start_step": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.86,
+        1,
+        0.95,
+        0.89,
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "id": 785,
+      "type": "SharkOptions_Beta",
+      "pos": [
+        -3442.4372513713374,
+        -7303.184506467961
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OPTIONS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "options",
+          "type": "OPTIONS",
+          "links": [
+            3462
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "RES4LYF",
+        "ver": "7750bf7800b6ad9d670308a09989fc0c04c40cec",
+        "Node name for S&R": "SharkOptions_Beta",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "noise_type_init": true,
+            "s_noise_init": true,
+            "denoise_alt": true,
+            "channelwise_cfg": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "gaussian_backwards",
+        1,
+        1,
+        false
+      ]
+    },
+    {
+      "id": 784,
+      "type": "ClownOptions_SDE_Beta",
+      "pos": [
+        -3454.874811013895,
+        -7110.33452752624
+      ],
+      "size": [
+        304.103515625,
+        266
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "etas",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "etas_substep",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OPTIONS",
+          "link": null
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 3440
+        }
+      ],
+      "outputs": [
+        {
+          "name": "options",
+          "type": "OPTIONS",
+          "links": [
+            3465
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "RES4LYF",
+        "ver": "7750bf7800b6ad9d670308a09989fc0c04c40cec",
+        "Node name for S&R": "ClownOptions_SDE_Beta",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "noise_type_sde": true,
+            "noise_type_sde_substep": true,
+            "noise_mode_sde": true,
+            "noise_mode_sde_substep": true,
+            "eta": true,
+            "eta_substep": true,
+            "seed": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "gaussian_backwards",
+        "gaussian_backwards",
+        "soft",
+        "soft",
+        0.25,
+        0.25,
+        123759707350541,
+        "randomize"
+      ]
+    },
+    {
+      "id": 820,
+      "type": "ImageScaleBy",
+      "pos": [
+        -2468.526896172234,
+        -7137.948804310409
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3499
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3502
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ]
+    },
+    {
+      "id": 821,
+      "type": "ColorMatch",
+      "pos": [
+        -2469.814369588991,
+        -6865.649504166985
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_ref",
+          "type": "IMAGE",
+          "link": 3501
+        },
+        {
+          "name": "image_target",
+          "type": "IMAGE",
+          "link": 3502
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            3503
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "1.2.2",
+        "Node name for S&R": "ColorMatch",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.2"
+        }
+      },
+      "widgets_values": [
+        "mkl",
+        1,
+        true
+      ]
+    },
+    {
+      "id": 813,
+      "type": "VAEUtils_VAEDecodeTiled",
+      "pos": [
+        -2479.6418988089595,
+        -6674.852547148979
+      ],
+      "size": [
+        270,
+        198
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 3482
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3483
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3499
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "spacepxl/ComfyUI-VAE-Utils",
+        "ver": "5d03ed71e003348525d113b820503713877ed988",
+        "Node name for S&R": "VAEUtils_VAEDecodeTiled",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        -1,
+        false,
+        1024,
+        64,
+        4096,
+        64
+      ]
+    },
+    {
+      "id": 778,
+      "type": "CLIPLoader",
+      "pos": [
+        -5891.407063562933,
+        -7029.009074384726
+      ],
+      "size": [
+        425.7956899892888,
+        106
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            3452
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "CLIPLoader",
+        "ue_properties": {
+          "version": "7.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        },
+        "models": [
+          {
+            "name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Qwen-Image_ComfyUI/resolve/main/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors",
+            "directory": "text_encoders"
+          }
+        ],
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "wan",
+        "default"
+      ],
+      "shape": 1
+    },
+    {
+      "id": 799,
+      "type": "LatentUpscaleBy",
+      "pos": [
+        -3795.492713704876,
+        -7038.008579756407
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 3448
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            3461
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.11.0",
+        "Node name for S&R": "LatentUpscaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.2"
+        }
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1.25
+      ]
+    },
+    {
+      "id": 810,
+      "type": "VAEUtils_VAEDecodeTiled",
+      "pos": [
+        -3848.960006896332,
+        -7300.66310237019
+      ],
+      "size": [
+        270,
+        198
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 3479
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3477
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3478
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "spacepxl/ComfyUI-VAE-Utils",
+        "ver": "5d03ed71e003348525d113b820503713877ed988",
+        "Node name for S&R": "VAEUtils_VAEDecodeTiled",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        -1,
+        false,
+        1024,
+        64,
+        4096,
+        64
+      ]
+    },
+    {
+      "id": 811,
+      "type": "VAEUtils_CustomVAELoader",
+      "pos": [
+        -4188.876787130704,
+        -7303.312673851481
+      ],
+      "size": [
+        210,
+        91.87641906738281
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3477,
+            3483
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "spacepxl/ComfyUI-VAE-Utils",
+        "ver": "5d03ed71e003348525d113b820503713877ed988",
+        "Node name for S&R": "VAEUtils_CustomVAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors"
+      ]
+    },
+    {
+      "id": 812,
+      "type": "ImageScaleBy",
+      "pos": [
+        -4141.499698814337,
+        -7026.444752215478
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3478
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3480,
+            3501
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "ImageScaleBy",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "upscale_method": true,
+            "scale_by": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        0.5
+      ]
+    },
+    {
+      "id": 796,
+      "type": "PreviewImage",
+      "pos": [
+        -4001.2959980072956,
+        -6798.453727275015
+      ],
+      "size": [
+        232.85791276518103,
+        291.89331735552287
+      ],
+      "flags": {},
+      "order": 52,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3480
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.11.0",
+        "Node name for S&R": "PreviewImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.2"
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 777,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": [
+        -5905.361633502829,
+        -6033.221534250426
+      ],
+      "size": [
+        411.2341003417969,
+        347.2461853027344
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "OPT_CONNECTION",
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "title": "Stages",
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "showAllGraphs": true,
+        "sort": "alphanumeric",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      }
+    },
+    {
+      "id": 216,
+      "type": "LoadImage",
+      "pos": [
+        -5904.707506737478,
+        -5206.759495264791
+      ],
+      "size": [
+        463.1927795410156,
+        513.6276245117188
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            1199,
+            3313
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.26",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "False__0_blur_1222.png",
+        "image"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 334,
+      "type": "UltimateSDUpscale",
+      "pos": [
+        -4662.978463897512,
+        -5933.32149236648
+      ],
+      "size": [
+        320,
+        830
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 628
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3312
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 3520
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 3519
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3316
+        },
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 633
+        },
+        {
+          "name": "upscale_by",
+          "type": "FLOAT",
+          "widget": {
+            "name": "upscale_by"
+          },
+          "link": 634
+        },
+        {
+          "name": "tile_width",
+          "type": "INT",
+          "widget": {
+            "name": "tile_width"
+          },
+          "link": 635
+        },
+        {
+          "name": "tile_height",
+          "type": "INT",
+          "widget": {
+            "name": "tile_height"
+          },
+          "link": 636
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            637,
+            2737
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_ultimatesdupscale",
+        "ver": "8642daf6281e4ebbdf2daca18539c0ab6c2c63f4",
+        "Node name for S&R": "UltimateSDUpscale",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "upscale_by": true,
+            "tile_width": true,
+            "tile_height": true
+          },
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        2,
+        748955914594956,
+        "randomize",
+        6,
+        1,
+        "deis_2m",
+        "beta",
+        0.18,
+        "Linear",
+        512,
+        512,
+        8,
+        32,
+        "None",
+        1,
+        64,
+        8,
+        16,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 824,
+      "type": "Mute / Bypass Repeater (rgthree)",
+      "pos": [
+        -2845.777493081742,
+        -7296.89910421849
+      ],
+      "size": [
+        152.0078125,
+        26
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "color_off": "#a80",
+          "color_on": "#Fc0",
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": [
+            3517
+          ]
+        }
+      ],
+      "title": ".",
+      "properties": {
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      }
+    },
+    {
+      "id": 822,
+      "type": "SeedVarianceEnhancer",
+      "pos": [
+        -4957.8772679480835,
+        -6946.208952966884
+      ],
+      "size": [
+        302.73828125,
+        250
+      ],
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 3506
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            3507,
+            3508,
+            3520
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "seedvarianceenhancer",
+        "ver": "2.0.0",
+        "Node name for S&R": "SeedVarianceEnhancer",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "widgets_values": [
+        50,
+        12,
+        "noise on beginning steps",
+        20,
+        481391325889000,
+        "randomize",
+        "beginning",
+        0,
+        false
+      ]
+    },
+    {
+      "id": 815,
+      "type": "PathchSageAttentionKJ",
+      "pos": [
+        -5883.704460305472,
+        -7179.783158504681
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3487
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3512,
+            3521
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "1.1.6",
+        "Node name for S&R": "PathchSageAttentionKJ",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "sage_attention": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "sageattn_qk_int8_pv_fp16_cuda",
+        false
+      ]
+    },
+    {
+      "id": 271,
+      "type": "MathExpression|pysssss",
+      "pos": [
+        -4939.712379148404,
+        -5414.687731942373
+      ],
+      "size": [
+        270,
+        128
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 32,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "a",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 411
+        },
+        {
+          "name": "b",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 3523
+        },
+        {
+          "name": "c",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            636
+          ]
+        },
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null
+        }
+      ],
+      "title": "tile height (Math Expression 🐍)",
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "bbda5e52ad580c13ceaa53136d9c2bed9137bd2e",
+        "Node name for S&R": "MathExpression|pysssss",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "a * b / 2 + 32"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 270,
+      "type": "MathExpression|pysssss",
+      "pos": [
+        -4951.688574434916,
+        -5511.02622187166
+      ],
+      "size": [
+        270,
+        128
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 31,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "a",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 648
+        },
+        {
+          "name": "b",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": 3522
+        },
+        {
+          "name": "c",
+          "shape": 7,
+          "type": "INT,FLOAT,IMAGE,LATENT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            635
+          ]
+        },
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": null
+        }
+      ],
+      "title": "tile Width (Math Expression 🐍)",
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "bbda5e52ad580c13ceaa53136d9c2bed9137bd2e",
+        "Node name for S&R": "MathExpression|pysssss",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "a * b / 2 + 32"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 709,
+      "type": "AIO_Preprocessor",
+      "pos": [
+        -5337.584612573556,
+        -5656.186935120395
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3313
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3314,
+            3315
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.3",
+        "Node name for S&R": "AIO_Preprocessor",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.5.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "TilePreprocessor",
+        1024
+      ]
+    },
+    {
+      "id": 650,
+      "type": "VAELoader",
+      "pos": [
+        -5360.233498093237,
+        -5928.814412228486
+      ],
+      "size": [
+        336.51417342438344,
+        58
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3316,
+            3323
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.75",
+        "Node name for S&R": "VAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 708,
+      "type": "QwenImageDiffsynthControlnet",
+      "pos": [
+        -4981.182592851895,
+        -6046.545283277232
+      ],
+      "size": [
+        294.15,
+        138
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3521
+        },
+        {
+          "name": "model_patch",
+          "type": "MODEL_PATCH",
+          "link": 3310
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 3323
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3314
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3312
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.76",
+        "Node name for S&R": "QwenImageDiffsynthControlnet",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.5.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.2
+      ]
+    },
+    {
+      "id": 705,
+      "type": "ModelPatchLoader",
+      "pos": [
+        -5339.375276717543,
+        -5812.493583098542
+      ],
+      "size": [
+        329.1906001609632,
+        81.10466718952011
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "name",
+          "name": "name",
+          "type": "COMBO",
+          "widget": {
+            "name": "name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL_PATCH",
+          "name": "MODEL_PATCH",
+          "type": "MODEL_PATCH",
+          "links": [
+            3310
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.4.0",
+        "Node name for S&R": "ModelPatchLoader",
+        "ue_properties": {
+          "version": "7.5.2",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        },
+        "ttNbgOverride": {
+          "bgcolor": "#335",
+          "groupcolor": "#88A",
+          "color": "#223"
+        }
+      },
+      "widgets_values": [
+        "Qwen-Image-2512-Fun-Controlnet-Union.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 327,
+      "type": "Fast Bypasser (rgthree)",
+      "pos": [
+        -5323.3057249193735,
+        -6051.827594456576
+      ],
+      "size": [
+        210,
+        78
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 4,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": "",
+          "name": ".",
+          "type": "*",
+          "link": 607
+        },
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "toggleRestriction": "default",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 823,
+      "type": "Fast Bypasser (rgthree)",
+      "pos": [
+        -3108.1847896684326,
+        -7331.056205169923
+      ],
+      "size": [
+        210,
+        78
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": "",
+          "name": ".",
+          "type": "*",
+          "link": 3517
+        },
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "toggleRestriction": "default",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 807,
+      "type": "UNETLoader",
+      "pos": [
+        -5893.86417895486,
+        -7312.446968979802
+      ],
+      "size": [
+        427.3387145996094,
+        85.01576232910156
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            3487
+          ]
+        }
+      ],
+      "title": "Load Diffusion Model - Z-image Base",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "UNETLoader",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "jibMixQwen_v60.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 819,
+      "type": "Image Saver",
+      "pos": [
+        -2158.8202187116062,
+        -7293.16193253974
+      ],
+      "size": [
+        395.60601806640625,
+        986
+      ],
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 3503
+        },
+        {
+          "name": "positive",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "positive"
+          },
+          "link": 3527
+        },
+        {
+          "name": "negative",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "negative"
+          },
+          "link": 3528
+        }
+      ],
+      "outputs": [
+        {
+          "name": "hashes",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "a1111_params",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "title": "Image Saver - ZIT",
+      "properties": {
+        "cnr_id": "comfyui-image-saver",
+        "ver": "f8520bcfe5339ba7b4bb64ba96f6ed03da87fb89",
+        "Node name for S&R": "Image Saver",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {
+            "modelname": true,
+            "width": true,
+            "height": true,
+            "positive": true,
+            "negative": true
+          },
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "%time_%basemodelname_%seed_blur",
+        "Jib_Mix_Qwen_v6/%date/",
+        "png",
+        32,
+        4,
+        "",
+        "euler",
+        "bong_tangent",
+        "unknown",
+        "",
+        0,
+        1025,
+        1025,
+        false,
+        95,
+        false,
+        0,
+        1,
+        0,
+        false,
+        true,
+        true,
+        "",
+        true,
+        true,
+        true,
+        ""
+      ]
+    },
+    {
+      "id": 788,
+      "type": "Label (rgthree)",
+      "pos": [
+        -3108.8153473181214,
+        -7235.063635502187
+      ],
+      "size": [
+        721.96875,
+        34
+      ],
+      "flags": {
+        "allow_interaction": true
+      },
+      "order": 19,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "2nd Stage linear/ralston_2s with Qwen for detail",
+      "properties": {
+        "fontSize": 34,
+        "fontFamily": "Arial",
+        "fontColor": "",
+        "textAlign": "left",
+        "backgroundColor": "BLUE",
+        "padding": 0,
+        "borderRadius": 0,
+        "angle": 0,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "color": "#fff0",
+      "bgcolor": "#fff0"
+    },
+    {
+      "id": 780,
+      "type": "Text to Conditioning",
+      "pos": [
+        -5251.77685845021,
+        -6712.041643550157
+      ],
+      "size": [
+        162.86483764648438,
+        46
+      ],
+      "flags": {},
+      "order": 40,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3434
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3471
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            3455,
+            3509,
+            3519
+          ]
+        }
+      ],
+      "title": "Negative",
+      "properties": {
+        "cnr_id": "was-node-suite-comfyui",
+        "ver": "ea935d1044ae5a26efa54ebeb18fe9020af49a45",
+        "Node name for S&R": "Text to Conditioning",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 779,
+      "type": "Text to Conditioning",
+      "pos": [
+        -5249.577756471278,
+        -6860.510013481194
+      ],
+      "size": [
+        162.86483764648438,
+        46
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3432
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 3433
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            3506
+          ]
+        }
+      ],
+      "title": "Positive",
+      "properties": {
+        "cnr_id": "was-node-suite-comfyui",
+        "ver": "ea935d1044ae5a26efa54ebeb18fe9020af49a45",
+        "Node name for S&R": "Text to Conditioning",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 802,
+      "type": "CR Aspect Ratio",
+      "pos": [
+        -5830.158198778329,
+        -6810.497115536019
+      ],
+      "size": [
+        273.809326171875,
+        322
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            3522
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            3523
+          ]
+        },
+        {
+          "name": "upscale_factor",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "prescale_factor",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "empty_latent",
+          "type": "LATENT",
+          "slot_index": 5,
+          "links": [
+            3474
+          ]
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyroll",
+        "ver": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
+        "Node name for S&R": "CR Aspect Ratio",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1024,
+        1300,
+        "custom",
+        "Off",
+        1,
+        1,
+        1
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 803,
+      "type": "Power Lora Loader (rgthree)",
+      "pos": [
+        -5340.558952900458,
+        -7325.4362266182525
+      ],
+      "size": [
+        340.519921875,
+        406
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "model",
+          "type": "MODEL",
+          "link": 3512
+        },
+        {
+          "dir": 3,
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3452
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "MODEL",
+          "shape": 3,
+          "type": "MODEL",
+          "links": [
+            3453,
+            3526
+          ]
+        },
+        {
+          "dir": 4,
+          "name": "CLIP",
+          "shape": 3,
+          "type": "CLIP",
+          "links": [
+            3432,
+            3434
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "8ff50e4521881eca1fe26aec9615fc9362474931",
+        "Show Strengths": "Single Strength",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.2"
+        }
+      },
+      "widgets_values": [
+        {},
+        {
+          "type": "PowerLoraLoaderHeaderWidget"
+        },
+        {
+          "on": false,
+          "lora": "jib_qwen_fix_000002750.safetensors",
+          "strength": 0.68,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.15,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.8,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.95,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 1,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 1.05,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.46,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.6,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.05,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.75,
+          "strengthTwo": null
+        },
+        {
+          "on": false,
+          "lora": "None",
+          "strength": 0.35,
+          "strengthTwo": null
+        },
+        {},
+        ""
+      ]
+    },
+    {
+      "id": 797,
+      "type": "Seed String",
+      "pos": [
+        -4937.73703554905,
+        -6548.1815033848725
+      ],
+      "size": [
+        270,
+        102
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": [
+            3440,
+            3457,
+            3463
+          ]
+        },
+        {
+          "name": "seed_string",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "mikey_nodes",
+        "ver": "1.0.5",
+        "Node name for S&R": "Seed String",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.5.1"
+        }
+      },
+      "widgets_values": [
+        818,
+        "increment"
+      ]
+    },
+    {
+      "id": 445,
+      "type": "Textbox",
+      "pos": [
+        -7256.256104842487,
+        -6527.054783430063
+      ],
+      "size": [
+        1286.485182406178,
+        316.95096617365834
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "passthrough",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            2841,
+            2842,
+            3471,
+            3528
+          ]
+        }
+      ],
+      "title": "Negative Prompt - Used for Z-Image but Not used at CFG 1 for ZIT",
+      "properties": {
+        "cnr_id": "chibi",
+        "ver": "290ccef2a8c1bc3917e1c00dbe5c206b66fb8ded",
+        "Node name for S&R": "Textbox",
+        "ttNbgOverride": {
+          "color": "#222",
+          "bgcolor": "#000",
+          "groupcolor": "#444"
+        },
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "((Neck collar)) Nipples, Platstic Barbie-doll skin, 泛黄，发绿，模糊，低分辨率，低质量图像，扭曲的肢体，诡异的外观，丑陋，AI感，噪点，网格感，JPEG压缩条纹，异常的肢体，水印，乱码，意义不明的字符\n\nYellowed/green discoloured, greenish tint, blurry, low resolution, low-quality image, distorted limbs, uncanny appearance, ugly, looks AI-generated, noise/grain, grid artefacts, JPEG compression banding/stripes, abnormal limbs, watermark, garbled text, meaningless characters.\n\nmutated, mutation, deformed, elongated, low quality, malformed, alien, patch, dwarf, midget, patch, logo, print, stretched, skewed, painting, illustration, drawing, cartoon, anime, 2d, 3d, video game, deviantart, fanart,noisy, blurry, soft, deformed, ugly, drawing, painting, crayon, sketch, graphite, impressionist, noisy, blurry, soft, deformed, ugly, bokeh, Deviantart, jpeg , worst quality, low quality, normal quality, lowres, low details, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art, watermark, signature, text font, username, error, logo, words, letters, digits, autograph, trademark, name, blur, blurry, grainy, morbid, ugly, asymmetrical, mutated malformed, mutilated, poorly lit, bad shadow, draft, cropped, out of frame, cut off, censored, jpeg artifacts, out of focus, glitch, duplicate, airbrushed, cartoon, anime, semi-realistic, cgi, render, blender, digital art, manga, 3D ,3D Game, 3D Game Scene, 3D Character, bad hands, bad anatomy, bad body, bad face, bad teeth, bad arms, bad legs, deformities, bokeh Deviantart, bokeh, Deviantart, jpeg , worst quality, low quality, normal quality, lowres, low details, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art, watermark, signature, text font, username, error, logo, words, letters, digits, autograph, trademark, name, blur, blurry, grainy, morbid, ugly, asymmetrical, mutated malformed, mutilated, poorly lit, bad shadow, draft, cropped, out of frame, cut off, censored, jpeg artifacts, out of focus, glitch, duplicate, airbrushed, cartoon, anime, semi-realistic, cgi, render, blender, digital art, manga, 3D ,3D Game, 3D Game Scene, 3D Character, bad hands, bad anatomy, bad body, bad face, bad teeth, bad arms, bad legs, deformities, bokeh , Deviantart"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 768,
+      "type": "Fast Bypasser (rgthree)",
+      "pos": [
+        -4472.963516486487,
+        -7310.738624318616
+      ],
+      "size": [
+        210,
+        78
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": "",
+          "name": ".",
+          "type": "*",
+          "link": 3416
+        },
+        {
+          "dir": 3,
+          "name": "",
+          "type": "*",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "toggleRestriction": "default",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 805,
+      "type": "ClownsharKSampler_Beta",
+      "pos": [
+        -3085.930129454962,
+        -7145.688785135044
+      ],
+      "size": [
+        561.1962144329866,
+        702.3445243493636
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "shape": 7,
+          "type": "MODEL",
+          "link": 3526
+        },
+        {
+          "name": "positive",
+          "shape": 7,
+          "type": "CONDITIONING",
+          "link": 3508
+        },
+        {
+          "name": "negative",
+          "shape": 7,
+          "type": "CONDITIONING",
+          "link": 3509
+        },
+        {
+          "name": "latent_image",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 3461
+        },
+        {
+          "name": "sigmas",
+          "shape": 7,
+          "type": "SIGMAS",
+          "link": null
+        },
+        {
+          "name": "guides",
+          "shape": 7,
+          "type": "GUIDES",
+          "link": null
+        },
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OPTIONS",
+          "link": 3462
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 3463
+        },
+        {
+          "name": "options 2",
+          "type": "OPTIONS",
+          "link": 3464
+        },
+        {
+          "name": "options 3",
+          "type": "OPTIONS",
+          "link": 3465
+        },
+        {
+          "name": "options 4",
+          "type": "OPTIONS",
+          "link": 3466
+        },
+        {
+          "name": "options 5",
+          "type": "OPTIONS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": []
+        },
+        {
+          "name": "denoised",
+          "type": "LATENT",
+          "links": [
+            3482
+          ]
+        },
+        {
+          "name": "options",
+          "type": "OPTIONS",
+          "links": null
+        }
+      ],
+      "title": "ClownsharKSampler - ZIT",
+      "properties": {
+        "cnr_id": "RES4LYF",
+        "ver": "unknown",
+        "Node name for S&R": "ClownsharKSampler_Beta",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "eta": true,
+            "sampler_name": true,
+            "scheduler": true,
+            "steps": true,
+            "steps_to_run": true,
+            "denoise": true,
+            "cfg": true,
+            "seed": true,
+            "sampler_mode": true,
+            "bongmath": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        0.23,
+        "linear/ralston_2s",
+        "beta",
+        11,
+        -1,
+        0.37,
+        1,
+        636741529769882,
+        "increment",
+        "standard",
+        true
+      ],
+      "shape": 1
+    },
+    {
+      "id": 424,
+      "type": "CR Overlay Text",
+      "pos": [
+        -3784.361755260261,
+        -5828.516364510584
+      ],
+      "size": [
+        400,
+        396
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 47,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 2737
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2738
+          ]
+        },
+        {
+          "name": "show_help",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_Comfyroll_CustomNodes",
+        "ver": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
+        "Node name for S&R": "CR Overlay Text",
+        "ue_properties": {
+          "widget_ue_connectable": {
+            "text": true,
+            "font_name": true,
+            "font_size": true,
+            "font_color": true,
+            "align": true,
+            "justify": true,
+            "margins": true,
+            "line_spacing": true,
+            "position_x": true,
+            "position_y": true,
+            "rotation_angle": true,
+            "rotation_options": true,
+            "font_color_hex": true
+          },
+          "version": "7.1",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "Jib Mix Qwen - 2026",
+        "Caveat-VariableFont_wght.ttf",
+        65,
+        "white",
+        "bottom",
+        "right",
+        0,
+        0,
+        -33,
+        -24,
+        0,
+        "text center",
+        "#000000"
+      ]
+    },
+    {
+      "id": 806,
+      "type": "Textbox",
+      "pos": [
+        -7240.21299658593,
+        -7367.168702530274
+      ],
+      "size": [
+        1264.011030560665,
+        763.7801878584487
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "passthrough",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            3433,
+            3527
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "cnr_id": "chibi",
+        "ver": "290ccef2a8c1bc3917e1c00dbe5c206b66fb8ded",
+        "Node name for S&R": "Textbox",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        },
+        "ttNbgOverride": {
+          "color": "#222",
+          "bgcolor": "#000",
+          "groupcolor": "#444"
+        }
+      },
+      "widgets_values": [
+        "cinematic photo of a small young black and white Border Collie puppy with cute face sat with a plain wide china bowl of vanilla ice cream in cafe, front facing, in the style of vfxfriday, real photo, cinematic  photorealistic, 8k uhd natural lighting, raw, rich, intricate details, key visual, atmospheric lighting, 35mm photograph, film, bokeh, professional, 4k, highly detailed, cinematic, colorful background, concept art, 8k, dramatic lighting, high detail, highly detailed, hyper realistic, intricate, intricate sharp details, octane render, smooth, studio lighting, trending on artstation. . 35mm photograph, film, bokeh, professional, 4k, highly detailed"
+      ],
+      "color": "#007100",
+      "bgcolor": "#000000"
+    }
+  ],
+  "links": [
+    [
+      411,
+      269,
+      0,
+      271,
+      0,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      607,
+      328,
+      0,
+      327,
+      0,
+      "*"
+    ],
+    [
+      628,
+      278,
+      0,
+      334,
+      0,
+      "IMAGE"
+    ],
+    [
+      633,
+      268,
+      0,
+      334,
+      5,
+      "UPSCALE_MODEL"
+    ],
+    [
+      634,
+      269,
+      0,
+      334,
+      6,
+      "FLOAT"
+    ],
+    [
+      635,
+      270,
+      0,
+      334,
+      7,
+      "INT"
+    ],
+    [
+      636,
+      271,
+      0,
+      334,
+      8,
+      "INT"
+    ],
+    [
+      637,
+      334,
+      0,
+      311,
+      0,
+      "IMAGE"
+    ],
+    [
+      648,
+      269,
+      0,
+      270,
+      0,
+      "INT,FLOAT,IMAGE,LATENT"
+    ],
+    [
+      665,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      666,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      667,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      668,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      671,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      672,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      673,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      674,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      675,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      676,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      677,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      678,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      679,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      680,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      681,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      682,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      683,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      684,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      685,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      686,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      687,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      688,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      689,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      690,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      691,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      692,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      693,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      694,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      695,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      696,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      697,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      698,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      706,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      707,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      708,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      709,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      710,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      711,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      712,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      713,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      714,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      715,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      716,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      717,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      718,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      719,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      721,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      722,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      723,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      724,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      725,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      726,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      727,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      728,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      729,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      730,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      731,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      732,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      733,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      734,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      736,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      737,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      738,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      739,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      740,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      741,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      742,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      743,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      744,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      745,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      746,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      747,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      748,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      749,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      755,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      756,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      757,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      758,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      759,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      760,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      761,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      762,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      763,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      764,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      765,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      766,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      767,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      768,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      771,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      772,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      773,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      774,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      775,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      776,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      777,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      778,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      779,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      780,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      781,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      782,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      783,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      784,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      786,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      787,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      788,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      789,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      795,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      796,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      797,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      798,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      801,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      802,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      803,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      804,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      805,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      806,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      807,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      808,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      809,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      810,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      811,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      812,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      813,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      814,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      818,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      819,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      820,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      821,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      822,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      823,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      824,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      825,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      826,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      827,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      828,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      829,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      830,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      831,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      832,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      833,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      834,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      835,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      837,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      838,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      839,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      840,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      841,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      842,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      843,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      844,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      845,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      846,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      847,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      848,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      849,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      850,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      851,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      852,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      853,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      854,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      857,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      858,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      859,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      860,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      875,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      876,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      877,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      878,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      879,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      880,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      881,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      882,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      883,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      884,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      885,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      886,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      887,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      888,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      890,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      891,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      892,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      893,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      894,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      895,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      896,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      897,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      898,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      899,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      900,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      901,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      902,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      903,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      904,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      905,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      906,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      907,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      908,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      909,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      910,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      911,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      912,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      913,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      914,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      915,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      916,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      917,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      920,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      921,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      922,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      923,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      924,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      925,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      926,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      927,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      928,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      929,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      930,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      931,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      932,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      933,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      934,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      935,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      936,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      937,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      938,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      939,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      940,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      941,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      942,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      943,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      944,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      945,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      946,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      947,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      948,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      949,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      950,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      951,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      957,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      958,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      959,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      960,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      961,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      962,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      963,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      964,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      965,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      966,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      967,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      968,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      969,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      970,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      971,
+      176,
+      0,
+      169,
+      2,
+      "INT"
+    ],
+    [
+      972,
+      176,
+      0,
+      169,
+      3,
+      "INT"
+    ],
+    [
+      973,
+      312,
+      0,
+      169,
+      4,
+      "STRING"
+    ],
+    [
+      974,
+      175,
+      0,
+      169,
+      5,
+      "STRING"
+    ],
+    [
+      976,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      977,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      978,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      979,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      980,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      981,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      982,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      983,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      984,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      985,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      986,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      987,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      988,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      989,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      990,
+      176,
+      0,
+      169,
+      2,
+      "INT"
+    ],
+    [
+      991,
+      176,
+      0,
+      169,
+      3,
+      "INT"
+    ],
+    [
+      992,
+      312,
+      0,
+      169,
+      4,
+      "STRING"
+    ],
+    [
+      993,
+      175,
+      0,
+      169,
+      5,
+      "STRING"
+    ],
+    [
+      998,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      999,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1000,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1001,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1002,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1003,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1004,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1005,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1006,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1007,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1008,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1009,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1010,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1011,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1012,
+      176,
+      0,
+      169,
+      2,
+      "INT"
+    ],
+    [
+      1013,
+      176,
+      0,
+      169,
+      3,
+      "INT"
+    ],
+    [
+      1014,
+      312,
+      0,
+      169,
+      4,
+      "STRING"
+    ],
+    [
+      1015,
+      175,
+      0,
+      169,
+      5,
+      "STRING"
+    ],
+    [
+      1017,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1018,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1019,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1020,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1021,
+      176,
+      0,
+      169,
+      2,
+      "INT"
+    ],
+    [
+      1022,
+      176,
+      0,
+      169,
+      3,
+      "INT"
+    ],
+    [
+      1023,
+      312,
+      0,
+      169,
+      4,
+      "STRING"
+    ],
+    [
+      1024,
+      175,
+      0,
+      169,
+      5,
+      "STRING"
+    ],
+    [
+      1096,
+      263,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      1097,
+      263,
+      0,
+      185,
+      1,
+      "VAE"
+    ],
+    [
+      1098,
+      263,
+      0,
+      242,
+      1,
+      "VAE"
+    ],
+    [
+      1099,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1100,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1101,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1102,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1103,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1104,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1105,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1106,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1107,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      1108,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1109,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1110,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1111,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1112,
+      359,
+      0,
+      290,
+      0,
+      "MODEL"
+    ],
+    [
+      1113,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      1114,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1115,
+      263,
+      0,
+      102,
+      1,
+      "VAE"
+    ],
+    [
+      1116,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1117,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1120,
+      263,
+      0,
+      185,
+      1,
+      "VAE"
+    ],
+    [
+      1121,
+      263,
+      0,
+      242,
+      1,
+      "VAE"
+    ],
+    [
+      1122,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1123,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1124,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1125,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1126,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1127,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1128,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      1144,
+      263,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      1145,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1146,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1147,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1148,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1149,
+      353,
+      0,
+      290,
+      0,
+      "MODEL"
+    ],
+    [
+      1150,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      1151,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1152,
+      263,
+      0,
+      102,
+      1,
+      "VAE"
+    ],
+    [
+      1153,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1154,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1155,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1156,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1157,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1158,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1180,
+      263,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      1181,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1182,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1183,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1184,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1185,
+      359,
+      0,
+      290,
+      0,
+      "MODEL"
+    ],
+    [
+      1186,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      1187,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1188,
+      263,
+      0,
+      102,
+      1,
+      "VAE"
+    ],
+    [
+      1189,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1190,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1191,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1192,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1193,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1194,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1199,
+      216,
+      0,
+      378,
+      0,
+      "*"
+    ],
+    [
+      1202,
+      370,
+      0,
+      379,
+      0,
+      "*"
+    ],
+    [
+      1205,
+      263,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      1206,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1207,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1208,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1209,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1210,
+      353,
+      0,
+      290,
+      0,
+      "MODEL"
+    ],
+    [
+      1211,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      1212,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1213,
+      263,
+      0,
+      102,
+      1,
+      "VAE"
+    ],
+    [
+      1214,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1215,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1216,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1217,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1218,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1219,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1223,
+      263,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      1224,
+      176,
+      0,
+      264,
+      2,
+      "INT"
+    ],
+    [
+      1225,
+      176,
+      0,
+      264,
+      3,
+      "INT"
+    ],
+    [
+      1226,
+      312,
+      0,
+      264,
+      4,
+      "STRING"
+    ],
+    [
+      1227,
+      175,
+      0,
+      264,
+      5,
+      "STRING"
+    ],
+    [
+      1228,
+      353,
+      0,
+      290,
+      0,
+      "MODEL"
+    ],
+    [
+      1229,
+      176,
+      0,
+      290,
+      1,
+      "INT"
+    ],
+    [
+      1230,
+      176,
+      0,
+      290,
+      2,
+      "INT"
+    ],
+    [
+      1231,
+      263,
+      0,
+      102,
+      1,
+      "VAE"
+    ],
+    [
+      1232,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1233,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1234,
+      176,
+      0,
+      182,
+      2,
+      "INT"
+    ],
+    [
+      1235,
+      176,
+      0,
+      182,
+      3,
+      "INT"
+    ],
+    [
+      1236,
+      312,
+      0,
+      182,
+      4,
+      "STRING"
+    ],
+    [
+      1237,
+      175,
+      0,
+      182,
+      5,
+      "STRING"
+    ],
+    [
+      1238,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1239,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1240,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1241,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1242,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      1245,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1246,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1247,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1248,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1249,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1250,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1251,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      1291,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1292,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1293,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1294,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1295,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1296,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1297,
+      401,
+      0,
+      334,
+      1,
+      "MODEL"
+    ],
+    [
+      1298,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      1304,
+      176,
+      0,
+      311,
+      2,
+      "INT"
+    ],
+    [
+      1305,
+      176,
+      0,
+      311,
+      3,
+      "INT"
+    ],
+    [
+      1306,
+      312,
+      0,
+      311,
+      4,
+      "STRING"
+    ],
+    [
+      1307,
+      175,
+      0,
+      311,
+      5,
+      "STRING"
+    ],
+    [
+      1308,
+      349,
+      0,
+      127,
+      0,
+      "CLIP"
+    ],
+    [
+      1309,
+      349,
+      0,
+      123,
+      0,
+      "CLIP"
+    ],
+    [
+      1310,
+      263,
+      0,
+      383,
+      4,
+      "VAE"
+    ],
+    [
+      1311,
+      403,
+      0,
+      334,
+      1,
+      "MODEL"
+    ],
+    [
+      1312,
+      263,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      2737,
+      334,
+      0,
+      424,
+      0,
+      "IMAGE"
+    ],
+    [
+      2738,
+      424,
+      0,
+      425,
+      0,
+      "IMAGE"
+    ],
+    [
+      2837,
+      378,
+      0,
+      279,
+      0,
+      "*"
+    ],
+    [
+      2841,
+      445,
+      0,
+      311,
+      1,
+      "STRING"
+    ],
+    [
+      2842,
+      445,
+      0,
+      425,
+      1,
+      "STRING"
+    ],
+    [
+      2897,
+      279,
+      0,
+      278,
+      0,
+      "*"
+    ],
+    [
+      3310,
+      705,
+      0,
+      708,
+      1,
+      "MODEL_PATCH"
+    ],
+    [
+      3312,
+      708,
+      0,
+      334,
+      1,
+      "MODEL"
+    ],
+    [
+      3313,
+      216,
+      0,
+      709,
+      0,
+      "IMAGE"
+    ],
+    [
+      3314,
+      709,
+      0,
+      708,
+      3,
+      "IMAGE"
+    ],
+    [
+      3315,
+      709,
+      0,
+      710,
+      0,
+      "IMAGE"
+    ],
+    [
+      3316,
+      650,
+      0,
+      334,
+      4,
+      "VAE"
+    ],
+    [
+      3323,
+      650,
+      0,
+      708,
+      2,
+      "VAE"
+    ],
+    [
+      3416,
+      764,
+      0,
+      768,
+      0,
+      "*"
+    ],
+    [
+      3432,
+      803,
+      1,
+      779,
+      0,
+      "CLIP"
+    ],
+    [
+      3433,
+      806,
+      0,
+      779,
+      1,
+      "STRING"
+    ],
+    [
+      3434,
+      803,
+      1,
+      780,
+      0,
+      "CLIP"
+    ],
+    [
+      3440,
+      797,
+      0,
+      784,
+      3,
+      "INT"
+    ],
+    [
+      3448,
+      804,
+      0,
+      799,
+      0,
+      "LATENT"
+    ],
+    [
+      3452,
+      778,
+      0,
+      803,
+      1,
+      "CLIP"
+    ],
+    [
+      3453,
+      803,
+      0,
+      804,
+      0,
+      "MODEL"
+    ],
+    [
+      3455,
+      780,
+      0,
+      804,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      3457,
+      797,
+      0,
+      804,
+      4,
+      "INT"
+    ],
+    [
+      3461,
+      799,
+      0,
+      805,
+      3,
+      "LATENT"
+    ],
+    [
+      3462,
+      785,
+      0,
+      805,
+      6,
+      "OPTIONS"
+    ],
+    [
+      3463,
+      797,
+      0,
+      805,
+      7,
+      "INT"
+    ],
+    [
+      3464,
+      786,
+      0,
+      805,
+      8,
+      "OPTIONS"
+    ],
+    [
+      3465,
+      784,
+      0,
+      805,
+      9,
+      "OPTIONS"
+    ],
+    [
+      3466,
+      787,
+      0,
+      805,
+      10,
+      "OPTIONS"
+    ],
+    [
+      3471,
+      445,
+      0,
+      780,
+      1,
+      "STRING"
+    ],
+    [
+      3474,
+      802,
+      5,
+      804,
+      3,
+      "LATENT"
+    ],
+    [
+      3477,
+      811,
+      0,
+      810,
+      1,
+      "VAE"
+    ],
+    [
+      3478,
+      810,
+      0,
+      812,
+      0,
+      "IMAGE"
+    ],
+    [
+      3479,
+      804,
+      0,
+      810,
+      0,
+      "LATENT"
+    ],
+    [
+      3480,
+      812,
+      0,
+      796,
+      0,
+      "IMAGE"
+    ],
+    [
+      3482,
+      805,
+      1,
+      813,
+      0,
+      "LATENT"
+    ],
+    [
+      3483,
+      811,
+      0,
+      813,
+      1,
+      "VAE"
+    ],
+    [
+      3487,
+      807,
+      0,
+      815,
+      0,
+      "MODEL"
+    ],
+    [
+      3499,
+      813,
+      0,
+      820,
+      0,
+      "IMAGE"
+    ],
+    [
+      3501,
+      812,
+      0,
+      821,
+      0,
+      "IMAGE"
+    ],
+    [
+      3502,
+      820,
+      0,
+      821,
+      1,
+      "IMAGE"
+    ],
+    [
+      3503,
+      821,
+      0,
+      819,
+      0,
+      "IMAGE"
+    ],
+    [
+      3506,
+      779,
+      0,
+      822,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      3507,
+      822,
+      0,
+      804,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      3508,
+      822,
+      0,
+      805,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      3509,
+      780,
+      0,
+      805,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      3512,
+      815,
+      0,
+      803,
+      0,
+      "MODEL"
+    ],
+    [
+      3517,
+      824,
+      0,
+      823,
+      0,
+      "*"
+    ],
+    [
+      3519,
+      780,
+      0,
+      334,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      3520,
+      822,
+      0,
+      334,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      3521,
+      815,
+      0,
+      708,
+      0,
+      "MODEL"
+    ],
+    [
+      3522,
+      802,
+      0,
+      270,
+      1,
+      "INT"
+    ],
+    [
+      3523,
+      802,
+      1,
+      271,
+      1,
+      "INT"
+    ],
+    [
+      3526,
+      803,
+      0,
+      805,
+      0,
+      "MODEL"
+    ],
+    [
+      3527,
+      806,
+      0,
+      819,
+      1,
+      "STRING"
+    ],
+    [
+      3528,
+      445,
+      0,
+      819,
+      2,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "title": "Image Upscale/Control Net Choice",
+      "bounding": [
+        -5887.010737365924,
+        -5633.767741214962,
+        388,
+        229
+      ],
+      "color": "#8AA",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "3.Ultimate SD Upscale with Tiled Controlnet",
+      "bounding": [
+        -5369.707598240157,
+        -6149.299165051349,
+        2558.967085039348,
+        1083.9197982730345
+      ],
+      "color": "#A88",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Load Image",
+      "bounding": [
+        -5911.299178646464,
+        -5331.915316689378,
+        488.2056884765625,
+        645.9994506835938
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 12,
+      "title": "Load A Batch of Images for Upscale",
+      "bounding": [
+        -5912.693820619714,
+        -4665.168986882236,
+        475.2103623601861,
+        710.163579043242
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 23,
+      "title": "Load Models",
+      "bounding": [
+        -5917.723957405869,
+        -7409.763244391424,
+        1289.8583415628118,
+        1209.4031365911333
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 24,
+      "title": "1. First Stage Qwen samplers",
+      "bounding": [
+        -4507.541967489916,
+        -7404.7158763963525,
+        997.9960045849257,
+        1203.734774038904
+      ],
+      "color": "#8AA",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 25,
+      "title": "2. Stage Two Qwen samplers",
+      "bounding": [
+        -3472.1811462472797,
+        -7399.206343069858,
+        1738.2686389034097,
+        1190.779036016258
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.4177248169415769,
+      "offset": [
+        7831.434574995428,
+        8533.954483255573
+      ]
+    },
+    "groupNodes": {},
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "node_versions": {
+      "comfy-core": "0.3.10",
+      "ComfyUI_TensorRT": "5bcc3f1e5c2424bb20bcb586e340c25ebe4a954f",
+      "sd-dynamic-thresholding": "5d63447afbc44b377f706a5eb0430f85791dcf30",
+      "ComfyUI-Impact-Pack": "70d0540895e5eb15b672db65b4c24662127d0f6e",
+      "ComfyUI_ExtraModels": "92f556ed4d3bec1a3f16117d2de10f195c36d68e",
+      "rgthree-comfy": "5d771b8b56a343c24a26e8cea1f0c87c3d58102f",
+      "ComfyUI-KJNodes": "5b8d419c6f9c2ab6559a5758f7f504cb8b3a8412",
+      "ComfyUI_essentials": "33ff89fd354d8ec3ab6affb605a79a931b445d99",
+      "ComfyUI-SuperBeasts": "f684c86d0031b82123dc1f7931a8de43c9946fee",
+      "ComfyUI-Detail-Daemon": "90e703d3d3f979438471c646a5d030840a2caac3",
+      "ComfyUI-Custom-Scripts": "bc8922deff73f59311c05cef27b9d4caaf43e87b",
+      "cg-use-everywhere": "ce510b97d10e69d5fd0042e115ecd946890d2079",
+      "ComfyUI-Image-Saver": "f8520bcfe5339ba7b4bb64ba96f6ed03da87fb89",
+      "ComfyUI-CustomScheduler": "1d98936d111d01d6c4dfc078ab964cd615b2da97",
+      "was-node-suite-comfyui": "056badacda52e88d29d6a65f9509cd3115ace0f2",
+      "ComfyUI-Easy-Use": "3a8fcbbcb916af5468dd9d9dca96fa79bd164b5b",
+      "ComfyUI_Comfyroll_CustomNodes": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
+      "Comfy-WaveSpeed": "36ba3c8b74735d4521828507a4bf323df1a9a9d0",
+      "ComfyUI-Eagle-PNGInfo": "03e82a0df73433ae5941c9288f80aca1f4159455",
+      "ComfyUI_UltimateSDUpscale": "ff3fdfeee03de46d4462211cffd165d27155e858"
+    },
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "links_added_by_ue": [],
+    "frontendVersion": "1.37.11",
+    "workflowRendererVersion": "LG"
+  },
+  "version": 0.4
+}
