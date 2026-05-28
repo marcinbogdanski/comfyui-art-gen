@@ -45,9 +45,9 @@ runtime and are not used by the checked-in workflows.
 Repo copies:
 
 ```text
-workflows/hunyuanimage3/hunyuanimage3_base_nf4.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_distil_nf4.json
-workflows/hunyuanimage3/hunyuanimage3_instruct_multifusion_nf4.json
+workflows/hunyuanimage-3/base/original/hunyuanimage3_base_nf4.json
+workflows/hunyuanimage-3/instruct-distil/original/hunyuanimage3_instruct_distil_nf4.json
+workflows/hunyuanimage-3/instruct-distil/original/hunyuanimage3_instruct_multifusion_nf4.json
 ```
 
 Important settings:

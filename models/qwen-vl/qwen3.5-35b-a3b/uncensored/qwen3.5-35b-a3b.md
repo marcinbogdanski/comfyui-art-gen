@@ -52,7 +52,7 @@ The node scans this `LLM/GGUF` location and discovers the model as:
 Repo copies:
 
 ```text
-workflows/qwen35/qwen3.5_35b_vlm_describe.json
+workflows/qwen-vl/qwen3.5-35b-a3b/uncensored/qwen3.5_35b_vlm_describe.json
 ```
 
 This workflow loads an image, sends it through the

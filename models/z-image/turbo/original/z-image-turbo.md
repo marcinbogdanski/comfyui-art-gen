@@ -46,7 +46,7 @@ wget -c \
 Repo copy:
 
 ```text
-workflows/z-image/image_z_image_turbo.json
+workflows/z-image/turbo/original/image_z_image_turbo.json
 ```
 
 Optional LoRAs:

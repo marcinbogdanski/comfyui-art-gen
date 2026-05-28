@@ -49,7 +49,7 @@ wget -c \
 Workflow:
 
 ```text
-workflows/fluxed-up/Fluxed_Up_Civitai_128636099.json
+workflows/flux-1/dev/fluxed-up/Fluxed_Up_Civitai_128636099.json
 ```
 
 The Civitai reference image contains an embedded ComfyUI workflow, but that

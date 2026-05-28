@@ -48,7 +48,7 @@ Use the official `flux2_example.png` workflow image directly, or extract/load th
 Repo copy:
 
 ```text
-workflows/flux2/flux2_example.json
+workflows/flux-2/dev/original/flux2_example.json
 ```
 
 Current important workflow selections:

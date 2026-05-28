@@ -2,7 +2,7 @@
 
 Workflow-specific notes for the Civitai Big Love Klein 2 txt2img/upscale workflow.
 
-Model files are documented in `models/big-love-klein2.md`; this note only covers workflow placement, custom nodes, and operational quirks.
+Model files are documented in `models/flux-2/klein/biglove/big-love-klein2.md`; this note only covers workflow placement, custom nodes, and operational quirks.
 
 ## Workflow Files
 

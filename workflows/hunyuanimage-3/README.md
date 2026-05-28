@@ -40,7 +40,7 @@ Operational notes:
   `vae_tiling=on`, `vae_offload=auto`, and `blocks_to_swap=31`. Single- and
   two-reference Instruct-Distil multi-fusion succeed with those settings.
   `cond_vae_base_size=768` OOMed in conditional VAE encode, and `640` hit a
-  tokenizer/template failure. See `models/hunyuanimage3.md` for the measured
+  tokenizer/template failure. See `models/hunyuanimage-3/hunyuanimage3.md` for the measured
   run details.
 - If Hunyuan errors appear after testing other large models, restart ComfyUI.
   The process can retain tens of GB of VRAM even when idle.
