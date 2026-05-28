@@ -6,9 +6,10 @@ Curated workflow copies from the live ComfyUI workspace:
 /mnt/data/comfyui/user/default/workflows
 ```
 
-Only tested/canonical no-suffix workflow JSON files are copied here. Live GUI
-work files and API prompt graphs remain in ComfyUI and are not copied by
-default.
+Only tested/canonical no-suffix workflow JSON files are copied here. Some are
+copied from the live workspace; current original model baselines can also be
+raw official Comfy-Org workflow templates. Live GUI work files and API prompt
+graphs remain in ComfyUI and are not copied by default.
 
 Suffix convention in the live workspace:
 

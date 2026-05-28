@@ -70,3 +70,5 @@ KSampler:               4 steps, cfg 1, res_multistep, simple
 - The official workflow template is a GUI workflow/subgraph template, not a direct API prompt graph.
 - Tested successfully on the rented 24 GB RTX 4090 with dynamic loading.
 - The test output used the `z-image-turbo` save prefix.
+- API smoke test on 2026-05-28 produced:
+  `/mnt/data/comfyui/output/smoke_z_image_turbo_00001_.png`
