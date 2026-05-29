@@ -8,6 +8,10 @@ Operational preferences:
 - Do not install CUDA Toolkit, PyTorch, ComfyUI, or model dependencies on the host.
 - Persistent ComfyUI data lives under `/mnt/data/comfyui`.
 - Keep model files out of git; document model download commands instead.
+- Hugging Face and Civitai API credentials may be available from `~/.bashrc`
+  (`HF_TOKEN` and `CIVITAI_API_KEY`). Source that file when authenticated model
+  or source-metadata downloads are needed, but never print or commit token
+  values.
 - When searching for models or LoRAs, choose sources in this order:
   1. A link explicitly provided by the user.
   2. The most official or most popular upstream source.
