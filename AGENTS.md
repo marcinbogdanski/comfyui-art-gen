@@ -31,6 +31,9 @@ Operational preferences:
   the `.work.json` file itself. Phrases such as "stage related files" or
   "commit the workflow" mean the canonical no-suffix workflow files and docs,
   not ignored `.work.json` copies.
+- When adding a new model or LoRA with a reproducible reference workflow, first
+  read `models/ADDING_MODEL_OR_LORA.md` and confirm the plan before downloading
+  or editing files, unless the user has already provided an explicit plan.
 
 Image setup:
 
