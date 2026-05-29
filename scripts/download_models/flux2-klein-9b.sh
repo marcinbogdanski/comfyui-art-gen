@@ -14,6 +14,10 @@ wget -c --header="Authorization: Bearer ${HF_TOKEN}" \
   "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-9b-fp8/resolve/main/flux-2-klein-base-9b-fp8.safetensors"
 
 wget -c --header="Authorization: Bearer ${HF_TOKEN}" \
+  -O "${MODELS_DIR}/diffusion_models/flux-2-klein-base-9b.safetensors" \
+  "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-9B/resolve/main/flux-2-klein-base-9b.safetensors"
+
+wget -c --header="Authorization: Bearer ${HF_TOKEN}" \
   -O "${MODELS_DIR}/diffusion_models/flux-2-klein-9b-fp8.safetensors" \
   "https://huggingface.co/black-forest-labs/FLUX.2-klein-9b-fp8/resolve/main/flux-2-klein-9b-fp8.safetensors"
 

@@ -12,6 +12,11 @@ Operational preferences:
   (`HF_TOKEN` and `CIVITAI_API_KEY`). Source that file when authenticated model
   or source-metadata downloads are needed, but never print or commit token
   values.
+- If an authenticated Hugging Face download fails because the token/account has
+  not accepted a model license, gated terms, or access agreement, stop and ask
+  the human to accept access. Provide the exact model page link and do not treat
+  the missing file as a final blocker until the human has had a chance to accept
+  the license.
 - When searching for models or LoRAs, choose sources in this order:
   1. A link explicitly provided by the user.
   2. The most official or most popular upstream source.
@@ -23,8 +28,14 @@ Operational preferences:
 - Do not expose ComfyUI directly to the public internet.
 - Before creating, renaming, or cleaning sidecar/reference files under
   `/mnt/data/comfyui/models`, read
-  `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md`. Those external
+  `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
+  `/mnt/data/comfyui/models/MODEL_SUMMARY.md`. The rules file is authoritative
+  policy; the summary file records current archive state. Those external
   model-folder rules are separate from this repo's workflow rules.
+- After staging model-archive changes and before asking the human for review or
+  committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
+  execute its staged changes checklist against the staged/index version of the
+  files.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track

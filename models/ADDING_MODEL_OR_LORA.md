@@ -12,6 +12,7 @@ Before acting, read:
 - `AGENTS.md`
 - `workflows/README.md`
 - `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md`
+- `/mnt/data/comfyui/models/MODEL_SUMMARY.md`
 
 The control repo and `/mnt/data/comfyui/models` have different jobs. Keep source
 artifacts in the model archive according to its rules, and keep local runnable
@@ -46,6 +47,12 @@ Browse the available source workflows or source images. If there is only one
 usable source workflow, inspect it. If there are multiple image examples, inspect
 the first one first.
 
+When using a workflow-bearing image as the reference, first save or extract the
+exact source artifact that contains the workflow metadata. Use that extracted
+workflow as the source of truth before editing the local simplified workflow. Do
+not rely only on website summary metadata when full workflow metadata is
+available.
+
 Use a source workflow when it meets these requirements:
 
 - it uses the canonical or clearly mapped target model option;
@@ -75,15 +82,22 @@ When requirements are met:
 
 - archive source/reference artifacts under `/mnt/data/comfyui/models` following
   `MODEL_SUMMARY_RULES.md`;
+- after downloading a source/reference image, verify the actual file type from
+  its file header and use the matching extension; do not trust the source URL
+  extension;
 - download required model files into `/mnt/data/comfyui/models`, keeping weights
   out of git and documenting repeatable download commands in this repo when
   useful;
 - create a simplified local workflow in `workflows/` that uses plain nodes where
   practical and produces the selected reference image as closely as practical;
+- diff the exact source workflow against the local workflow while simplifying,
+  and account for generation-affecting differences that remain;
 - preserve exact source prompt, seed, sampler, steps, CFG, dimensions, model
   mapping, VAE/text encoder choices, and negative conditioning where possible;
 - document intentional substitutions, such as local filename mappings or a
   missing source VAE replaced by an available local VAE;
+- include a note for model or LoRA activation keywords, even when the source
+  says no trigger word is required;
 - keep `.work.json` copies local and ignored unless explicitly asked to track
   them.
 
@@ -100,3 +114,8 @@ If the workflow cannot be smoke tested, record the reason and the next action.
 
 After the smoke test, stop for human review unless the user has asked for
 commits or further automation.
+
+After staging model-archive files and before asking the human for review or
+committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
+execute its staged changes checklist against the staged/index version of the
+files.
