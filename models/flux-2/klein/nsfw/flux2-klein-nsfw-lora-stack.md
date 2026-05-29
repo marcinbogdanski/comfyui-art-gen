@@ -18,7 +18,6 @@ workflows/flux-2/klein/nsfw/image_flux2_klein_merge_pornmaster_turbo.json
 workflows/flux-2/klein/nsfw/image_flux2_klein_merge_darkbeast.json
 workflows/flux-2/klein/nsfw/image_flux2_klein_merge_snofs_model.json
 workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_snofs.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_distilled_nsfw.json
 workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_unchained.json
 ```
 
@@ -50,7 +49,6 @@ Downloaded and archived on 2026-05-29:
 diffusion_models/darkBeast_dbkBlitzV15_pruned_bf16.safetensors
 diffusion_models/snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors
 diffusion_models/pornmasterFlux2Klein_v4.safetensors
-loras/Flux Klein - NSFW v2.safetensors
 loras/KLEIN-Unchained-V2.safetensors
 loras/klein_9B_Turbo_r128.safetensors
 text_encoders/qwen_3_8b.safetensors
@@ -100,7 +98,6 @@ uses `flux2-vae.safetensors`.
 | `image_flux2_klein_merge_darkbeast.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
 | `image_flux2_klein_merge_snofs_model.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
 | `image_flux2_klein_lora_base_snofs.json` | `flux-2-klein-base-9b-fp8.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
-| `image_flux2_klein_lora_distilled_nsfw.json` | `flux-2-klein-9b-fp8.safetensors` | `Flux Klein - NSFW v2.safetensors` @ 0.7 | `flux2-vae.safetensors` | 8 | 4-8 | 1 | 1-1.5 |
 | `image_flux2_klein_lora_base_unchained.json` | `flux-2-klein-base-9b-fp8.safetensors` | `KLEIN-Unchained-V2.safetensors` @ 1.0 | `flux2-vae.safetensors` | 10 | 6-20 | 1 | 1 |
 
 ## Smoke Tests
@@ -115,7 +112,6 @@ above.
 | Dark Beast DBK BlitZ V1.5 | pass | `/mnt/data/comfyui/output/flux2_klein_darkbeast_smoke_00001_.png` |
 | SNOFS v1.4 Distilled checkpoint | pass | `/mnt/data/comfyui/output/flux2_klein_snofs_model_smoke_00001_.png` |
 | Base + SNOFS Klein LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_base_snofs_lora_smoke_00001_.png` |
-| Distilled + no-face-change LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_distilled_nsfw_lora_smoke_00001_.png` |
 | Base + Unchained LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_base_unchained_lora_smoke_00001_.png` |
 
 No new custom nodes were required for the text-to-image workflow.
