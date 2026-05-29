@@ -92,13 +92,24 @@ mapped locally to `darkBeast_dbkBlitzV15_pruned_bf16.safetensors`. The source
 VAE name `flux2-klein-vae.safetensors` is not present locally, so the workflow
 uses `flux2-vae.safetensors`.
 
+KLEIN Unchained XXX v2 uses reference image
+`https://civitai.red/images/123484344`. Its source metadata names
+`Flux/flux-2-klein-9b.safetensors`, mapped locally to
+`flux-2-klein-9b.safetensors`, and source-local LoRA
+`KLEIN/Unchained-V2-64_20260307_141311.safetensors`, mapped locally to
+`KLEIN-Unchained-V2.safetensors`. Civitai version `2753532` has an empty
+`trainedWords` list, so no activation keyword is required. The simplified
+workflow uses the Civitai display prompt/source workflow widget text for the
+wooden-table example because the embedded API prompt contains a different
+prompt-library value.
+
 | Workflow | UNET model | LoRA | VAE | Default steps | Steps range | Default CFG | CFG range |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `image_flux2_klein_merge_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
 | `image_flux2_klein_merge_darkbeast.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
 | `image_flux2_klein_merge_snofs_model.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
 | `image_flux2_klein_lora_base_snofs.json` | `flux-2-klein-base-9b-fp8.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
-| `image_flux2_klein_lora_base_unchained.json` | `flux-2-klein-base-9b-fp8.safetensors` | `KLEIN-Unchained-V2.safetensors` @ 1.0 | `flux2-vae.safetensors` | 10 | 6-20 | 1 | 1 |
+| `image_flux2_klein_lora_base_unchained.json` | `flux-2-klein-9b.safetensors` | `KLEIN-Unchained-V2.safetensors` @ 1.0 | `flux2-vae.safetensors` | 20 | 20 | 1 | 1 |
 
 ## Smoke Tests
 
