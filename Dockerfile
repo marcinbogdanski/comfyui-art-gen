@@ -58,7 +58,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         pixeloe \
         "pillow>=10.3.0" \
         protobuf \
-        pywavelets \
+        "PyWavelets>=1.8.0" \
         pyloudnorm \
         rembg \
         "sam-2 @ git+https://github.com/facebookresearch/sam2" \

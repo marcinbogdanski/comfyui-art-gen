@@ -26,3 +26,7 @@
   Use mirrors/forks only after verifying why the canonical source is unsuitable,
   and record hash/source equivalence if keeping a workflow-compatible local
   filename.
+- For ComfyUI Python/custom-node dependencies, make Dockerfile changes and
+  rebuild/recreate the affected container instead of relying on packages
+  installed into a live container. Live-container installs are acceptable only
+  as a temporary diagnosis step and must be reconciled back into the image.
