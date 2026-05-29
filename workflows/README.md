@@ -17,5 +17,14 @@ Suffix convention in the live workspace:
 - `.work.json`: editable GUI work copy
 - `.api.json`: executable API prompt graph for `POST /prompt`
 
+Tracking convention:
+
+- Track canonical no-suffix `.json` workflows.
+- Keep `.work.json` files as ignored local GUI work copies. They may be copied
+  or synced locally, but they should not be staged or committed unless a request
+  explicitly says to track the `.work.json` file itself.
+- Do not interpret broad requests like "stage related workflow files" as
+  permission to force-add ignored `.work.json` files.
+
 Model files and generated outputs stay under `/mnt/data/comfyui` and are not
 stored in git.

@@ -78,6 +78,14 @@ PornMaster + Turbo LoRA uses reference image
 `flux2\PornMaster_flux2_klein_9b_base_fp8_V4.safetensors`, mapped locally to
 `pornmasterFlux2Klein_v4.safetensors`.
 
+SNOFS v1.4 Distilled uses reference image
+`https://civitai.red/images/132173008`. Its source metadata names
+`Snofs_1_4_KleinDistilled.safetensors`, mapped locally to
+`snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors`. The selected source
+workflow is pure text-to-image: no img2img input, no extra LoRAs, empty
+negative prompt, `1024 x 1552`, Euler, 8 steps, CFG 1, seed
+`85554630378179`.
+
 | Workflow | UNET model | LoRA | VAE | Default steps | Steps range | Default CFG | CFG range |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `image_flux2_klein_merge_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |

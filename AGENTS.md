@@ -25,6 +25,12 @@ Operational preferences:
   `/mnt/data/comfyui/models`, read
   `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md`. Those external
   model-folder rules are separate from this repo's workflow rules.
+- Workflow `.work.json` files are local GUI work copies. It is fine to create
+  or sync them in the working tree when requested, but do not stage, force-add,
+  track, or commit `.work.json` files unless the user explicitly asks to track
+  the `.work.json` file itself. Phrases such as "stage related files" or
+  "commit the workflow" mean the canonical no-suffix workflow files and docs,
+  not ignored `.work.json` copies.
 
 Image setup:
 
