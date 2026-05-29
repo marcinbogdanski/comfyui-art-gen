@@ -21,6 +21,12 @@
   `/mnt/data/comfyui/models/...` holds weights plus sidecar `.md` and original
   source/verification artifacts only. Do not put repo `.work.json` convention
   files in model sidecar folders.
+- For Flux/ComfyUI model work, use exact filenames and paths in discussion and
+  docs. Avoid shorthand such as "qwen3", "base", "mixed", or "original" unless
+  the exact file is defined in the same sentence. Before touching or staging
+  model archive files, reread `AGENTS.md` and
+  `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md`; the archive stores
+  upstream/source reference artifacts only, not adapted control-repo workflows.
 - When downloading model weights, prefer the canonical or most popular upstream
   source first, especially when Marcin names or hints at one such as Unsloth.
   Use mirrors/forks only after verifying why the canonical source is unsuitable,
