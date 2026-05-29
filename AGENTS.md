@@ -30,6 +30,11 @@ Image setup:
 
 - Base image is the official PyTorch CUDA runtime image.
 - Switch from `runtime` to `devel` only if custom nodes need native/CUDA compilation.
+- Permanent Python/custom-node dependencies belong in the Dockerfile and must be
+  tested by rebuilding the image and restarting/recreating the affected
+  container. Installing into a running container is allowed for quick diagnosis
+  or smoke tests, but reconcile successful dependency changes back into the
+  Dockerfile.
 
 ## Memory files
 
