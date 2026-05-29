@@ -47,7 +47,7 @@ All LoRA nodes are bypassed by default. Un-bypass one or two at a time.
 Downloaded and archived on 2026-05-29:
 
 ```text
-diffusion_models/darkBeast_dbkBlitzV15.safetensors
+diffusion_models/darkBeast_dbkBlitzV15_pruned_bf16.safetensors
 diffusion_models/snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors
 diffusion_models/pornmasterFlux2Klein_v4.safetensors
 loras/Flux Klein - NSFW v2.safetensors
@@ -86,10 +86,18 @@ workflow is pure text-to-image: no img2img input, no extra LoRAs, empty
 negative prompt, `1024 x 1552`, Euler, 8 steps, CFG 1, seed
 `85554630378179`.
 
+Dark Beast DBK BlitZ V1.5 uses reference image
+`https://civitai.red/images/120314989`. The local reference tracks only the
+initial text-to-image generation path, not the SeedVR2 upscale stage. Its source
+metadata names `DarkBeastKlein-v2-Blitz-9b-BF16-single-transformer.safetensors`,
+mapped locally to `darkBeast_dbkBlitzV15_pruned_bf16.safetensors`. The source
+VAE name `flux2-klein-vae.safetensors` is not present locally, so the workflow
+uses `flux2-vae.safetensors`.
+
 | Workflow | UNET model | LoRA | VAE | Default steps | Steps range | Default CFG | CFG range |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `image_flux2_klein_merge_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
-| `image_flux2_klein_merge_darkbeast.json` | `darkBeast_dbkBlitzV15.safetensors` | none | `flux2-vae.safetensors` | 5 | 5-10 | 1 | 1 |
+| `image_flux2_klein_merge_darkbeast.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
 | `image_flux2_klein_merge_snofs_model.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
 | `image_flux2_klein_lora_base_snofs.json` | `flux-2-klein-base-9b-fp8.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
 | `image_flux2_klein_lora_distilled_nsfw.json` | `flux-2-klein-9b-fp8.safetensors` | `Flux Klein - NSFW v2.safetensors` @ 0.7 | `flux2-vae.safetensors` | 8 | 4-8 | 1 | 1-1.5 |
