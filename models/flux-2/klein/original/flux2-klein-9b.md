@@ -60,16 +60,27 @@ Repo copies:
 
 ```text
 workflows/flux-2/klein/original/image_flux2_text_to_image_9b.json
+workflows/flux-2/klein/original/image_flux2_text_to_image_9b_distilled.json
 workflows/flux-2/klein/original/image_flux2_klein_image_edit_9b_base.json
 workflows/flux-2/klein/original/image_flux2_klein_image_edit_9b_distilled.json
 ```
 
-Current important 9B text-to-image selections:
+Current important 9B base text-to-image selections:
 
 ```text
 UNETLoader:  flux-2-klein-base-9b-fp8.safetensors
 CLIPLoader:  qwen_3_8b_fp8mixed.safetensors
 VAELoader:   full_encoder_small_decoder.safetensors
+```
+
+Current important 9B distilled text-to-image selections:
+
+```text
+UNETLoader:      flux-2-klein-9b-fp8.safetensors
+CLIPLoader:      qwen_3_8b_fp8mixed.safetensors
+VAELoader:       full_encoder_small_decoder.safetensors
+Flux2Scheduler:  4 steps
+CFGGuider:       1 CFG
 ```
 
 ## Current Local Status
@@ -91,8 +102,8 @@ API smoke test on 2026-05-28 produced:
 ```
 
 The smoke test used the official 9B text-to-image path with
-`flux-2-klein-base-9b-fp8.safetensors`. A second API smoke test loaded
-`flux-2-klein-9b-fp8.safetensors` to verify the distilled diffusion file.
+`flux-2-klein-base-9b-fp8.safetensors`. A second API smoke test used the same
+graph shape with `flux-2-klein-9b-fp8.safetensors` and distilled settings.
 
 ## Sources
 
