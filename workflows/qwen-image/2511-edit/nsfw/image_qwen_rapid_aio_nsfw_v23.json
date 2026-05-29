@@ -49,7 +49,7 @@
         "Node name for S&R": "CheckpointLoaderSimple"
       },
       "widgets_values": [
-        "Qwen/Qwen-Rapid-AIO-NSFW-v23.safetensors"
+        "Qwen-Rapid-AIO-NSFW-v23.safetensors"
       ]
     },
     {
