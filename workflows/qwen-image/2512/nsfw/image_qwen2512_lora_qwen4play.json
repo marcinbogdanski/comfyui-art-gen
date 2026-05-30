@@ -1,0 +1,726 @@
+{
+  "id": "qwen4play-2512-reference-118102095-local",
+  "revision": 0,
+  "last_node_id": 107,
+  "last_link_id": 213,
+  "nodes": [
+    {
+      "id": 37,
+      "type": "UNETLoader",
+      "pos": [
+        -900,
+        20
+      ],
+      "size": [
+        330,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            205
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "qwen_image_2512_bf16.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 38,
+      "type": "CLIPLoader",
+      "pos": [
+        -900,
+        170
+      ],
+      "size": [
+        330,
+        110
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            206,
+            200
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_2.5_vl_7b.safetensors",
+        "qwen_image",
+        "default"
+      ]
+    },
+    {
+      "id": 101,
+      "type": "Lora Loader Stack (rgthree)",
+      "pos": [
+        -500,
+        20
+      ],
+      "size": [
+        330,
+        250
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 205
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 206
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            203
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            207
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "2b9eb36d3e1741e88dbfccade0e08137f7fa2bfb",
+        "Show Strengths": "Single Strength"
+      },
+      "widgets_values": [
+        "Qwen4Play-2512.1_e10.safetensors",
+        1.0,
+        "None",
+        0.0,
+        "None",
+        0.0,
+        "None",
+        0.0
+      ]
+    },
+    {
+      "id": 73,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -100,
+        20
+      ],
+      "size": [
+        330,
+        120
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 203
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            198
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "Qwen-Image-2512-Lightning-8steps-V1.0-fp32.safetensors",
+        1.0
+      ]
+    },
+    {
+      "id": 66,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        280,
+        20
+      ],
+      "size": [
+        250,
+        80
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 198
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            125
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3.1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -500,
+        -500
+      ],
+      "size": [
+        620,
+        390
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 207
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            46
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "analog film photo a wide angle cinematic view showing A fully nude beautiful Russian girl sitting in a seat on a Shinkansen bullet train in Tokyo, she smiles for the viewer, her breasts and vagina are exposed, her left leg is bent at the knee and her foot is resting on the seat,\n\nThe train window beside her is fogged over with condensation, the outside temperature contrasting with the warm interior. Written clearly into the misted glass are the words \"QWEN 4 PLAY 2512\", traced by a fingertip and slightly streaked where droplets have begun to run downward. Beyond the fogged window, Tokyo rushes past in a cyberpunk glow—towering buildings layered with neon signage in cyan, magenta, and electric blue, holographic advertisements flickering through rain-soaked air. Light trails smear horizontally from the train’s speed, blending reflections of neon into the glass so that color spills faintly across Yukiko’s profile. The scene balances motion and stillness: the quiet interior of the bullet train against the relentless, luminous sprawl of a futuristic city sliding by outside.\n\n17mm, sharp focus,  . faded film, desaturated, 35mm photo, grainy, vignette, vintage, Kodachrome, Lomography, stained, highly detailed, found footage"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        160,
+        -500
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 200
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            52
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "pen, marker, ink, painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured"
+      ]
+    },
+    {
+      "id": 58,
+      "type": "EmptySD3LatentImage",
+      "pos": [
+        280,
+        150
+      ],
+      "size": [
+        230,
+        120
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            107
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "EmptySD3LatentImage"
+      },
+      "widgets_values": [
+        1280,
+        2048,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        640,
+        -120
+      ],
+      "size": [
+        300,
+        340
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 125
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 46
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 52
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 107
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            212
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        528220662126503,
+        "fixed",
+        8,
+        1.1,
+        "euler",
+        "beta57",
+        1.0
+      ]
+    },
+    {
+      "id": 39,
+      "type": "VAELoader",
+      "pos": [
+        640,
+        280
+      ],
+      "size": [
+        280,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            211
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 106,
+      "type": "VAEDecodeTiled",
+      "pos": [
+        1020,
+        70
+      ],
+      "size": [
+        225,
+        80
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 212
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 211
+        },
+        {
+          "name": "tile_size",
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "overlap",
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "temporal_size",
+          "type": "INT",
+          "link": null
+        },
+        {
+          "name": "temporal_overlap",
+          "type": "INT",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            213
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "VAEDecodeTiled"
+      },
+      "widgets_values": [
+        512,
+        64,
+        4096,
+        64
+      ]
+    },
+    {
+      "id": 60,
+      "type": "SaveImage",
+      "pos": [
+        1330,
+        20
+      ],
+      "size": [
+        480,
+        500
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 213
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "Qwen-Image-2512-qwen4play-118102095"
+      ]
+    },
+    {
+      "id": 107,
+      "type": "Note",
+      "pos": [
+        -940,
+        340
+      ],
+      "size": [
+        470,
+        180
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.48",
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "Reference image: https://civitai.red/images/118102095\nQwen4Play LoRA strength: 1.0\nTrigger words optional. Source examples include d0gg13, m15510n4ry, r3v3rs3_c0wg1rl, bl0wj0b."
+      ]
+    }
+  ],
+  "links": [
+    [
+      205,
+      37,
+      0,
+      101,
+      0,
+      "MODEL"
+    ],
+    [
+      206,
+      38,
+      0,
+      101,
+      1,
+      "CLIP"
+    ],
+    [
+      203,
+      101,
+      0,
+      73,
+      0,
+      "MODEL"
+    ],
+    [
+      198,
+      73,
+      0,
+      66,
+      0,
+      "MODEL"
+    ],
+    [
+      125,
+      66,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      207,
+      101,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      200,
+      38,
+      0,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      46,
+      6,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      52,
+      7,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      107,
+      58,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      212,
+      3,
+      0,
+      106,
+      0,
+      "LATENT"
+    ],
+    [
+      211,
+      39,
+      0,
+      106,
+      1,
+      "VAE"
+    ],
+    [
+      213,
+      106,
+      0,
+      60,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Local model substitutions",
+      "bounding": [
+        -940,
+        -30,
+        470,
+        340
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Reference prompt and sampling",
+      "bounding": [
+        -540,
+        -560,
+        1510,
+        850
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Decode and save",
+      "bounding": [
+        1000,
+        -30,
+        840,
+        580
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.85,
+      "offset": [
+        980,
+        560
+      ]
+    },
+    "frontendVersion": "1.36.14",
+    "source_reference": {
+      "image": "https://civitai.red/images/118102095",
+      "source_unet": "QWEN\\qwen_image_2512_bf16.safetensors",
+      "local_unet": "qwen_image_2512_bf16.safetensors",
+      "source_clip": "qwen_2.5_vl_7b.safetensors",
+      "local_clip": "qwen_2.5_vl_7b.safetensors",
+      "source_lightning_lora": "QWEN-2512\\Qwen-Image-2512-Lightning-8steps-V1.0-fp32.safetensors",
+      "local_lightning_lora": "Qwen-Image-2512-Lightning-8steps-V1.0-fp32.safetensors",
+      "source_decode": "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors via VAEUtils_VAEDecodeTiled",
+      "local_decode": "qwen_image_vae.safetensors via VAEDecodeTiled; source Wan2.1 VAE requires VAEUtils nodes not available locally"
+    }
+  },
+  "version": 0.4
+}
