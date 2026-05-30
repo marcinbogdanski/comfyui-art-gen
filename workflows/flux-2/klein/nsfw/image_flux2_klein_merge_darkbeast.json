@@ -1,7 +1,7 @@
 {
   "id": "flux2-klein-darkbeast",
   "revision": 0,
-  "last_node_id": 17,
+  "last_node_id": 18,
   "last_link_id": 17,
   "nodes": [
     {
@@ -674,6 +674,30 @@
       "widgets_values": [
         "flux2_klein_darkbeast"
       ]
+    },
+    {
+      "id": 18,
+      "type": "MarkdownNote",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        520,
+        180
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Trigger Words",
+      "properties": {},
+      "widgets_values": [
+        "## Trigger Words\n\n- darkBeast_dbkBlitzV15_pruned_bf16.safetensors (checkpoint): none\n\nNo trigger word required."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [

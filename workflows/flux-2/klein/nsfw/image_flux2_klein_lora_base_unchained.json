@@ -1,7 +1,7 @@
 {
   "id": "flux2-klein-base-unchained-lora",
   "revision": 0,
-  "last_node_id": 17,
+  "last_node_id": 18,
   "last_link_id": 16,
   "nodes": [
     {
@@ -744,6 +744,30 @@
       "widgets_values": [
         "flux2_klein_base_unchained_lora_ref_123484344"
       ]
+    },
+    {
+      "id": 18,
+      "type": "MarkdownNote",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        520,
+        180
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Trigger Words",
+      "properties": {},
+      "widgets_values": [
+        "## Trigger Words\n\n- KLEIN-Unchained-V2.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords)."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
