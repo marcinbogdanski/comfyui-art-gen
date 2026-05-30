@@ -90,6 +90,11 @@ When requirements are met:
   useful;
 - create a simplified local workflow in `workflows/` that uses plain nodes where
   practical and produces the selected reference image as closely as practical;
+- save canonical workflow `.json` files pretty-printed with 2-space indentation
+  (the ComfyUI GUI "Save" default, matching the rest of `workflows/`). When
+  editing an existing workflow, preserve its formatting and change only the
+  needed nodes; do not `jq`/reserialize a whole workflow just for a small edit,
+  as that produces noisy diffs;
 - diff the exact source workflow against the local workflow while simplifying,
   and account for generation-affecting differences that remain;
 - preserve exact source prompt, seed, sampler, steps, CFG, dimensions, model
