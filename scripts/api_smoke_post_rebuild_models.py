@@ -352,7 +352,7 @@ TESTS = [
     ("z_image_base_bf16", lambda: z_image_prompt("z_image_bf16.safetensors", "smoke_rebuild_z_image_base_bf16", False), 900),
     ("z_image_base_gguf_ogre_stack", lambda: z_image_prompt("z-image-Q8_0.gguf", "smoke_rebuild_z_image_base_gguf", True, [("128 bean effect 3_000101000.safetensors", 0.2), ("ZIB-Image-Fun-Lora-Distill-2603_UDCAI_ComfyUI.safetensors", 0.2)]), 900),
     ("qwen_image_2512_lightning", lambda: qwen_image_prompt("qwen_image_2512_fp8_e4m3fn.safetensors", "smoke_rebuild_qwen_2512_lightning", "Qwen-Image-2512-Lightning-4steps-V1.0-fp32.safetensors"), 900),
-    ("jib_mix_qwen_2512", lambda: qwen_image_prompt("jibMixQwen_v60.safetensors", "smoke_rebuild_jib_mix_qwen", "jib_qwen_fix_000002750.safetensors"), 900),
+    ("jib_mix_qwen_2512", lambda: qwen_image_prompt("jibMixQwen_v60.safetensors", "smoke_rebuild_jib_mix_qwen"), 900),
     ("qwen_image_edit_2511", lambda: qwen_image_prompt("qwen_image_edit_2511_bf16.safetensors", "smoke_rebuild_qwen_edit_2511", "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors", True), 900),
     ("qwen_rapid_aio_v23", lambda: qwen_rapid_prompt("smoke_rebuild_qwen_rapid_aio_v23"), 900),
 ]

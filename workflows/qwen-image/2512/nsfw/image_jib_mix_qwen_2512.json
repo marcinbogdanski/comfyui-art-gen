@@ -16,7 +16,7 @@
         550
       ],
       "flags": {},
-      "order": 22,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -71,7 +71,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 21,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -287,7 +287,7 @@
         106.65625
       ],
       "flags": {},
-      "order": 8,
+      "order": 2,
       "mode": 0,
       "inputs": [
         {
@@ -356,7 +356,7 @@
         168
       ],
       "flags": {},
-      "order": 9,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -432,7 +432,7 @@
         420
       ],
       "flags": {},
-      "order": 16,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -498,7 +498,7 @@
         170
       ],
       "flags": {},
-      "order": 17,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -564,7 +564,7 @@
         341.3125
       ],
       "flags": {},
-      "order": 19,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -693,10 +693,10 @@
       ],
       "size": [
         320,
-        220
+        250
       ],
       "flags": {},
-      "order": 18,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -704,6 +704,78 @@
           "name": "conditioning",
           "type": "CONDITIONING",
           "link": 5
+        },
+        {
+          "localized_name": "randomize_percent",
+          "name": "randomize_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "randomize_percent"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength",
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "noise_insert",
+          "name": "noise_insert",
+          "type": "COMBO",
+          "widget": {
+            "name": "noise_insert"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps_switchover_percent",
+          "name": "steps_switchover_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "steps_switchover_percent"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "mask_starts_at",
+          "name": "mask_starts_at",
+          "type": "COMBO",
+          "widget": {
+            "name": "mask_starts_at"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "mask_percent",
+          "name": "mask_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "mask_percent"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "log_to_console",
+          "name": "log_to_console",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "log_to_console"
+          },
+          "link": null
         }
       ],
       "outputs": [
@@ -748,18 +820,48 @@
       ]
     },
     {
+      "id": 303,
+      "type": "MarkdownNote",
+      "pos": [
+        -879,
+        300
+      ],
+      "size": [
+        300,
+        300
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model / Reference",
+      "properties": {
+        "ue_properties": {
+          "version": "7.7",
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "## Jib Mix Qwen v6.0\n\nNo trigger word documented."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
       "id": 94,
       "type": "MarkdownNote",
       "pos": [
-        -212.0993121020863,
-        1035.715997561679
+        -394.97724408738037,
+        357.2668845102084
       ],
       "size": [
         270,
         264.734375
       ],
       "flags": {},
-      "order": 2,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -776,36 +878,6 @@
       ],
       "color": "#222",
       "bgcolor": "#000"
-    },
-    {
-      "id": 303,
-      "type": "MarkdownNote",
-      "pos": [
-        -879.0,
-        300.0
-      ],
-      "size": [
-        300,
-        300
-      ],
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Model / Reference",
-      "properties": {
-        "ue_properties": {
-          "version": "7.7",
-          "widget_ue_connectable": {},
-          "input_ue_unconnectable": {}
-        }
-      },
-      "widgets_values": [
-        "## Jib Mix Qwen v6.0 (base, no LoRA)\n\n- diffusion model: `jibMixQwen_v60.safetensors`\n- no trigger word (merged checkpoint)\n- v6 is less NSFW-capable than v5 unless paired with the Jib nudity-fixer LoRA\n\n**Reference image:** civitai.com/images/123554279 (embeds a full workflow).\n\nReproduction of the **base generation path**, matching both author sources (the\nreel image's embedded graph and the model-page workflow `jibMixQwen_v60.json`):\nres_multistep / simple / 20 steps / CFG 4 / seed 671 / 1080x1344, qwen 2.5 VL\ntext encoder (CLIPLoader type `wan`, as the source uses), qwen image VAE. The\nauthor applies **no** ModelSamplingAuraFlow, so neither do we.\n\n**Custom-node dependency:** `SeedVarianceEnhancer` perturbs the positive\nconditioning on the early steps and is what produces the reference composition;\nwithout it the pose is completely different. Install\ngithub.com/ChangeTheConstants/SeedVarianceEnhancer (pinned to **v2.1**, the\nclosest tag to the source's 2.0.0 seed behavior; v2.2+ changed the RNG). Params\nmatch the source: randomize 50 / strength 12 / noise on beginning steps /\nswitchover 20 / seed 387224628684749 / mask beginning 0.\n\nSubstitutions (plain-node, no output change): KSamplerAdvanced (full denoise) ->\nKSampler; Image Saver -> SaveImage; CR Aspect Ratio -> EmptySD3LatentImage;\nText to Conditioning -> CLIPTextEncode; source UNET `Jib_Mix_Qwen-Image_V6_H` ->\nlocal `jibMixQwen_v60.safetensors`.\n\nNot reproduced (so output is close but not pixel-identical): `PathchSageAttentionKJ`\n(SageAttention; the sageattn kernel is not installed and needs a CUDA build) and\nall postprocessing (latent upscale, ClownsharKSampler refine, Wan-VAE tiled\ndecode, ColorMatch). These affect detail/precision, not the pose."
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -894,10 +966,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.85,
+      "scale": 0.6386175807663411,
       "offset": [
-        900,
-        650
+        2024.4958455882347,
+        790.8333455882353
       ]
     },
     "frontendVersion": "1.42.10",

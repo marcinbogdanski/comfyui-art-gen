@@ -340,7 +340,7 @@
         }
       },
       "widgets_values": [
-        "Optional Qwen NSFW LoRAs for the rgthree LoRA stack:\n\n- jib_qwen_fix_000002750.safetensors\n- Qwen_Snofs_1_3.safetensors\n- qwen_MCNL_v1.0.safetensors\n- Qwen4Play-2512.1_e10.safetensors\n\nUse None to disable a slot. Keep only one broad NSFW LoRA enabled at first."
+        "Optional Qwen NSFW LoRAs for the rgthree LoRA stack:\n\n- Qwen_Snofs_1_3.safetensors\n- qwen_MCNL_v1.0.safetensors\n- Qwen4Play-2512.1_e10.safetensors\n\nUse None to disable a slot. Keep only one broad NSFW LoRA enabled at first."
       ],
       "color": "#432",
       "bgcolor": "#653"
@@ -1390,8 +1390,8 @@
         0.5,
         "Qwen4Play-2512.1_e10.safetensors",
         0.5,
-        "jib_qwen_fix_000002750.safetensors",
-        0.7
+        "None",
+        0.0
       ]
     },
     {
@@ -1412,7 +1412,7 @@
       "outputs": [],
       "properties": {},
       "widgets_values": [
-        "So the practical presets are:\n\n- Base Qwen + SNOFS: 0.7\n- Base Qwen + Qwen4Play: 0.7-0.8\n- Base Qwen + MCNL: 0.5\n- Jib Mix + Jib Fix: 0.6-0.7, 20 / CFG 4 / res_multistep / simple\n- Jib Mix + SNOFS: 0.4\n- Jib Mix + Qwen4Play: 0.6\n- Two-LoRA mix: keep combined strength conservative.\n"
+        "So the practical presets are:\n\n- Base Qwen + SNOFS: 0.7\n- Base Qwen + Qwen4Play: 0.7-0.8\n- Base Qwen + MCNL: 0.5\n- Jib Mix + SNOFS: 0.4\n- Jib Mix + Qwen4Play: 0.6\n- Two-LoRA mix: keep combined strength conservative.\n"
       ],
       "color": "#432",
       "bgcolor": "#653"
