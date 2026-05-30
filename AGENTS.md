@@ -108,6 +108,15 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - Put the review instructions in a prompt file under `/tmp` and make the prompt
   explicitly audit-only: do not edit, write, stage, unstage, commit, delete, or
   clean files.
+- For model or LoRA readiness audits, ask Claude to start from the repo roots,
+  read this repo's `AGENTS.md` and the companion archive's
+  `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
+  `/mnt/data/comfyui/models/MODEL_SUMMARY.md`, then discover the changed,
+  staged, unstaged, and untracked scope itself with `git -C ... status` and
+  diffs. Do not give Claude a curated file list to merely confirm.
+- In those Claude review prompts, explicitly demand extreme attention to detail:
+  every filename, repo boundary, sidecar reference, staged file, untracked file,
+  and instruction source must be checked literally, not skimmed or assumed.
 - Use `--output-format stream-json` for review/sub-agent checks so progress is
   visible while the check runs. It requires `--verbose` and produces noisy
   output; summarize the final verdict back to the human.
