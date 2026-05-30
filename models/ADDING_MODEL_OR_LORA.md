@@ -18,12 +18,82 @@ The control repo and `/mnt/data/comfyui/models` have different jobs. Keep source
 artifacts in the model archive according to its rules, and keep local runnable
 workflow references in this repo.
 
-## Start With A Plan
+## Start With Research Only
 
-When asked to add a model or LoRA, first familiarize yourself with the relevant
-instructions and source pages. Then report whether you have enough information
-and give a short plan. Do not begin downloads or file edits until the plan is
-clear, unless the user already gave an explicit implementation plan.
+When asked to add a model or LoRA from only a URL or a loose target, start with
+a research-only phase. In this phase, read the relevant instructions and source
+pages, inspect available metadata/workflows, and identify likely local scope.
+Do not download weights, create sidecars, edit workflows, rename files, delete
+files, stage files, or commit.
+
+Temporary files under `/tmp` are acceptable for inspecting source metadata or
+downloaded reference artifacts during research. Do not create durable repo files
+or model-archive files until the research plan is accepted or the user gives an
+explicit implementation instruction.
+
+End the research phase with a concise proposed plan and scope manifest:
+
+```text
+Candidate:
+- URL:
+- Model or LoRA name:
+- Exact version:
+- Base model:
+- Official/source page:
+- Best source image or workflow:
+- Has embedded workflow metadata:
+- Extra models or LoRAs required:
+- Local files likely needed:
+- Proposed canonical workflow path:
+- Proposed archive sidecars:
+- Risks or ambiguities:
+
+Proposed scope:
+control repo:
+- ...
+
+model archive:
+- ...
+
+Out of scope:
+- ...
+```
+
+The scope section should be concrete enough to guide staging and review. Include
+shared-file hunk limits and explicit exclusions when nearby work may exist. For
+example:
+
+```text
+TASK: Add MCNL original Qwen workflow
+
+IN SCOPE
+control repo:
+- models/qwen-image/base/nsfw/qwen-mcnl.md
+- workflows/qwen-image/base/nsfw/image_qwen_lora_mcnl.json
+- scripts/download_models/qwen-image.sh
+
+model archive:
+- diffusion_models/qwen_image_fp8_e4m3fn.md
+- diffusion_models/qwen_image_fp8_e4m3fn.html
+- diffusion_models/qwen_image_fp8_e4m3fn.json
+- loras/qwen_MCNL_v1.0.md
+- loras/qwen_MCNL_v1.0.png
+- MODEL_SUMMARY.md, only MCNL/Qwen FP8 hunks
+- .gitignore, only qwen_image_fp8_e4m3fn weight ignore
+
+OUT OF SCOPE
+- SNOFS
+- Qwen4Play
+- `.work.json`
+- fallback workflows
+- memory unless explicitly requested
+- any weights in git
+```
+
+Implementation may begin only after this proposed scope is accepted, modified,
+or superseded by a clear user instruction. If the user already provides an
+explicit implementation plan, follow it, but still keep edits and staging within
+that stated scope.
 
 ## Source Selection
 
