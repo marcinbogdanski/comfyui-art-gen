@@ -2,6 +2,12 @@
 
 This repo manages a Docker-based ComfyUI server for host `x399`.
 
+## Asking questions
+
+- Never use any "ask the user a question" interactive/modal tool, whatever it is
+  called in the current harness (e.g. `AskUserQuestion` and any renamed or
+  equivalent successor). Always ask questions as plain text in the chat instead.
+
 Operational preferences:
 
 - Use manual `docker run --rm -it` via `./run_comfyui.sh`; do not introduce Docker Compose unless requested.
