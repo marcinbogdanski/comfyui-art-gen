@@ -3,15 +3,9 @@
 Local text-to-image workflow for Flux.2 Klein-family NSFW checkpoints and
 LoRAs.
 
-## Workflow
+## Workflows
 
-Repo copy:
-
-```text
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_stack.json
-```
-
-Reference-specific copies:
+Reference-specific workflow copies:
 
 ```text
 workflows/flux-2/klein/nsfw/image_flux2_klein_merge_pornmaster_turbo.json
@@ -26,7 +20,7 @@ text-to-image graph:
 
 ```text
 UNETLoader
-optional LoraLoaderModelOnly chain
+optional LoraLoaderModelOnly
 CLIPLoader
 VAELoader
 CLIPTextEncode
@@ -38,8 +32,6 @@ SamplerCustomAdvanced
 VAEDecode
 SaveImage
 ```
-
-All LoRA nodes are bypassed by default. Un-bypass one or two at a time.
 
 ## Models
 
