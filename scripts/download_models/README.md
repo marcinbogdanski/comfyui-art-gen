@@ -13,6 +13,7 @@ Run one script at a time:
 ```bash
 scripts/download_models/z-image-turbo.sh
 scripts/download_models/z-image-base.sh
+scripts/download_models/qwen-image.sh
 scripts/download_models/qwen-image-2512.sh
 scripts/download_models/qwen-image-edit-2511.sh
 scripts/download_models/hunyuanimage3.sh
