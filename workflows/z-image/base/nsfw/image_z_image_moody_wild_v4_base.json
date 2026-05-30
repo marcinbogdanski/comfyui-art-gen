@@ -1,0 +1,674 @@
+{
+  "id": "6a531ce9-73d5-46ce-a678-9eaf9eb2d5a1",
+  "revision": 0,
+  "last_node_id": 13,
+  "last_link_id": 15,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        -900,
+        -220
+      ],
+      "size": [
+        340,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            5,
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "moodyWildMixZIBZID_v40BASE40STEPSCFG4_fp16_full.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        -900,
+        -70
+      ],
+      "size": [
+        340,
+        142
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1,
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "qwen_3_4b.safetensors",
+        "lumina2",
+        "default"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        -900,
+        150
+      ],
+      "size": [
+        340,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -510,
+        -220
+      ],
+      "size": [
+        520,
+        360
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            3,
+            4
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "游戏厅抓娃娃机旁\n\n视觉风格：抓娃娃机内部的彩色射灯+闪光灯，画面像游乐园万花筒。\n\n少女侧靠在抓娃娃机的玻璃上，隔着玻璃能看到里面堆满的毛绒玩具。\n\n她全身只穿一条蕾丝丁字裤（后边是一根细线），上身全裸。她故意把一侧乳房贴在冰凉的玻璃上，乳头被玻璃压扁，乳晕周围起了一层鸡皮疙瘩。另一侧乳房自由垂着。她岔开腿站着，丁字裤前面只有一小块倒三角蕾丝，根本挡不住，从侧面能看到光洁的阴阜隆起。她对着镜头微笑，眼睛又大又亮，嘴角带笑，像在说“你抓到我就跟我走”。"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -510,
+        190
+      ],
+      "size": [
+        520,
+        180
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6,
+            7
+          ]
+        }
+      ],
+      "title": "Negative Prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "泛黄，模糊，低分辨率，低质量图像，诡异的外观，多餘手臂, 多餘腿部，丑陋，躁点，网格感，JPEG压缩条纹，水印，乱码，意义不明的字符，Out of frame"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [
+        -510,
+        420
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        640,
+        960,
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSamplerAdvanced",
+      "pos": [
+        70,
+        -220
+      ],
+      "size": [
+        315,
+        460
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 5
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 9
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "enable",
+        524,
+        "fixed",
+        35,
+        4,
+        "res_multistep",
+        "simple",
+        0,
+        30,
+        "enable"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 8,
+      "type": "LatentUpscaleBy",
+      "pos": [
+        440,
+        70
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LatentUpscaleBy",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "bislerp",
+        1.7
+      ]
+    },
+    {
+      "id": 9,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        440,
+        -220
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 10,
+      "type": "KSamplerAdvanced",
+      "pos": [
+        810,
+        -220
+      ],
+      "size": [
+        315,
+        460
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 13
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 7
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 12
+        },
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerAdvanced",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "enable",
+        524,
+        "fixed",
+        30,
+        4,
+        "dpmpp_2m_sde",
+        "beta",
+        15,
+        999,
+        "disable"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [
+        1180,
+        -220
+      ],
+      "size": [
+        220,
+        46
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 12,
+      "type": "SaveImage",
+      "pos": [
+        1440,
+        -220
+      ],
+      "size": [
+        340,
+        270
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "z-image-moody-wild-v4-base"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "Note",
+      "pos": [
+        -900,
+        320
+      ],
+      "size": [
+        520,
+        150
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Reference",
+      "properties": {
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "Reference image: https://civitai.red/images/130509460\nModel: Moody Wild Mix (ZIB/ZID)\nVersion: V4.0 BASE 40STEPS CFG4\nBase model: ZImageBase\nNo Civitai trainedWords or trigger words are listed for this version."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      2,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      4,
+      0,
+      7,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      4,
+      4,
+      0,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      1,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      6,
+      5,
+      0,
+      7,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      5,
+      0,
+      10,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      8,
+      1,
+      0,
+      9,
+      0,
+      "MODEL"
+    ],
+    [
+      9,
+      6,
+      0,
+      7,
+      3,
+      "LATENT"
+    ],
+    [
+      10,
+      7,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      11,
+      3,
+      0,
+      11,
+      1,
+      "VAE"
+    ],
+    [
+      12,
+      8,
+      0,
+      10,
+      3,
+      "LATENT"
+    ],
+    [
+      13,
+      9,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      14,
+      10,
+      0,
+      11,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      11,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "workflowRendererVersion": "LG"
+  },
+  "version": 0.4
+}
