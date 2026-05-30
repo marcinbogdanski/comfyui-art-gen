@@ -101,8 +101,10 @@ When requirements are met:
   mapping, VAE/text encoder choices, and negative conditioning where possible;
 - document intentional substitutions, such as local filename mappings or a
   missing source VAE replaced by an available local VAE;
-- include a note for model or LoRA activation keywords, even when the source
-  says no trigger word is required;
+- add a ComfyUI `Note` node to the local workflow containing the reference image
+  URL and any model or LoRA activation/trigger keywords, even when the source
+  says no trigger word is required. Keep this workflow note to those facts only;
+  if more information seems useful there, ask the human first;
 - keep `.work.json` copies local and ignored unless explicitly asked to track
   them.
 
