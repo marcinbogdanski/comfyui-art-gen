@@ -95,6 +95,35 @@ or superseded by a clear user instruction. If the user already provides an
 explicit implementation plan, follow it, but still keep edits and staging within
 that stated scope.
 
+## Recommended Task Shape
+
+For model/LoRA additions that touch both this repo and the model archive, prefer
+this shape:
+
+1. Research-only pass: classify the candidate, select the best source
+   image/workflow, resolve likely filename mappings, and produce the proposed
+   scope manifest above.
+2. Archive implementation: download and verify weights, save source/reference
+   artifacts, create sidecars, and update archive summary/ignore files under
+   `/mnt/data/comfyui/models` only.
+3. Control implementation: create or update the local runnable workflow and
+   short control-repo documentation only.
+4. Coordination/staging: the main agent reviews both outputs, stages the exact
+   accepted scope, and leaves unrelated changed, ignored, or untracked files
+   alone.
+5. Validation: run local staged checks, then use fresh-context audit agents for
+   the focused archive checklist and the final broad two-repo staged review.
+6. Stage: stage the model archive and control repo separately. This staged state
+   is the final form for human review.
+
+Steps 2 and 3 may be done by focused workers when useful. Give each worker one
+write scope only: either the model archive or the control repo, not both. A
+worker that implemented a scope is not the independent validator for that same
+scope.
+
+The final broad review should be allowed to fail. If it finds an issue, fix the
+staged state and rerun the broad review before committing.
+
 ## Source Selection
 
 Prefer sources in the order defined by `AGENTS.md`: user-provided link, then
@@ -196,3 +225,16 @@ After staging model-archive files and before asking the human for review or
 committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
 execute its staged changes checklist against the staged/index version of the
 files.
+
+For two-repo changes, run two fresh-context validations after staging:
+
+- focused model-archive audit: verify the staged archive set against
+  `MODEL_SUMMARY_RULES.md`, including source artifacts, sidecar JSON, ignored
+  weights, exact file types, and surrounding unstaged/untracked state;
+- broad two-repo audit: verify both repos together, including staged file
+  exclusivity and completeness, no `.work.json` or weights staged, workflow/doc
+  consistency, archive/control boundary rules, and any smoke-test claims.
+
+Do not treat a passing focused archive audit as a substitute for the broad
+two-repo audit. If either audit fails, fix the issue, restage the intended files,
+and rerun the failed audit before committing.
