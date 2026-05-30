@@ -41,7 +41,9 @@ Operational preferences:
 - After staging model-archive changes and before asking the human for review or
   committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
   execute its staged changes checklist against the staged/index version of the
-  files.
+  files. Then start a fresh-context Codex sub-agent with live progress visible
+  to the human to independently validate that the process was followed, the
+  staged file set is correct, and the model archive checklist passes.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track
@@ -81,6 +83,38 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - Prefer appending sections to the end of the current memory file, unless cleanup or structure clearly requires insertion elsewhere.
 
 ## Tools
+
+### Claude CLI
+
+- The `claude` CLI may be available for an independent second-pass review.
+- Before relying on it in a new session, run `claude --help` and verify the
+  local flags; CLI behavior can change.
+- Use noninteractive print mode with live progress for agent-driven checks:
+
+  ```bash
+  claude --print --verbose --output-format stream-json \
+    --include-partial-messages \
+    --dangerously-skip-permissions \
+    < /tmp/review-prompt.txt
+  ```
+
+- `--add-dir /mnt/data/comfyui/models` is not needed when using
+  `--dangerously-skip-permissions`; use `--add-dir` only for permission-checked
+  runs where Claude needs to inspect the companion model archive repo from this
+  control repo.
+- Put the review instructions in a prompt file under `/tmp` and make the prompt
+  explicitly audit-only: do not edit, write, stage, unstage, commit, delete, or
+  clean files.
+- Use `--output-format stream-json` for review/sub-agent checks so progress is
+  visible while the check runs. It requires `--verbose` and produces noisy
+  output; summarize the final verdict back to the human.
+- Avoid asking Claude to run shell commands via `cd ... && ...` when permissions
+  are not bypassed. Prefer `git -C /path ...` in prompts and allowed-tool
+  patterns.
+- If Claude is being used because the human requested an independent check, do
+  not narrow the prompt to only the already-staged files. Ask it to verify both
+  the staged file set and the surrounding unstaged/untracked state so it can
+  catch over-staging or missed related files.
 
 ### GitHub CLI
 
