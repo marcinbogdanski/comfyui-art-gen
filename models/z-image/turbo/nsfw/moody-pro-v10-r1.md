@@ -99,5 +99,13 @@ ComfyUI frontend `graphToPrompt()` path.
 /mnt/data/comfyui/output/smoke_zit_moody_pro_v10_r1_fixed_00001_.png
 ```
 
+A later frontend smoke test on 2026-05-31 loaded the saved GUI workflow through
+the actual ComfyUI frontend, converted it with `app.graphToPrompt()`, submitted
+the converted prompt, and completed with:
+
+```text
+/mnt/data/comfyui/output/z-image-moody-pro-v10-r1_00001_.png
+```
+
 The smoke output is a 1088 x 1632 PNG, matching the 640 x 960 latent after the
 source 1.7x latent upscale.

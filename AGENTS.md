@@ -53,6 +53,14 @@ Operational preferences:
 - Canonical workflow filenames should follow
   `<prefix-or-model-name>_<lora-or-model>_<lora-short-name>.json`, for example
   `image_qwen_lora_mcnl.json`.
+- Before treating any new or edited canonical GUI workflow `.json` as ready for
+  review, run it through the actual ComfyUI frontend converter with
+  `scripts/gui_workflow_smoke.mjs` in the pinned Playwright Docker image. Use
+  `--submit --wait` so the converted prompt is accepted by `/prompt` and reaches
+  ComfyUI history success. A hand-written or separately derived API prompt smoke
+  test is not a substitute for this frontend-path check. If this required check
+  cannot be run, stop and report the blocker instead of presenting the workflow
+  as ready.
 - When adding a new model or LoRA with a reproducible reference workflow, first
   read `models/ADDING_MODEL_OR_LORA.md` and confirm the plan before downloading
   or editing files, unless the user has already provided an explicit plan.

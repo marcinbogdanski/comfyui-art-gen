@@ -28,3 +28,29 @@ Tracking convention:
 
 Model files and generated outputs stay under `/mnt/data/comfyui` and are not
 stored in git.
+
+## Frontend Smoke Test
+
+Before a new or edited canonical GUI workflow `.json` is considered ready for
+review, validate it with `scripts/gui_workflow_smoke.mjs`. The script loads a
+GUI workflow in Chromium, calls the actual ComfyUI frontend
+`app.graphToPrompt()` path, and can submit the converted prompt to ComfyUI. A
+hand-written or separately derived API prompt graph is not a substitute for this
+check.
+
+Run it with the pinned Playwright Docker image so no browser is installed on the
+host:
+
+```bash
+docker run --rm --network host --ipc=host \
+  -v /home/user/art-generation/art-gen-ctrl:/work:ro \
+  -w /tmp \
+  mcr.microsoft.com/playwright:v1.57.0-noble \
+  sh -lc 'npm init -y >/dev/null &&
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
+    cp /work/scripts/gui_workflow_smoke.mjs . &&
+    node gui_workflow_smoke.mjs /work/workflows/path/to/workflow.json'
+```
+
+Use `--submit --wait` before the workflow path for the required readiness check;
+that queues the converted prompt and waits for ComfyUI history success.

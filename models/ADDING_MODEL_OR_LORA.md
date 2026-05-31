@@ -214,9 +214,28 @@ postprocessing substitutions.
 
 ## Validation
 
-Smoke test the simplified local workflow in ComfyUI when practical. Keep tests
-small enough for the target GPU and record the result in the relevant model doc.
-If the workflow cannot be smoke tested, record the reason and the next action.
+For every new or edited canonical GUI workflow `.json`, run the frontend smoke
+test before marking the workflow ready:
+
+```bash
+docker run --rm --network host --ipc=host \
+  -v /home/user/art-generation/art-gen-ctrl:/work:ro \
+  -w /tmp \
+  mcr.microsoft.com/playwright:v1.57.0-noble \
+  sh -lc 'npm init -y >/dev/null &&
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
+    cp /work/scripts/gui_workflow_smoke.mjs . &&
+    node gui_workflow_smoke.mjs --submit --wait /work/workflows/path/to/workflow.json'
+```
+
+This is a required check: it loads the saved GUI workflow in the actual ComfyUI
+frontend, converts it with `app.graphToPrompt()`, submits the converted prompt
+to `/prompt`, and waits for ComfyUI history success. A hand-written or separately
+derived API prompt smoke test is not a substitute. Keep tests small enough for
+the target GPU when the workflow design allows that, and record the frontend
+smoke result and output path in the relevant model doc. If this required check
+cannot be run, stop and report the blocker and next action instead of presenting
+the workflow as ready.
 
 After the smoke test, stop for human review unless the user has asked for
 commits or further automation.
@@ -233,7 +252,7 @@ For two-repo changes, run two fresh-context validations after staging:
   weights, exact file types, and surrounding unstaged/untracked state;
 - broad two-repo audit: verify both repos together, including staged file
   exclusivity and completeness, no `.work.json` or weights staged, workflow/doc
-  consistency, archive/control boundary rules, and any smoke-test claims.
+  consistency, archive/control boundary rules, and frontend smoke-test claims.
 
 Do not treat a passing focused archive audit as a substitute for the broad
 two-repo audit. If either audit fails, fix the issue, restage the intended files,
