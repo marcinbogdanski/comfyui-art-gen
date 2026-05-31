@@ -107,36 +107,67 @@ async function waitForHistory(baseUrl, promptId, timeoutSec) {
   throw new Error(`timed out waiting for prompt ${promptId}`)
 }
 
-async function waitForFrontendPrompt(page, timeoutSec) {
-  return page.evaluate(async (timeoutMs) => {
+async function waitForFrontendPrompt(page, timeoutSec, expectedWorkflow) {
+  return page.evaluate(async ({ timeoutMs, expected }) => {
     const app = window.app || window.comfyAPI?.app?.app
     const deadline = Date.now() + timeoutMs
     let lastPrompt = null
     let lastMissing = []
+    let lastMismatch = ''
+    let lastReload = 0
 
     while (Date.now() < deadline) {
       lastPrompt = await app.graphToPrompt()
       lastMissing = Object.entries(lastPrompt.output ?? {})
         .filter(([, node]) => !node?.class_type)
         .map(([id]) => id)
+      const workflow = lastPrompt.workflow ?? {}
+      const matchesExpected =
+        workflow.id === expected.id &&
+        (workflow.nodes?.length ?? null) === expected.nodeCount &&
+        (workflow.links?.length ?? null) === expected.linkCount
 
-      if (Object.keys(lastPrompt.output ?? {}).length && lastMissing.length === 0) {
+      if (
+        Object.keys(lastPrompt.output ?? {}).length &&
+        lastMissing.length === 0 &&
+        matchesExpected
+      ) {
         return {
           output: lastPrompt.output,
-          workflow: lastPrompt.workflow,
+          workflow,
           nodeCount: Object.keys(lastPrompt.output ?? {}).length,
-          workflowNodeCount: lastPrompt.workflow?.nodes?.length ?? null,
-          workflowLinkCount: lastPrompt.workflow?.links?.length ?? null,
+          workflowNodeCount: workflow.nodes?.length ?? null,
+          workflowLinkCount: workflow.links?.length ?? null,
         }
+      }
+
+      lastMismatch =
+        `workflow id ${workflow.id ?? '<missing>'}, ` +
+        `${workflow.nodes?.length ?? 0} nodes, ${workflow.links?.length ?? 0} links`
+
+      if (!matchesExpected && Date.now() - lastReload > 1000) {
+        lastReload = Date.now()
+        await app.loadGraphData(expected.graphData)
+        await new Promise((resolve) => requestAnimationFrame(() => resolve()))
       }
 
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
 
     throw new Error(
-      `frontend graphToPrompt() did not produce class_type for nodes: ${lastMissing.join(', ')}`,
+      `frontend graphToPrompt() did not produce the expected workflow; ` +
+        `last missing class_type nodes: ${lastMissing.join(', ') || 'none'}; ` +
+        `last converted workflow: ${lastMismatch}`,
     )
-  }, timeoutSec * 1000)
+  }, {
+    timeoutMs: timeoutSec * 1000,
+    expected: {
+      id: expectedWorkflow.id,
+      nodeCount: expectedWorkflow.nodes?.length ?? null,
+      linkCount: expectedWorkflow.links?.length ?? null,
+      graphData: expectedWorkflow,
+    },
+  })
 }
 
 function collectOutputFiles(historyEntry) {
@@ -191,6 +222,8 @@ async function main() {
       { timeout: opts.timeoutSec * 1000 },
     )
 
+    await page.waitForTimeout(1500)
+
     await page.evaluate(async (graphData) => {
       const app =
         window.app ||
@@ -208,7 +241,7 @@ async function main() {
       await new Promise((resolve) => requestAnimationFrame(() => resolve()))
     }, workflow)
 
-    const result = await waitForFrontendPrompt(page, opts.timeoutSec)
+    const result = await waitForFrontendPrompt(page, opts.timeoutSec, workflow)
 
     if (!result.output || !Object.keys(result.output).length) {
       throw new Error('frontend graphToPrompt() returned an empty API prompt')
