@@ -8,33 +8,6 @@ This repo manages a Docker-based ComfyUI server for host `x399`.
   called in the current harness (e.g. `AskUserQuestion` and any renamed or
   equivalent successor). Always ask questions as plain text in the chat instead.
 
-## Conversation and action boundaries
-
-Interpret the user's message in context.
-
-- For quick factual or clarifying questions, answer briefly. Do not perform
-  broad research unless accuracy requires it.
-- For deep questions, ambiguous technical claims, process questions, or anything
-  that would affect implementation choices, do read-only research first. Inspect
-  relevant repo files, logs, prior conversations, docs, or external sources as
-  needed before answering.
-- For planning requests, stay read-only. Discuss options, constraints, and
-  likely implementation shape, but do not edit files, download persistent
-  assets, stage, commit, or start long-running changes.
-- Planning can be proportional. If the user asks a narrow planning question,
-  answer narrowly. Do not expand into a full implementation plan unless the user
-  asks for one or the task is about to cross into execution.
-- Only perform write actions after a direct command to execute, such as
-  "implement", "edit", "update the file", "stage", "commit", "run the
-  workflow", or an equivalent unambiguous instruction.
-- Agreement, caveat acceptance, or conversational confirmation is not by itself
-  permission to move from discussion/planning into write actions. Examples:
-  "ok", "sounds good", "that part is fine", "let's plan around it", or "yes,
-  assuming X" should be treated as continued discussion unless the user also
-  clearly asks for execution.
-- When unsure whether the user is asking for discussion/planning or execution,
-  ask a plain-text clarification question before taking write actions.
-
 Operational preferences:
 
 - Use manual `docker run --rm -it` via `./run_comfyui.sh`; do not introduce Docker Compose unless requested.
