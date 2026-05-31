@@ -49,8 +49,9 @@ docker run --rm --network host --ipc=host \
   sh -lc 'npm init -y >/dev/null &&
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
     cp /work/scripts/gui_workflow_smoke.mjs . &&
-    node gui_workflow_smoke.mjs /work/workflows/path/to/workflow.json'
+    node gui_workflow_smoke.mjs --submit --wait /work/workflows/path/to/workflow.json'
 ```
 
-Use `--submit --wait` before the workflow path for the required readiness check;
-that queues the converted prompt and waits for ComfyUI history success.
+The `--submit --wait` flags are required for the readiness check; they queue the
+converted prompt and wait for ComfyUI history success. Omit them only for
+conversion-only debugging.

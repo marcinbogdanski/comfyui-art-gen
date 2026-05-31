@@ -28,8 +28,9 @@ files, stage files, or commit.
 
 Temporary files under `/tmp` are acceptable for inspecting source metadata or
 downloaded reference artifacts during research. Do not create durable repo files
-or model-archive files until the research plan is accepted or the user gives an
-explicit implementation instruction.
+or model-archive files until the proposed scope is accepted and the user gives
+an explicit implementation instruction. Scope acceptance alone is still
+discussion/planning, not permission to execute.
 
 End the research phase with a concise proposed plan and scope manifest:
 
@@ -90,10 +91,11 @@ OUT OF SCOPE
 - any weights in git
 ```
 
-Implementation may begin only after this proposed scope is accepted, modified,
-or superseded by a clear user instruction. If the user already provides an
-explicit implementation plan, follow it, but still keep edits and staging within
-that stated scope.
+Implementation may begin only after the proposed scope is accepted or modified
+and the user gives an explicit implementation instruction, or when the user's
+message clearly combines both scope approval and execution. If the user already
+provides an explicit implementation plan and asks for execution, follow it, but
+still keep edits and staging within that stated scope.
 
 ## Recommended Task Shape
 
@@ -108,13 +110,12 @@ this shape:
    `/mnt/data/comfyui/models` only.
 3. Control implementation: create or update the local runnable workflow and
    short control-repo documentation only.
-4. Coordination/staging: the main agent reviews both outputs, stages the exact
-   accepted scope, and leaves unrelated changed, ignored, or untracked files
-   alone.
-5. Validation: run local staged checks, then use fresh-context audit agents for
+4. Coordination: the main agent reviews both outputs and leaves unrelated
+   changed, ignored, or untracked files alone.
+5. Stage: stage the model archive and control repo separately, limited to the
+   exact accepted scope. This staged state is the final form for human review.
+6. Validation: run local staged checks, then use fresh-context audit agents for
    the focused archive checklist and the final broad two-repo staged review.
-6. Stage: stage the model archive and control repo separately. This staged state
-   is the final form for human review.
 
 Steps 2 and 3 may be done by focused workers when useful. Give each worker one
 write scope only: either the model archive or the control repo, not both. A
