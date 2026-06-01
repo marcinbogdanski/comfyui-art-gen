@@ -2,6 +2,14 @@
 
 This repo manages a Docker-based ComfyUI server for host `x399`.
 
+## Action Boundary
+
+Feel free to perform generous read-only research before answering questions.
+
+NEVER EXECUTE AHEAD OF THE HUMAN. NEVER PERFORM ANY WRITE ACTION AT ALL UNLESS THE HUMAN DIRECTLY AND EXPLICITLY INSTRUCTS YOU TO DO SO.
+
+This includes, but is not limited to: edits, file creation, staging, commits, downloads to durable locations, or cleanup.
+
 ## Asking questions
 
 - Never use any "ask the user a question" interactive/modal tool, whatever it is
@@ -100,3 +108,11 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - The `gh` CLI is available and pre-authenticated for agent access.
 - GitHub permissions are scoped to selected repositories.
 - Do not force-push or delete the main branch.
+
+## Action Boundary
+
+Feel free to perform generous read-only research before answering questions.
+
+NEVER EXECUTE AHEAD OF THE HUMAN. NEVER PERFORM ANY WRITE ACTION AT ALL UNLESS THE HUMAN DIRECTLY AND EXPLICITLY INSTRUCTS YOU TO DO SO.
+
+This includes, but is not limited to: edits, file creation, staging, commits, downloads to durable locations, or cleanup.
