@@ -114,8 +114,8 @@ this shape:
    changed, ignored, or untracked files alone.
 5. Stage: stage the model archive and control repo separately, limited to the
    exact accepted scope. This staged state is the final form for human review.
-6. Validation: run local staged checks, then use fresh-context audit agents for
-   the focused archive checklist and the final broad two-repo staged review.
+6. Validation: run local staged checks, then use fresh-context sub-agent audits
+   for the focused archive checklist and the final broad two-repo staged review.
 
 Steps 2 and 3 may be done by focused workers when useful. Give each worker one
 write scope only: either the model archive or the control repo, not both. A
@@ -246,7 +246,7 @@ committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
 execute its staged changes checklist against the staged/index version of the
 files.
 
-For two-repo changes, run two fresh-context validations after staging:
+For two-repo changes, run two fresh-context sub-agent validations after staging:
 
 - focused model-archive audit: verify the staged archive set against
   `MODEL_SUMMARY_RULES.md`, including source artifacts, sidecar JSON, ignored

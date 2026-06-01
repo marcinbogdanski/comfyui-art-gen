@@ -41,9 +41,9 @@ Operational preferences:
 - After staging model-archive changes and before asking the human for review or
   committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
   execute its staged changes checklist against the staged/index version of the
-  files. Then start a fresh-context Codex sub-agent with live progress visible
-  to the human to independently validate that the process was followed, the
-  staged file set is correct, and the model archive checklist passes.
+  files. Then start a fresh-context sub-agent with live progress visible to the
+  human to independently validate that the process was followed, the staged file
+  set is correct, and the model archive checklist passes.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track
@@ -97,10 +97,14 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 
 ### Claude CLI
 
-- The `claude` CLI may be available for an independent second-pass review.
-- Before relying on it in a new session, run `claude --help` and verify the
-  local flags; CLI behavior can change.
-- Use noninteractive print mode with live progress for agent-driven checks:
+- Do not run the `claude` CLI unless the human explicitly says:
+  `Use Claude CLI as subagent`.
+- A general request for review, validation, audit, a second opinion, or a
+  sub-agent does not authorize Claude CLI use. Use the current harness's normal
+  sub-agent mechanism instead.
+- When explicitly authorized, before relying on Claude CLI in a new session, run
+  `claude --help` and verify the local flags; CLI behavior can change.
+- Use noninteractive print mode with live progress for Claude CLI checks:
 
   ```bash
   claude --print --verbose --output-format stream-json \
@@ -125,9 +129,9 @@ This is your memory system. By agents for agents. Use to maintain continuity. Ma
 - In those Claude review prompts, explicitly demand extreme attention to detail:
   every filename, repo boundary, sidecar reference, staged file, untracked file,
   and instruction source must be checked literally, not skimmed or assumed.
-- Use `--output-format stream-json` for review/sub-agent checks so progress is
-  visible while the check runs. It requires `--verbose` and produces noisy
-  output; summarize the final verdict back to the human.
+- Use `--output-format stream-json` for Claude CLI checks so progress is visible
+  while the check runs. It requires `--verbose` and produces noisy output;
+  summarize the final verdict back to the human.
 - Avoid asking Claude to run shell commands via `cd ... && ...` when permissions
   are not bypassed. Prefer `git -C /path ...` in prompts and allowed-tool
   patterns.
