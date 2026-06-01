@@ -43,6 +43,12 @@ text_encoders/Qwen3-4b-Z-Image-Turbo-AbliteratedV1.safetensors
 vae/ae.safetensors
 ```
 
+Required custom node:
+
+```text
+ComfyUI-mnemic-nodes 0617597d8067252795a43ce78833ba55ce527b0b
+```
+
 Source-local filename mappings:
 
 ```text
@@ -74,7 +80,7 @@ Important retained settings:
 UNETLoader:             zImageTurboNSFW_82BF16.safetensors, default
 CLIPLoader:             Qwen3-4b-Z-Image-Turbo-AbliteratedV1.safetensors, lumina2, default
 VAELoader:              ae.safetensors
-Latent size:            1088 x 1632, batch 1
+Resolution selector:    Z-Image: [Vertical Photo] 1088x1632 2:3, batch 1
 Seed:                   199127156564090
 Sampler:                KSampler, 12 steps, CFG 1.0, dpmpp_sde, simple
 Denoise:                1.0

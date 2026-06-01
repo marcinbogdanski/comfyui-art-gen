@@ -48,6 +48,8 @@ python -m pip install \
   dill \
   einops \
   ftfy \
+  groq \
+  imageio \
   "imageio-ffmpeg" \
   lark \
   matplotlib \
@@ -60,6 +62,7 @@ python -m pip install \
   pixeloe \
   "pillow>=10.3.0" \
   protobuf \
+  "python-dotenv>=1.0.0" \
   pywavelets \
   pyloudnorm \
   rembg \
@@ -69,6 +72,7 @@ python -m pip install \
   "sentencepiece>=0.2.0" \
   segment-anything \
   spandrel \
+  tiktoken \
   transparent-background \
   webcolors
 
@@ -103,6 +107,7 @@ clone_node https://github.com/kijai/ComfyUI-KJNodes.git ComfyUI-KJNodes fca78c9
 clone_node https://github.com/cubiq/ComfyUI_essentials.git ComfyUI_essentials 9d9f4be
 clone_node https://github.com/Jonseed/ComfyUI-Detail-Daemon.git ComfyUI-Detail-Daemon f391accbda2d309cdcbec65cb9fcc80a41197b20
 clone_node https://github.com/ClownsharkBatwing/RES4LYF.git RES4LYF 46de917234f9fef3f2ab411c41e07aa3c633f4f7
+clone_node https://github.com/MNeMoNiCuZ/ComfyUI-mnemic-nodes.git ComfyUI-mnemic-nodes 0617597d8067252795a43ce78833ba55ce527b0b
 
 touch "${CUSTOM_NODES_DIR}/skip_download_model"
 

@@ -186,20 +186,37 @@
     },
     {
       "id": 6,
-      "type": "EmptySD3LatentImage",
+      "type": "📐 Resolution Image Size Selector",
       "pos": [
         -1180,
         220
       ],
       "size": [
-        320,
-        120
+        280,
+        340
       ],
       "flags": {},
       "order": 3,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "image (optional)",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
       "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
         {
           "name": "LATENT",
           "type": "LATENT",
@@ -210,12 +227,20 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "EmptySD3LatentImage",
-        "cnr_id": "comfy-core"
+        "Node name for S&R": "📐 Resolution Image Size Selector",
+        "aux_id": "ComfyUI-mnemic-nodes/"
       },
       "widgets_values": [
-        1088,
-        1632,
+        "Z-Image: [Vertical Photo] 1088x1632 2:3",
+        "None",
+        1024,
+        1024,
+        1,
+        false,
+        0,
+        0,
+        false,
+        0,
         1
       ]
     },
