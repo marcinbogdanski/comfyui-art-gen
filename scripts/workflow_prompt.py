@@ -3,6 +3,8 @@ import argparse
 import json
 import subprocess
 import tempfile
+import time
+import urllib.request
 from pathlib import Path
 
 
@@ -20,6 +22,18 @@ SEED_INDEX = {
     "KSampler //Inspire": 0,
     "SeedVarianceEnhancer": 4,
 }
+
+
+def free_memory(base_url):
+    data = json.dumps({"unload_models": True, "free_memory": True}).encode()
+    request = urllib.request.Request(
+        f"{base_url.rstrip('/')}/free",
+        data=data,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(request) as response:
+        response.read()
 
 
 def main():
@@ -82,35 +96,46 @@ def main():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_workflow = Path(tmpdir) / "workflow.json"
         tmp_workflow.write_text(json.dumps(workflow, indent=2) + "\n")
-        subprocess.run(
-            [
-                "docker",
-                "run",
-                "--rm",
-                "--network",
-                "host",
-                "--ipc=host",
-                "-v",
-                f"{repo_root}:/work:ro",
-                "-v",
-                f"{tmpdir}:/input:ro",
-                "-w",
-                "/tmp",
-                "mcr.microsoft.com/playwright:v1.57.0-noble",
-                "sh",
-                "-lc",
-                "npm init -y >/dev/null && "
-                "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 "
-                "npm install playwright@1.57.0 >/dev/null && "
-                "cp /work/scripts/gui_workflow_smoke.mjs . && "
-                'node gui_workflow_smoke.mjs --base-url "$1" '
-                '--submit --wait --timeout "$2" /input/workflow.json',
-                "sh",
-                args.base_url,
-                args.timeout,
-            ],
-            check=True,
-        )
+        cmd = [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "host",
+            "--ipc=host",
+            "-v",
+            f"{repo_root}:/work:ro",
+            "-v",
+            f"{tmpdir}:/input:ro",
+            "-w",
+            "/tmp",
+            "mcr.microsoft.com/playwright:v1.57.0-noble",
+            "sh",
+            "-lc",
+            "npm init -y >/dev/null && "
+            "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 "
+            "npm install playwright@1.57.0 >/dev/null && "
+            "cp /work/scripts/gui_workflow_smoke.mjs . && "
+            'node gui_workflow_smoke.mjs --base-url "$1" '
+            '--submit --wait --timeout "$2" /input/workflow.json',
+            "sh",
+            args.base_url,
+            args.timeout,
+        ]
+
+        try:
+            free_memory(args.base_url)
+            for attempt in range(2):
+                try:
+                    subprocess.run(cmd, check=True)
+                    break
+                except subprocess.CalledProcessError:
+                    if attempt == 1:
+                        raise
+                    print("workflow failed; retrying once", flush=True)
+                    time.sleep(2)
+        finally:
+            free_memory(args.base_url)
 
 
 if __name__ == "__main__":
