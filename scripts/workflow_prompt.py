@@ -2,6 +2,7 @@
 import argparse
 import json
 import subprocess
+import sys
 import tempfile
 import time
 import urllib.request
@@ -22,6 +23,38 @@ SEED_INDEX = {
     "KSampler //Inspire": 0,
     "SeedVarianceEnhancer": 4,
 }
+
+
+def is_oom_output(text):
+    lower = text.lower()
+    oom_markers = [
+        "out of memory",
+        "cuda out of memory",
+        "torch.outofmemoryerror",
+        "allocation on device",
+    ]
+    return any(marker in lower for marker in oom_markers)
+
+
+def run_workflow(cmd):
+    result = subprocess.run(
+        cmd,
+        check=False,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+    if result.returncode == 0:
+        if result.stdout:
+            print(result.stdout, end="")
+        return
+
+    if is_oom_output(result.stdout or ""):
+        raise RuntimeError("CUDA OOM error")
+
+    if result.stdout:
+        print(result.stdout, end="", file=sys.stderr)
+    raise subprocess.CalledProcessError(result.returncode, cmd)
 
 
 def free_memory(base_url):
@@ -125,14 +158,23 @@ def main():
 
         try:
             free_memory(args.base_url)
-            for attempt in range(2):
+            max_attempts = 3
+            for attempt in range(max_attempts):
                 try:
-                    subprocess.run(cmd, check=True)
+                    run_workflow(cmd)
                     break
-                except subprocess.CalledProcessError:
-                    if attempt == 1:
+                except RuntimeError as exc:
+                    if str(exc) != "CUDA OOM error":
                         raise
-                    print("workflow failed; retrying once", flush=True)
+                    if attempt == max_attempts - 1:
+                        print("CUDA OOM error", flush=True)
+                        raise SystemExit(1)
+                    print("CUDA OOM error; retrying", flush=True)
+                    time.sleep(2)
+                except subprocess.CalledProcessError:
+                    if attempt == max_attempts - 1:
+                        raise
+                    print("workflow failed; retrying", flush=True)
                     time.sleep(2)
         finally:
             free_memory(args.base_url)
