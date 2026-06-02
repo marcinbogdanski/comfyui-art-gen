@@ -36,6 +36,7 @@ def main():
     parser.add_argument("--timeout", default="600")
     parser.add_argument("-b", "--batch", type=int)
     parser.add_argument("--seed", type=int)
+    parser.add_argument("--id")
     args = parser.parse_args()
 
     workflow_path = Path(args.workflow)
@@ -72,6 +73,11 @@ def main():
         assert seed_nodes, "expected at least one seed node"
         for seed_node in seed_nodes:
             seed_node["widgets_values"][SEED_INDEX[seed_node["type"]]] = args.seed
+
+    if args.id is not None:
+        save_nodes = [n for n in workflow["nodes"] if n.get("type") == "SaveImage"]
+        assert len(save_nodes) == 1, "expected exactly one SaveImage node"
+        save_nodes[0]["widgets_values"][0] = f"{args.id}_{workflow_path.stem}"
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_workflow = Path(tmpdir) / "workflow.json"
