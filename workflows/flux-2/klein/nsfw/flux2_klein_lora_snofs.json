@@ -747,7 +747,7 @@
     },
     {
       "id": 18,
-      "type": "MarkdownNote",
+      "type": "Note",
       "pos": [
         40,
         60
@@ -761,10 +761,12 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Trigger Words",
-      "properties": {},
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note"
+      },
       "widgets_values": [
-        "## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences)."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences)."
       ],
       "color": "#432",
       "bgcolor": "#653"

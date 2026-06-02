@@ -176,7 +176,7 @@
         119
       ],
       "flags": {},
-      "order": 3,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -212,7 +212,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        3.0
+        3
       ]
     },
     {
@@ -227,7 +227,7 @@
         360
       ],
       "flags": {},
-      "order": 4,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -260,7 +260,6 @@
           ]
         }
       ],
-      "title": "CLIP Text Encode (Prompt)",
       "properties": {
         "Node name for S&R": "CLIPTextEncode",
         "cnr_id": "comfy-core"
@@ -283,7 +282,7 @@
         72
       ],
       "flags": {},
-      "order": 5,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -321,7 +320,7 @@
         106
       ],
       "flags": {},
-      "order": 6,
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
@@ -385,7 +384,7 @@
         482
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -411,6 +410,15 @@
           "name": "latent_image",
           "type": "LATENT",
           "link": 7
+        },
+        {
+          "localized_name": "add_noise",
+          "name": "add_noise",
+          "type": "COMBO",
+          "widget": {
+            "name": "add_noise"
+          },
+          "link": null
         },
         {
           "localized_name": "noise_seed",
@@ -506,7 +514,7 @@
         193375074158420,
         "fixed",
         9,
-        1.0,
+        1,
         "dpmpp_2m_sde",
         "beta",
         0,
@@ -526,7 +534,7 @@
         82
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -586,7 +594,7 @@
         482
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -612,6 +620,15 @@
           "name": "latent_image",
           "type": "LATENT",
           "link": 14
+        },
+        {
+          "localized_name": "add_noise",
+          "name": "add_noise",
+          "type": "COMBO",
+          "widget": {
+            "name": "add_noise"
+          },
+          "link": null
         },
         {
           "localized_name": "noise_seed",
@@ -707,7 +724,7 @@
         193375074158420,
         "fixed",
         9,
-        1.0,
+        1,
         "dpmpp_2m_sde",
         "sgm_uniform",
         4,
@@ -727,7 +744,7 @@
         110
       ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -772,7 +789,7 @@
         420
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -804,22 +821,27 @@
       "id": 13,
       "type": "Note",
       "pos": [
-        -1180,
-        430
+        -1163.067708333333,
+        627.9479166666669
       ],
       "size": [
         520,
         180
       ],
       "flags": {},
-      "order": 12,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "properties": {},
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note"
+      },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/131057640\nModel: Moody Pro Mix ZIT V10 R1 DPO\nSource UNet name: ComfyUI\\zimage conversion\\moody-porn-v10R1_00001_.safetensors\nLocal UNet name: moodyProMix_zitV10R1DPO.safetensors\nTrigger words: none listed for Moody Pro V10\nLoRAs retained: none"
-      ]
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nReference image: https://civitai.red/images/131057640\nModel: Moody Pro Mix ZIT V10 R1 DPO\nSource UNet name: ComfyUI\\zimage conversion\\moody-porn-v10R1_00001_.safetensors\nLocal UNet name: moodyProMix_zitV10R1DPO.safetensors\nTrigger words: none listed for Moody Pro V10\nLoRAs retained: none"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -950,8 +972,8 @@
     "ds": {
       "scale": 0.75,
       "offset": [
-        1280,
-        360
+        2464.296875000001,
+        871.84375
       ]
     },
     "workflowRendererVersion": "LG"

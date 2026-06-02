@@ -677,7 +677,7 @@
     },
     {
       "id": 18,
-      "type": "MarkdownNote",
+      "type": "Note",
       "pos": [
         40,
         60
@@ -691,10 +691,12 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Trigger Words",
-      "properties": {},
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note"
+      },
       "widgets_values": [
-        "## Trigger Words\n\n- darkBeast_dbkBlitzV15_pruned_bf16.safetensors (checkpoint): none\n\nNo trigger word required."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- darkBeast_dbkBlitzV15_pruned_bf16.safetensors (checkpoint): none\n\nNo trigger word required."
       ],
       "color": "#432",
       "bgcolor": "#653"

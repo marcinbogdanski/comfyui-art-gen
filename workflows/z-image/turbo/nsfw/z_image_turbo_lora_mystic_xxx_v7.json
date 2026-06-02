@@ -471,13 +471,13 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Reference",
+      "title": "Metadata",
       "properties": {
         "Node name for S&R": "Note",
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/127357705\nModel/LoRA/version: ZIT Mystic XXX / Mystic-XXX-ZIT-V7 / v7.0\nSource UNET: z-image/z_image_turbo_bf16.safetensors\nLocal UNET: z_image_turbo_bf16.safetensors\nSource LoRA: ZIT/Mystic-XXX-ZIT-V7.safetensors\nLocal LoRA: Mystic-XXX-ZIT-V7.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: Flux/ae.safetensors\nLocal VAE: ae.safetensors\nTrigger words: none listed"
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nReference image: https://civitai.red/images/127357705\nModel/LoRA/version: ZIT Mystic XXX / Mystic-XXX-ZIT-V7 / v7.0\nSource UNET: z-image/z_image_turbo_bf16.safetensors\nLocal UNET: z_image_turbo_bf16.safetensors\nSource LoRA: ZIT/Mystic-XXX-ZIT-V7.safetensors\nLocal LoRA: Mystic-XXX-ZIT-V7.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: Flux/ae.safetensors\nLocal VAE: ae.safetensors\nTrigger words: none listed"
       ],
       "color": "#432",
       "bgcolor": "#653"

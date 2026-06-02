@@ -1,7 +1,7 @@
 {
   "id": "a8ceb1d3-126d-4852-a213-5e36160ae940",
   "revision": 0,
-  "last_node_id": 433,
+  "last_node_id": 434,
   "last_link_id": 810,
   "nodes": [
     {
@@ -86,7 +86,7 @@
         746.0296886844189
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -128,7 +128,7 @@
         54.58125430667951
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -192,7 +192,7 @@
         450
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -620,7 +620,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -692,7 +692,7 @@
         264.01902464623174
       ],
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -751,6 +751,33 @@
       ],
       "color": "#232",
       "bgcolor": "#353"
+    },
+    {
+      "id": 434,
+      "type": "Note",
+      "pos": [
+        -1079.138178384275,
+        506.46076836482973
+      ],
+      "size": [
+        560,
+        180
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nBigLove Klein2 Civitai model version 2796653 has an empty trainedWords list."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -833,8 +860,8 @@
     "ds": {
       "scale": 0.9822637423639478,
       "offset": [
-        1596.0815878627177,
-        765.3997058990255
+        1839.2539301759482,
+        556.4992816543413
       ]
     },
     "frontendVersion": "1.41.20",

@@ -1,7 +1,7 @@
 {
   "id": "9ae6082b-c7f4-433c-9971-7a8f65a3ea65",
   "revision": 0,
-  "last_node_id": 72,
+  "last_node_id": 73,
   "last_link_id": 88,
   "nodes": [
     {
@@ -153,7 +153,7 @@
         72
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -199,7 +199,7 @@
         96
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -320,7 +320,7 @@
         650
       ],
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -450,7 +450,7 @@
         660
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -498,7 +498,7 @@
         341.328125
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -625,7 +625,7 @@
         104
       ],
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -670,6 +670,33 @@
       "widgets_values": [
         3
       ]
+    },
+    {
+      "id": 73,
+      "type": "Note",
+      "pos": [
+        -1026.0894627785742,
+        -431.94761319003584
+      ],
+      "size": [
+        560,
+        160
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial/original model workflow. No trigger words required."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -798,10 +825,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.8959402515528546,
+      "scale": 0.6731331717151424,
       "offset": [
-        1646.1188267671446,
-        722.8799161503783
+        2608.819955454369,
+        1050.8854661752323
       ]
     },
     "frontendVersion": "1.42.15",

@@ -1,7 +1,7 @@
 {
   "id": "jibmix-qwen-2512-base",
   "revision": 0,
-  "last_node_id": 822,
+  "last_node_id": 823,
   "last_link_id": 11,
   "nodes": [
     {
@@ -16,7 +16,7 @@
         550
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -71,7 +71,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -432,7 +432,7 @@
         420
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -498,7 +498,7 @@
         170
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -564,7 +564,7 @@
         341.3125
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -696,7 +696,7 @@
         250
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -820,18 +820,48 @@
       ]
     },
     {
+      "id": 94,
+      "type": "MarkdownNote",
+      "pos": [
+        -394.97724408738037,
+        357.2668845102084
+      ],
+      "size": [
+        270,
+        264.734375
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Aspect Ratios",
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "\n- 1:1 : 1328x1328\n- 16:9 : 1664x928\n- 9:16 : 928x1664\n- 4:3 : 1472x1104\n- 3:4 : 1104x1472\n- 3:2 : 1584x1056\n- 2:3 : 1056x1584"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
       "id": 303,
       "type": "MarkdownNote",
       "pos": [
-        -879,
-        300
+        -803.8498805147061,
+        525.2423897058827
       ],
       "size": [
         300,
         300
       ],
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -850,34 +880,31 @@
       "bgcolor": "#653"
     },
     {
-      "id": 94,
-      "type": "MarkdownNote",
+      "id": 823,
+      "type": "Note",
       "pos": [
-        -394.97724408738037,
-        357.2668845102084
+        -367.7590349264709,
+        704.1298529411763
       ],
       "size": [
-        270,
-        264.734375
+        560,
+        180
       ],
       "flags": {},
-      "order": 4,
+      "order": 6,
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Aspect Ratios",
+      "title": "Metadata",
       "properties": {
-        "ue_properties": {
-          "widget_ue_connectable": {},
-          "version": "7.7",
-          "input_ue_unconnectable": {}
-        }
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "\n- 1:1 : 1328x1328\n- 16:9 : 1664x928\n- 9:16 : 928x1664\n- 4:3 : 1472x1104\n- 3:4 : 1104x1472\n- 3:2 : 1584x1056\n- 2:3 : 1056x1584"
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nJib Mix Qwen v6.0 Civitai model version 2753478 has an empty trainedWords list. Existing model note only said no trigger word documented."
       ],
-      "color": "#222",
-      "bgcolor": "#000"
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -966,10 +993,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.6386175807663411,
+      "scale": 0.6386175807663413,
       "offset": [
-        2024.4958455882347,
-        790.8333455882353
+        2025.8376814941169,
+        791.1465220588229
       ]
     },
     "frontendVersion": "1.42.10",

@@ -408,13 +408,13 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Reference",
+      "title": "Metadata",
       "properties": {
         "Node name for S&R": "Note",
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/129038681\nModel/LoRA/version: NSFW MASTER / NSFW_master_ZIT_000017532 / Z-Image Turbo V2\nSource UNET widget label: z-image-turbo.safetensors\nLocal UNET: z_image_turbo_bf16.safetensors\nSource LoRA: NSFW_master_ZIT_000017532.safetensors\nLocal LoRA: NSFW_master_ZIT_000017532.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: ae.safetensors\nLocal VAE: ae.safetensors\nLoRA strength: 1.0 (faithful to reference; author-recommended 0.8)\nNegative: ConditioningZeroOut (no text negative)\nTrigger words: none listed"
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nReference image: https://civitai.red/images/129038681\nModel/LoRA/version: NSFW MASTER / NSFW_master_ZIT_000017532 / Z-Image Turbo V2\nSource UNET widget label: z-image-turbo.safetensors\nLocal UNET: z_image_turbo_bf16.safetensors\nSource LoRA: NSFW_master_ZIT_000017532.safetensors\nLocal LoRA: NSFW_master_ZIT_000017532.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: ae.safetensors\nLocal VAE: ae.safetensors\nLoRA strength: 1.0 (faithful to reference; author-recommended 0.8)\nNegative: ConditioningZeroOut (no text negative)\nTrigger words: none listed"
       ],
       "color": "#432",
       "bgcolor": "#653"

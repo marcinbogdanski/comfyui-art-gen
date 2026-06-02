@@ -1,7 +1,7 @@
 {
   "id": "9ae6082b-c7f4-433c-9971-7a8f65a3ea65",
   "revision": 0,
-  "last_node_id": 103,
+  "last_node_id": 104,
   "last_link_id": 131,
   "nodes": [
     {
@@ -226,7 +226,7 @@
         96
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -264,7 +264,8 @@
         "secondTabText": "Send Back",
         "secondTabOffset": 80,
         "secondTabWidth": 65
-      }
+      },
+      "widgets_values": []
     },
     {
       "id": 99,
@@ -278,7 +279,7 @@
         104
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -404,7 +405,7 @@
         140
       ],
       "flags": {},
-      "order": 6,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -465,7 +466,7 @@
         570
       ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -537,7 +538,7 @@
         440
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -664,7 +665,7 @@
         320
       ],
       "flags": {},
-      "order": 5,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
@@ -711,6 +712,33 @@
       ],
       "color": "#232",
       "bgcolor": "#353"
+    },
+    {
+      "id": 104,
+      "type": "Note",
+      "pos": [
+        -600.7653546835935,
+        -536.525462777344
+      ],
+      "size": [
+        560,
+        160
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial/original model workflow. No trigger words required."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -839,10 +867,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.8264462809917354,
+      "scale": 0.5644739300537773,
       "offset": [
-        1585.9495441443876,
-        458.4460540298868
+        2091.597553941262,
+        1610.2832361470746
       ]
     },
     "frontendVersion": "1.42.15",

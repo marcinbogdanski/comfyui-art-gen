@@ -8,8 +8,8 @@
       "id": 37,
       "type": "UNETLoader",
       "pos": [
-        -900,
-        20
+        -1008.1801470588232,
+        -5.831801470588225
       ],
       "size": [
         330,
@@ -18,21 +18,41 @@
       "flags": {},
       "order": 0,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "localized_name": "unet_name",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "weight_dtype",
+          "name": "weight_dtype",
+          "type": "COMBO",
+          "widget": {
+            "name": "weight_dtype"
+          },
+          "link": null
+        }
+      ],
       "outputs": [
         {
+          "localized_name": "MODEL",
           "name": "MODEL",
           "type": "MODEL",
+          "slot_index": 0,
           "links": [
             205
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "UNETLoader",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "UNETLoader"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "qwen_image_2512_bf16.safetensors",
@@ -43,8 +63,8 @@
       "id": 38,
       "type": "CLIPLoader",
       "pos": [
-        -900,
-        170
+        -1008.1801470588232,
+        144.16819852941188
       ],
       "size": [
         330,
@@ -53,22 +73,52 @@
       "flags": {},
       "order": 1,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "localized_name": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "type",
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "device",
+          "name": "device",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
       "outputs": [
         {
+          "localized_name": "CLIP",
           "name": "CLIP",
           "type": "CLIP",
+          "slot_index": 0,
           "links": [
             206,
             200
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "CLIPLoader",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "CLIPLoader"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "qwen_2.5_vl_7b.safetensors",
@@ -88,52 +138,129 @@
         250
       ],
       "flags": {},
-      "order": 2,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "model",
           "name": "model",
           "type": "MODEL",
           "link": 205
         },
         {
+          "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
           "link": 206
+        },
+        {
+          "localized_name": "lora_01",
+          "name": "lora_01",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_01"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_01",
+          "name": "strength_01",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_01"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "lora_02",
+          "name": "lora_02",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_02"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_02",
+          "name": "strength_02",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_02"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "lora_03",
+          "name": "lora_03",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_03"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_03",
+          "name": "strength_03",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_03"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "lora_04",
+          "name": "lora_04",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_04"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_04",
+          "name": "strength_04",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_04"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "MODEL",
           "name": "MODEL",
           "type": "MODEL",
+          "slot_index": 0,
           "links": [
             203
-          ],
-          "slot_index": 0
+          ]
         },
         {
+          "localized_name": "CLIP",
           "name": "CLIP",
           "type": "CLIP",
+          "slot_index": 1,
           "links": [
             207
-          ],
-          "slot_index": 1
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "Lora Loader Stack (rgthree)",
         "cnr_id": "rgthree-comfy",
         "ver": "2b9eb36d3e1741e88dbfccade0e08137f7fa2bfb",
         "Show Strengths": "Single Strength"
       },
       "widgets_values": [
         "Qwen4Play-2512.1_e10.safetensors",
-        1.0,
+        1,
         "None",
-        0.0,
+        0,
         "None",
-        0.0,
+        0,
         "None",
-        0.0
+        0
       ]
     },
     {
@@ -148,33 +275,53 @@
         120
       ],
       "flags": {},
-      "order": 3,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "model",
           "name": "model",
           "type": "MODEL",
           "link": 203
+        },
+        {
+          "localized_name": "lora_name",
+          "name": "lora_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "strength_model",
+          "name": "strength_model",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_model"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "MODEL",
           "name": "MODEL",
           "type": "MODEL",
+          "slot_index": 0,
           "links": [
             198
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "LoraLoaderModelOnly"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "Qwen-Image-2512-Lightning-8steps-V1.0-fp32.safetensors",
-        1.0
+        1
       ]
     },
     {
@@ -189,29 +336,40 @@
         80
       ],
       "flags": {},
-      "order": 4,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "model",
           "name": "model",
           "type": "MODEL",
           "link": 198
+        },
+        {
+          "localized_name": "shift",
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "MODEL",
           "name": "MODEL",
           "type": "MODEL",
+          "slot_index": 0,
           "links": [
             125
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "ModelSamplingAuraFlow"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         3.1
@@ -229,30 +387,41 @@
         390
       ],
       "flags": {},
-      "order": 5,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
           "link": 207
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "CONDITIONING",
           "name": "CONDITIONING",
           "type": "CONDITIONING",
+          "slot_index": 0,
           "links": [
             46
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "title": "CLIP Text Encode (Positive Prompt)",
       "properties": {
+        "Node name for S&R": "CLIPTextEncode",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "CLIPTextEncode"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "analog film photo a wide angle cinematic view showing A fully nude beautiful Russian girl sitting in a seat on a Shinkansen bullet train in Tokyo, she smiles for the viewer, her breasts and vagina are exposed, her left leg is bent at the knee and her foot is resting on the seat,\n\nThe train window beside her is fogged over with condensation, the outside temperature contrasting with the warm interior. Written clearly into the misted glass are the words \"QWEN 4 PLAY 2512\", traced by a fingertip and slightly streaked where droplets have begun to run downward. Beyond the fogged window, Tokyo rushes past in a cyberpunk glow—towering buildings layered with neon signage in cyan, magenta, and electric blue, holographic advertisements flickering through rain-soaked air. Light trails smear horizontally from the train’s speed, blending reflections of neon into the glass so that color spills faintly across Yukiko’s profile. The scene balances motion and stillness: the quiet interior of the bullet train against the relentless, luminous sprawl of a futuristic city sliding by outside.\n\n17mm, sharp focus,  . faded film, desaturated, 35mm photo, grainy, vignette, vintage, Kodachrome, Lomography, stained, highly detailed, found footage"
@@ -274,26 +443,37 @@
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "clip",
           "name": "clip",
           "type": "CLIP",
           "link": 200
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "CONDITIONING",
           "name": "CONDITIONING",
           "type": "CONDITIONING",
+          "slot_index": 0,
           "links": [
             52
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "title": "CLIP Text Encode (Negative Prompt)",
       "properties": {
+        "Node name for S&R": "CLIPTextEncode",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "CLIPTextEncode"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "pen, marker, ink, painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured"
@@ -311,23 +491,52 @@
         120
       ],
       "flags": {},
-      "order": 7,
+      "order": 2,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "localized_name": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "batch_size",
+          "name": "batch_size",
+          "type": "INT",
+          "widget": {
+            "name": "batch_size"
+          },
+          "link": null
+        }
+      ],
       "outputs": [
         {
+          "localized_name": "LATENT",
           "name": "LATENT",
           "type": "LATENT",
+          "slot_index": 0,
           "links": [
             107
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "EmptySD3LatentImage",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "EmptySD3LatentImage"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         1280,
@@ -347,44 +556,103 @@
         340
       ],
       "flags": {},
-      "order": 8,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "model",
           "name": "model",
           "type": "MODEL",
           "link": 125
         },
         {
+          "localized_name": "positive",
           "name": "positive",
           "type": "CONDITIONING",
           "link": 46
         },
         {
+          "localized_name": "negative",
           "name": "negative",
           "type": "CONDITIONING",
           "link": 52
         },
         {
+          "localized_name": "latent_image",
           "name": "latent_image",
           "type": "LATENT",
           "link": 107
+        },
+        {
+          "localized_name": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "scheduler",
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "denoise",
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "LATENT",
           "name": "LATENT",
           "type": "LATENT",
+          "slot_index": 0,
           "links": [
             212
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "KSampler",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "KSampler"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         528220662126503,
@@ -393,7 +661,7 @@
         1.1,
         "euler",
         "beta57",
-        1.0
+        1
       ]
     },
     {
@@ -408,23 +676,34 @@
         90
       ],
       "flags": {},
-      "order": 9,
+      "order": 3,
       "mode": 0,
-      "inputs": [],
+      "inputs": [
+        {
+          "localized_name": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
       "outputs": [
         {
+          "localized_name": "VAE",
           "name": "VAE",
           "type": "VAE",
+          "slot_index": 0,
           "links": [
             211
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "VAELoader",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "VAELoader"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "qwen_image_vae.safetensors"
@@ -439,57 +718,76 @@
       ],
       "size": [
         225,
-        80
+        150
       ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "samples",
           "name": "samples",
           "type": "LATENT",
           "link": 212
         },
         {
+          "localized_name": "vae",
           "name": "vae",
           "type": "VAE",
           "link": 211
         },
         {
+          "localized_name": "tile_size",
           "name": "tile_size",
           "type": "INT",
+          "widget": {
+            "name": "tile_size"
+          },
           "link": null
         },
         {
+          "localized_name": "overlap",
           "name": "overlap",
           "type": "INT",
+          "widget": {
+            "name": "overlap"
+          },
           "link": null
         },
         {
+          "localized_name": "temporal_size",
           "name": "temporal_size",
           "type": "INT",
+          "widget": {
+            "name": "temporal_size"
+          },
           "link": null
         },
         {
+          "localized_name": "temporal_overlap",
           "name": "temporal_overlap",
           "type": "INT",
+          "widget": {
+            "name": "temporal_overlap"
+          },
           "link": null
         }
       ],
       "outputs": [
         {
+          "localized_name": "IMAGE",
           "name": "IMAGE",
           "type": "IMAGE",
+          "slot_index": 0,
           "links": [
             213
-          ],
-          "slot_index": 0
+          ]
         }
       ],
       "properties": {
+        "Node name for S&R": "VAEDecodeTiled",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "VAEDecodeTiled"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         512,
@@ -510,20 +808,30 @@
         500
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
+          "localized_name": "images",
           "name": "images",
           "type": "IMAGE",
           "link": 213
+        },
+        {
+          "localized_name": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
         }
       ],
       "outputs": [],
       "properties": {
+        "Node name for S&R": "SaveImage",
         "cnr_id": "comfy-core",
-        "ver": "0.3.48",
-        "Node name for S&R": "SaveImage"
+        "ver": "0.3.48"
       },
       "widgets_values": [
         "qwen_2512_lora_qwen4play"
@@ -533,26 +841,29 @@
       "id": 107,
       "type": "Note",
       "pos": [
-        -940,
-        340
+        -918.4558823529413,
+        411.09374999999983
       ],
       "size": [
         470,
         180
       ],
       "flags": {},
-      "order": 12,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [],
+      "title": "Metadata",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.48",
         "Node name for S&R": "Note"
       },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/118102095\nQwen4Play LoRA strength: 1.0\nTrigger words optional. Source examples include d0gg13, m15510n4ry, r3v3rs3_c0wg1rl, bl0wj0b."
-      ]
+        "{\n  \"trigger_words\": [\n    \"d0gg13\",\n    \"m15510n4ry\",\n    \"r3v3rs3_c0wg1rl\",\n    \"bl0wj0b\"\n  ],\n  \"trigger_required\": \"optional\"\n}\n---\nReference image: https://civitai.red/images/118102095\nQwen4Play LoRA strength: 1.0\nTrigger words optional. Source examples include d0gg13, m15510n4ry, r3v3rs3_c0wg1rl, bl0wj0b."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -666,8 +977,8 @@
       "id": 1,
       "title": "Local model substitutions",
       "bounding": [
-        -940,
-        -30,
+        -1048.1801470588239,
+        -55.831801470588246,
         470,
         340
       ],
@@ -705,10 +1016,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.85,
+      "scale": 0.8500000000000004,
       "offset": [
-        980,
-        560
+        2033.8167079779394,
+        744.5690176102937
       ]
     },
     "frontendVersion": "1.36.14",

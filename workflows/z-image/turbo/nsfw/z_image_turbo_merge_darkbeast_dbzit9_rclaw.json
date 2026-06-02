@@ -490,10 +490,11 @@
         "Node name for S&R": "Note"
       },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/124809807\nModel/version: Dark Beast / DBZiT9 DIM RClaw\nSource UNET name: DarkBeastZ9-RClaw-8step-BF16-ComfyUI.safetensors\nLocal UNET name: darkBeast_dbzit9DIMRclaw.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: ae.safetensors\nLocal VAE: ae.safetensors\nTrigger words: none listed\nLoRAs retained: none\nDownstream SeedVR2 upscaler branch omitted"
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nReference image: https://civitai.red/images/124809807\nModel/version: Dark Beast / DBZiT9 DIM RClaw\nSource UNET name: DarkBeastZ9-RClaw-8step-BF16-ComfyUI.safetensors\nLocal UNET name: darkBeast_dbzit9DIMRclaw.safetensors\nSource text encoder: qwen_3_4b.safetensors\nLocal text encoder: qwen_3_4b.safetensors\nSource VAE: ae.safetensors\nLocal VAE: ae.safetensors\nTrigger words: none listed\nLoRAs retained: none\nDownstream SeedVR2 upscaler branch omitted"
       ],
       "color": "#432",
-      "bgcolor": "#653"
+      "bgcolor": "#653",
+      "title": "Metadata"
     },
     {
       "id": 4,

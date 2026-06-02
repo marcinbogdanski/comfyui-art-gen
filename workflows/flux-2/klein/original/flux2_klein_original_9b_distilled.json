@@ -1,7 +1,7 @@
 {
   "id": "92112d97-bb64-4b44-86f2-ea5691ef8f6e",
   "revision": 0,
-  "last_node_id": 127,
+  "last_node_id": 128,
   "last_link_id": 191,
   "nodes": [
     {
@@ -72,7 +72,7 @@
         170
       ],
       "flags": {},
-      "order": 7,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -148,7 +148,7 @@
         160
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -222,7 +222,7 @@
         416
       ],
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -288,7 +288,8 @@
           "widget_ue_connectable": {}
         },
         "ver": "0.8.2"
-      }
+      },
+      "widgets_values": []
     },
     {
       "id": 118,
@@ -302,7 +303,7 @@
         100
       ],
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -345,7 +346,8 @@
           "widget_ue_connectable": {}
         },
         "ver": "0.8.2"
-      }
+      },
+      "widgets_values": []
     },
     {
       "id": 119,
@@ -359,7 +361,7 @@
         170
       ],
       "flags": {},
-      "order": 8,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -435,7 +437,7 @@
         140
       ],
       "flags": {},
-      "order": 9,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -840,7 +842,7 @@
         550
       ],
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -950,7 +952,7 @@
         280
       ],
       "flags": {},
-      "order": 10,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -1003,6 +1005,33 @@
       ],
       "color": "#232",
       "bgcolor": "#353"
+    },
+    {
+      "id": 128,
+      "type": "Note",
+      "pos": [
+        -804.4291966809518,
+        -52.550119366363525
+      ],
+      "size": [
+        560,
+        160
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Metadata",
+      "properties": {
+        "Node name for S&R": "Note",
+        "cnr_id": "comfy-core"
+      },
+      "widgets_values": [
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial/original model workflow. No trigger words required."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -1206,8 +1235,8 @@
     "ds": {
       "scale": 0.7733141025641028,
       "offset": [
-        1472.2775290988047,
-        189.54613350201902
+        1874.882166357688,
+        584.4020597518428
       ]
     },
     "frontendVersion": "1.43.16",

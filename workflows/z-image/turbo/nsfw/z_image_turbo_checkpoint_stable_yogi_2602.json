@@ -407,13 +407,13 @@
       "mode": 0,
       "inputs": [],
       "outputs": [],
-      "title": "Reference",
+      "title": "Metadata",
       "properties": {
         "Node name for S&R": "Note",
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "Reference image: https://civitai.red/images/120285584\nTrigger word: 99bsy99"
+        "{\n  \"trigger_words\": [\n    \"99bsy99\"\n  ],\n  \"trigger_required\": \"required\"\n}\n---\nReference image: https://civitai.red/images/120285584\nTrigger word: 99bsy99"
       ],
       "color": "#432",
       "bgcolor": "#653"
