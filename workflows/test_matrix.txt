@@ -1,36 +1,36 @@
 # Flux 2 Dev
-workflows/flux-2/dev/original/image_flux2_text_to_image.json
+workflows/flux-2/dev/original/flux2_dev_original.json
 
 # Flux 2 Klein
-workflows/flux-2/klein/biglove/BigLove_Klein2_Txt2Img_Upscale_Civitai.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_pornmaster_turbo.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_darkbeast.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_unchained.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_snofs.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_snofs_model.json
-workflows/flux-2/klein/original/image_flux2_text_to_image_9b.json
-workflows/flux-2/klein/original/image_flux2_text_to_image_9b_distilled.json
+workflows/flux-2/klein/biglove/flux2_klein_checkpoint_biglove_t2i.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_turbo.json
+workflows/flux-2/klein/nsfw/flux2_klein_merge_darkbeast_blitz.json
+workflows/flux-2/klein/nsfw/flux2_klein_lora_unchained.json
+workflows/flux-2/klein/nsfw/flux2_klein_lora_snofs.json
+workflows/flux-2/klein/nsfw/flux2_klein_merge_snofs_distilled.json
+workflows/flux-2/klein/original/flux2_klein_original_9b.json
+workflows/flux-2/klein/original/flux2_klein_original_9b_distilled.json
 
 # Qwen 2512
-workflows/qwen-image/2512/nsfw/image_jib_mix_qwen_2512.json
-workflows/qwen-image/2512/nsfw/image_qwen2512_lora_qwen4play.json
-workflows/qwen-image/2512/nsfw/image_qwen2512_lora_snofs.json
-workflows/qwen-image/2512/original/image_qwen_Image_2512.json
+workflows/qwen-image/2512/nsfw/qwen_2512_merge_jib_mix.json
+workflows/qwen-image/2512/nsfw/qwen_2512_lora_qwen4play.json
+workflows/qwen-image/2512/nsfw/qwen_2512_lora_snofs.json
+workflows/qwen-image/2512/original/qwen_2512_original.json
 
 # Qwen Base
-workflows/qwen-image/base/nsfw/image_qwen_lora_mcnl.json
+workflows/qwen-image/base/nsfw/qwen_base_lora_mcnl.json
 
 # Z-Image Base
-workflows/z-image/base/nsfw/image_z_image_model_pornmaster_base_v1.json
-workflows/z-image/base/nsfw/image_z_image_moody_wild_v4_base.json
-workflows/z-image/base/nsfw/image_z_image_redcraft_zib_agile.json
-workflows/z-image/base/original/image_z_image.json
+workflows/z-image/base/nsfw/z_image_base_checkpoint_pornmaster_v1.json
+workflows/z-image/base/nsfw/z_image_base_merge_moody_wild_v4.json
+workflows/z-image/base/nsfw/z_image_base_merge_redcraft_zib_agile.json
+workflows/z-image/base/original/z_image_base_original.json
 
 # Z-Image Turbo
-workflows/z-image/turbo/nsfw/image_zit_model_stable_yogi_2602.json
-workflows/z-image/turbo/nsfw/image_zit_lora_nsfw_master.json
-workflows/z-image/turbo/nsfw/image_zit_model_photorealistic_82.json
-workflows/z-image/turbo/nsfw/image_zit_model_dark_beast_dbzit9_rclaw.json
-workflows/z-image/turbo/nsfw/image_zit_model_moody_pro_v10_r1.json
-workflows/z-image/turbo/nsfw/image_zit_lora_mystic_xxx_v7.json
-workflows/z-image/turbo/original/image_z_image_turbo.json
+workflows/z-image/turbo/nsfw/z_image_turbo_checkpoint_stable_yogi_2602.json
+workflows/z-image/turbo/nsfw/z_image_turbo_lora_nsfw_master.json
+workflows/z-image/turbo/nsfw/z_image_turbo_checkpoint_photorealistic_82.json
+workflows/z-image/turbo/nsfw/z_image_turbo_merge_darkbeast_dbzit9_rclaw.json
+workflows/z-image/turbo/nsfw/z_image_turbo_merge_moody_pro_v10_r1.json
+workflows/z-image/turbo/nsfw/z_image_turbo_lora_mystic_xxx_v7.json
+workflows/z-image/turbo/original/z_image_turbo_original.json

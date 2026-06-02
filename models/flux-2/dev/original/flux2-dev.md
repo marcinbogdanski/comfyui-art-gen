@@ -7,7 +7,7 @@ Docs and workflow image:
 ```text
 https://docs.comfy.org/tutorials/flux/flux-2-dev
 https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_fp8.json
-https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_text_to_image.json
+https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/flux2_dev_original.json
 https://comfyanonymous.github.io/ComfyUI_examples/flux2/
 https://raw.githubusercontent.com/comfyanonymous/ComfyUI_examples/master/flux2/flux2_example.png
 ```
@@ -70,7 +70,7 @@ Repo copy:
 
 ```text
 workflows/flux-2/dev/original/image_flux2_fp8.json
-workflows/flux-2/dev/original/image_flux2_text_to_image.json
+workflows/flux-2/dev/original/flux2_dev_original.json
 workflows/flux-2/dev/original/flux2_example.json
 ```
 
@@ -97,7 +97,7 @@ The example image embeds both GUI workflow metadata and an API prompt. The GUI w
 - `image_flux2_fp8.json` is the current Comfy-Org workflow template for the
   same FP8 baseline files already used locally. It references the optional
   `Flux2TurboComfyv2.safetensors` LoRA.
-- `image_flux2_text_to_image.json` is the official text-to-image template. It
+- `flux2_dev_original.json` is the official text-to-image template. It
   uses the same FP8 diffusion model with the BF16 Mistral text encoder,
   `full_encoder_small_decoder.safetensors`, and the optional Turbo LoRA.
 - API smoke test on 2026-05-28 produced:

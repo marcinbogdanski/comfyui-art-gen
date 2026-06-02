@@ -59,7 +59,7 @@ generation path.
 Repo workflow:
 
 ```text
-workflows/z-image/turbo/nsfw/image_zit_model_moody_pro_v10_r1.json
+workflows/z-image/turbo/nsfw/z_image_turbo_merge_moody_pro_v10_r1.json
 ```
 
 The workflow keeps the source image's initial two-stage generation path and

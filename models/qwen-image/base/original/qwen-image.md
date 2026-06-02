@@ -52,7 +52,7 @@ scripts/download_models/qwen-image.sh
 MCNL reference copy:
 
 ```text
-workflows/qwen-image/base/nsfw/image_qwen_lora_mcnl.json
+workflows/qwen-image/base/nsfw/qwen_base_lora_mcnl.json
 ```
 
 Current important workflow selections:

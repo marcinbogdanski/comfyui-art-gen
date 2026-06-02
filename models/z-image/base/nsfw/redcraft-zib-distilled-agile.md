@@ -57,7 +57,7 @@ redcraftERNIERedmix_zibDistilled.safetensors
 Repo workflow:
 
 ```text
-workflows/z-image/base/nsfw/image_z_image_redcraft_zib_agile.json
+workflows/z-image/base/nsfw/z_image_base_merge_redcraft_zib_agile.json
 ```
 
 The workflow keeps only the first-pass generation path from the embedded source

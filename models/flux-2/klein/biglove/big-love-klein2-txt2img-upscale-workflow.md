@@ -9,7 +9,7 @@ Model files are documented in `models/flux-2/klein/biglove/big-love-klein2.md`; 
 Primary saved workflow:
 
 ```text
-/mnt/data/comfyui/user/default/workflows/BigLove_Klein2_Txt2Img_Upscale_Civitai.json
+/mnt/data/comfyui/user/default/workflows/flux2_klein_checkpoint_biglove_t2i.json
 ```
 
 Original Civitai image/workflow source:

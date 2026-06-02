@@ -7,7 +7,7 @@ Docs and workflows:
 
 ```text
 https://docs.comfy.org/tutorials/flux/flux-2-klein
-https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_text_to_image_9b.json
+https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/flux2_klein_original_9b.json
 https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_klein_image_edit_9b_base.json
 https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_flux2_klein_image_edit_9b_distilled.json
 ```
@@ -59,8 +59,8 @@ section; the current 9B template metadata uses `full_encoder_small_decoder.safet
 Repo copies:
 
 ```text
-workflows/flux-2/klein/original/image_flux2_text_to_image_9b.json
-workflows/flux-2/klein/original/image_flux2_text_to_image_9b_distilled.json
+workflows/flux-2/klein/original/flux2_klein_original_9b.json
+workflows/flux-2/klein/original/flux2_klein_original_9b_distilled.json
 workflows/flux-2/klein/original/image_flux2_klein_image_edit_9b_base.json
 workflows/flux-2/klein/original/image_flux2_klein_image_edit_9b_distilled.json
 ```

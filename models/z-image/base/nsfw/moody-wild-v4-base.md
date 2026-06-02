@@ -55,7 +55,7 @@ vae/ae.safetensors
 Repo workflow:
 
 ```text
-workflows/z-image/base/nsfw/image_z_image_moody_wild_v4_base.json
+workflows/z-image/base/nsfw/z_image_base_merge_moody_wild_v4.json
 ```
 
 The workflow keeps the core source two-pass Z-Image Base generation path from

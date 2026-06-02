@@ -70,7 +70,7 @@ TASK: Add MCNL original Qwen workflow
 IN SCOPE
 control repo:
 - models/qwen-image/base/nsfw/qwen-mcnl.md
-- workflows/qwen-image/base/nsfw/image_qwen_lora_mcnl.json
+- workflows/qwen-image/base/nsfw/qwen_base_lora_mcnl.json
 - scripts/download_models/qwen-image.sh
 
 model archive:

@@ -6,7 +6,7 @@ Docs and workflow:
 
 ```text
 https://docs.comfy.org/tutorials/image/z-image/z-image
-https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_z_image.json
+https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/z_image_base_original.json
 ```
 
 ## Model Files
@@ -46,7 +46,7 @@ wget -c \
 Repo copy:
 
 ```text
-workflows/z-image/base/original/image_z_image.json
+workflows/z-image/base/original/z_image_base_original.json
 ```
 
 Current important workflow selections:

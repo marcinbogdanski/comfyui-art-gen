@@ -6,7 +6,7 @@ Qwen-Image safetensors baseline used by the source image.
 ## Workflow
 
 ```text
-workflows/qwen-image/base/nsfw/image_qwen_lora_mcnl.json
+workflows/qwen-image/base/nsfw/qwen_base_lora_mcnl.json
 ```
 
 The source is Civitai image `93972166`. The actual downloaded source image is a

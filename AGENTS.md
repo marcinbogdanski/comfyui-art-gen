@@ -59,8 +59,8 @@ Operational preferences:
   "commit the workflow" mean the canonical no-suffix workflow files and docs,
   not ignored `.work.json` copies.
 - Canonical workflow filenames should follow
-  `<prefix-or-model-name>_<lora-or-model>_<lora-short-name>.json`, for example
-  `image_qwen_lora_mcnl.json`.
+  `<family>_<variant>_<asset-type>_<asset-short-name>.json`, for example
+  `qwen_base_lora_mcnl.json`.
 - Before treating any new or edited canonical GUI workflow `.json` as ready for
   review, run it through the actual ComfyUI frontend converter with
   `scripts/gui_workflow_smoke.mjs` in the pinned Playwright Docker image. Use

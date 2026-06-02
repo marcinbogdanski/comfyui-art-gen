@@ -6,7 +6,7 @@ Docs and workflow:
 
 ```text
 https://docs.comfy.org/tutorials/image/z-image/z-image-turbo
-https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_z_image_turbo.json
+https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/z_image_turbo_original.json
 ```
 
 ## Model Files
@@ -46,7 +46,7 @@ wget -c \
 Repo copy:
 
 ```text
-workflows/z-image/turbo/original/image_z_image_turbo.json
+workflows/z-image/turbo/original/z_image_turbo_original.json
 ```
 
 Optional LoRAs:

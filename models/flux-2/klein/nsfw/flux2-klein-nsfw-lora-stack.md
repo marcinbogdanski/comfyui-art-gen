@@ -8,11 +8,11 @@ LoRAs.
 Reference-specific workflow copies:
 
 ```text
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_pornmaster_turbo.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_darkbeast.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_merge_snofs_model.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_snofs.json
-workflows/flux-2/klein/nsfw/image_flux2_klein_lora_base_unchained.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_turbo.json
+workflows/flux-2/klein/nsfw/flux2_klein_merge_darkbeast_blitz.json
+workflows/flux-2/klein/nsfw/flux2_klein_merge_snofs_distilled.json
+workflows/flux-2/klein/nsfw/flux2_klein_lora_snofs.json
+workflows/flux-2/klein/nsfw/flux2_klein_lora_unchained.json
 ```
 
 All workflows are plain-node variants of the official Flux.2 Klein
@@ -97,11 +97,11 @@ prompt-library value.
 
 | Workflow | UNET model | LoRA | VAE | Default steps | Steps range | Default CFG | CFG range |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `image_flux2_klein_merge_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
-| `image_flux2_klein_merge_darkbeast.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
-| `image_flux2_klein_merge_snofs_model.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
-| `image_flux2_klein_lora_base_snofs.json` | `flux-2-klein-base-9b.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
-| `image_flux2_klein_lora_base_unchained.json` | `flux-2-klein-9b.safetensors` | `KLEIN-Unchained-V2.safetensors` @ 1.0 | `flux2-vae.safetensors` | 20 | 20 | 1 | 1 |
+| `flux2_klein_checkpoint_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
+| `flux2_klein_merge_darkbeast_blitz.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
+| `flux2_klein_merge_snofs_distilled.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
+| `flux2_klein_lora_snofs.json` | `flux-2-klein-base-9b.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
+| `flux2_klein_lora_unchained.json` | `flux-2-klein-9b.safetensors` | `KLEIN-Unchained-V2.safetensors` @ 1.0 | `flux2-vae.safetensors` | 20 | 20 | 1 | 1 |
 
 ## Smoke Tests
 

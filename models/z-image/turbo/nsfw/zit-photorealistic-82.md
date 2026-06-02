@@ -66,7 +66,7 @@ words are listed for this model version.
 Repo workflow:
 
 ```text
-workflows/z-image/turbo/nsfw/image_zit_model_photorealistic_82.json
+workflows/z-image/turbo/nsfw/z_image_turbo_checkpoint_photorealistic_82.json
 ```
 
 The workflow keeps the source image's direct Z-Image Turbo text-to-image path

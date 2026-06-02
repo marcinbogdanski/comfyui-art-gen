@@ -6,7 +6,7 @@ Docs and workflow:
 
 ```text
 https://docs.comfy.org/tutorials/image/qwen/qwen-image-2512
-https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/image_qwen_Image_2512.json
+https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/templates/qwen_2512_original.json
 ```
 
 ## Model Files
@@ -46,7 +46,7 @@ wget -c \
 Repo copy:
 
 ```text
-workflows/qwen-image/2512/original/image_qwen_Image_2512.json
+workflows/qwen-image/2512/original/qwen_2512_original.json
 ```
 
 Current important workflow selections:

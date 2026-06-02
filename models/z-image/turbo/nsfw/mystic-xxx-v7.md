@@ -51,7 +51,7 @@ No Civitai trainedWords or trigger words are listed for this LoRA version.
 Repo workflow:
 
 ```text
-workflows/z-image/turbo/nsfw/image_zit_lora_mystic_xxx_v7.json
+workflows/z-image/turbo/nsfw/z_image_turbo_lora_mystic_xxx_v7.json
 ```
 
 The workflow keeps the source image's direct text-to-image generation path and

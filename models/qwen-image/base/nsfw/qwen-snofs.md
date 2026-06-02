@@ -6,7 +6,7 @@ Qwen-Image GGUF baseline used by the source image.
 ## Workflow
 
 ```text
-workflows/qwen-image/2512/nsfw/image_qwen2512_lora_snofs.json
+workflows/qwen-image/2512/nsfw/qwen_2512_lora_snofs.json
 ```
 
 The source is Civitai image `112774380`. The actual downloaded source image is

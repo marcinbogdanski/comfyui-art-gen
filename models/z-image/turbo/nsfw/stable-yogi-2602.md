@@ -66,7 +66,7 @@ also the encoder shipped by the author's own linked workflow.
 Repo workflow:
 
 ```text
-workflows/z-image/turbo/nsfw/image_zit_model_stable_yogi_2602.json
+workflows/z-image/turbo/nsfw/z_image_turbo_checkpoint_stable_yogi_2602.json
 ```
 
 The reference image (120285584) carries no embedded ComfyUI workflow, only

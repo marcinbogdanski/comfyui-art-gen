@@ -71,7 +71,7 @@ qwen_3_4b.safetensors
 Repo workflow:
 
 ```text
-workflows/z-image/base/nsfw/image_z_image_model_pornmaster_base_v1.json
+workflows/z-image/base/nsfw/z_image_base_checkpoint_pornmaster_v1.json
 ```
 
 The workflow keeps the source text-to-image generation path from the embedded

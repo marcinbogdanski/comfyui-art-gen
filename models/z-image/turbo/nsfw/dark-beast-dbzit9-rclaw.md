@@ -54,7 +54,7 @@ No Civitai trainedWords or trigger words are listed for this model version.
 Repo workflow:
 
 ```text
-workflows/z-image/turbo/nsfw/image_zit_model_dark_beast_dbzit9_rclaw.json
+workflows/z-image/turbo/nsfw/z_image_turbo_merge_darkbeast_dbzit9_rclaw.json
 ```
 
 The workflow keeps the source image's core two-pass Z-Image Turbo path and

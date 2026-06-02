@@ -31,7 +31,7 @@ LoRA strength: model 1.0, clip 1.0
 This is not the closest source-model match. The closer workflow is:
 
 ```text
-workflows/qwen-image/2512/nsfw/image_qwen2512_lora_snofs.json
+workflows/qwen-image/2512/nsfw/qwen_2512_lora_snofs.json
 ```
 
 Intentional local substitutions in this fallback workflow:
