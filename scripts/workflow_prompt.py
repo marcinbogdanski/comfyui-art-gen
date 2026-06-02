@@ -56,6 +56,24 @@ def run_workflow(cmd):
         print(result.stdout, end="", file=sys.stderr)
     raise subprocess.CalledProcessError(result.returncode, cmd)
 
+def apply_required_trigger_words(workflow, prompt):
+    metadata_notes = [
+        n
+        for n in workflow["nodes"]
+        if n.get("type") == "Note" and n.get("title") == "Metadata"
+    ]
+    assert len(metadata_notes) == 1, "expected exactly one Metadata note"
+
+    metadata_text = metadata_notes[0]["widgets_values"][0]
+    metadata = json.loads(metadata_text.split("\n---\n", 1)[0])
+    if metadata.get("trigger_required") != "required":
+        return prompt
+
+    trigger_words = metadata.get("trigger_words") or []
+    assert trigger_words, "required trigger metadata must list trigger_words"
+    prefix = ", ".join(trigger_words)
+    return f"{prefix}, {prompt}"
+
 
 def free_memory(base_url):
     data = json.dumps({"unload_models": True, "free_memory": True}).encode()
@@ -92,6 +110,7 @@ def main():
 
     workflow = json.loads(workflow_path.read_text())
     prompt = Path(args.prompt_file).read_text().strip()
+    prompt = apply_required_trigger_words(workflow, prompt)
 
     prompt_nodes = [n for n in workflow["nodes"] if n.get("type") == "CLIPTextEncode"]
 
