@@ -742,7 +742,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "flux2_klein_base_unchained_lora_ref_123484344"
+        "flux2_klein_lora_unchained"
       ]
     },
     {

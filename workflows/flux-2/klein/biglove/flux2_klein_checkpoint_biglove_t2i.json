@@ -113,7 +113,7 @@
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        "BigLove_Klein2_Txt2Img_Upscale"
+        "flux2_klein_checkpoint_biglove_t2i"
       ]
     },
     {

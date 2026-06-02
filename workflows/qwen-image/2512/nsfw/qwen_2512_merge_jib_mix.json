@@ -54,7 +54,7 @@
         }
       },
       "widgets_values": [
-        "jib-mix-qwen-2512"
+        "qwen_2512_merge_jib_mix"
       ]
     },
     {

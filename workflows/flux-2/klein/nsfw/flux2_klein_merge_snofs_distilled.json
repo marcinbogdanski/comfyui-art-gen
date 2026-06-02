@@ -683,7 +683,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "flux2_klein_snofs_model"
+        "flux2_klein_merge_snofs_distilled"
       ]
     },
     {

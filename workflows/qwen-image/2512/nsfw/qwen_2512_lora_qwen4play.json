@@ -524,7 +524,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "Qwen-Image-2512-qwen4play-118102095"
+        "qwen_2512_lora_qwen4play"
       ]
     },
     {

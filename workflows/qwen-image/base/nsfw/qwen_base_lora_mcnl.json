@@ -459,7 +459,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "Qwen-Image-MCNL-93972166-safetensors"
+        "qwen_base_lora_mcnl"
       ]
     },
     {

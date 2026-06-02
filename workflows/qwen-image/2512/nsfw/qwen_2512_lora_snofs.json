@@ -494,7 +494,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "Qwen2512-LoRA-SNOFS"
+        "qwen_2512_lora_snofs"
       ]
     },
     {
