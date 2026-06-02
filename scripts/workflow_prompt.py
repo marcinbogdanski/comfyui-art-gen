@@ -13,6 +13,14 @@ BATCH_INDEX = {
     "📐 Resolution Image Size Selector": 10,
 }
 
+SEED_INDEX = {
+    "RandomNoise": 0,
+    "KSampler": 0,
+    "KSamplerAdvanced": 1,
+    "KSampler //Inspire": 0,
+    "SeedVarianceEnhancer": 4,
+}
+
 
 def main():
     repo_root = Path(__file__).resolve().parents[1]
@@ -27,6 +35,7 @@ def main():
     parser.add_argument("--base-url", default="http://127.0.0.1:8188")
     parser.add_argument("--timeout", default="600")
     parser.add_argument("-b", "--batch", type=int)
+    parser.add_argument("--seed", type=int)
     args = parser.parse_args()
 
     workflow_path = Path(args.workflow)
@@ -57,6 +66,12 @@ def main():
         assert len(batch_nodes) == 1, "expected exactly one batch-size node"
         batch_node = batch_nodes[0]
         batch_node["widgets_values"][BATCH_INDEX[batch_node["type"]]] = args.batch
+
+    if args.seed is not None:
+        seed_nodes = [n for n in workflow["nodes"] if n.get("type") in SEED_INDEX]
+        assert seed_nodes, "expected at least one seed node"
+        for seed_node in seed_nodes:
+            seed_node["widgets_values"][SEED_INDEX[seed_node["type"]]] = args.seed
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_workflow = Path(tmpdir) / "workflow.json"
