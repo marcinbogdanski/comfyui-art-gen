@@ -6,6 +6,14 @@ import tempfile
 from pathlib import Path
 
 
+BATCH_INDEX = {
+    "EmptyLatentImage": 2,
+    "EmptySD3LatentImage": 2,
+    "EmptyFlux2LatentImage": 2,
+    "📐 Resolution Image Size Selector": 10,
+}
+
+
 def main():
     repo_root = Path(__file__).resolve().parents[1]
 
@@ -18,6 +26,7 @@ def main():
     )
     parser.add_argument("--base-url", default="http://127.0.0.1:8188")
     parser.add_argument("--timeout", default="600")
+    parser.add_argument("-b", "--batch", type=int)
     args = parser.parse_args()
 
     workflow_path = Path(args.workflow)
@@ -42,6 +51,12 @@ def main():
         prompt_node["widgets_values"][0] = prompt
     else:
         prompt_node["widgets_values"] = [prompt]
+
+    if args.batch is not None:
+        batch_nodes = [n for n in workflow["nodes"] if n.get("type") in BATCH_INDEX]
+        assert len(batch_nodes) == 1, "expected exactly one batch-size node"
+        batch_node = batch_nodes[0]
+        batch_node["widgets_values"][BATCH_INDEX[batch_node["type"]]] = args.batch
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_workflow = Path(tmpdir) / "workflow.json"
