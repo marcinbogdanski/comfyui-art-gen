@@ -248,6 +248,7 @@
           "slot_index": 0
         }
       ],
+      "title": "CLIP Text Encode (Positive Prompt)",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.48",
@@ -288,6 +289,7 @@
           "slot_index": 0
         }
       ],
+      "title": "CLIP Text Encode (Negative Prompt)",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.3.48",
