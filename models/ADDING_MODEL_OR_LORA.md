@@ -261,26 +261,29 @@ smoke result and output path in the relevant model doc. If this required check
 cannot be run, stop and report the blocker and next action instead of presenting
 the workflow as ready.
 
-Also validate that edited workflow JSON is parseable and the metadata note has
-the expected shape:
+The metadata note should have the expected shape:
 
-- the workflow passes `jq empty`;
 - there is exactly one `Note` node titled `Metadata`;
 - the note text contains a `---` separator after the JSON front matter;
 - the front matter parses as JSON;
 - `trigger_words` is a list;
 - `trigger_required` is one of `required`, `optional`, `no`, or `unknown`.
 
-For the complete `workflows/test_matrix.txt` set, the required no-generation
-preflight is:
+Do not add a newly created workflow to `workflows/test_matrix.txt` unless the
+human asks for it or the accepted scope includes it; the matrix is a curated
+regression set, not an automatic inventory of all workflows.
+
+For the current complete `workflows/test_matrix.txt` set, use one required
+no-generation preflight command:
 
 ```bash
-python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run
+python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run --batch 1 --seed 1 --id dryrun_matrix
 ```
 
-This validates the prompt/metadata/batch/seed/output assumptions encoded in
-`scripts/workflow_prompt.py` and runs frontend conversion for each matrix
-workflow without submitting generation jobs.
+For workflows included in the matrix, this validates the
+prompt/metadata/batch/seed/output assumptions encoded in
+`scripts/workflow_prompt.py` and runs frontend conversion without submitting
+generation jobs.
 
 After the smoke test, stop for human review unless the user has asked for
 commits or further automation.
