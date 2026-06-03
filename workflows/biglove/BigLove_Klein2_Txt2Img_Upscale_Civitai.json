@@ -1029,7 +1029,7 @@
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        "ComfyUI"
+        "BigLove_Klein2_Txt2Img_Upscale"
       ]
     },
     {
@@ -1378,7 +1378,7 @@
         "Node name for S&R": "SaveImage"
       },
       "widgets_values": [
-        "ComfyUI"
+        "BigLove_Klein2_Txt2Img_Upscale"
       ]
     }
   ],

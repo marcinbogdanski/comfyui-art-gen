@@ -60,6 +60,7 @@ python -m pip install \
   pixeloe \
   "pillow>=10.3.0" \
   protobuf \
+  pywavelets \
   pyloudnorm \
   rembg \
   "sam-2 @ git+https://github.com/facebookresearch/sam2" \
@@ -100,6 +101,8 @@ clone_node https://github.com/kijai/ComfyUI-WanVideoWrapper.git ComfyUI-WanVideo
 clone_node https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git ComfyUI-VideoHelperSuite a6879b8
 clone_node https://github.com/kijai/ComfyUI-KJNodes.git ComfyUI-KJNodes fca78c9
 clone_node https://github.com/cubiq/ComfyUI_essentials.git ComfyUI_essentials 9d9f4be
+clone_node https://github.com/Jonseed/ComfyUI-Detail-Daemon.git ComfyUI-Detail-Daemon f391accbda2d309cdcbec65cb9fcc80a41197b20
+clone_node https://github.com/ClownsharkBatwing/RES4LYF.git RES4LYF 46de917234f9fef3f2ab411c41e07aa3c633f4f7
 
 touch "${CUSTOM_NODES_DIR}/skip_download_model"
 

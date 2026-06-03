@@ -21,3 +21,8 @@
   `/mnt/data/comfyui/models/...` holds weights plus sidecar `.md` and original
   source/verification artifacts only. Do not put repo `.work.json` convention
   files in model sidecar folders.
+- When downloading model weights, prefer the canonical or most popular upstream
+  source first, especially when Marcin names or hints at one such as Unsloth.
+  Use mirrors/forks only after verifying why the canonical source is unsuitable,
+  and record hash/source equivalence if keeping a workflow-compatible local
+  filename.
