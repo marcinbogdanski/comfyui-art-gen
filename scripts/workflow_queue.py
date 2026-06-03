@@ -41,6 +41,8 @@ async def run_job(name, base_url, workflow, args, repo_root):
         cmd.extend(["--seed", str(args.seed)])
     if args.id is not None:
         cmd.extend(["--id", args.id])
+    if args.dry_run:
+        cmd.append("--dry-run")
 
     started = time.monotonic()
     print(f"START {name} {workflow}", flush=True)
@@ -72,7 +74,7 @@ async def worker(name, base_url, queue, failures, args, repo_root):
             return
 
         try:
-            if args.id is not None:
+            if args.id is not None and not args.dry_run:
                 expected = args.batch or 1
                 existing = existing_output_count(args.id, workflow)
                 if existing >= expected:
@@ -132,6 +134,7 @@ def main():
     parser.add_argument("-b", "--batch", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--id")
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     assert args.workers > 0, "--workers must be positive"
 

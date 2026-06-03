@@ -201,12 +201,35 @@ When requirements are met:
   mapping, VAE/text encoder choices, and negative conditioning where possible;
 - document intentional substitutions, such as local filename mappings or a
   missing source VAE replaced by an available local VAE;
-- add a ComfyUI `Note` node to the local workflow containing the reference image
-  URL and any model or LoRA activation/trigger keywords, even when the source
-  says no trigger word is required. Keep this workflow note to those facts only;
-  if more information seems useful there, ask the human first;
+- add exactly one plain ComfyUI `Note` node titled `Metadata` to the local
+  workflow. Its body must start with JSON front matter, followed by a line
+  containing only `---`, followed by concise free-form source notes. Keep this
+  workflow note to source/reference facts only; if more information seems useful
+  there, ask the human first;
+- include `trigger_words` and `trigger_required` in the `Metadata` JSON. Use
+  `trigger_words` as a list of source-documented trigger or activation words.
+  Use `trigger_required` as one of `required`, `optional`, `no`, or `unknown`.
+  Use `no` when the source explicitly lists no trigger words or has an empty
+  trainedWords/activation-keyword list. Use `unknown` only when source trigger
+  metadata cannot be found;
+- when `trigger_required` is `required`, `scripts/workflow_prompt.py` prepends
+  the listed `trigger_words` to scripted prompts. Do not add graph concat nodes
+  just to inject trigger words unless the user explicitly asks for graph-side
+  trigger handling;
 - keep `.work.json` copies local and ignored unless explicitly asked to track
   them.
+
+Metadata note example:
+
+```text
+{
+  "trigger_words": ["99bsy99"],
+  "trigger_required": "required"
+}
+---
+Reference image: https://civitai.red/images/120285584
+Trigger word: 99bsy99
+```
 
 Pixel-perfect reproduction is not required. The local workflow should generate
 the same image in the practical sense: same subject, composition, style, and
@@ -237,6 +260,27 @@ the target GPU when the workflow design allows that, and record the frontend
 smoke result and output path in the relevant model doc. If this required check
 cannot be run, stop and report the blocker and next action instead of presenting
 the workflow as ready.
+
+Also validate that edited workflow JSON is parseable and the metadata note has
+the expected shape:
+
+- the workflow passes `jq empty`;
+- there is exactly one `Note` node titled `Metadata`;
+- the note text contains a `---` separator after the JSON front matter;
+- the front matter parses as JSON;
+- `trigger_words` is a list;
+- `trigger_required` is one of `required`, `optional`, `no`, or `unknown`.
+
+For the complete `workflows/test_matrix.txt` set, the required no-generation
+preflight is:
+
+```bash
+python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run
+```
+
+This validates the prompt/metadata/batch/seed/output assumptions encoded in
+`scripts/workflow_prompt.py` and runs frontend conversion for each matrix
+workflow without submitting generation jobs.
 
 After the smoke test, stop for human review unless the user has asked for
 commits or further automation.

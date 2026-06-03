@@ -24,6 +24,8 @@ SEED_INDEX = {
     "SeedVarianceEnhancer": 4,
 }
 
+TRIGGER_REQUIRED_VALUES = {"required", "optional", "no", "unknown"}
+
 
 def is_oom_output(text):
     lower = text.lower()
@@ -56,6 +58,7 @@ def run_workflow(cmd):
         print(result.stdout, end="", file=sys.stderr)
     raise subprocess.CalledProcessError(result.returncode, cmd)
 
+
 def apply_required_trigger_words(workflow, prompt):
     metadata_notes = [
         n
@@ -65,11 +68,17 @@ def apply_required_trigger_words(workflow, prompt):
     assert len(metadata_notes) == 1, "expected exactly one Metadata note"
 
     metadata_text = metadata_notes[0]["widgets_values"][0]
+    assert "\n---\n" in metadata_text, "expected Metadata note JSON front matter separator"
     metadata = json.loads(metadata_text.split("\n---\n", 1)[0])
+    assert (
+        metadata.get("trigger_required") in TRIGGER_REQUIRED_VALUES
+    ), "expected trigger_required to be required, optional, no, or unknown"
+    assert isinstance(metadata.get("trigger_words"), list), "expected trigger_words list"
+
     if metadata.get("trigger_required") != "required":
         return prompt
 
-    trigger_words = metadata.get("trigger_words") or []
+    trigger_words = metadata["trigger_words"]
     assert trigger_words, "required trigger metadata must list trigger_words"
     prefix = ", ".join(trigger_words)
     return f"{prefix}, {prompt}"
@@ -102,6 +111,7 @@ def main():
     parser.add_argument("-b", "--batch", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--id")
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
     workflow_path = Path(args.workflow)
@@ -113,6 +123,7 @@ def main():
     prompt = apply_required_trigger_words(workflow, prompt)
 
     prompt_nodes = [n for n in workflow["nodes"] if n.get("type") == "CLIPTextEncode"]
+    assert prompt_nodes, "expected at least one CLIPTextEncode node"
 
     if len(prompt_nodes) == 1:
         prompt_node = prompt_nodes[0]
@@ -122,6 +133,11 @@ def main():
         ]
         assert len(positive_nodes) == 1, "expected exactly one positive CLIPTextEncode node"
         prompt_node = positive_nodes[0]
+
+    text_inputs = [i for i in prompt_node.get("inputs", []) if i.get("name") == "text"]
+    assert all(
+        i.get("link") is None for i in text_inputs
+    ), "expected positive CLIPTextEncode text input to be unconnected"
 
     if prompt_node.get("widgets_values"):
         prompt_node["widgets_values"][0] = prompt
@@ -134,15 +150,17 @@ def main():
         batch_node = batch_nodes[0]
         batch_node["widgets_values"][BATCH_INDEX[batch_node["type"]]] = args.batch
 
+    seed_nodes = [n for n in workflow["nodes"] if n.get("type") in SEED_INDEX]
+    assert seed_nodes, "expected at least one seed node"
+
     if args.seed is not None:
-        seed_nodes = [n for n in workflow["nodes"] if n.get("type") in SEED_INDEX]
-        assert seed_nodes, "expected at least one seed node"
         for seed_node in seed_nodes:
             seed_node["widgets_values"][SEED_INDEX[seed_node["type"]]] = args.seed
 
+    save_nodes = [n for n in workflow["nodes"] if n.get("type") == "SaveImage"]
+    assert len(save_nodes) == 1, "expected exactly one SaveImage node"
+
     if args.id is not None:
-        save_nodes = [n for n in workflow["nodes"] if n.get("type") == "SaveImage"]
-        assert len(save_nodes) == 1, "expected exactly one SaveImage node"
         save_nodes[0]["widgets_values"][0] = f"{args.id}_{workflow_path.stem}"
 
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -169,11 +187,16 @@ def main():
             "npm install playwright@1.57.0 >/dev/null && "
             "cp /work/scripts/gui_workflow_smoke.mjs . && "
             'node gui_workflow_smoke.mjs --base-url "$1" '
-            '--submit --wait --timeout "$2" /input/workflow.json',
+            f'{"--submit --wait " if not args.dry_run else ""}'
+            '--timeout "$2" /input/workflow.json',
             "sh",
             args.base_url,
             args.timeout,
         ]
+
+        if args.dry_run:
+            run_workflow(cmd)
+            return
 
         try:
             free_memory(args.base_url)
