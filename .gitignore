@@ -1,1 +1,2 @@
 workflows/**/*.work.json
+scripts/__pycache__/

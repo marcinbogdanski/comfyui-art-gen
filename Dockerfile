@@ -46,6 +46,8 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         dill \
         einops \
         ftfy \
+        groq \
+        imageio \
         "imageio-ffmpeg" \
         lark \
         matplotlib \
@@ -58,7 +60,8 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         pixeloe \
         "pillow>=10.3.0" \
         protobuf \
-        pywavelets \
+        "python-dotenv>=1.0.0" \
+        "PyWavelets>=1.8.0" \
         pyloudnorm \
         rembg \
         "sam-2 @ git+https://github.com/facebookresearch/sam2" \
@@ -67,6 +70,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         "sentencepiece>=0.2.0" \
         segment-anything \
         spandrel \
+        tiktoken \
         transparent-background \
         webcolors \
     && python -m pip install --no-deps \
