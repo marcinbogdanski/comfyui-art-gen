@@ -413,10 +413,10 @@
         "aux_id": "ComfyUI-mnemic-nodes/"
       },
       "widgets_values": [
-        "Z-Image: [Vertical Photo] 1088x1632 2:3",
+        "Custom",
         "None",
-        1024,
-        1024,
+        1088,
+        1632,
         1,
         false,
         0,
