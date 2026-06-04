@@ -277,7 +277,7 @@ For the current complete `workflows/test_matrix.txt` set, use one required
 no-generation preflight command:
 
 ```bash
-python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run --batch 1 --seed 1 --id dryrun_matrix
+python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run --batch 1 --seed 1 --id dryrun_matrix
 ```
 
 For workflows included in the matrix, this validates the

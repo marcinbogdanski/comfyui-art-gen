@@ -75,7 +75,7 @@ Operational preferences:
   cannot be run, stop and report the blocker instead of presenting the workflow
   as ready.
 - Before treating the full `workflows/test_matrix.txt` set as ready, run
-  `python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run`. This is a
+  `python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run`. This is a
   required no-generation check that validates script-driving assumptions and
   frontend conversion for every matrix workflow without submitting jobs.
 - When adding a new model or LoRA with a reproducible reference workflow, first

@@ -100,7 +100,7 @@ def main():
     repo_root = Path(__file__).resolve().parents[1]
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("prompt_file")
+    parser.add_argument("--prompt")
     parser.add_argument(
         "-w",
         "--workflow",
@@ -119,30 +119,38 @@ def main():
         workflow_path = repo_root / workflow_path
 
     workflow = json.loads(workflow_path.read_text())
-    prompt = Path(args.prompt_file).read_text().strip()
-    prompt = apply_required_trigger_words(workflow, prompt)
 
-    prompt_nodes = [n for n in workflow["nodes"] if n.get("type") == "CLIPTextEncode"]
-    assert prompt_nodes, "expected at least one CLIPTextEncode node"
+    if args.prompt is not None:
+        prompt = Path(args.prompt).read_text().strip()
+        prompt = apply_required_trigger_words(workflow, prompt)
 
-    if len(prompt_nodes) == 1:
-        prompt_node = prompt_nodes[0]
-    else:
-        positive_nodes = [
-            n for n in prompt_nodes if "positive" in (n.get("title") or "").lower()
+        prompt_nodes = [
+            n for n in workflow["nodes"] if n.get("type") == "CLIPTextEncode"
         ]
-        assert len(positive_nodes) == 1, "expected exactly one positive CLIPTextEncode node"
-        prompt_node = positive_nodes[0]
+        assert prompt_nodes, "expected at least one CLIPTextEncode node"
 
-    text_inputs = [i for i in prompt_node.get("inputs", []) if i.get("name") == "text"]
-    assert all(
-        i.get("link") is None for i in text_inputs
-    ), "expected positive CLIPTextEncode text input to be unconnected"
+        if len(prompt_nodes) == 1:
+            prompt_node = prompt_nodes[0]
+        else:
+            positive_nodes = [
+                n for n in prompt_nodes if "positive" in (n.get("title") or "").lower()
+            ]
+            assert (
+                len(positive_nodes) == 1
+            ), "expected exactly one positive CLIPTextEncode node"
+            prompt_node = positive_nodes[0]
 
-    if prompt_node.get("widgets_values"):
-        prompt_node["widgets_values"][0] = prompt
-    else:
-        prompt_node["widgets_values"] = [prompt]
+        text_inputs = [
+            i for i in prompt_node.get("inputs", []) if i.get("name") == "text"
+        ]
+        assert all(
+            i.get("link") is None for i in text_inputs
+        ), "expected positive CLIPTextEncode text input to be unconnected"
+
+        if prompt_node.get("widgets_values"):
+            prompt_node["widgets_values"][0] = prompt
+        else:
+            prompt_node["widgets_values"] = [prompt]
 
     if args.batch is not None:
         batch_nodes = [n for n in workflow["nodes"] if n.get("type") in BATCH_INDEX]

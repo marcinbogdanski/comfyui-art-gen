@@ -27,7 +27,6 @@ async def run_job(name, base_url, workflow, args, repo_root):
     cmd = [
         sys.executable,
         str(repo_root / "scripts" / "workflow_prompt.py"),
-        args.prompt_file,
         "-w",
         workflow,
         "--base-url",
@@ -35,6 +34,8 @@ async def run_job(name, base_url, workflow, args, repo_root):
         "--timeout",
         args.timeout,
     ]
+    if args.prompt is not None:
+        cmd.extend(["--prompt", args.prompt])
     if args.batch is not None:
         cmd.extend(["--batch", str(args.batch)])
     if args.seed is not None:
@@ -126,7 +127,7 @@ async def main_async(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("prompt_file")
+    parser.add_argument("--prompt")
     parser.add_argument("--matrix", default="workflows/test_matrix.txt")
     parser.add_argument("-w", "--workflow", action="append")
     parser.add_argument("--workers", type=int, default=1)

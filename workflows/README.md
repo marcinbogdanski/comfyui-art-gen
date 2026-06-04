@@ -90,7 +90,7 @@ Before treating the complete matrix as ready, run the workflow queue in dry-run
 mode:
 
 ```bash
-python3 scripts/workflow_queue.py prompts/prompt1.md --dry-run
+python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run
 ```
 
 This uses `workflows/test_matrix.txt` by default. It runs each workflow through
