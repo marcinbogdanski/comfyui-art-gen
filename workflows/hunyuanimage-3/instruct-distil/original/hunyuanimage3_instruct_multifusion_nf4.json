@@ -460,6 +460,7 @@
       "widgets_values": [
         "Use the face and identity from image 1. Apply it naturally to the person in image 2 while preserving the pose, clothing, lighting, camera angle, and background from image 2. Make the result look like a realistic photograph, not a collage.",
         26051921,
+        "fixed",
         "image",
         "dynamic",
         "1024x1024 (1:1 Square)",
@@ -467,7 +468,6 @@
         -1,
         2.2,
         2048,
-        0,
         0,
         1024,
         "auto",
