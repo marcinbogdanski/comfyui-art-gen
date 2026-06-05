@@ -242,24 +242,17 @@ For every new or edited canonical GUI workflow `.json`, run the frontend smoke
 test before marking the workflow ready:
 
 ```bash
-docker run --rm --network host --ipc=host \
-  -v /home/user/art-generation/art-gen-ctrl:/work:ro \
-  -w /tmp \
-  mcr.microsoft.com/playwright:v1.57.0-noble \
-  sh -lc 'npm init -y >/dev/null &&
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
-    cp /work/scripts/gui_workflow_convert.mjs . &&
-    node gui_workflow_convert.mjs --submit --wait /work/workflows/path/to/workflow.json'
+python3 scripts/workflow_prompt.py -w workflows/path/to/workflow.json
 ```
 
 This is a required check: it loads the saved GUI workflow in the actual ComfyUI
 frontend, converts it with `app.graphToPrompt()`, submits the converted prompt
-to `/prompt`, and waits for ComfyUI history success. A hand-written or separately
-derived API prompt smoke test is not a substitute. Keep tests small enough for
-the target GPU when the workflow design allows that, and record the frontend
-smoke result and output path in the relevant model doc. If this required check
-cannot be run, stop and report the blocker and next action instead of presenting
-the workflow as ready.
+to `/prompt` from Python, and waits for ComfyUI history success. A hand-written
+or separately derived API prompt smoke test is not a substitute. Keep tests
+small enough for the target GPU when the workflow design allows that, and record
+the frontend smoke result and output path in the relevant model doc. If this
+required check cannot be run, stop and report the blocker and next action
+instead of presenting the workflow as ready.
 
 The metadata note should have the expected shape:
 

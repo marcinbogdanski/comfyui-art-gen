@@ -1,0 +1,3 @@
+# Quick conversion/log test
+workflows/z-image/turbo/original/z_image_turbo_original.json
+workflows/flux-2/klein/nsfw/flux2_klein_lora_snofs.json

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { chromium } from 'playwright'
@@ -10,13 +10,12 @@ function usage() {
   console.error(`Usage: node scripts/gui_workflow_convert.mjs [options] <workflow.json>
 
 Loads a ComfyUI GUI workflow in the real frontend, calls app.graphToPrompt(),
-and optionally submits the converted API prompt to ComfyUI.
+and writes the converted API prompt data to a JSON file.
 
 Options:
   --base-url URL      ComfyUI URL (default: ${DEFAULT_BASE_URL})
-  --submit           POST converted prompt to /prompt
-  --wait             Wait for /history/<prompt_id> after --submit
-  --timeout SEC      Navigation/history timeout (default: 600)
+  --output PATH      Write converted API prompt data to PATH
+  --timeout SEC      Navigation/conversion timeout (default: 600)
   --debug            Print browser console messages
   -h, --help         Show this help
 `)
@@ -25,8 +24,7 @@ Options:
 function parseArgs(argv) {
   const opts = {
     baseUrl: DEFAULT_BASE_URL,
-    submit: false,
-    wait: false,
+    outputPath: null,
     timeoutSec: 600,
     debug: false,
     workflowPath: null,
@@ -39,10 +37,8 @@ function parseArgs(argv) {
       process.exit(0)
     } else if (arg === '--base-url') {
       opts.baseUrl = argv[++i]
-    } else if (arg === '--submit') {
-      opts.submit = true
-    } else if (arg === '--wait') {
-      opts.wait = true
+    } else if (arg === '--output') {
+      opts.outputPath = argv[++i]
     } else if (arg === '--timeout') {
       opts.timeoutSec = Number(argv[++i])
     } else if (arg === '--debug') {
@@ -60,51 +56,14 @@ function parseArgs(argv) {
     usage()
     throw new Error('workflow path is required')
   }
+  if (!opts.outputPath) {
+    usage()
+    throw new Error('--output path is required')
+  }
   if (!Number.isFinite(opts.timeoutSec) || opts.timeoutSec <= 0) {
     throw new Error('--timeout must be a positive number')
   }
   return opts
-}
-
-async function getJson(baseUrl, route) {
-  const res = await fetch(`${baseUrl}${route}`)
-  if (!res.ok) {
-    throw new Error(`GET ${route} failed: HTTP ${res.status} ${await res.text()}`)
-  }
-  return res.json()
-}
-
-async function postJson(baseUrl, route, payload) {
-  const res = await fetch(`${baseUrl}${route}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
-  const text = await res.text()
-  let body = {}
-  if (text) {
-    try {
-      body = JSON.parse(text)
-    } catch {
-      body = { raw: text }
-    }
-  }
-  if (!res.ok) {
-    throw new Error(`POST ${route} failed: HTTP ${res.status} ${JSON.stringify(body)}`)
-  }
-  return body
-}
-
-async function waitForHistory(baseUrl, promptId, timeoutSec) {
-  const deadline = Date.now() + timeoutSec * 1000
-  while (Date.now() < deadline) {
-    const history = await getJson(baseUrl, `/history/${promptId}`)
-    if (history[promptId]) {
-      return history[promptId]
-    }
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-  }
-  throw new Error(`timed out waiting for prompt ${promptId}`)
 }
 
 async function waitForFrontendPrompt(page, timeoutSec, expectedWorkflow) {
@@ -170,22 +129,10 @@ async function waitForFrontendPrompt(page, timeoutSec, expectedWorkflow) {
   })
 }
 
-function collectOutputFiles(historyEntry) {
-  const files = []
-  for (const output of Object.values(historyEntry.outputs ?? {})) {
-    for (const image of output.images ?? []) {
-      files.push([image.subfolder, image.filename].filter(Boolean).join('/'))
-    }
-    for (const gif of output.gifs ?? []) {
-      files.push([gif.subfolder, gif.filename].filter(Boolean).join('/'))
-    }
-  }
-  return files
-}
-
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
   const workflowPath = path.resolve(opts.workflowPath)
+  const outputPath = path.resolve(opts.outputPath)
   const workflow = JSON.parse(await readFile(workflowPath, 'utf8'))
 
   const browser = await chromium.launch({ headless: true })
@@ -253,33 +200,20 @@ async function main() {
         `${result.workflowLinkCount ?? '?'} workflow links`,
     )
 
-    if (opts.submit) {
-      const response = await postJson(opts.baseUrl, '/prompt', {
-        prompt: result.output,
-        client_id: crypto.randomUUID(),
-        extra_data: {
-          extra_pnginfo: {
-            workflow: result.workflow,
-          },
+    await writeFile(
+      outputPath,
+      JSON.stringify(
+        {
+          prompt: result.output,
+          workflow: result.workflow,
+          node_count: result.nodeCount,
+          workflow_node_count: result.workflowNodeCount,
+          workflow_link_count: result.workflowLinkCount,
         },
-      })
-
-      if (response.node_errors && Object.keys(response.node_errors).length) {
-        throw new Error(`ComfyUI node_errors: ${JSON.stringify(response.node_errors)}`)
-      }
-
-      console.log(`MJS prompt submit ok: ${response.prompt_id}`)
-
-      if (opts.wait) {
-        const history = await waitForHistory(opts.baseUrl, response.prompt_id, opts.timeoutSec)
-        const status = history.status ?? {}
-        if (status.status_str !== 'success' || status.completed !== true) {
-          throw new Error(`prompt did not complete successfully: ${JSON.stringify(status)}`)
-        }
-        const files = collectOutputFiles(history)
-        console.log(`MJS prompt history ok: ${files.length ? files.join(', ') : 'no saved outputs'}`)
-      }
-    }
+        null,
+        2,
+      ) + '\n',
+    )
   } catch (error) {
     console.error(`FAIL ${error.stack ?? error.message}`)
     const relevantConsole = consoleMessages.filter((line) => {

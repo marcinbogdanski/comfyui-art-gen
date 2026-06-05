@@ -60,29 +60,19 @@ metadata cannot be found. `scripts/workflow_prompt.py` prepends
 ## Frontend Smoke Test
 
 Before a new or edited canonical GUI workflow `.json` is considered ready for
-review, validate it with `scripts/gui_workflow_convert.mjs`. The script loads a
-GUI workflow in Chromium, calls the actual ComfyUI frontend
-`app.graphToPrompt()` path, and can submit the converted prompt to ComfyUI. A
-hand-written or separately derived API prompt graph is not a substitute for this
-check.
-
-Run it with the pinned Playwright Docker image so no browser is installed on the
-host:
+review, validate it with `scripts/workflow_prompt.py`. The script loads the GUI
+workflow in Chromium, calls the actual ComfyUI frontend `app.graphToPrompt()`
+path, submits the converted prompt to ComfyUI from Python, and waits for history
+success. A hand-written or separately derived API prompt graph is not a
+substitute for this check.
 
 ```bash
-docker run --rm --network host --ipc=host \
-  -v /home/user/art-generation/art-gen-ctrl:/work:ro \
-  -w /tmp \
-  mcr.microsoft.com/playwright:v1.57.0-noble \
-  sh -lc 'npm init -y >/dev/null &&
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
-    cp /work/scripts/gui_workflow_convert.mjs . &&
-    node gui_workflow_convert.mjs --submit --wait /work/workflows/path/to/workflow.json'
+python3 scripts/workflow_prompt.py -w workflows/path/to/workflow.json
 ```
 
-The `--submit --wait` flags are required for the readiness check; they queue the
-converted prompt and wait for ComfyUI history success. Omit them only for
-conversion-only debugging.
+For conversion-only debugging, use `scripts/workflow_prompt.py --dry-run` or
+call `scripts/gui_workflow_convert.mjs` directly with `--output`; the MJS script
+only writes converted API prompt JSON.
 
 ## Matrix Dry Run
 
@@ -97,4 +87,4 @@ This uses `workflows/test_matrix.txt` by default. It runs each workflow through
 `scripts/workflow_prompt.py`, validates the script assumptions with assertions,
 applies scripted prompt/metadata/batch/seed/output mutations when requested, and
 loads the resulting workflow through the real ComfyUI frontend converter. It
-does not pass `--submit --wait`, so it does not queue generation jobs.
+does not submit converted prompts, so it does not queue generation jobs.

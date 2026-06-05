@@ -6,6 +6,7 @@ import sys
 import tempfile
 import time
 import urllib.request
+import uuid
 from pathlib import Path
 
 
@@ -74,6 +75,25 @@ def run_workflow(cmd):
     if result.stdout:
         print(result.stdout, end="", file=sys.stderr)
     raise subprocess.CalledProcessError(result.returncode, cmd)
+
+
+def post_json(base_url, route, payload):
+    data = json.dumps(payload).encode()
+    request = urllib.request.Request(
+        f"{base_url.rstrip('/')}{route}",
+        data=data,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(request) as response:
+        text = response.read().decode()
+    return json.loads(text) if text else {}
+
+
+def get_json(base_url, route):
+    with urllib.request.urlopen(f"{base_url.rstrip('/')}{route}") as response:
+        text = response.read().decode()
+    return json.loads(text) if text else {}
 
 
 def apply_required_trigger_words(workflow, prompt):
@@ -171,6 +191,62 @@ def free_memory(base_url):
         response.read()
 
 
+def submit_prompt(base_url, converted_prompt):
+    response = post_json(
+        base_url,
+        "/prompt",
+        {
+            "prompt": converted_prompt["prompt"],
+            "client_id": str(uuid.uuid4()),
+            "extra_data": {
+                "extra_pnginfo": {
+                    "workflow": converted_prompt["workflow"],
+                },
+            },
+        },
+    )
+    if response.get("node_errors"):
+        raise RuntimeError(f"ComfyUI node_errors: {json.dumps(response['node_errors'])}")
+
+    prompt_id = response.get("prompt_id")
+    if not prompt_id:
+        raise RuntimeError(f"ComfyUI /prompt response missing prompt_id: {response}")
+    print(f"PY prompt submit ok: {prompt_id}", flush=True)
+    return prompt_id
+
+
+def wait_for_history(base_url, prompt_id, timeout):
+    deadline = time.monotonic() + float(timeout)
+    while time.monotonic() < deadline:
+        history = get_json(base_url, f"/history/{prompt_id}")
+        if prompt_id in history:
+            return history[prompt_id]
+        time.sleep(2)
+
+    raise TimeoutError(f"timed out waiting for prompt {prompt_id}")
+
+
+def collect_output_files(history_entry):
+    files = []
+    for output in history_entry.get("outputs", {}).values():
+        for image in output.get("images", []):
+            files.append("/".join(p for p in [image.get("subfolder"), image.get("filename")] if p))
+        for gif in output.get("gifs", []):
+            files.append("/".join(p for p in [gif.get("subfolder"), gif.get("filename")] if p))
+    return files
+
+
+def validate_history_success(history_entry):
+    status = history_entry.get("status", {})
+    if status.get("status_str") == "success" and status.get("completed") is True:
+        return
+
+    history_text = json.dumps(history_entry)
+    if is_oom_output(history_text):
+        raise RuntimeError("CUDA OOM error")
+    raise RuntimeError(f"prompt did not complete successfully: {json.dumps(status)}")
+
+
 def main():
     repo_root = Path(__file__).resolve().parents[1]
 
@@ -251,6 +327,7 @@ def main():
 
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_workflow = Path(tmpdir) / "workflow.json"
+        tmp_prompt = Path(tmpdir) / "prompt.json"
         tmp_workflow.write_text(json.dumps(workflow, indent=2) + "\n")
         cmd = [
             "docker",
@@ -262,7 +339,7 @@ def main():
             "-v",
             f"{repo_root}:/work:ro",
             "-v",
-            f"{tmpdir}:/input:ro",
+            f"{tmpdir}:/input",
             "-w",
             "/tmp",
             "mcr.microsoft.com/playwright:v1.57.0-noble",
@@ -273,24 +350,35 @@ def main():
             "npm install playwright@1.57.0 >/dev/null && "
             "cp /work/scripts/gui_workflow_convert.mjs . && "
             'node gui_workflow_convert.mjs --base-url "$1" '
-            f'{"--submit --wait " if not args.dry_run else ""}'
-            '--timeout "$2" /input/workflow.json',
+            '--timeout "$2" --output /input/prompt.json /input/workflow.json',
             "sh",
             args.base_url,
             args.timeout,
         ]
 
+        run_workflow(cmd)
         if args.dry_run:
-            run_workflow(cmd)
             return
 
+        converted_prompt = json.loads(tmp_prompt.read_text())
         try:
             free_memory(args.base_url)
             max_attempts = 3
             for attempt in range(max_attempts):
+                submitted = False
                 try:
-                    run_workflow(cmd)
+                    prompt_id = submit_prompt(args.base_url, converted_prompt)
+                    submitted = True
+                    history = wait_for_history(args.base_url, prompt_id, args.timeout)
+                    validate_history_success(history)
+                    files = collect_output_files(history)
+                    print(
+                        f"PY prompt history ok: {', '.join(files) if files else 'no saved outputs'}",
+                        flush=True,
+                    )
                     break
+                except TimeoutError:
+                    raise
                 except RuntimeError as exc:
                     if str(exc) != "CUDA OOM error":
                         raise
@@ -299,7 +387,9 @@ def main():
                         raise SystemExit(1)
                     print("CUDA OOM error; retrying", flush=True)
                     time.sleep(2)
-                except subprocess.CalledProcessError:
+                except Exception:
+                    if submitted:
+                        raise
                     if attempt == max_attempts - 1:
                         raise
                     print("workflow failed; retrying", flush=True)
