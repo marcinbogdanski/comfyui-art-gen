@@ -60,7 +60,7 @@ metadata cannot be found. `scripts/workflow_prompt.py` prepends
 ## Frontend Smoke Test
 
 Before a new or edited canonical GUI workflow `.json` is considered ready for
-review, validate it with `scripts/gui_workflow_smoke.mjs`. The script loads a
+review, validate it with `scripts/gui_workflow_convert.mjs`. The script loads a
 GUI workflow in Chromium, calls the actual ComfyUI frontend
 `app.graphToPrompt()` path, and can submit the converted prompt to ComfyUI. A
 hand-written or separately derived API prompt graph is not a substitute for this
@@ -76,8 +76,8 @@ docker run --rm --network host --ipc=host \
   mcr.microsoft.com/playwright:v1.57.0-noble \
   sh -lc 'npm init -y >/dev/null &&
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
-    cp /work/scripts/gui_workflow_smoke.mjs . &&
-    node gui_workflow_smoke.mjs --submit --wait /work/workflows/path/to/workflow.json'
+    cp /work/scripts/gui_workflow_convert.mjs . &&
+    node gui_workflow_convert.mjs --submit --wait /work/workflows/path/to/workflow.json'
 ```
 
 The `--submit --wait` flags are required for the readiness check; they queue the

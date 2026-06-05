@@ -248,8 +248,8 @@ docker run --rm --network host --ipc=host \
   mcr.microsoft.com/playwright:v1.57.0-noble \
   sh -lc 'npm init -y >/dev/null &&
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install playwright@1.57.0 >/dev/null &&
-    cp /work/scripts/gui_workflow_smoke.mjs . &&
-    node gui_workflow_smoke.mjs --submit --wait /work/workflows/path/to/workflow.json'
+    cp /work/scripts/gui_workflow_convert.mjs . &&
+    node gui_workflow_convert.mjs --submit --wait /work/workflows/path/to/workflow.json'
 ```
 
 This is a required check: it loads the saved GUI workflow in the actual ComfyUI

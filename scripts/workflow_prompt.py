@@ -271,8 +271,8 @@ def main():
             "npm init -y >/dev/null && "
             "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 "
             "npm install playwright@1.57.0 >/dev/null && "
-            "cp /work/scripts/gui_workflow_smoke.mjs . && "
-            'node gui_workflow_smoke.mjs --base-url "$1" '
+            "cp /work/scripts/gui_workflow_convert.mjs . && "
+            'node gui_workflow_convert.mjs --base-url "$1" '
             f'{"--submit --wait " if not args.dry_run else ""}'
             '--timeout "$2" /input/workflow.json',
             "sh",

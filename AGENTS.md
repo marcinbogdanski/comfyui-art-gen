@@ -68,7 +68,7 @@ Operational preferences:
   `optional`, `no`, or `unknown`.
 - Before treating any new or edited canonical GUI workflow `.json` as ready for
   review, run it through the actual ComfyUI frontend converter with
-  `scripts/gui_workflow_smoke.mjs` in the pinned Playwright Docker image. Use
+  `scripts/gui_workflow_convert.mjs` in the pinned Playwright Docker image. Use
   `--submit --wait` so the converted prompt is accepted by `/prompt` and reaches
   ComfyUI history success. A hand-written or separately derived API prompt smoke
   test is not a substitute for this frontend-path check. If this required check

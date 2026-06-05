@@ -7,7 +7,7 @@ import { chromium } from 'playwright'
 const DEFAULT_BASE_URL = 'http://127.0.0.1:8188'
 
 function usage() {
-  console.error(`Usage: node scripts/gui_workflow_smoke.mjs [options] <workflow.json>
+  console.error(`Usage: node scripts/gui_workflow_convert.mjs [options] <workflow.json>
 
 Loads a ComfyUI GUI workflow in the real frontend, calls app.graphToPrompt(),
 and optionally submits the converted API prompt to ComfyUI.
