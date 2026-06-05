@@ -715,7 +715,7 @@
         "Node name for S&R": "Note"
       },
       "widgets_values": [
-        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences)."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences).\n\nRecommended prompt terms: sex, blowjob, cowgirl position, doggystyle position, missionary position, prone position, reverse cowgirl position, spooning position, selfie, snapchat, nude, penis, vagina, cum.\n\nThese are source-recommended natural-language terms, not required trigger words; Civitai trainedWords is empty for this version."
       ],
       "color": "#432",
       "bgcolor": "#653"
