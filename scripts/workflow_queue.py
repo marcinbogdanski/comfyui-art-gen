@@ -104,6 +104,7 @@ async def worker(name, base_url, queue, failures, args, repo_root):
 
 
 async def main_async(args):
+    started = time.monotonic()
     repo_root = Path(__file__).resolve().parents[1]
     workflows = args.workflow or read_matrix(repo_root / args.matrix)
     workers = [f"http://127.0.0.1:{8188 + i}" for i in range(args.workers)]
@@ -119,6 +120,13 @@ async def main_async(args):
         for i, base_url in enumerate(workers, start=1)
     ]
     await asyncio.gather(*tasks)
+
+    elapsed = time.monotonic() - started
+    completed = total - len(failures)
+    print(
+        f"SUMMARY {completed}/{total} jobs completed in {elapsed:.1f}s",
+        flush=True,
+    )
 
     if failures:
         print("FAILED JOBS:", flush=True)
