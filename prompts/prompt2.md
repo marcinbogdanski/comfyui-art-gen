@@ -1,3 +1,8 @@
+{
+  "width": 832,
+  "height": 1216
+}
+---
 超高清, 极致细节, 电影感, 真实感爆棚, 顶级画质, 光影大师, 细腻皮肤, 质感拉满, masterpiece, best quality, ultra detailed, 8k, photorealistic, cinematic lighting, sharp focus,
 26yo white  woman with long brown hair.
 front view.

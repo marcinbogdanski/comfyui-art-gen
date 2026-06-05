@@ -16,6 +16,12 @@ BATCH_INDEX = {
     "📐 Resolution Image Size Selector": 10,
 }
 
+LATENT_RESOLUTION_TYPES = {
+    "EmptyLatentImage",
+    "EmptySD3LatentImage",
+    "EmptyFlux2LatentImage",
+}
+
 SEED_INDEX = {
     "RandomNoise": 0,
     "KSampler": 0,
@@ -25,6 +31,17 @@ SEED_INDEX = {
 }
 
 TRIGGER_REQUIRED_VALUES = {"required", "optional", "no", "unknown"}
+
+
+def parse_prompt_file(path):
+    text = Path(path).read_text()
+    if "\n---\n" not in text:
+        return {}, text.strip()
+
+    metadata_text, prompt = text.split("\n---\n", 1)
+    metadata = json.loads(metadata_text)
+    assert isinstance(metadata, dict), "expected prompt metadata to be a JSON object"
+    return metadata, prompt.strip()
 
 
 def is_oom_output(text):
@@ -84,6 +101,64 @@ def apply_required_trigger_words(workflow, prompt):
     return f"{prefix}, {prompt}"
 
 
+def prompt_resolution(metadata):
+    width = metadata.get("width")
+    height = metadata.get("height")
+    if width is None and height is None:
+        return None
+
+    assert width is not None and height is not None, "expected both width and height"
+    assert (
+        isinstance(width, int) and not isinstance(width, bool) and width > 0
+    ), "expected positive integer width"
+    assert (
+        isinstance(height, int) and not isinstance(height, bool) and height > 0
+    ), "expected positive integer height"
+    return width, height
+
+
+def set_resolution(workflow, width, height):
+    width_nodes = [
+        n
+        for n in workflow["nodes"]
+        if n.get("type") == "PrimitiveInt" and n.get("title") == "Width"
+    ]
+    height_nodes = [
+        n
+        for n in workflow["nodes"]
+        if n.get("type") == "PrimitiveInt" and n.get("title") == "Height"
+    ]
+    if width_nodes or height_nodes:
+        assert len(width_nodes) == 1, "expected exactly one Width PrimitiveInt"
+        assert len(height_nodes) == 1, "expected exactly one Height PrimitiveInt"
+        width_nodes[0]["widgets_values"][0] = width
+        height_nodes[0]["widgets_values"][0] = height
+        return
+
+    latent_nodes = [
+        n for n in workflow["nodes"] if n.get("type") in LATENT_RESOLUTION_TYPES
+    ]
+    if len(latent_nodes) == 1:
+        latent_node = latent_nodes[0]
+        latent_node["widgets_values"][0] = width
+        latent_node["widgets_values"][1] = height
+        return
+
+    selector_nodes = [
+        n
+        for n in workflow["nodes"]
+        if n.get("type") == "📐 Resolution Image Size Selector"
+    ]
+    if len(selector_nodes) == 1:
+        selector_node = selector_nodes[0]
+        selector_node["widgets_values"][0] = "Custom"
+        selector_node["widgets_values"][2] = width
+        selector_node["widgets_values"][3] = height
+        return
+
+    raise AssertionError("cannot determine single generation resolution source")
+
+
 def free_memory(base_url):
     data = json.dumps({"unload_models": True, "free_memory": True}).encode()
     request = urllib.request.Request(
@@ -121,8 +196,11 @@ def main():
     workflow = json.loads(workflow_path.read_text())
 
     if args.prompt is not None:
-        prompt = Path(args.prompt).read_text().strip()
+        prompt_metadata, prompt = parse_prompt_file(args.prompt)
         prompt = apply_required_trigger_words(workflow, prompt)
+        resolution = prompt_resolution(prompt_metadata)
+        if resolution is not None:
+            set_resolution(workflow, *resolution)
 
         prompt_nodes = [
             n for n in workflow["nodes"] if n.get("type") == "CLIPTextEncode"
