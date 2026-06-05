@@ -248,7 +248,7 @@ async function main() {
     }
 
     console.log(
-      `PASS frontend conversion: ${result.nodeCount} API nodes, ` +
+      `MJS workflow conversion ok: ${result.nodeCount} API nodes, ` +
         `${result.workflowNodeCount ?? '?'} workflow nodes, ` +
         `${result.workflowLinkCount ?? '?'} workflow links`,
     )
@@ -268,7 +268,7 @@ async function main() {
         throw new Error(`ComfyUI node_errors: ${JSON.stringify(response.node_errors)}`)
       }
 
-      console.log(`PASS prompt submit: ${response.prompt_id}`)
+      console.log(`MJS prompt submit ok: ${response.prompt_id}`)
 
       if (opts.wait) {
         const history = await waitForHistory(opts.baseUrl, response.prompt_id, opts.timeoutSec)
@@ -277,7 +277,7 @@ async function main() {
           throw new Error(`prompt did not complete successfully: ${JSON.stringify(status)}`)
         }
         const files = collectOutputFiles(history)
-        console.log(`PASS prompt history: ${files.length ? files.join(', ') : 'no saved outputs'}`)
+        console.log(`MJS prompt history ok: ${files.length ? files.join(', ') : 'no saved outputs'}`)
       }
     }
   } catch (error) {

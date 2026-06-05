@@ -182,7 +182,7 @@ def main():
         default="workflows/flux-2/dev/original/flux2_dev_original.json",
     )
     parser.add_argument("--base-url", default="http://127.0.0.1:8188")
-    parser.add_argument("--timeout", default="600")
+    parser.add_argument("--timeout", default="3600")
     parser.add_argument("-b", "--batch", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--id")

@@ -23,7 +23,7 @@ def existing_output_count(run_id, workflow):
     return len(list(OUTPUT_DIR.glob(f"{prefix}_*.png")))
 
 
-async def run_job(name, base_url, workflow, args, repo_root):
+async def run_job(prefix, workflow, base_url, args, repo_root):
     cmd = [
         sys.executable,
         str(repo_root / "scripts" / "workflow_prompt.py"),
@@ -46,7 +46,7 @@ async def run_job(name, base_url, workflow, args, repo_root):
         cmd.append("--dry-run")
 
     started = time.monotonic()
-    print(f"START {name} {workflow}", flush=True)
+    print(f"{prefix} START {workflow}", flush=True)
     process = await asyncio.create_subprocess_exec(
         *cmd,
         cwd=repo_root,
@@ -55,48 +55,50 @@ async def run_job(name, base_url, workflow, args, repo_root):
     )
 
     async for line in process.stdout:
-        print(f"{name} {workflow}: {line.decode().rstrip()}", flush=True)
+        print(f"{prefix} LOG {workflow}: {line.decode().rstrip()}", flush=True)
 
     rc = await process.wait()
     elapsed = time.monotonic() - started
     if rc:
-        print(f"FAIL {name} {workflow} ({elapsed:.1f}s)", flush=True)
+        print(f"{prefix} FAIL {workflow} ({elapsed:.1f}s)", flush=True)
         return False
 
-    print(f"DONE {name} {workflow} ({elapsed:.1f}s)", flush=True)
+    print(f"{prefix} DONE {workflow} ({elapsed:.1f}s)", flush=True)
     return True
 
 
 async def worker(name, base_url, queue, failures, args, repo_root):
     while True:
         try:
-            workflow = queue.get_nowait()
+            index, total, workflow = queue.get_nowait()
         except asyncio.QueueEmpty:
             return
 
+        prefix = f"{index}/{total} {name}"
+        label = f"{prefix} {workflow}"
         try:
             if args.id is not None and not args.dry_run:
                 expected = args.batch or 1
                 existing = existing_output_count(args.id, workflow)
                 if existing >= expected:
                     print(
-                        f"SKIP {name} {workflow}: found {existing}/{expected} output PNGs",
+                        f"{prefix} SKIP {workflow}: found {existing}/{expected} output PNGs",
                         flush=True,
                     )
                     continue
                 if existing:
                     print(
-                        f"WARN {name} {workflow}: found partial {existing}/{expected} output PNGs; skipping",
+                        f"{prefix} WARN {workflow}: found partial {existing}/{expected} output PNGs; skipping",
                         flush=True,
                     )
                     continue
 
-            ok = await run_job(name, base_url, workflow, args, repo_root)
+            ok = await run_job(prefix, workflow, base_url, args, repo_root)
             if not ok:
-                failures.append((name, workflow))
+                failures.append(label)
         except Exception as exc:
-            print(f"ERROR {name} {workflow}: {exc}", flush=True)
-            failures.append((name, workflow))
+            print(f"{prefix} ERROR {workflow}: {exc}", flush=True)
+            failures.append(label)
         finally:
             queue.task_done()
 
@@ -107,8 +109,9 @@ async def main_async(args):
     workers = [f"http://127.0.0.1:{8188 + i}" for i in range(args.workers)]
 
     queue = asyncio.Queue()
-    for workflow in workflows:
-        queue.put_nowait(workflow)
+    total = len(workflows)
+    for index, workflow in enumerate(workflows, start=1):
+        queue.put_nowait((index, total, workflow))
 
     failures = []
     tasks = [
@@ -119,8 +122,8 @@ async def main_async(args):
 
     if failures:
         print("FAILED JOBS:", flush=True)
-        for name, workflow in failures:
-            print(f"{name} {workflow}", flush=True)
+        for label in failures:
+            print(label, flush=True)
         return 1
     return 0
 
@@ -131,7 +134,7 @@ def main():
     parser.add_argument("--matrix", default="workflows/test_matrix.txt")
     parser.add_argument("-w", "--workflow", action="append")
     parser.add_argument("--workers", type=int, default=1)
-    parser.add_argument("--timeout", default="600")
+    parser.add_argument("--timeout", default="3600")
     parser.add_argument("-b", "--batch", type=int)
     parser.add_argument("--seed", type=int)
     parser.add_argument("--id")
