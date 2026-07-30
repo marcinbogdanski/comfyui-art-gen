@@ -1,8 +1,8 @@
 {
   "id": "flux2-klein-pornmaster-turbo",
   "revision": 0,
-  "last_node_id": 18,
-  "last_link_id": 16,
+  "last_node_id": 20,
+  "last_link_id": 20,
   "nodes": [
     {
       "id": 2,
@@ -114,7 +114,7 @@
       },
       "widgets_values": [
         "klein_9B_Turbo_r128.safetensors",
-        1.0
+        1
       ]
     },
     {
@@ -226,57 +226,6 @@
       ],
       "color": "#332922",
       "bgcolor": "#593930"
-    },
-    {
-      "id": 8,
-      "type": "CLIPTextEncode",
-      "pos": [
-        40,
-        740
-      ],
-      "size": [
-        520,
-        220
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "clip",
-          "name": "clip",
-          "type": "CLIP",
-          "link": 5
-        },
-        {
-          "localized_name": "text",
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "CONDITIONING",
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            7
-          ]
-        }
-      ],
-      "title": "Positive Prompt",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "写实的iPhone抓拍, 手机摄影，男性侧身站在右侧画面外部，阴茎在画面中央，20岁裸体日本女孩,小乳房，可爱，瘦小模特身材，皮肤白皙，跪姿，白色丝袜，阴茎整个盖住她的脸。女人的脸庞正对着镜头，脸上绽放出毫无阴霾的、极度开心甚至有些天真烂漫的灿烂笑容，嘴角大幅度上扬，露出洁白的牙齿，眼神中充满兴奋与满足感。 肢体状态与细节： 女人双膝跪在深色地毯上，大腿并拢，小腿向两侧微微分开，脚背贴地。她的右手在脸侧比出一个清晰的“V”字胜利手势。男人站立位置紧贴 女人 右侧，他的胯部正对 女人面部。他勃起的粗长阴茎笔直地横在 女人眼前，巨大的龟头与部分茎身完全遮挡住了女人的双眼，形成一种视觉上的覆盖与压迫感。女人的鼻尖与嘴唇几乎要触碰到阴茎的根部。 背景大学宿舍.  (女人的眼睛不可見).\n\n智慧型手機攝影的真實感：輕微的手持抖動、輕微的自動對焦猶豫、HDR偽影、HDR處理不均勻、高光略微溢出、智慧型手機過度銳化偽影、局部對比度光暈、壓縮雜訊、曝光不均、自然的皮膚紋理.\n輕微的運動模糊、鏡頭污漬、紀錄片式的真實感、明亮的自然日光，色溫5500K.\n沒有單眼相機的精緻效果。\n\n照片中沒有畸形的手指和多餘的手。解剖學完全正確。"
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
     },
     {
       "id": 9,
@@ -484,7 +433,7 @@
         106
       ],
       "flags": {},
-      "order": 5,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -503,7 +452,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 17
         },
         {
           "localized_name": "height",
@@ -512,7 +461,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 18
         }
       ],
       "outputs": [
@@ -546,7 +495,7 @@
         106
       ],
       "flags": {},
-      "order": 6,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -556,7 +505,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 19
         },
         {
           "localized_name": "height",
@@ -565,7 +514,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 20
         },
         {
           "localized_name": "batch_size",
@@ -757,7 +706,7 @@
         180
       ],
       "flags": {},
-      "order": 17,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -770,6 +719,175 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 19,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        640
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            17,
+            19
+          ]
+        }
+      ],
+      "title": "Width",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        790
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            18,
+            20
+          ]
+        }
+      ],
+      "title": "Height",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1536,
+        "fixed"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -66.546875,
+        734.4921875
+      ],
+      "size": [
+        520,
+        220
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "写实的iPhone抓拍, 手机摄影，男性侧身站在右侧画面外部，阴茎在画面中央，20岁裸体日本女孩,小乳房，可爱，瘦小模特身材，皮肤白皙，跪姿，白色丝袜，阴茎整个盖住她的脸。女人的脸庞正对着镜头，脸上绽放出毫无阴霾的、极度开心甚至有些天真烂漫的灿烂笑容，嘴角大幅度上扬，露出洁白的牙齿，眼神中充满兴奋与满足感。 肢体状态与细节： 女人双膝跪在深色地毯上，大腿并拢，小腿向两侧微微分开，脚背贴地。她的右手在脸侧比出一个清晰的“V”字胜利手势。男人站立位置紧贴 女人 右侧，他的胯部正对 女人面部。他勃起的粗长阴茎笔直地横在 女人眼前，巨大的龟头与部分茎身完全遮挡住了女人的双眼，形成一种视觉上的覆盖与压迫感。女人的鼻尖与嘴唇几乎要触碰到阴茎的根部。 背景大学宿舍.  (女人的眼睛不可見).\n\n智慧型手機攝影的真實感：輕微的手持抖動、輕微的自動對焦猶豫、HDR偽影、HDR處理不均勻、高光略微溢出、智慧型手機過度銳化偽影、局部對比度光暈、壓縮雜訊、曝光不均、自然的皮膚紋理.\n輕微的運動模糊、鏡頭污漬、紀錄片式的真實感、明亮的自然日光，色溫5500K.\n沒有單眼相機的精緻效果。\n\n照片中沒有畸形的手指和多餘的手。解剖學完全正確。"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -884,16 +1002,48 @@
       17,
       0,
       "IMAGE"
+    ],
+    [
+      17,
+      19,
+      0,
+      13,
+      1,
+      "INT"
+    ],
+    [
+      18,
+      20,
+      0,
+      13,
+      2,
+      "INT"
+    ],
+    [
+      19,
+      19,
+      0,
+      14,
+      0,
+      "INT"
+    ],
+    [
+      20,
+      20,
+      0,
+      14,
+      1,
+      "INT"
     ]
   ],
   "groups": [],
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.75,
+      "scale": 1,
       "offset": [
-        1038.125,
-        898.4739583333331
+        738.8202849126594,
+        1.075132493937872
       ]
     }
   },

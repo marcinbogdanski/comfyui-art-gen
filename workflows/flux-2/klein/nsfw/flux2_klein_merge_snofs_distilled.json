@@ -1,8 +1,8 @@
 {
   "id": "flux2-klein-snofs-model",
   "revision": 0,
-  "last_node_id": 18,
-  "last_link_id": 16,
+  "last_node_id": 20,
+  "last_link_id": 20,
   "nodes": [
     {
       "id": 2,
@@ -169,57 +169,6 @@
       "bgcolor": "#593930"
     },
     {
-      "id": 8,
-      "type": "CLIPTextEncode",
-      "pos": [
-        40,
-        740
-      ],
-      "size": [
-        520,
-        220
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "clip",
-          "name": "clip",
-          "type": "CLIP",
-          "link": 5
-        },
-        {
-          "localized_name": "text",
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "CONDITIONING",
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            7
-          ]
-        }
-      ],
-      "title": "Positive Prompt",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "On the left side of the photo is a young woman with long wet brown hair. She is completely naked with medium-sized breasts and is pressing one hand against the shower glass while sticking her tongue out playfully. On the right side of the photo is a young woman with long wet blonde hair. She is completely nude and standing with her back to the camera looking back over her shoulder with a smile. Both women are soaking wet with water streaming down their bodies and the glass is covered in droplets inside a shower with blue and white tiled walls featuring fish decorations."
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
-    },
-    {
       "id": 9,
       "type": "CLIPTextEncode",
       "pos": [
@@ -231,7 +180,7 @@
         120
       ],
       "flags": {},
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "inputs": [
         {
@@ -323,7 +272,7 @@
         98
       ],
       "flags": {},
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -425,7 +374,7 @@
         106
       ],
       "flags": {},
-      "order": 5,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
@@ -444,7 +393,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 17
         },
         {
           "localized_name": "height",
@@ -453,7 +402,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 18
         }
       ],
       "outputs": [
@@ -487,7 +436,7 @@
         106
       ],
       "flags": {},
-      "order": 6,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -497,7 +446,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 19
         },
         {
           "localized_name": "height",
@@ -506,7 +455,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 20
         },
         {
           "localized_name": "batch_size",
@@ -549,7 +498,7 @@
         106
       ],
       "flags": {},
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -616,7 +565,7 @@
         46
       ],
       "flags": {},
-      "order": 15,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -659,7 +608,7 @@
         300
       ],
       "flags": {},
-      "order": 16,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -698,7 +647,7 @@
         180
       ],
       "flags": {},
-      "order": 17,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -711,6 +660,175 @@
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 19,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        640
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            17,
+            19
+          ]
+        }
+      ],
+      "title": "Width",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        790
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            18,
+            20
+          ]
+        }
+      ],
+      "title": "Height",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1552,
+        "fixed"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -54.72916666666664,
+        732.9531250000003
+      ],
+      "size": [
+        520,
+        220
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "On the left side of the photo is a young woman with long wet brown hair. She is completely naked with medium-sized breasts and is pressing one hand against the shower glass while sticking her tongue out playfully. On the right side of the photo is a young woman with long wet blonde hair. She is completely nude and standing with her back to the camera looking back over her shoulder with a smile. Both women are soaking wet with water streaming down their bodies and the glass is covered in droplets inside a shower with blue and white tiled walls featuring fish decorations."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -817,6 +935,38 @@
       17,
       0,
       "IMAGE"
+    ],
+    [
+      17,
+      19,
+      0,
+      13,
+      1,
+      "INT"
+    ],
+    [
+      18,
+      20,
+      0,
+      13,
+      2,
+      "INT"
+    ],
+    [
+      19,
+      19,
+      0,
+      14,
+      0,
+      "INT"
+    ],
+    [
+      20,
+      20,
+      0,
+      14,
+      1,
+      "INT"
     ]
   ],
   "groups": [],

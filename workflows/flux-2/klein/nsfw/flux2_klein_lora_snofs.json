@@ -1,8 +1,8 @@
 {
   "id": "flux2-klein-base-snofs-lora-ref-131248659",
   "revision": 0,
-  "last_node_id": 18,
-  "last_link_id": 16,
+  "last_node_id": 20,
+  "last_link_id": 20,
   "nodes": [
     {
       "id": 2,
@@ -114,7 +114,7 @@
       },
       "widgets_values": [
         "klein_snofs_v1_4.safetensors",
-        1.0
+        1
       ]
     },
     {
@@ -226,57 +226,6 @@
       ],
       "color": "#332922",
       "bgcolor": "#593930"
-    },
-    {
-      "id": 8,
-      "type": "CLIPTextEncode",
-      "pos": [
-        40,
-        740
-      ],
-      "size": [
-        520,
-        220
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "localized_name": "clip",
-          "name": "clip",
-          "type": "CLIP",
-          "link": 5
-        },
-        {
-          "localized_name": "text",
-          "name": "text",
-          "type": "STRING",
-          "widget": {
-            "name": "text"
-          },
-          "link": null
-        }
-      ],
-      "outputs": [
-        {
-          "localized_name": "CONDITIONING",
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            7
-          ]
-        }
-      ],
-      "title": "Positive Prompt",
-      "properties": {
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "A slender young woman with long wavy brown hair and fair skin stands topless against a plain light gray studio backdrop, wearing a black lace choker connected by a thin black strap running down between her large breasts to matching black lace panties, her hands gently covering her breasts while she looks down with a neutral expression."
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
     },
     {
       "id": 9,
@@ -484,7 +433,7 @@
         106
       ],
       "flags": {},
-      "order": 5,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
@@ -503,7 +452,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 17
         },
         {
           "localized_name": "height",
@@ -512,7 +461,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 18
         }
       ],
       "outputs": [
@@ -546,7 +495,7 @@
         106
       ],
       "flags": {},
-      "order": 6,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
@@ -556,7 +505,7 @@
           "widget": {
             "name": "width"
           },
-          "link": null
+          "link": 19
         },
         {
           "localized_name": "height",
@@ -565,7 +514,7 @@
           "widget": {
             "name": "height"
           },
-          "link": null
+          "link": 20
         },
         {
           "localized_name": "batch_size",
@@ -757,7 +706,7 @@
         180
       ],
       "flags": {},
-      "order": 17,
+      "order": 5,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -766,10 +715,179 @@
         "Node name for S&R": "Note"
       },
       "widgets_values": [
-        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences)."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\n## Trigger Words\n\n- klein_snofs_v1_4.safetensors (LoRA): none\n\nNo trigger word required (empty trainedWords). Trained on natural language (full sentences).\n\nRecommended prompt terms: sex, blowjob, cowgirl position, doggystyle position, missionary position, prone position, reverse cowgirl position, spooning position, selfie, snapchat, nude, penis, vagina, cum.\n\nThese are source-recommended natural-language terms, not required trigger words; Civitai trainedWords is empty for this version."
       ],
       "color": "#432",
       "bgcolor": "#653"
+    },
+    {
+      "id": 19,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        640
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            17,
+            19
+          ]
+        }
+      ],
+      "title": "Width",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PrimitiveInt",
+      "pos": [
+        490,
+        790
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "value",
+          "name": "value",
+          "type": "INT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            18,
+            20
+          ]
+        }
+      ],
+      "title": "Height",
+      "properties": {
+        "Node name for S&R": "PrimitiveInt",
+        "cnr_id": "comfy-core",
+        "ver": "0.8.2",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65,
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.7",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        1552,
+        "fixed"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -68.8489583333334,
+        735.369791666667
+      ],
+      "size": [
+        520,
+        220
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "localized_name": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A slender young woman with long wavy brown hair and fair skin stands topless against a plain light gray studio backdrop, wearing a black lace choker connected by a thin black strap running down between her large breasts to matching black lace panties, her hands gently covering her breasts while she looks down with a neutral expression."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -884,6 +1002,38 @@
       17,
       0,
       "IMAGE"
+    ],
+    [
+      17,
+      19,
+      0,
+      13,
+      1,
+      "INT"
+    ],
+    [
+      18,
+      20,
+      0,
+      13,
+      2,
+      "INT"
+    ],
+    [
+      19,
+      19,
+      0,
+      14,
+      0,
+      "INT"
+    ],
+    [
+      20,
+      20,
+      0,
+      14,
+      1,
+      "INT"
     ]
   ],
   "groups": [],
