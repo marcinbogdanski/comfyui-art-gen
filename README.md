@@ -4,6 +4,8 @@ Minimal Docker-based ComfyUI server for this headless GPU box.
 
 ## Build
 
+The image pins ComfyUI `v0.29.0`.
+
 ```bash
 docker build -t local/comfyui:cu130 .
 ```
@@ -27,3 +29,25 @@ The wrapper sets `PYTORCH_CUDA_ALLOC_CONF` to
 `expandable_segments:True` to reduce CUDA allocator fragmentation on large
 ComfyUI workflows and starts ComfyUI with `--disable-cuda-malloc` so PyTorch's
 allocator controls CUDA allocations.
+
+## Post-rebuild smoke tests
+
+Run the fast direct-API dependency suite against one ComfyUI instance:
+
+```bash
+python3 scripts/api_smoke_post_rebuild_models.py
+```
+
+The suite retains older locally useful models and covers the model/LoRA assets
+used by the current workflow matrix. Each test generates exactly one small PNG
+and validates that it is at least 256px, readable, and not black or constant.
+Use `--list`, `--group legacy`, `--group matrix`, or `--only NAME ...` to inspect
+or narrow the inventory.
+
+This is deliberately separate from canonical workflow validation. Before a
+full matrix generation run, validate all GUI workflows through the actual
+frontend conversion path:
+
+```bash
+python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run
+```

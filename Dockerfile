@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:2.9.1-cuda13.0-cudnn9-runtime
 
-ARG COMFYUI_REF=v0.20.1
+ARG COMFYUI_REF=v0.29.0
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 ARG LLAMA_CPP_PYTHON_WHEEL=https://github.com/JamePeng/llama-cpp-python/releases/download/v0.3.39-cu131-linux-20260519/llama_cpp_python-0.3.39%2Bcu131-cp311-cp311-linux_x86_64.whl
@@ -53,6 +53,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         matplotlib \
         mss \
         numba \
+        onnx \
         onnxruntime \
         opencv-python-headless \
         "peft>=0.17.0" \
@@ -83,6 +84,7 @@ RUN python -m pip install --upgrade pip setuptools wheel \
         diskcache \
         hf_xet \
         jinja2 \
+        "numpy<=2.3.2" \
         typing-extensions
 
 USER comfy
