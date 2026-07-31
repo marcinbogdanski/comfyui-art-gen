@@ -484,6 +484,10 @@ def krea2_prompt(
     *,
     turbo,
     loras=None,
+    steps=None,
+    cfg=None,
+    sampler="euler",
+    scheduler="simple",
     width=512,
     height=512,
 ):
@@ -519,7 +523,8 @@ def krea2_prompt(
             "inputs": {"conditioning": ["4", 0]},
         }
         model_ref = ["1", 0]
-        steps, cfg = 8, 1.0
+        steps = steps if steps is not None else 8
+        cfg = cfg if cfg is not None else 1.0
     else:
         prompt["5"] = {
             "class_type": "CLIPTextEncode",
@@ -536,7 +541,8 @@ def krea2_prompt(
             },
         }
         model_ref = ["7", 0]
-        steps, cfg = 28, 3.5
+        steps = steps if steps is not None else 28
+        cfg = cfg if cfg is not None else 3.5
 
     for index, (lora, strength) in enumerate(loras or [], start=20):
         node_id = str(index)
@@ -562,8 +568,8 @@ def krea2_prompt(
                     "seed": 106,
                     "steps": steps,
                     "cfg": cfg,
-                    "sampler_name": "euler",
-                    "scheduler": "simple",
+                    "sampler_name": sampler,
+                    "scheduler": scheduler,
                     "denoise": 1.0,
                 },
             },
@@ -764,7 +770,83 @@ TESTS = [
             turbo=True,
         ),
     ),
-    # Current 25-workflow matrix asset coverage.
+    SmokeTest(
+        "krea2_turbo_textfusion_unlock",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_turbo_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            loras=[("Krea2_TextFusion_Refusal_Reduction.safetensors", 1.0)],
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_knp_v43_unlock_stack",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_turbo_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            loras=[
+                ("Krea2_TextFusion_Refusal_Reduction.safetensors", 1.0),
+                ("KNP_000003000.safetensors", 1.0),
+            ],
+            scheduler="beta",
+        ),
+    ),
+    SmokeTest(
+        "krea2_redcraft_v3_int8",
+        "krea2",
+        lambda p: krea2_prompt(
+            "redcraft23INT8INT4FP8_30Krea2.safetensors",
+            p,
+            turbo=True,
+            steps=12,
+        ),
+    ),
+    SmokeTest(
+        "krea2_moody_mix_v5_int8",
+        "krea2",
+        lambda p: krea2_prompt(
+            "moodyKrea2Mix_v50.safetensors",
+            p,
+            turbo=True,
+            sampler="euler_ancestral",
+        ),
+    ),
+    SmokeTest(
+        "krea2_raw_snofs_v12",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_raw_int8_convrot.safetensors",
+            p,
+            turbo=False,
+            loras=[("snofs_krea_v1_2.safetensors", 1.0)],
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_mystic_v3",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_turbo_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            loras=[("MysticXXX_KREA2_v3.safetensors", 1.0)],
+            steps=12,
+            scheduler="beta",
+        ),
+    ),
+    SmokeTest(
+        "krea2_darkbeast_v3_int8",
+        "krea2",
+        lambda p: krea2_prompt(
+            "darkBeast30BF16INT8_darkBeast330.safetensors",
+            p,
+            turbo=True,
+            steps=12,
+        ),
+    ),
+    # Pre-Krea workflow-matrix asset coverage. Krea assets are grouped above.
     SmokeTest(
         "flux2_dev_turbo_lora",
         "matrix",

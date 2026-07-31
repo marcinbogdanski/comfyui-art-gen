@@ -20,7 +20,10 @@ def read_matrix(path):
 
 def existing_output_count(run_id, workflow):
     prefix = f"{run_id}_{Path(workflow).stem}"
-    return len(list(OUTPUT_DIR.glob(f"{prefix}_*.png")))
+    # Require ComfyUI's numeric suffix immediately after the exact workflow
+    # stem. A plain prefix glob makes `foo.json` collide with
+    # `foo_distilled.json` and can incorrectly skip a missing job.
+    return len(list(OUTPUT_DIR.glob(f"{prefix}_[0-9]*_.png")))
 
 
 async def run_job(prefix, workflow, base_url, args, repo_root):
