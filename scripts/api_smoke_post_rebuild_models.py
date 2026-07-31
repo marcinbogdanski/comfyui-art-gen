@@ -478,6 +478,108 @@ def qwen_image_prompt(
     return prompt
 
 
+def krea2_prompt(
+    unet,
+    prefix,
+    *,
+    turbo,
+    loras=None,
+    width=512,
+    height=512,
+):
+    prompt = {
+        "1": {
+            "class_type": "UNETLoader",
+            "inputs": {"unet_name": unet, "weight_dtype": "default"},
+        },
+        "2": {
+            "class_type": "CLIPLoader",
+            "inputs": {
+                "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+                "type": "krea2",
+                "device": "default",
+            },
+        },
+        "3": {
+            "class_type": "VAELoader",
+            "inputs": {"vae_name": "qwen_image_vae.safetensors"},
+        },
+        "4": {
+            "class_type": "CLIPTextEncode",
+            "inputs": {"text": PROMPT, "clip": ["2", 0]},
+        },
+        "6": {
+            "class_type": "EmptyLatentImage",
+            "inputs": {"width": width, "height": height, "batch_size": 1},
+        },
+    }
+    if turbo:
+        prompt["5"] = {
+            "class_type": "ConditioningZeroOut",
+            "inputs": {"conditioning": ["4", 0]},
+        }
+        model_ref = ["1", 0]
+        steps, cfg = 8, 1.0
+    else:
+        prompt["5"] = {
+            "class_type": "CLIPTextEncode",
+            "inputs": {"text": "", "clip": ["2", 0]},
+        }
+        prompt["7"] = {
+            "class_type": "ModelSamplingFlux",
+            "inputs": {
+                "model": ["1", 0],
+                "max_shift": 1.15,
+                "base_shift": 0.5,
+                "width": width,
+                "height": height,
+            },
+        }
+        model_ref = ["7", 0]
+        steps, cfg = 28, 3.5
+
+    for index, (lora, strength) in enumerate(loras or [], start=20):
+        node_id = str(index)
+        prompt[node_id] = {
+            "class_type": "LoraLoaderModelOnly",
+            "inputs": {
+                "model": model_ref,
+                "lora_name": lora,
+                "strength_model": strength,
+            },
+        }
+        model_ref = [node_id, 0]
+
+    prompt.update(
+        {
+            "8": {
+                "class_type": "KSampler",
+                "inputs": {
+                    "model": model_ref,
+                    "positive": ["4", 0],
+                    "negative": ["5", 0],
+                    "latent_image": ["6", 0],
+                    "seed": 106,
+                    "steps": steps,
+                    "cfg": cfg,
+                    "sampler_name": "euler",
+                    "scheduler": "simple",
+                    "denoise": 1.0,
+                },
+            },
+            "9": {
+                "class_type": "VAEDecode",
+                "inputs": {"samples": ["8", 0], "vae": ["3", 0]},
+            },
+            "10": {
+                "class_type": "SaveImage",
+                "inputs": {"images": ["9", 0], "filename_prefix": prefix},
+            },
+        }
+    )
+    return prompt
+
+
 def flux2_prompt(
     unet,
     prefix,
@@ -644,6 +746,24 @@ TESTS = [
         ),
     ),
     SmokeTest("qwen_rapid_aio_v23", "legacy", qwen_rapid_prompt),
+    SmokeTest(
+        "krea2_raw_official",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_raw_int8_convrot.safetensors",
+            p,
+            turbo=False,
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_official",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_turbo_int8_convrot.safetensors",
+            p,
+            turbo=True,
+        ),
+    ),
     # Current 25-workflow matrix asset coverage.
     SmokeTest(
         "flux2_dev_turbo_lora",
