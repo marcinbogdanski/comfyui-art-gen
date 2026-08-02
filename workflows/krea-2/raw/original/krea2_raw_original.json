@@ -375,7 +375,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        "Latina female with thick wavy hair, harbor boats and pastel houses behind. Breezy seaside light, warm tones, cinematic close-up. "
+        "A small, dark-colored cat is captured mid-stride, walking down the center of a narrow, abandoned street. The street is paved and appears cracked and worn. On either side of the street are tall, dilapidated buildings with visible brickwork and windows. A street lamp stands on the right side. The entire image is rendered in a monochromatic blue, with a distinct halftone dot pattern overlaying the scene, giving it a retro or printed appearance. The focus is soft, and the lighting is diffused, creating a hazy, atmospheric effect. The perspective is from ground level, looking down the length of the street, which narrows into the distance., halftone texture"
       ],
       "title": "Positive Prompt"
     },
@@ -710,8 +710,8 @@
       "widgets_values": [
         1.15,
         0.5,
-        832,
-        1216
+        1024,
+        1024
       ]
     },
     {
@@ -736,7 +736,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial source: https://huggingface.co/krea/Krea-2-Raw\nNo official standalone ComfyUI RAW template was available; this uses the official Krea 2 nodes and documented 52-step CFG 3.5 settings. RAW requires an encoded empty negative prompt for classifier-free guidance."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial source: https://huggingface.co/krea/Krea-2-Raw\nReference prompt recovered from the official model-card widget for assets/hf_samples/raw/00.png. Seed 0 follows the official inference default and is the best reconstruction hypothesis; the gallery sample does not publish its seed. Uses the official documented 1024x1024, 52-step, CFG 3.5 settings. RAW requires an encoded empty negative prompt for classifier-free guidance."
       ],
       "color": "#432",
       "bgcolor": "#653"

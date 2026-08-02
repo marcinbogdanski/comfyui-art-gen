@@ -363,7 +363,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        "Latina female with thick wavy hair, harbor boats and pastel houses behind. Breezy seaside light, warm tones, cinematic close-up. "
+        "Ultra low angle action shot capturing a male soccer player mid-air executing a high kick, upper body sharply focused and detailed in motion, wearing a maroon jersey with white shorts, his outstretched leg striking a standard soccer ball with precise impact, set against a clear vivid blue sky background; foreground features a blurred white and electric yellow cleat creating forced perspective depth, stadium poles and treetops visible at the bottom frame edge; harsh direct sunlight casts heavy dark shadows across the scene, emphasizing high contrast and dynamic movement; rendered in the style of high-contrast sports photography with visible coarse film grain texture, conveying raw energy and athletic intensity without adding new elements or altering spatial relationships."
       ]
     },
     {
@@ -604,7 +604,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        0,
+        45862206397178,
         "fixed",
         8,
         1,
@@ -635,7 +635,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial source: https://docs.comfy.org/tutorials/image/krea/krea-2\nSource template: image_krea2_turbo_t2i_int8.json\nOfficial Turbo INT8 ConvRot model; no trigger words required."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nOfficial source: https://docs.comfy.org/tutorials/image/krea/krea-2\nSource workflow PNG: https://github.com/Comfy-Org/workflow_templates/blob/main/output/image_krea2_turbo_t2i_int8.png\nOfficial Turbo INT8 ConvRot model. Stores the deterministic enhanced prompt emitted by the official workflow so the critical generation path remains minimal and matrix-compatible while reproducing its reference image. The enhanced prompt was captured from `TextGenerate` by executing the source PNG's embedded graph; it is not stored as a standalone metadata value in the PNG. No trigger words required."
       ],
       "color": "#432",
       "bgcolor": "#653"
