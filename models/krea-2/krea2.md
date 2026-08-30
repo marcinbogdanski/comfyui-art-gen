@@ -99,6 +99,13 @@ On 2026-07-31:
 - all generated PNGs decoded successfully and had non-black, non-constant RGB
   signal.
 
+Human reference review:
+
+- On 2026-08-30, the KNP v4.3 workflow was reviewed at the source reference
+  resolution of 1088 x 1448. Its local INT8 ConvRot output was judged extremely
+  close to the archived FP8 source image despite the unavoidable precision
+  difference.
+
 Canonical workflows:
 
 ```text
