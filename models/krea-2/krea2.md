@@ -105,6 +105,13 @@ Human reference review:
   resolution of 1088 x 1448. Its local INT8 ConvRot output was judged extremely
   close to the archived FP8 source image despite the unavoidable precision
   difference.
+- Dark Beast V3 was reviewed at its 1024 x 1536 source generation resolution
+  and judged a good match before the source's upscale and grain postprocessing.
+- RedCraft V3 was reviewed at its 1440 x 2160 source generation resolution and
+  judged a good match despite the local INT8 checkpoint and FP8 text encoder.
+- Moody Mix V5 was reviewed at its 1024 x 1536 source generation resolution and
+  judged extremely close despite the local INT8 checkpoint and omitted upscale
+  and detail-processing stages.
 
 Canonical workflows:
 
