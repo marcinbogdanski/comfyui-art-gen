@@ -5,17 +5,19 @@ LoRAs.
 
 ## Workflows
 
-Reference-specific workflow copies:
+Canonical workflow copies (reference-adapted where noted below):
 
 ```text
 workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_turbo.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_v4_turbo_fp8.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_moody_desire_v3_fp8.json
 workflows/flux-2/klein/nsfw/flux2_klein_merge_darkbeast_blitz.json
 workflows/flux-2/klein/nsfw/flux2_klein_merge_snofs_distilled.json
 workflows/flux-2/klein/nsfw/flux2_klein_lora_snofs.json
 workflows/flux-2/klein/nsfw/flux2_klein_lora_unchained.json
 ```
 
-All workflows are plain-node variants of the official Flux.2 Klein
+The original local variants use the plain-node official Flux.2 Klein
 text-to-image graph:
 
 ```text
@@ -33,17 +35,27 @@ VAEDecode
 SaveImage
 ```
 
+The two 2026-08-31 reference adaptations instead follow their creator graphs.
+PornMaster V4 Turbo FP8 uses `EmptyLatentImage` and `KSamplerAdvanced`. Moody
+Desire uses those nodes for its first pass, followed by `LatentUpscaleBy`, two
+`ReferenceLatent` nodes, and a second `KSamplerAdvanced` refinement pass.
+
 ## Models
 
-Downloaded and archived on 2026-05-29:
+Downloaded and archived on 2026-05-29, with the two FP8 checkpoint additions on
+2026-08-31:
 
 ```text
 diffusion_models/darkBeast_dbkBlitzV15_pruned_bf16.safetensors
 diffusion_models/snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors
 diffusion_models/pornmasterFlux2Klein_v4.safetensors
+diffusion_models/pornmasterFlux2Klein_v4TurboFp8.safetensors
+diffusion_models/moody-desire-v3.1_00001__fp8.safetensors
 loras/KLEIN-Unchained-V2.safetensors
 loras/klein_9B_Turbo_r128.safetensors
 text_encoders/qwen_3_8b.safetensors
+text_encoders/qwen_3_8b_fp8mixed.safetensors
+vae/flux2-vae.safetensors
 ```
 
 Previously present:
@@ -95,9 +107,34 @@ workflow uses the Civitai display prompt/source workflow widget text for the
 wooden-table example because the embedded API prompt contains a different
 prompt-library value.
 
+PornMaster V4 Turbo FP8 uses creator reference image
+`https://civitai.red/images/131749833`. Its embedded workflow is a standalone
+text-to-image graph with no active LoRAs. The simplified local workflow
+preserves the exact creator prompt, seed `164595271470063`, `1024 x 1536`, four
+steps, CFG 1, Euler/simple sampling, start/end steps, zeroed negative
+conditioning, and leftover-noise setting. It maps the creator-local checkpoint
+filename to `pornmasterFlux2Klein_v4TurboFp8.safetensors` and omits only the
+empty LoRA manager and non-generation cleanup/sound nodes. All creator-image
+prompts for this release are preserved in
+`pornmaster-v4-turbo-fp8-creator-prompts.md`.
+
+Moody Desire Mix v3 uses reference image
+`https://civitai.red/images/134667834`. The simplified workflow preserves the
+embedded initial-generation prompt, seed `917222163637788`, `768 x 1200`
+dimensions, six steps, CFG 1, Euler, beta scheduler, start/end steps, zeroed
+negative conditioning, and leftover-noise setting. It then reproduces the
+embedded latent refinement: the source refinement prompt, 1.5x bislerp latent
+upscale, positive and negative `ReferenceLatent` conditioning against the
+first-pass latent, and a three-step Euler/simple second pass at CFG 1 using the
+same seed. It substitutes Civitai's official FP8 file for the source
+full-precision checkpoint and intentionally omits the later Ultimate SD
+Upscale, skin enhancement, detectors, detailers, and disabled optional LoRAs.
+
 | Workflow | UNET model | LoRA | VAE | Default steps | Steps range | Default CFG | CFG range |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `flux2_klein_checkpoint_pornmaster_turbo.json` | `pornmasterFlux2Klein_v4.safetensors` | `klein_9B_Turbo_r128.safetensors` @ 1.0 | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
+| `flux2_klein_checkpoint_pornmaster_v4_turbo_fp8.json` | `pornmasterFlux2Klein_v4TurboFp8.safetensors` | none | `flux2-vae.safetensors` | 4 | 4 | 1 | 1 |
+| `flux2_klein_checkpoint_moody_desire_v3_fp8.json` | `moody-desire-v3.1_00001__fp8.safetensors` | none | `flux2-vae.safetensors` | 6 + 3 | 6 + 3 | 1 + 1 | 1 + 1 |
 | `flux2_klein_merge_darkbeast_blitz.json` | `darkBeast_dbkBlitzV15_pruned_bf16.safetensors` | none | `flux2-vae.safetensors` | 5 | 5 | 1 | 1 |
 | `flux2_klein_merge_snofs_distilled.json` | `snofsSexNudesAndOtherFunStuff_v14Distilled.safetensors` | none | `flux2-vae.safetensors` | 8 | 6-8 | 1 | 1 |
 | `flux2_klein_lora_snofs.json` | `flux-2-klein-base-9b.safetensors` | `klein_snofs_v1_4.safetensors` @ 1.0 | `flux2-vae.safetensors` | 50 | 50 | 5 | 5 |
@@ -107,14 +144,22 @@ prompt-library value.
 
 API smoke tests ran on 2026-05-29 against `http://127.0.0.1:8188/` with
 small outputs. PornMaster was updated afterward to the selected reference image
-above.
+above. The two 2026-08-31 additions passed the full frontend conversion,
+`/prompt`, and ComfyUI history path at their saved workflow dimensions.
 
 | Configuration | Result | Output |
 | --- | --- | --- |
 | PornMaster + Turbo LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_pornmaster_turbo_smoke_00001_.png` |
+| PornMaster V4 Turbo FP8 reference workflow | pass | `/mnt/data/comfyui/output/ref_pornmaster_v4_turbo_fp8_flux2_klein_checkpoint_pornmaster_v4_turbo_fp8_00001_.png` |
+| Moody Desire Mix v3 FP8 reference workflow | pass | `/mnt/data/comfyui/output/ref2_moody_desire_v3_fp8_flux2_klein_checkpoint_moody_desire_v3_fp8_00001_.png` |
 | Dark Beast DBK BlitZ V1.5 | pass | `/mnt/data/comfyui/output/flux2_klein_darkbeast_smoke_00001_.png` |
 | SNOFS v1.4 Distilled checkpoint | pass | `/mnt/data/comfyui/output/flux2_klein_snofs_model_smoke_00001_.png` |
 | Base + SNOFS Klein LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_base_snofs_lora_smoke_00001_.png` |
 | Base + Unchained LoRA | pass | `/mnt/data/comfyui/output/flux2_klein_base_unchained_lora_smoke_00001_.png` |
+
+The PornMaster V4 Turbo FP8 reference output is visually near-identical to
+creator image `131749833`. A decoded RGB comparison at the shared `1024 x 1536`
+resolution measured a mean absolute channel difference of approximately
+`2.005 / 255`; small runtime-level pixel differences remain.
 
 No new custom nodes were required for the text-to-image workflow.
