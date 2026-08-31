@@ -5,6 +5,7 @@ COMFYUI_PATH="${COMFYUI_PATH:-/workspace/ComfyUI}"
 CUSTOM_NODES_DIR="${COMFYUI_PATH}/custom_nodes"
 HUNYUAN_REF="${HUNYUAN_REF:-bf738dba3f542e6744c49bc29c29a20dd14d079d}"
 QWEN35_GGUF_REF="${QWEN35_GGUF_REF:-664385968c3ad3f2c48f5c02da195020517e7f73}"
+KREA2T_ENHANCER_REF="${KREA2T_ENHANCER_REF:-a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0}"
 LLAMA_CPP_PYTHON_WHEEL="${LLAMA_CPP_PYTHON_WHEEL:-https://github.com/JamePeng/llama-cpp-python/releases/download/v0.3.39-cu131-linux-20260519/llama_cpp_python-0.3.39%2Bcu131-cp311-cp311-linux_x86_64.whl}"
 
 mkdir -p "${CUSTOM_NODES_DIR}"
@@ -41,6 +42,11 @@ clone_or_update \
   "https://github.com/Deaquay/ComfyUI-Qwen3.5-Uncensored-GGUF.git" \
   "ComfyUI-Qwen3.5-Uncensored-GGUF" \
   "${QWEN35_GGUF_REF}"
+
+clone_or_update \
+  "https://github.com/capitan01R/ComfyUI-Krea2T-Enhancer.git" \
+  "ComfyUI-Krea2T-Enhancer" \
+  "${KREA2T_ENHANCER_REF}"
 
 if ! python - <<'PY' >/dev/null 2>&1
 from llama_cpp import Llama

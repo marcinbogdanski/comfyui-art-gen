@@ -64,6 +64,17 @@ Community checkpoints and LoRAs:
 The exact source URLs, file IDs, and hashes are preserved in the download
 script and model-archive sidecars.
 
+Custom runtime dependency:
+
+```text
+https://github.com/capitan01R/ComfyUI-Krea2T-Enhancer
+commit a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0
+```
+
+The node has no additional Python dependencies. It is installed locally under
+`/mnt/data/comfyui/custom_nodes/ComfyUI-Krea2T-Enhancer` and pinned by both Vast
+setup paths.
+
 ## Workflow Settings
 
 Official RAW uses 52 steps, CFG 3.5, Euler/simple, resolution-aware
@@ -101,14 +112,24 @@ precision where practical:
   similarly outside the exact-integer range.
 - Dark Beast uses the selected V3 INT8 checkpoint and its source 12-step
   Euler/simple path.
+- Krea2T Enhancer Advanced uses upstream strength 1.0 and `text_scale` 1.5, the
+  conservative end of the author's suggested 1.5 to 2.0 starting range. It is
+  derived from the official Turbo graph and differs only by inserting the
+  runtime model patch before the sampler. Reference image: none. Upstream also
+  provides no reproducible reference workflow.
 
 ## Unlock Selection
 
-`Krea2_TextFusion_Refusal_Reduction` is the default standalone unlock. It
-modifies only the TextFusion routing layer, has a source-recommended strength of
-1.0, and stacks successfully with KNP. This makes it a more predictable default
-than broad multi-vector bypass LoRAs whose effective strength varies by model
-quantization.
+The supported standalone alternatives are `Krea2_TextFusion_Refusal_Reduction`
+and Krea2T Enhancer Advanced. TextFusion is a portable LoRA that modifies only
+the TextFusion routing layer at the source-recommended strength 1.0. Krea2T is a
+broader runtime conditioning intervention that reweights the 12 Krea text taps
+through TextFusion and, in Advanced mode, scales fused text tokens after
+`txtmlp` before they enter the shared transformer stream.
+
+Treat these as alternatives rather than an automatic stack. TextFusion remains
+the simpler portable choice; Krea2T is the newer custom-node path to try when a
+broader prompt-adherence intervention is wanted.
 
 The unlock is optional for the community checkpoints and task-specific LoRAs:
 use it when prompt refusals remain, and avoid stacking it automatically where a
@@ -143,6 +164,23 @@ links), `/prompt` acceptance, and history success. The saved output was
 local workflow retains the documented official INT8 ConvRot Turbo substitution
 for the source-local FP8 diffusion-model filename.
 
+Also on 2026-08-31, Krea2T Enhancer Advanced at pinned commit
+`a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0` loaded without extra dependencies.
+Its dedicated 512 x 512 direct-API smoke passed and the node's diagnostics
+confirmed that the Advanced patch executed at all eight denoising steps. The
+canonical workflow passed actual frontend conversion (10 API nodes from 11
+workflow nodes and 10 links), `/prompt` acceptance, and history success. The
+same-seed comparison outputs were:
+
+```text
+/mnt/data/comfyui/output/krea2_turbo_original_00006_.png
+/mnt/data/comfyui/output/krea2_turbo_node_krea2t_enhancer_advanced_00001_.png
+```
+
+The complete 35-workflow no-generation matrix preflight then passed. Reference
+image: none. The output pair is retained for local A/B review rather than
+claimed as a creator-reference reproduction.
+
 Human reference review:
 
 - On 2026-08-31, the TextFusion refusal-reduction workflow was reviewed against
@@ -175,6 +213,7 @@ workflows/krea-2/raw/original/krea2_raw_original.json
 workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v12.json
 workflows/krea-2/turbo/original/krea2_turbo_original.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_textfusion_unlock.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_node_krea2t_enhancer_advanced.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_knp_v43.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_redcraft_v3_int8.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_moody_mix_v5_int8.json

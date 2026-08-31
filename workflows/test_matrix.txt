@@ -27,6 +27,7 @@ workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v12.json
 # Krea 2 Turbo
 workflows/krea-2/turbo/original/krea2_turbo_original.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_textfusion_unlock.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_node_krea2t_enhancer_advanced.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_knp_v43.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_redcraft_v3_int8.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_moody_mix_v5_int8.json

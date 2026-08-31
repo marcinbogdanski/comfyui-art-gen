@@ -484,6 +484,7 @@ def krea2_prompt(
     *,
     turbo,
     loras=None,
+    enhancer=None,
     steps=None,
     cfg=None,
     sampler="euler",
@@ -555,6 +556,19 @@ def krea2_prompt(
             },
         }
         model_ref = [node_id, 0]
+
+    if enhancer is not None:
+        prompt["30"] = {
+            "class_type": "Krea2T-Enhancer-Advanced",
+            "inputs": {
+                "model": model_ref,
+                "enabled": True,
+                "strength": enhancer["strength"],
+                "text_scale": enhancer["text_scale"],
+                "debug": True,
+            },
+        }
+        model_ref = ["30", 0]
 
     prompt.update(
         {
@@ -778,6 +792,16 @@ TESTS = [
             p,
             turbo=True,
             loras=[("Krea2_TextFusion_Refusal_Reduction.safetensors", 1.0)],
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_krea2t_enhancer_advanced",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_turbo_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            enhancer={"strength": 1.0, "text_scale": 1.5},
         ),
     ),
     SmokeTest(
