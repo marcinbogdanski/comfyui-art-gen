@@ -4,6 +4,8 @@ workflows/flux-2/dev/original/flux2_dev_original.json
 # Flux 2 Klein
 workflows/flux-2/klein/biglove/flux2_klein_checkpoint_biglove_t2i.json
 workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_turbo.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_pornmaster_v4_turbo_fp8.json
+workflows/flux-2/klein/nsfw/flux2_klein_checkpoint_moody_desire_v3_fp8.json
 workflows/flux-2/klein/nsfw/flux2_klein_merge_darkbeast_blitz.json
 workflows/flux-2/klein/nsfw/flux2_klein_lora_unchained.json
 workflows/flux-2/klein/nsfw/flux2_klein_lora_snofs.json
@@ -14,6 +16,7 @@ workflows/flux-2/klein/original/flux2_klein_original_9b_distilled.json
 # Qwen 2512
 workflows/qwen-image/2512/nsfw/qwen_2512_merge_jib_mix.json
 workflows/qwen-image/2512/nsfw/qwen_2512_lora_qwen4play.json
+workflows/qwen-image/2512/nsfw/qwen_2512_lora_qwen4play_v2.json
 workflows/qwen-image/2512/nsfw/qwen_2512_lora_snofs.json
 workflows/qwen-image/2512/original/qwen_2512_original.json
 
