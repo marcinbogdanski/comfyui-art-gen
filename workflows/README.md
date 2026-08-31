@@ -59,12 +59,14 @@ metadata cannot be found. `scripts/workflow_prompt.py` prepends
 
 ## Frontend Smoke Test
 
-Before a new or edited canonical GUI workflow `.json` is considered ready for
-review, validate it with `scripts/workflow_prompt.py`. The script loads the GUI
-workflow in Chromium, calls the actual ComfyUI frontend `app.graphToPrompt()`
-path, submits the converted prompt to ComfyUI from Python, and waits for history
-success. A hand-written or separately derived API prompt graph is not a
-substitute for this check.
+Before a new canonical GUI workflow `.json`, or an edit that changes its
+generation behavior, is considered ready for review, validate it with
+`scripts/workflow_prompt.py`. The script loads the GUI workflow in Chromium,
+calls the actual ComfyUI frontend `app.graphToPrompt()` path, submits the
+converted prompt to ComfyUI from Python, and waits for history success. A
+hand-written or separately derived API prompt graph is not a substitute for
+this check. For a metadata-only edit that cannot change the graph's behavior,
+validate the JSON and Metadata note without generating another image.
 
 ```bash
 python3 scripts/workflow_prompt.py -w workflows/path/to/workflow.json
@@ -76,8 +78,10 @@ only writes converted API prompt JSON.
 
 ## Matrix Dry Run
 
-Before treating the complete matrix as ready, run the workflow queue in dry-run
-mode:
+When a session adds or changes workflows, models, dependencies, or related
+runtime behavior, run the complete matrix once if it has not already passed
+during that session against the current ComfyUI environment. Do not run it
+merely for questions, research, read-only review, or documentation-only work.
 
 ```bash
 python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run
@@ -88,3 +92,11 @@ This uses `workflows/test_matrix.txt` by default. It runs each workflow through
 applies scripted prompt/metadata/batch/seed/output mutations when requested, and
 loads the resulting workflow through the real ComfyUI frontend converter. It
 does not submit converted prompts, so it does not queue generation jobs.
+
+Treat that pass as the session's drift baseline. After it passes, keep its
+evidence for unaffected workflows and validate subsequent work in proportion to
+its behavioral impact. Test an isolated workflow change on that workflow;
+check documentation and metadata edits without generation; and run focused
+smoke cases for affected dependencies. Repeat or broaden the matrix only when a
+later change could reasonably invalidate results outside the targeted set, such
+as a shared workflow-driver, runtime/dependency, or matrix-membership change.
