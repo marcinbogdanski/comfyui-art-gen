@@ -44,9 +44,17 @@ download \
   "text_encoders/qwen3vl_4b_fp8_scaled.safetensors" \
   "54bd5144df0bbc25dd6ccadfcb826b521445a1b06ae5a42570bdd2974ca87094"
 download \
+  "${BASE_URL}/text_encoders/qwen3vl_4b_bf16.safetensors" \
+  "text_encoders/qwen3vl_4b_bf16.safetensors" \
+  "36f3ff447ef59201722e8f9ce6020c9819fdcfba6aa2608c4e09b1c0ce114e34"
+download \
   "${BASE_URL}/vae/qwen_image_vae.safetensors" \
   "vae/qwen_image_vae.safetensors" \
   "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f"
+download \
+  "${BASE_URL}/loras/krea2_turbo_lora_rank_64_bf16.safetensors" \
+  "loras/krea2_turbo_lora_rank_64_bf16.safetensors" \
+  "db8c5bae0a415d448da9d842111d6e51f7d32e47143a3118eb267e5c4773de87"
 
 if [[ -z "${CIVITAI_API_KEY:-}" ]]; then
   echo "CIVITAI_API_KEY is required for the Krea 2 community downloads." >&2

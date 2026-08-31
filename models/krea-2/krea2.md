@@ -26,7 +26,14 @@ Shared support files:
 
 ```text
 text_encoders/qwen3vl_4b_fp8_scaled.safetensors
+text_encoders/qwen3vl_4b_bf16.safetensors
 vae/qwen_image_vae.safetensors
+```
+
+Official RAW-to-Turbo adapter:
+
+```text
+loras/krea2_turbo_lora_rank_64_bf16.safetensors
 ```
 
 Official models:
@@ -67,9 +74,13 @@ precision where practical:
 - Moody uses the selected V5 INT8 checkpoint. Its source image used V5 NVFP4
   plus an upscale branch; the local workflow keeps the initial 832 x 1216
   generation path.
-- SNOFS uses model-only strength 1.0 on the full-step RAW path. The source
-  workflow also used a separate RAW-to-Turbo adapter that was not part of the
-  requested inventory.
+- SNOFS uses its current v1.2 two-stage source path: RAW INT8 plus SNOFS at
+  strength 1.0 for the 52-step first stage, then the official rank-64 Turbo
+  adapter at strength 1.0 for the 16-step second stage. The source uses the BF16
+  text encoder and scales 2:3 from 1 MP to 3 MP with a 16% handoff. This graph
+  requires `Krea-2-Two-Stage-Sampler` at commit
+  `b201412a0178da17b9760faa897107283428a78a`, which is also pinned by the Vast
+  setup script.
 - Mystic uses model and text-encoder strength 1.0 with the official Qwen Image
   VAE. The source metadata named a Wan 2.1 VAE and did not include a complete
   GUI workflow.
@@ -99,6 +110,15 @@ On 2026-07-31:
 - all generated PNGs decoded successfully and had non-black, non-constant RGB
   signal.
 
+On 2026-08-30, the edited SNOFS v1.2 canonical workflow passed actual frontend
+conversion (12 API nodes from 13 workflow nodes and 16 links), `/prompt`
+acceptance, and ComfyUI history success. The saved output was
+`/mnt/data/comfyui/output/krea2_raw_lora_snofs_v12_reference_00002_.png`.
+The required complete 34-workflow no-generation preflight also passed with its
+prompt, batch, seed, and output-ID overrides; the SNOFS test copy used the
+requested 832 x 1216 base and final dimensions without changing the canonical
+1 MP to 3 MP reference graph.
+
 Human reference review:
 
 - On 2026-08-30, the KNP v4.3 workflow was reviewed at the source reference
@@ -112,6 +132,10 @@ Human reference review:
 - Moody Mix V5 was reviewed at its 1024 x 1536 source generation resolution and
   judged extremely close despite the local INT8 checkpoint and omitted upscale
   and detail-processing stages.
+- SNOFS Krea v1.2 was reviewed at the current source image's 1456 x 2176 final
+  resolution and judged a good match. The local non-save API graph matches the
+  embedded source graph and parameters; the comparison measured SSIM `0.9301`
+  and pixel correlation `0.9727`, with differences concentrated in fine detail.
 
 Canonical workflows:
 
