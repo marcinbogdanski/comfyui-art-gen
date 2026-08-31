@@ -4,7 +4,8 @@
 This intentionally does not use the ComfyUI frontend. Canonical workflow
 conversion and full-generation coverage belong to workflow_prompt.py and
 workflow_queue.py; this script answers the narrower post-rebuild question:
-"Can every supported weight/dependency path load and produce a plausible PNG?"
+"Can every supported generation weight load and produce a plausible PNG, and
+are its specialized runtime dependencies discoverable?"
 """
 
 import argparse
@@ -32,6 +33,8 @@ class SmokeTest:
     group: str
     factory: object
     timeout_s: int = 900
+    required_nodes: tuple = ()
+    required_choices: tuple = ()
 
 
 def post_json(base_url, path, payload):
@@ -54,6 +57,29 @@ def post_json(base_url, path, payload):
 def get_json(base_url, path):
     with urllib.request.urlopen(f"{base_url.rstrip('/')}{path}", timeout=30) as resp:
         return json.loads(resp.read().decode("utf-8"))
+
+
+def advertised_choices(object_info, node_name, input_name):
+    spec = object_info[node_name]["input"]["required"][input_name]
+    if spec and isinstance(spec[0], list):
+        return set(spec[0])
+    if len(spec) > 1 and isinstance(spec[1], dict):
+        return set(spec[1].get("options", []))
+    return set()
+
+
+def validate_runtime_dependencies(test, object_info):
+    missing_nodes = sorted(set(test.required_nodes) - set(object_info))
+    if missing_nodes:
+        raise RuntimeError(f"missing required ComfyUI nodes: {missing_nodes}")
+    for node_name, input_name, choice in test.required_choices:
+        if node_name not in object_info:
+            raise RuntimeError(f"missing required ComfyUI node: {node_name}")
+        choices = advertised_choices(object_info, node_name, input_name)
+        if choice not in choices:
+            raise RuntimeError(
+                f"{node_name}.{input_name} does not advertise required asset: {choice}"
+            )
 
 
 def free_memory(base_url):
@@ -485,6 +511,8 @@ def krea2_prompt(
     turbo,
     loras=None,
     enhancer=None,
+    clip_name="qwen3vl_4b_fp8_scaled.safetensors",
+    vae_name="qwen_image_vae.safetensors",
     steps=None,
     cfg=None,
     sampler="euler",
@@ -500,14 +528,14 @@ def krea2_prompt(
         "2": {
             "class_type": "CLIPLoader",
             "inputs": {
-                "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
+                "clip_name": clip_name,
                 "type": "krea2",
                 "device": "default",
             },
         },
         "3": {
             "class_type": "VAELoader",
-            "inputs": {"vae_name": "qwen_image_vae.safetensors"},
+            "inputs": {"vae_name": vae_name},
         },
         "4": {
             "class_type": "CLIPTextEncode",
@@ -870,6 +898,86 @@ TESTS = [
             steps=12,
         ),
     ),
+    SmokeTest(
+        "krea2_raw_snofs_v13d",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_raw_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            loras=[
+                ("snofs_krea_v1_3D.safetensors", 1.0),
+                ("krea2_raw_to_turbo_r256_comfy.safetensors", 1.0),
+            ],
+            clip_name="qwen3vl_4b_bf16.safetensors",
+        ),
+        required_nodes=("KreaTwoStageSampler",),
+    ),
+    SmokeTest(
+        "krea2_raw_realism_engine_v31",
+        "krea2",
+        lambda p: krea2_prompt(
+            "krea2_raw_int8_convrot.safetensors",
+            p,
+            turbo=True,
+            loras=[
+                ("krea2_turbo_lora_rank_64_bf16.safetensors", 0.6),
+                ("realism_engine_krea2_v3.1.safetensors", 0.9),
+            ],
+            clip_name="qwen3vl_4b_bf16.safetensors",
+        ),
+        required_nodes=("VAEUtils_CustomVAELoader", "VAEUtils_VAEDecodeTiled"),
+        required_choices=(
+            (
+                "VAEUtils_CustomVAELoader",
+                "vae_name",
+                "Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors",
+            ),
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_muse_v35_int8_extended",
+        "krea2",
+        lambda p: krea2_prompt(
+            "museByStableYogi_v35Int8Extended.safetensors",
+            p,
+            turbo=True,
+            vae_name="wanvideo/Wan2_1_VAE_bf16.safetensors",
+            steps=12,
+            cfg=1.5,
+            scheduler="beta",
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_fineporn_v4_int8",
+        "krea2",
+        lambda p: krea2_prompt(
+            "finepornV4INT8NVFP4BF16_v4_int8.safetensors",
+            p,
+            turbo=True,
+            clip_name="qwen3vl_4b_bf16.safetensors",
+            steps=10,
+            scheduler="beta",
+        ),
+    ),
+    SmokeTest(
+        "krea2_turbo_lustify_v10_int8",
+        "krea2",
+        lambda p: krea2_prompt(
+            "lustify-v10-krea-turbo-int8_convrot.safetensors",
+            p,
+            turbo=True,
+            vae_name="wanvideo/Wan2_1_VAE_bf16.safetensors",
+        ),
+        required_nodes=("UpscaleModelLoader",),
+        required_choices=(
+            (
+                "UpscaleModelLoader",
+                "model_name",
+                "4x_NMKD-Superscale-SP_178000_G.pth",
+            ),
+        ),
+    ),
     # Pre-Krea workflow-matrix asset coverage. Krea assets are grouped above.
     SmokeTest(
         "flux2_dev_turbo_lora",
@@ -1148,12 +1256,14 @@ def main():
 
     run_id = args.id or time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
     results = {}
+    object_info = get_json(args.base_url, "/object_info")
     started = time.monotonic()
     for index, test in enumerate(selected, start=1):
         prefix = f"smoke_{run_id}_{test.name}"
         print(f"[{index}/{len(selected)}]", flush=True)
         test_started = time.monotonic()
         try:
+            validate_runtime_dependencies(test, object_info)
             path, metrics = run_prompt(
                 args.base_url,
                 test.name,

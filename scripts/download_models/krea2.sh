@@ -5,12 +5,19 @@ MODELS_DIR="${COMFYUI_MODELS_DIR:-${COMFYUI_PATH:-/workspace/ComfyUI}/models}"
 REVISION="952f49d49653cb42e7d6cf7cbfad74738073ec7d"
 BASE_URL="https://huggingface.co/Comfy-Org/Krea-2/resolve/${REVISION}"
 WAN_VAE_URL="https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors"
+RANK256_REVISION="c28120b6ebfff2629d475dcde0bbdbf45cbc06e9"
+RANK256_URL="https://huggingface.co/Kutches/Kr3a/resolve/${RANK256_REVISION}/krea2_raw_to_turbo_r256_comfy.safetensors"
+REALISM_VAE_REVISION="62184b03592269cfcc4bdcdb22178e19229a23b6"
+REALISM_VAE_URL="https://huggingface.co/Osrivers/Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors/resolve/${REALISM_VAE_REVISION}/Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors"
+NMKD_REVISION="f6bace545e358eab5491f8f39b90a2dd42e8cc77"
+NMKD_URL="https://huggingface.co/uwg/upscaler/resolve/${NMKD_REVISION}/ESRGAN/4x_NMKD-Superscale-SP_178000_G.pth"
 
 mkdir -p "${MODELS_DIR}/diffusion_models"
 mkdir -p "${MODELS_DIR}/loras"
 mkdir -p "${MODELS_DIR}/text_encoders"
 mkdir -p "${MODELS_DIR}/vae"
 mkdir -p "${MODELS_DIR}/vae/wanvideo"
+mkdir -p "${MODELS_DIR}/upscale_models"
 
 download() {
   local url=$1
@@ -61,6 +68,18 @@ download \
   "${BASE_URL}/loras/krea2_turbo_lora_rank_64_bf16.safetensors" \
   "loras/krea2_turbo_lora_rank_64_bf16.safetensors" \
   "db8c5bae0a415d448da9d842111d6e51f7d32e47143a3118eb267e5c4773de87"
+download \
+  "${RANK256_URL}" \
+  "loras/krea2_raw_to_turbo_r256_comfy.safetensors" \
+  "e9e99b6f28a8fcae4ad7d0298c185b23af71f5fc85ad1819d624724c98df4892"
+download \
+  "${REALISM_VAE_URL}" \
+  "vae/Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors" \
+  "2413554bbec24215185662d009893cf4666b8e777efece2d895e03e1a6b63e06"
+download \
+  "${NMKD_URL}" \
+  "upscale_models/4x_NMKD-Superscale-SP_178000_G.pth" \
+  "1d1b0078fe71446e0469d8d4df59e96baa80d83cda600d68237d655830821bcc"
 
 if [[ -z "${CIVITAI_API_KEY:-}" ]]; then
   echo "CIVITAI_API_KEY is required for the Krea 2 community downloads." >&2
@@ -103,4 +122,29 @@ download \
   "https://civitai.com/api/download/models/3125118?fileId=3005583" \
   "loras/Krea2_TextFusion_Refusal_Reduction.safetensors" \
   "84ec722ddab93f6489c5315bca25de5dd1a7b7ec5045a3c4ce2f97f62e54e8e6" \
+  "${CIVITAI_AUTH}"
+download \
+  "https://civitai.com/api/download/models/3220691?fileId=3102670" \
+  "loras/snofs_krea_v1_3D.safetensors" \
+  "5f373c7d5320d6dc83468393f141657d98667c77feaf5e313326dce68cd76a50" \
+  "${CIVITAI_AUTH}"
+download \
+  "https://civitai.com/api/download/models/3109006?fileId=2988982" \
+  "loras/realism_engine_krea2_v3.1.safetensors" \
+  "a6712629445a2e91a616568e82befa8c8c7518e891a0f7c9918138634b5b54a5" \
+  "${CIVITAI_AUTH}"
+download \
+  "https://civitai.com/api/download/models/3258954?fileId=3142504" \
+  "diffusion_models/museByStableYogi_v35Int8Extended.safetensors" \
+  "53d9a2aa388b0ac1d6cc031cead1a2ebc887867c11c489ed463d674a4e1939af" \
+  "${CIVITAI_AUTH}"
+download \
+  "https://civitai.com/api/download/models/3187539?fileId=3068196" \
+  "diffusion_models/finepornV4INT8NVFP4BF16_v4_int8.safetensors" \
+  "7d23304de81fad36b7dfc696befe4354560ca4e04cd26ce1099f388a3aa48ef" \
+  "${CIVITAI_AUTH}"
+download \
+  "https://civitai.com/api/download/models/3112728?fileId=2996235" \
+  "diffusion_models/lustify-v10-krea-turbo-int8_convrot.safetensors" \
+  "0505412ed2ac568286c4bf43f8ace93f9f5a6dd7a607f47f1912a68767e6900d" \
   "${CIVITAI_AUTH}"

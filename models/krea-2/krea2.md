@@ -30,7 +30,7 @@ text_encoders/qwen3vl_4b_bf16.safetensors
 vae/qwen_image_vae.safetensors
 ```
 
-Mystic source decoder:
+Wan 2.1 source decoder used by Mystic, Muse, and Lustify:
 
 ```text
 vae/wanvideo/Wan2_1_VAE_bf16.safetensors
@@ -40,6 +40,19 @@ Official RAW-to-Turbo adapter:
 
 ```text
 loras/krea2_turbo_lora_rank_64_bf16.safetensors
+```
+
+Community rank-256 RAW-to-Turbo adapter used by SNOFS v1.3D:
+
+```text
+loras/krea2_raw_to_turbo_r256_comfy.safetensors
+```
+
+Reference-only support files used by the Realism Engine and Lustify graphs:
+
+```text
+vae/Wan2.1_VAE_upscale2x_imageonly_real_v1.safetensors
+upscale_models/4x_NMKD-Superscale-SP_178000_G.pth
 ```
 
 Official models:
@@ -60,6 +73,11 @@ Community checkpoints and LoRAs:
 | Mystic XXX | `loras/MysticXXX_KREA2_v3.safetensors` | V3, 3116175 |
 | Dark Beast | `diffusion_models/darkBeast30BF16INT8_darkBeast330.safetensors` | 3.0 INT8 ConvRot, 3173268 |
 | TextFusion refusal reduction | `loras/Krea2_TextFusion_Refusal_Reduction.safetensors` | 3125118 |
+| SNOFS | `loras/snofs_krea_v1_3D.safetensors` | Krea v1.3D, 3220691 |
+| Realism Engine | `loras/realism_engine_krea2_v3.1.safetensors` | v3.1, 3109006 |
+| Muse by Stable Yogi | `diffusion_models/museByStableYogi_v35Int8Extended.safetensors` | v3.5 INT8 Extended, 3258954 |
+| FinePorn | `diffusion_models/finepornV4INT8NVFP4BF16_v4_int8.safetensors` | V4 INT8, 3187539 |
+| Lustify | `diffusion_models/lustify-v10-krea-turbo-int8_convrot.safetensors` | V10 Turbo INT8 ConvRot, 3112728 |
 
 The exact source URLs, file IDs, and hashes are preserved in the download
 script and model-archive sidecars.
@@ -74,6 +92,14 @@ commit a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0
 The node has no additional Python dependencies. It is installed locally under
 `/mnt/data/comfyui/custom_nodes/ComfyUI-Krea2T-Enhancer` and pinned by both Vast
 setup paths.
+
+The Realism Engine source graph additionally uses VAE Utils for its specialized
+2x image decoder. Both Vast setup paths pin:
+
+```text
+https://github.com/spacepxl/ComfyUI-VAE-Utils
+commit 4c62ea005897fafbc593d69bedb8308ec9f932fd
+```
 
 ## Workflow Settings
 
@@ -112,11 +138,67 @@ precision where practical:
   similarly outside the exact-integer range.
 - Dark Beast uses the selected V3 INT8 checkpoint and its source 12-step
   Euler/simple path.
+- SNOFS v1.3D retains the creator's different 2 MP to 3 MP two-stage path:
+  SNOFS 1.0 on RAW, the rank-256 RAW-to-Turbo adapter at 1.0, 52 RAW steps,
+  8 Turbo steps, and a 12% handoff. It is a separate supported version rather
+  than a replacement for the validated v1.2 graph.
+- Realism Engine v3.1 applies the rank-64 Turbo adapter at 0.6 and Realism at
+  0.9 to RAW. It preserves the source 8-step ER-SDE first pass, specialized
+  Wan 2.1 2x decode, and 10-step 0.4-denoise refinement. The official RAW INT8
+  ConvRot model substitutes for the source BF16 RAW model.
+- FinePorn uses the V4 INT8 ConvRot sibling of the user-linked BF16 release,
+  with the exact creator INT8 workflow. The source-local INT8 text encoder is
+  substituted by the official BF16 encoder. Its uniform 1.0 conditioning
+  rebalance is an identity and is omitted. The source lists three optional
+  trained prompt-prefix phrases; the reference prompt uses the first and a
+  close variant of the second.
+- Muse uses the selected v3.5 INT8 Extended checkpoint. Its creator PNG has
+  parameters but no ComfyUI graph, so the workflow is a reconstruction of its
+  prompt, 936 x 1440 actual image dimensions, seed, 12 Euler/beta steps and
+  CFG 1.5. It uses the source-named Wan 2.1 VAE family.
+- Lustify uses Civitai file 2996235, the V10 Turbo INT8 ConvRot upload named by
+  the creator workflow; the release is not FP8-only. Its canonical graph keeps
+  the 8-step first pass and the source 1.2x upscale plus 3-step, 0.6-denoise
+  refinement. Preview-only source nodes were removed because they do not alter
+  pixels and otherwise emit four disposable temporary images per run.
 - Krea2T Enhancer Advanced uses upstream strength 1.0 and `text_scale` 1.5, the
   conservative end of the author's suggested 1.5 to 2.0 starting range. It is
   derived from the official Turbo graph and differs only by inserting the
   runtime model patch before the sampler. Reference image: none. Upstream also
   provides no reproducible reference workflow.
+
+## New Candidate Reference Expectations
+
+- **SNOFS v1.3D:** the critical path matches the embedded source workflow:
+  RAW INT8, SNOFS 1.0, rank-256 adapter 1.0, BF16 encoder, Qwen Image VAE,
+  prompt, seed, two sampler schedules, 12% handoff, and 2 MP to 3 MP sizing.
+  Only the random aspect selector is pinned to its selected 2:3 result and the
+  local paths/save node are normalized. Expect an extremely close reproduction,
+  though not guaranteed pixel identity across runtime versions.
+- **Realism Engine v3.1:** prompt, seed, both LoRA strengths, BF16 encoder,
+  2 MP ER-SDE first pass, specialized 2x decode, resize/re-encode, and DDIM
+  refinement match. RAW INT8 ConvRot replaces source RAW BF16, and the external
+  batch-prompt file is replaced by its exact resolved prompt. Expect the same
+  scene and a close composition; quantization can change fine texture, tone,
+  anatomy, and refinement details.
+- **FinePorn V4 INT8:** checkpoint variant, prompts, resolution, seed,
+  Euler/beta settings, CFG, and VAE match the embedded INT8 graph. The official
+  BF16 encoder replaces a source-local INT8 ConvRot encoder, and a uniform 1.0
+  conditioning rebalance is omitted because it is an identity. Expect a very
+  close match with possible small detail, color, or typography differences.
+- **Muse v3.5 INT8 Extended:** checkpoint, prompt, seed, steps, CFG, sampler,
+  scheduler, FP8 encoder, and the PNG's actual 936 x 1440 dimensions match the
+  available metadata, including the named Wan 2.1 VAE family. There is no
+  source ComfyUI workflow, and Neo-specific RNG, clip-skip, and
+  discard-penultimate-sigma behavior cannot be reconstructed exactly. Human
+  review judged the Wan VAE local run roughly close; treat it as a useful visual
+  match rather than an exact reproducible graph.
+- **Lustify V10 INT8:** checkpoint, prompt, both seeds, first-pass sampling and
+  shift, NMKD 1.2x net upscale, second-pass beta57 sampling, denoise, and
+  resolution-aware shift match the embedded graph. The source VAE filename is
+  mapped to the local Wan 2.1 BF16 path; preview-only nodes and one disconnected
+  sampler patch are removed. Expect an extremely close, near-identical result;
+  the cleanup was pixel-data-identical to the pre-clean local run.
 
 ## Unlock Selection
 
@@ -181,6 +263,39 @@ The complete 35-workflow no-generation matrix preflight then passed. Reference
 image: none. The output pair is retained for local A/B review rather than
 claimed as a creator-reference reproduction.
 
+Also on 2026-08-31, five additional Krea 2 candidates were installed and their
+canonical workflows passed actual frontend conversion, `/prompt` acceptance,
+and history success:
+
+```text
+/mnt/data/comfyui/output/krea2_raw_lora_snofs_v13d_00001_.png
+/mnt/data/comfyui/output/krea2_raw_lora_realism_engine_v31_00001_.png
+/mnt/data/comfyui/output/krea2_turbo_checkpoint_fineporn_v4_int8_00001_.png
+/mnt/data/comfyui/output/krea2_turbo_checkpoint_muse_v35_int8_extended_00002_.png
+/mnt/data/comfyui/output/krea2_turbo_checkpoint_lustify_v10_int8_00002_.png
+```
+
+SNOFS v1.3D, Realism Engine, FinePorn, and Lustify were generated from creator
+PNGs with embedded workflows. Local visual inspection found SNOFS and Lustify
+extremely close, and Realism Engine and FinePorn close despite their documented
+precision or encoder substitutions. Muse with the source-named Wan 2.1 VAE was
+judged roughly close, and no exact graph-level reproduction is claimed because
+its creator PNG contains parameters rather than a ComfyUI workflow. Removing
+Lustify's four preview-only
+nodes left the final PNG's compressed image-data stream byte-identical.
+
+The five new direct dependency-smoke cases then passed 5/5 at 512 x 512 in
+73.3 seconds with non-black, non-constant RGB signal. Main generation weights
+execute in these fast paths; specialized SNOFS, Realism, and Lustify nodes and
+support assets are explicit discovery prerequisites, while their complete paths
+are exercised by the canonical reference runs. After the audit improvement,
+that affected smoke subset passed 3/3 in 42.4 seconds, and Muse with the Wan VAE
+passed its focused smoke in 13.5 seconds. A complete 40-workflow
+no-generation preflight found three new workflow-label ambiguities; after
+labeling the intended prompt and first-pass dimensions, targeted reruns of all
+three passed. The other 37 workflows passed in the initial preflight, so no
+second full-matrix run was performed.
+
 Human reference review:
 
 - On 2026-08-31, the TextFusion refusal-reduction workflow was reviewed against
@@ -205,12 +320,25 @@ Human reference review:
 - Mystic XXX V3 was reviewed with the source-named Wan 2.1 VAE and the exact
   source seed submitted after frontend conversion. It was judged closer to the
   creator reference and a good match.
+- SNOFS Krea v1.3D was reviewed against creator image 139458178 and judged an
+  extremely close match using the source two-stage path and rank-256 adapter.
+- Realism Engine v3.1 was reviewed against creator image 136067622 and judged
+  very close despite the documented RAW INT8-for-BF16 base-model substitution.
+- FinePorn V4 INT8 was reviewed against creator image 138447534 and judged very
+  close despite the documented BF16-for-INT8 text-encoder substitution.
+- Muse v3.5 INT8 Extended with the source-named Wan 2.1 VAE was reviewed against
+  creator image 140762408 and judged roughly close; unlike the other candidates,
+  it remains a parameter reconstruction because no source ComfyUI graph exists.
+- Lustify V10 Turbo INT8 was reviewed against creator image 136295809 and judged
+  very close after removal of generation-neutral preview nodes.
 
 Canonical workflows:
 
 ```text
 workflows/krea-2/raw/original/krea2_raw_original.json
 workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v12.json
+workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v13d.json
+workflows/krea-2/raw/nsfw/krea2_raw_lora_realism_engine_v31.json
 workflows/krea-2/turbo/original/krea2_turbo_original.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_textfusion_unlock.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_node_krea2t_enhancer_advanced.json
@@ -219,4 +347,7 @@ workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_redcraft_v3_int8.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_moody_mix_v5_int8.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_lora_mystic_v3.json
 workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_darkbeast_v3_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_fineporn_v4_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_muse_v35_int8_extended.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_lustify_v10_int8.json
 ```

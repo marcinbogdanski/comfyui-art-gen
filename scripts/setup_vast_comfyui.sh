@@ -110,6 +110,7 @@ clone_node https://github.com/ClownsharkBatwing/RES4LYF.git RES4LYF 46de917234f9
 clone_node https://github.com/MNeMoNiCuZ/ComfyUI-mnemic-nodes.git ComfyUI-mnemic-nodes 0617597d8067252795a43ce78833ba55ce527b0b
 clone_node https://github.com/Auryg/Krea-2-Two-Stage-Sampler.git Krea-2-Two-Stage-Sampler b201412a0178da17b9760faa897107283428a78a
 clone_node https://github.com/capitan01R/ComfyUI-Krea2T-Enhancer.git ComfyUI-Krea2T-Enhancer a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0
+clone_node https://github.com/spacepxl/ComfyUI-VAE-Utils.git ComfyUI-VAE-Utils 4c62ea005897fafbc593d69bedb8308ec9f932fd
 
 touch "${CUSTOM_NODES_DIR}/skip_download_model"
 
