@@ -10,6 +10,35 @@ NEVER EXECUTE AHEAD OF THE HUMAN. NEVER PERFORM ANY WRITE ACTION AT ALL UNLESS T
 
 This includes, but is not limited to: edits, file creation, staging, commits, downloads to durable locations, or cleanup.
 
+## Process Phase Gate — Authoritative
+
+Every task starts in **ITERATE** unless the human explicitly requests
+finalization.
+
+In **ITERATE**:
+
+- Make only the requested working-tree changes.
+- Run only the smallest targeted check needed to produce an inspectable result.
+- Stop after producing that result and return it for human review.
+- Do not stage files, run agentic audits or broad regression suites,
+  deprecate/remove previous variants, or commit unless the human explicitly
+  requests that specific action.
+
+Enter **FINALIZE** only when the human explicitly asks to stage, audit, finalize,
+prepare for commit, or commit. In **FINALIZE**, follow all applicable staging,
+checklist, audit, and commit procedures.
+
+A request to **commit** authorizes the staging and commit actions needed for the
+named scope, but it does **not** authorize starting missing tests or agentic
+audits. First inspect the validation evidence already available. If a required
+check or audit has not passed, stop immediately and tell the human exactly what
+is missing; do not run it unless the human then explicitly asks.
+
+“Add,” “implement,” “execute,” “update appropriately,” “test,” and “no commit”
+do not imply **FINALIZE**. If another repository document conflicts about
+timing, this phase gate controls **when** its procedure runs; that document
+still controls **how** the procedure runs once activated.
+
 ## Asking questions
 
 - Never use any "ask the user a question" interactive/modal tool, whatever it is
@@ -46,17 +75,19 @@ Operational preferences:
   `/mnt/data/comfyui/models/MODEL_SUMMARY.md`. The rules file is authoritative
   policy; the summary file records current archive state. Those external
   model-folder rules are separate from this repo's workflow rules.
-- After staging model-archive changes and before asking the human for review or
-  committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
-  execute its staged changes checklist against the staged/index version of the
-  files. Then start a fresh-context sub-agent with live progress visible to the
-  human to independently validate that the process was followed, the staged file
-  set is correct, and the model archive checklist passes. Scope this audit to
-  the model archive's own source records, files, and internal consistency; it
-  does not audit the control repo. When matching control-repo changes are also
-  staged, follow it with the separate cross-repo integration audit described in
+- In **FINALIZE**, after staging model-archive changes and before committing,
+  re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and execute its staged
+  changes checklist against the staged/index version of the files. Then start a
+  fresh-context sub-agent with live progress visible to the human to independently
+  validate that the process was followed, the staged file set is correct, and
+  the model archive checklist passes. Scope this audit to the model archive's
+  own source records, files, and internal consistency; it does not audit the
+  control repo. When matching control-repo changes are also staged, follow it
+  with the separate cross-repo integration audit described in
   `models/ADDING_MODEL_OR_LORA.md`. That audit checks only the interface between
-  the repos and must not repeat the completed archive audit.
+  the repos and must not repeat the completed archive audit. If the human asked
+  only to commit and this evidence is missing, report it immediately instead of
+  starting the checklist or audits.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track
@@ -71,13 +102,16 @@ Operational preferences:
   line containing only `---`, followed by free-form notes. The JSON must include
   `trigger_words` as a list and `trigger_required` as one of `required`,
   `optional`, `no`, or `unknown`.
-- When a session adds or changes workflows, models, dependencies, or related
-  runtime behavior, run the complete matrix once if it has not already passed
-  in that session against the current ComfyUI environment:
+- When the human explicitly asks to finalize validation after a session has
+  added or changed workflows, models, dependencies, or related runtime behavior,
+  run the complete matrix once if it has not already passed in that session
+  against the current ComfyUI environment:
   `python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run`.
   This is a session-level drift baseline, not a check to repeat after every
-  change. Do not run it merely for questions, research, read-only review, or
-  documentation-only work.
+  change. In **ITERATE**, do not run it unless the human explicitly requests it.
+  A bare commit request does not authorize this matrix; if it is required but
+  missing, report that immediately. Do not run it merely for questions,
+  research, read-only review, or documentation-only work.
 - After that baseline, validate in proportion to what changed and reuse passing
   evidence that the change could not invalidate. A new workflow or a change to
   generation behavior must pass `scripts/workflow_prompt.py -w <workflow.json>`
