@@ -64,8 +64,8 @@
         "ver": "0.3.73",
         "models": [
           {
-            "name": "qwen3vl_4b_fp8_scaled.safetensors",
-            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/952f49d49653cb42e7d6cf7cbfad74738073ec7d/text_encoders/qwen3vl_4b_fp8_scaled.safetensors",
+            "name": "qwen3vl_4b_bf16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/952f49d49653cb42e7d6cf7cbfad74738073ec7d/text_encoders/qwen3vl_4b_bf16.safetensors",
             "directory": "text_encoders"
           }
         ],
@@ -78,7 +78,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        "qwen3vl_4b_fp8_scaled.safetensors",
+        "qwen3vl_4b_bf16.safetensors",
         "krea2",
         "default"
       ]
@@ -604,7 +604,7 @@
         "secondTabWidth": 65
       },
       "widgets_values": [
-        0,
+        62464458232096,
         "fixed",
         8,
         1,
@@ -635,7 +635,7 @@
         "cnr_id": "comfy-core"
       },
       "widgets_values": [
-        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nSource: https://civitai.red/models/2775340/krea2-textfusion-refusal-reduction-lora?modelVersionId=3125118\nTextFusion refusal-reduction LoRA at the source-recommended strength 1.0. The reference PNG embeds a complete GUI workflow; no trigger words."
+        "{\n  \"trigger_words\": [],\n  \"trigger_required\": \"no\"\n}\n---\nSource: https://civitai.red/models/2775340/krea2-textfusion-refusal-reduction-lora?modelVersionId=3125118\nReference image: https://civitai.red/images/136629949\nTextFusion refusal-reduction LoRA at the source-recommended strength 1.0; no trigger words. The reference PNG embeds a complete GUI workflow using the BF16 text encoder and seed 62464458232096. Its source-local diffusion-model filename is replaced here by the official INT8 ConvRot Krea 2 Turbo model."
       ],
       "color": "#432",
       "bgcolor": "#653"

@@ -134,8 +134,21 @@ prompt, batch, seed, and output-ID overrides; the SNOFS test copy used the
 requested 832 x 1216 base and final dimensions without changing the canonical
 1 MP to 3 MP reference graph.
 
+On 2026-08-31, the TextFusion canonical workflow was aligned to archived
+Civitai reference image 136629949: 1024 x 1024, BF16 text encoder, exact seed
+`62464458232096`, eight Euler/simple steps, CFG 1, and LoRA strength 1.0. It
+passed actual frontend conversion (10 API nodes from 11 workflow nodes and 10
+links), `/prompt` acceptance, and history success. The saved output was
+`/mnt/data/comfyui/output/krea2_turbo_lora_textfusion_unlock_00001_.png`. The
+local workflow retains the documented official INT8 ConvRot Turbo substitution
+for the source-local FP8 diffusion-model filename.
+
 Human reference review:
 
+- On 2026-08-31, the TextFusion refusal-reduction workflow was reviewed against
+  archived creator image 136629949 and confirmed a good reproduction using the
+  exact source seed and BF16 text encoder, despite the documented official INT8
+  ConvRot diffusion-model substitution.
 - On 2026-08-30, the KNP v4.3 workflow was reviewed at the source reference
   resolution of 1088 x 1448. Its local INT8 ConvRot output was judged extremely
   close to the archived FP8 source image despite the unavoidable precision
