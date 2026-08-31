@@ -51,7 +51,12 @@ Operational preferences:
   execute its staged changes checklist against the staged/index version of the
   files. Then start a fresh-context sub-agent with live progress visible to the
   human to independently validate that the process was followed, the staged file
-  set is correct, and the model archive checklist passes.
+  set is correct, and the model archive checklist passes. Scope this audit to
+  the model archive's own source records, files, and internal consistency; it
+  does not audit the control repo. When matching control-repo changes are also
+  staged, follow it with the separate cross-repo integration audit described in
+  `models/ADDING_MODEL_OR_LORA.md`. That audit checks only the interface between
+  the repos and must not repeat the completed archive audit.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track

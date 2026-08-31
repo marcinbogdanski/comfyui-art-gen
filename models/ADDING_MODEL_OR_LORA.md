@@ -114,16 +114,19 @@ this shape:
    changed, ignored, or untracked files alone.
 5. Stage: stage the model archive and control repo separately, limited to the
    exact accepted scope. This staged state is the final form for human review.
-6. Validation: run local staged checks, then use fresh-context sub-agent audits
-   for the focused archive checklist and the final broad two-repo staged review.
+6. Validation: run local staged checks, then use a fresh-context sub-agent for
+   the model archive's self-consistency audit. For paired archive/control
+   changes, follow it with a separate fresh-context cross-repo integration audit
+   limited to the interface between the two repos.
 
 Steps 2 and 3 may be done by focused workers when useful. Give each worker one
 write scope only: either the model archive or the control repo, not both. A
 worker that implemented a scope is not the independent validator for that same
 scope.
 
-The final broad review should be allowed to fail. If it finds an issue, fix the
-staged state and rerun the broad review before committing.
+The integration audit should be allowed to fail. If it finds an issue, fix the
+staged state and re-check the finding and any evidence the fix invalidated
+before committing.
 
 ## Source Selection
 
@@ -306,19 +309,40 @@ committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
 execute its staged changes checklist against the staged/index version of the
 files.
 
-For two-repo changes, run two fresh-context sub-agent validations after staging:
+The audit sequence depends on the staged scope:
 
-- focused model-archive audit: verify the staged archive set against
-  `MODEL_SUMMARY_RULES.md`, including source artifacts, sidecar JSON, ignored
-  weights, exact file types, and surrounding unstaged/untracked state;
-- broad two-repo audit: verify both repos together, including staged file
-  exclusivity and completeness, no `.work.json` or weights staged, workflow/doc
-  consistency, archive/control boundary rules, and frontend smoke-test claims.
+- **Archive-only change:** run one fresh-context model-archive integrity audit.
+- **Workflow/control-only change:** no agentic audit is normally required; use
+  the proportionate scripted and human checks above.
+- **Paired archive and control change:** first complete the model-archive
+  integrity audit, fix its findings, and establish a clean staged archive. Then
+  run one fresh-context cross-repo integration audit.
 
-Do not treat a passing focused archive audit as a substitute for the initial
-broad two-repo audit. If an audit finds an issue, fix and restage it, then
-re-check the finding and any evidence the fix could invalidate. A minor
-documentation or metadata correction does not require restarting an otherwise
-completed broad audit or matrix run. Repeat a broad audit only when the fix
-materially changes the staged scope, runtime behavior, or cross-repo
-consistency that the audit assessed.
+The model-archive integrity audit verifies only the archive against
+`MODEL_SUMMARY_RULES.md`: source records and URLs, versions/file IDs/hashes,
+sidecar JSON, source workflow/reference classification, exact file types,
+ignored weights, archive summary consistency, and the staged archive set. It
+must not inspect or reason about control-repo workflows.
+
+The cross-repo integration audit accepts the completed archive audit as
+evidence and verifies only the interface between the repositories:
+
+- canonical workflows use the intended archived model, version, and precision;
+- model, LoRA, encoder, VAE, and upscaler filenames agree across workflows,
+  download/setup scripts, control documentation, and archive records;
+- reference-source claims and documented substitutions agree;
+- required dependencies are provisioned and have appropriate smoke coverage;
+- the two staged sets form one coherent model/workflow addition while
+  preserving the archive/control boundary.
+
+The cross-repo auditor must not repeat source research, hash verification,
+sidecar validation, artifact classification, or the archive checklist. It must
+also not rerun workflow generation, dependency smokes, or the full matrix when
+passing evidence already covers the staged behavior; it reviews the evidence
+and runs a check only when a relevant claim is missing or inconsistent.
+
+If either audit finds an issue, fix and restage it, then re-check the finding
+and any evidence the fix could invalidate. A minor documentation or metadata
+correction does not require restarting an otherwise completed audit or matrix
+run. Repeat an entire audit only when the fix materially changes the scope or
+consistency that audit assessed.
