@@ -13,6 +13,7 @@ Run one script at a time:
 ```bash
 scripts/download_models/z-image-turbo.sh
 scripts/download_models/z-image-base.sh
+scripts/download_models/krea2.sh
 scripts/download_models/qwen-image.sh
 scripts/download_models/qwen-image-2512.sh
 scripts/download_models/qwen-image-edit-2511.sh
@@ -34,4 +35,5 @@ The Civitai scripts require a token:
 CIVITAI_API_KEY=... scripts/download_models/cyberrealistic-pony.sh
 CIVITAI_API_KEY=... scripts/download_models/fluxed-up.sh
 CIVITAI_API_KEY=... scripts/download_models/flux2-klein-nsfw.sh
+CIVITAI_API_KEY=... scripts/download_models/krea2.sh
 ```

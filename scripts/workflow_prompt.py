@@ -28,10 +28,14 @@ SEED_INDEX = {
     "KSampler": 0,
     "KSamplerAdvanced": 1,
     "KSampler //Inspire": 0,
+    "KreaTwoStageSampler": 0,
     "SeedVarianceEnhancer": 4,
+    "Seed (rgthree)": 0,
 }
 
 TRIGGER_REQUIRED_VALUES = {"required", "optional", "no", "unknown"}
+KREA_TWO_STAGE_FINAL_WIDTH_INDEX = 11
+KREA_TWO_STAGE_FINAL_HEIGHT_INDEX = 12
 
 
 def parse_prompt_file(path):
@@ -137,6 +141,36 @@ def prompt_resolution(metadata):
     return width, height
 
 
+def disconnect_input(workflow, node, input_name):
+    inputs = [i for i in node.get("inputs", []) if i.get("name") == input_name]
+    assert len(inputs) == 1, f"expected exactly one {input_name} input"
+    link_id = inputs[0].get("link")
+    if link_id is None:
+        return
+
+    inputs[0]["link"] = None
+    workflow["links"] = [link for link in workflow["links"] if link[0] != link_id]
+    for source_node in workflow["nodes"]:
+        for output in source_node.get("outputs", []):
+            links = output.get("links")
+            if links:
+                output["links"] = [candidate for candidate in links if candidate != link_id]
+
+
+def all_workflow_nodes(workflow):
+    yield from workflow["nodes"]
+    for subgraph in workflow.get("definitions", {}).get("subgraphs", []):
+        yield from subgraph.get("nodes", [])
+
+
+def set_seed(workflow, seed):
+    seed_nodes = [n for n in all_workflow_nodes(workflow) if n.get("type") in SEED_INDEX]
+    assert seed_nodes, "expected at least one seed node"
+    if seed is not None:
+        for seed_node in seed_nodes:
+            seed_node["widgets_values"][SEED_INDEX[seed_node["type"]]] = seed
+
+
 def set_resolution(workflow, width, height):
     width_nodes = [
         n
@@ -160,9 +194,15 @@ def set_resolution(workflow, width, height):
     ]
     if len(latent_nodes) == 1:
         latent_node = latent_nodes[0]
-        latent_node["widgets_values"][0] = width
-        latent_node["widgets_values"][1] = height
-        return
+        dimension_inputs = [
+            i
+            for i in latent_node.get("inputs", [])
+            if i.get("name") in {"width", "height"}
+        ]
+        if all(i.get("link") is None for i in dimension_inputs):
+            latent_node["widgets_values"][0] = width
+            latent_node["widgets_values"][1] = height
+            return
 
     selector_nodes = [
         n
@@ -174,6 +214,29 @@ def set_resolution(workflow, width, height):
         selector_node["widgets_values"][0] = "Custom"
         selector_node["widgets_values"][2] = width
         selector_node["widgets_values"][3] = height
+        return
+
+    krea_selector_nodes = [
+        n for n in workflow["nodes"] if n.get("type") == "KreaDualResolutionSelector"
+    ]
+    krea_sampler_nodes = [
+        n for n in workflow["nodes"] if n.get("type") == "KreaTwoStageSampler"
+    ]
+    if (
+        len(latent_nodes) == 1
+        and len(krea_selector_nodes) == 1
+        and len(krea_sampler_nodes) == 1
+    ):
+        latent_node = latent_nodes[0]
+        sampler_node = krea_sampler_nodes[0]
+        disconnect_input(workflow, latent_node, "width")
+        disconnect_input(workflow, latent_node, "height")
+        disconnect_input(workflow, sampler_node, "final_width")
+        disconnect_input(workflow, sampler_node, "final_height")
+        latent_node["widgets_values"][0] = width
+        latent_node["widgets_values"][1] = height
+        sampler_node["widgets_values"][KREA_TWO_STAGE_FINAL_WIDTH_INDEX] = width
+        sampler_node["widgets_values"][KREA_TWO_STAGE_FINAL_HEIGHT_INDEX] = height
         return
 
     raise AssertionError("cannot determine single generation resolution source")
@@ -312,12 +375,7 @@ def main():
         batch_node = batch_nodes[0]
         batch_node["widgets_values"][BATCH_INDEX[batch_node["type"]]] = args.batch
 
-    seed_nodes = [n for n in workflow["nodes"] if n.get("type") in SEED_INDEX]
-    assert seed_nodes, "expected at least one seed node"
-
-    if args.seed is not None:
-        for seed_node in seed_nodes:
-            seed_node["widgets_values"][SEED_INDEX[seed_node["type"]]] = args.seed
+    set_seed(workflow, args.seed)
 
     save_nodes = [n for n in workflow["nodes"] if n.get("type") == "SaveImage"]
     assert len(save_nodes) == 1, "expected exactly one SaveImage node"

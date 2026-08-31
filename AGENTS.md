@@ -51,7 +51,12 @@ Operational preferences:
   execute its staged changes checklist against the staged/index version of the
   files. Then start a fresh-context sub-agent with live progress visible to the
   human to independently validate that the process was followed, the staged file
-  set is correct, and the model archive checklist passes.
+  set is correct, and the model archive checklist passes. Scope this audit to
+  the model archive's own source records, files, and internal consistency; it
+  does not audit the control repo. When matching control-repo changes are also
+  staged, follow it with the separate cross-repo integration audit described in
+  `models/ADDING_MODEL_OR_LORA.md`. That audit checks only the interface between
+  the repos and must not repeat the completed archive audit.
 - Workflow `.work.json` files are local GUI work copies. It is fine to create
   or sync them in the working tree when requested, but do not stage, force-add,
   track, or commit `.work.json` files unless the user explicitly asks to track
@@ -66,17 +71,23 @@ Operational preferences:
   line containing only `---`, followed by free-form notes. The JSON must include
   `trigger_words` as a list and `trigger_required` as one of `required`,
   `optional`, `no`, or `unknown`.
-- Before treating any new or edited canonical GUI workflow `.json` as ready for
-  review, run it through `scripts/workflow_prompt.py -w <workflow.json>` so the
-  workflow is converted by the actual ComfyUI frontend path, accepted by
-  `/prompt`, and reaches ComfyUI history success. A hand-written or separately
-  derived API prompt smoke test is not a substitute for this frontend-path
-  check. If this required check cannot be run, stop and report the blocker
-  instead of presenting the workflow as ready.
-- Before treating the full `workflows/test_matrix.txt` set as ready, run
-  `python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run`. This is a
-  required no-generation check that validates script-driving assumptions and
-  frontend conversion for every matrix workflow without submitting jobs.
+- When a session adds or changes workflows, models, dependencies, or related
+  runtime behavior, run the complete matrix once if it has not already passed
+  in that session against the current ComfyUI environment:
+  `python3 scripts/workflow_queue.py --prompt prompts/prompt1.md --dry-run`.
+  This is a session-level drift baseline, not a check to repeat after every
+  change. Do not run it merely for questions, research, read-only review, or
+  documentation-only work.
+- After that baseline, validate in proportion to what changed and reuse passing
+  evidence that the change could not invalidate. A new workflow or a change to
+  generation behavior must pass `scripts/workflow_prompt.py -w <workflow.json>`
+  through frontend conversion, `/prompt`, and ComfyUI history success. A
+  metadata-only workflow edit needs metadata/JSON validation, not generation.
+  Re-run only affected workflows or smoke cases unless a shared driver,
+  dependency, runtime change, or matrix edit can reasonably affect the wider
+  set; in that case broaden validation accordingly. Do not repeat a full matrix
+  merely because a minor documentation, metadata, or isolated workflow fix was
+  made.
 - When adding a new model or LoRA with a reproducible reference workflow, first
   read `models/ADDING_MODEL_OR_LORA.md` and confirm the plan before downloading
   or editing files, unless the user has already provided an explicit plan.

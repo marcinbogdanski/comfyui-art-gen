@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-COMFYUI_REF="${COMFYUI_REF:-v0.20.1}"
+COMFYUI_REF="${COMFYUI_REF:-v0.29.0}"
 WORKSPACE_DIR="${WORKSPACE_DIR:-/workspace}"
 COMFYUI_PATH="${COMFYUI_PATH:-${WORKSPACE_DIR}/ComfyUI}"
 CUSTOM_NODES_DIR="${COMFYUI_PATH}/custom_nodes"
@@ -108,6 +108,9 @@ clone_node https://github.com/cubiq/ComfyUI_essentials.git ComfyUI_essentials 9d
 clone_node https://github.com/Jonseed/ComfyUI-Detail-Daemon.git ComfyUI-Detail-Daemon f391accbda2d309cdcbec65cb9fcc80a41197b20
 clone_node https://github.com/ClownsharkBatwing/RES4LYF.git RES4LYF 46de917234f9fef3f2ab411c41e07aa3c633f4f7
 clone_node https://github.com/MNeMoNiCuZ/ComfyUI-mnemic-nodes.git ComfyUI-mnemic-nodes 0617597d8067252795a43ce78833ba55ce527b0b
+clone_node https://github.com/Auryg/Krea-2-Two-Stage-Sampler.git Krea-2-Two-Stage-Sampler b201412a0178da17b9760faa897107283428a78a
+clone_node https://github.com/capitan01R/ComfyUI-Krea2T-Enhancer.git ComfyUI-Krea2T-Enhancer a18bbbb75b62949a0bcd9b66a18bbc8955ce91b0
+clone_node https://github.com/spacepxl/ComfyUI-VAE-Utils.git ComfyUI-VAE-Utils 4c62ea005897fafbc593d69bedb8308ec9f932fd
 
 touch "${CUSTOM_NODES_DIR}/skip_download_model"
 

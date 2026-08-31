@@ -20,6 +20,25 @@ workflows/qwen-image/2512/original/qwen_2512_original.json
 # Qwen Base
 workflows/qwen-image/base/nsfw/qwen_base_lora_mcnl.json
 
+# Krea 2 RAW
+workflows/krea-2/raw/original/krea2_raw_original.json
+workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v12.json
+workflows/krea-2/raw/nsfw/krea2_raw_lora_snofs_v13d.json
+workflows/krea-2/raw/nsfw/krea2_raw_lora_realism_engine_v31.json
+
+# Krea 2 Turbo
+workflows/krea-2/turbo/original/krea2_turbo_original.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_lora_textfusion_unlock.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_node_krea2t_enhancer_advanced.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_lora_knp_v43.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_redcraft_v3_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_moody_mix_v5_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_lora_mystic_v3.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_darkbeast_v3_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_fineporn_v4_int8.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_muse_v35_int8_extended.json
+workflows/krea-2/turbo/nsfw/krea2_turbo_checkpoint_lustify_v10_int8.json
+
 # Z-Image Base
 workflows/z-image/base/nsfw/z_image_base_checkpoint_pornmaster_v1.json
 workflows/z-image/base/nsfw/z_image_base_merge_moody_wild_v4.json
