@@ -4,11 +4,13 @@ set -euo pipefail
 MODELS_DIR="${COMFYUI_MODELS_DIR:-${COMFYUI_PATH:-/workspace/ComfyUI}/models}"
 REVISION="952f49d49653cb42e7d6cf7cbfad74738073ec7d"
 BASE_URL="https://huggingface.co/Comfy-Org/Krea-2/resolve/${REVISION}"
+WAN_VAE_URL="https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/Wan2_1_VAE_bf16.safetensors"
 
 mkdir -p "${MODELS_DIR}/diffusion_models"
 mkdir -p "${MODELS_DIR}/loras"
 mkdir -p "${MODELS_DIR}/text_encoders"
 mkdir -p "${MODELS_DIR}/vae"
+mkdir -p "${MODELS_DIR}/vae/wanvideo"
 
 download() {
   local url=$1
@@ -51,6 +53,10 @@ download \
   "${BASE_URL}/vae/qwen_image_vae.safetensors" \
   "vae/qwen_image_vae.safetensors" \
   "a70580f0213e67967ee9c95f05bb400e8fb08307e017a924bf3441223e023d1f"
+download \
+  "${WAN_VAE_URL}" \
+  "vae/wanvideo/Wan2_1_VAE_bf16.safetensors" \
+  "1ab9a32cc2c740f6e39d80d367ce5dcc28db8c71b79b28670546b8973e9d75f9"
 download \
   "${BASE_URL}/loras/krea2_turbo_lora_rank_64_bf16.safetensors" \
   "loras/krea2_turbo_lora_rank_64_bf16.safetensors" \

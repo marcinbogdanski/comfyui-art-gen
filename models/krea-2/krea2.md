@@ -30,6 +30,12 @@ text_encoders/qwen3vl_4b_bf16.safetensors
 vae/qwen_image_vae.safetensors
 ```
 
+Mystic source decoder:
+
+```text
+vae/wanvideo/Wan2_1_VAE_bf16.safetensors
+```
+
 Official RAW-to-Turbo adapter:
 
 ```text
@@ -81,9 +87,18 @@ precision where practical:
   requires `Krea-2-Two-Stage-Sampler` at commit
   `b201412a0178da17b9760faa897107283428a78a`, which is also pinned by the Vast
   setup script.
-- Mystic uses model and text-encoder strength 1.0 with the official Qwen Image
-  VAE. The source metadata named a Wan 2.1 VAE and did not include a complete
-  GUI workflow.
+- Mystic uses model and text-encoder strength 1.0 with the locally managed
+  `wanvideo/Wan2_1_VAE_bf16.safetensors`. Its 194 tensors are bit-for-bit
+  identical to the source-named official `wan_2.1_vae.safetensors`. This is
+  intentionally different from the official Krea workflows' Qwen Image VAE:
+  Qwen Image retains Wan 2.1's encoder but has a fine-tuned image decoder, so
+  both are latent-compatible while the source Wan decoder is the closer
+  reference-reproduction choice. The source metadata did not include a
+  complete GUI workflow.
+- Mystic's source seed is `3520490338622357181`, above JavaScript's maximum
+  safe integer. A ComfyUI GUI workflow therefore stores the rounded
+  `3520490338622357000`; all creator still-image seeds checked for V3 are
+  similarly outside the exact-integer range.
 - Dark Beast uses the selected V3 INT8 checkpoint and its source 12-step
   Euler/simple path.
 
@@ -136,6 +151,9 @@ Human reference review:
   resolution and judged a good match. The local non-save API graph matches the
   embedded source graph and parameters; the comparison measured SSIM `0.9301`
   and pixel correlation `0.9727`, with differences concentrated in fine detail.
+- Mystic XXX V3 was reviewed with the source-named Wan 2.1 VAE and the exact
+  source seed submitted after frontend conversion. It was judged closer to the
+  creator reference and a good match.
 
 Canonical workflows:
 
