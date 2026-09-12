@@ -95,12 +95,13 @@ Implementation may begin only after the proposed scope is accepted or modified
 and the user gives an explicit implementation instruction, or when the user's
 message clearly combines both scope approval and execution. If the user already
 provides an explicit implementation plan and asks for execution, follow it, but
-still keep edits and staging within that stated scope.
+still keep edits within that stated scope. If the task later enters **FINALIZE**
+under the phase gate in `AGENTS.md`, keep staging within that scope as well.
 
 ## Recommended Task Shape
 
 For model/LoRA additions that touch both this repo and the model archive, prefer
-this shape:
+this shape while in **ITERATE**:
 
 1. Research-only pass: classify the candidate, select the best source
    image/workflow, resolve likely filename mappings, and produce the proposed
@@ -112,12 +113,21 @@ this shape:
    short control-repo documentation only.
 4. Coordination: the main agent reviews both outputs and leaves unrelated
    changed, ignored, or untracked files alone.
-5. Stage: stage the model archive and control repo separately, limited to the
-   exact accepted scope. This staged state is the final form for human review.
-6. Validation: run local staged checks, then use a fresh-context sub-agent for
-   the model archive's self-consistency audit. For paired archive/control
-   changes, follow it with a separate fresh-context cross-repo integration audit
-   limited to the interface between the two repos.
+5. Iterative validation: run only the targeted checks needed to produce an
+   inspectable workflow result.
+6. Human review: stop with changes unstaged. Do not run agentic audits.
+
+Only after the human explicitly moves the task into **FINALIZE**:
+
+7. Stage the model archive and control repo separately, limited to the exact
+   accepted scope.
+8. Run the staged checklists and required audits. For paired archive/control
+   changes, complete the model-archive integrity audit first, then the separate
+   cross-repo integration audit limited to the interface between the repos.
+
+A bare request to commit does not authorize step 8 or any missing tests. Reuse
+existing passing evidence; if required evidence is missing, report that
+immediately and wait for explicit direction instead of starting the work.
 
 Steps 2 and 3 may be done by focused workers when useful. Give each worker one
 write scope only: either the model archive or the control repo, not both. A
@@ -272,10 +282,13 @@ Do not add a newly created workflow to `workflows/test_matrix.txt` unless the
 human asks for it or the accepted scope includes it; the matrix is a curated
 regression set, not an automatic inventory of all workflows.
 
-When a session adds or changes workflows, models, dependencies, or related
-runtime behavior, use the complete `workflows/test_matrix.txt` no-generation
-preflight once if it has not already passed in that session against the current
-ComfyUI environment. Do not run it merely for questions, research, read-only
+When the human explicitly asks to finalize validation after the session has
+added or changed workflows, models, dependencies, or related runtime behavior,
+use the complete `workflows/test_matrix.txt` no-generation preflight once if it
+has not already passed in that session against the current ComfyUI environment.
+In **ITERATE**, do not run it unless the human explicitly requests it. A bare
+commit request does not authorize the matrix; report it immediately if it is
+required but missing. Do not run it merely for questions, research, read-only
 review, or documentation-only work:
 
 ```bash
@@ -301,13 +314,15 @@ unaffected workflows and choose later checks according to behavioral impact:
 Do not rerun an expensive passing check unless later work could invalidate what
 it demonstrated.
 
-After the smoke test, stop for human review unless the user has asked for
-commits or further automation.
+After the targeted smoke test, stop for human review with changes unstaged while
+the task remains in **ITERATE**. Do not infer staging, broad tests, or audits from
+an implementation request.
 
-After staging model-archive files and before asking the human for review or
-committing, re-read `/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and
-execute its staged changes checklist against the staged/index version of the
-files.
+In **FINALIZE**, after staging model-archive files and before committing, re-read
+`/mnt/data/comfyui/models/MODEL_SUMMARY_RULES.md` and execute its staged changes
+checklist against the staged/index version of the files. If the human asked only
+to commit and the required checklist or audit evidence is missing, stop and
+report that instead of starting it.
 
 The audit sequence depends on the staged scope:
 

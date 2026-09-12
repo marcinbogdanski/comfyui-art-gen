@@ -35,6 +35,14 @@ download_civitai \
   "${MODELS_DIR}/diffusion_models/pornmasterFlux2Klein_v4.safetensors"
 
 download_civitai \
+  "https://civitai.com/api/download/models/2973304?fileId=2852910" \
+  "${MODELS_DIR}/diffusion_models/pornmasterFlux2Klein_v4TurboFp8.safetensors"
+
+download_civitai \
+  "https://civitai.com/api/download/models/3063794?fileId=2943495" \
+  "${MODELS_DIR}/diffusion_models/moody-desire-v3.1_00001__fp8.safetensors"
+
+download_civitai \
   "https://civitai.com/api/download/models/2960556" \
   "${MODELS_DIR}/loras/klein_snofs_v1_4.safetensors"
 
